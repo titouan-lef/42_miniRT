@@ -6,7 +6,7 @@
 /*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 13:31:04 by pchalmin          #+#    #+#             */
-/*   Updated: 2025/03/17 17:10:23 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:40:58 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include "../libft/libft.h"
+
+typedef	struct s_scene
+{
+	int	nb_ambiance;
+	int	nb_camera;
+	int	nb_light;
+	int	nb_sphere;
+	int	nb_plan;
+	int nb_cylinder;
+	t_ambiance	ambiance;
+	t_camera	camera;
+	t_light		light;
+	t_sphere	sphere;
+	t_plan		plan;
+	t_cylinder	cylinder;
+}	t_scene;
 
 /*	RGB range [0-255], lr range [0.0, 1.0]*/
 typedef	struct	s_ambiance
