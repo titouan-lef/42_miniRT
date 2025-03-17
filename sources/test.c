@@ -6,7 +6,7 @@
 /*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 10:09:24 by pchalmin          #+#    #+#             */
-/*   Updated: 2025/03/17 19:11:43 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:38:04 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,12 @@ void	ft_exit(char *str)
 	exit (1);
 }
 
+
 int	main(int argc, char ** argv)
 {
-	int	fd;
-	char *str;
+	t_scene	scene;
 
-	fd = 0;
 	if (argc > 2 || argc < 2 || check_files_type(argv[1]))
 		ft_exit("try miniRT with scene files : ./miniRT \"file_names\".rt");
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		ft_exit("open at test.c l 44 failed");
-	str = get_next_line(fd);
-	while (str)
-	{
-		
-		free(str);
-		str = get_next_line(fd);
-	}
-	close (fd);
-	
-	
-	
-	
-	
-
-	
-	
+	extraction_data(argv[1], &scene);
 }
