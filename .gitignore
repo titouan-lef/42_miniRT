@@ -1,0 +1,15 @@
+# VS Code
+.vscode/
+
+# MacroLibX
+MacroLibX/libmlx.so
+MacroLibX/objs/
+MacroLibX/runtime/Includes/PreCompiled.h.pch
+
+# Libft
+libft/.build/
+libft/libft.a
+
+# MiniRT
+.build/
+miniRT

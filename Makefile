@@ -1,0 +1,145 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
+#    Updated: 2025/03/18 11:45:38 by tle-floc         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#===================== BASE =====================#
+
+CC =			cc
+
+CFLAGS +=		-Wall -Wextra -Werror -MP -MMD
+
+MATH_FLAG :=	-lm
+
+MAKEFLAGS +=	--no-print-directory
+
+BUILD_DIR :=	.build/
+
+NAME :=			miniRT
+
+#==================== COLOR =====================#
+
+INIT :=		\e[0m
+BLACK :=	\e[30m
+RED :=		\e[31m
+GREEN :=	\e[32m
+YELLOW :=	\e[33m
+BLUE :=		\e[34m
+MAGENTA :=	\e[35m
+CYAN :=		\e[36m
+
+#==================== SOURCE ====================#
+
+SRC_DIR :=	src/
+
+SRC :=	miniRT.c
+
+#---------- BONUS ----------#
+
+# SRC_BONUS :=	bonus/fdf_bonus.c \
+
+#==================== OBJECT ====================#
+
+OBJ :=	$(SRC:%.c=$(BUILD_DIR)%.o)
+
+#---------- BONUS ----------#
+
+# OBJ_BONUS :=	$(SRC_BONUS:%.c=$(BUILD_DIR)%.o)
+
+#---------------------------#
+
+OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))# $(shell dirname $(OBJ_BONUS)))
+
+#================== DEPENDENCY ==================#
+
+DEP :=	$(SRC:%.c=$(BUILD_DIR)%.d)
+
+#---------- BONUS ----------#
+
+# DEP_BONUS :=	$(SRC_BONUS:%.c=$(BUILD_DIR)%.d)
+
+#==================== HEADER ====================#
+
+HEADERS =	include/
+
+#==================== LIBFT =====================#
+
+LIBFT_DIR :=	libft/
+
+LIBFT :=		$(addprefix $(LIBFT_DIR), libft.a)
+
+MAKE_LIBFT :=	make -C $(LIBFT_DIR) -j
+
+#=================== MACROLIBX ===================#
+
+MACROLIBX_FLAG :=	-lSDL2
+
+MACROLIBX_DIR :=	MacroLibX/
+
+MACROLIBX :=		$(addprefix $(MACROLIBX_DIR), libmlx.so)
+
+MAKE_MACROLIBX :=	make -C $(MACROLIBX_DIR) -j >/dev/null 2>/dev/null
+
+#===================== RULE =====================#
+
+all: $(NAME)
+
+$(NAME): $(OBJ) $(LIBFT) $(MACROLIBX)
+	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
+	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+
+$(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
+	@$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
+
+$(OBJ_DIR):
+	@mkdir -p $@
+
+$(LIBFT):
+	@echo "$(YELLOW)Entering directory $(BLUE)$(LIBFT_DIR)$(INIT)"
+	@$(MAKE_LIBFT)
+	@echo "$(YELLOW)Leaving directory $(BLUE)$(LIBFT_DIR)$(INIT)"
+
+$(MACROLIBX):
+	@echo "$(YELLOW)Entering directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
+	@echo "$(CYAN)Archiving : $(MAGENTA)macrolibx$(INIT)"
+	@$(MAKE_MACROLIBX)
+	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
+
+# bonus: $(NAME_BONUS)
+
+# $(NAME_BONUS): $(OBJ_BONUS) $(LIBFT) $(MACROLIBX)
+#	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
+#	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+
+clean:
+#clean libft
+	@echo "$(YELLOW)Entering directory $(BLUE)$(LIBFT_DIR)$(INIT)"
+	@$(MAKE_LIBFT) clean
+	@echo "$(YELLOW)Leaving directory $(BLUE)$(LIBFT_DIR)$(INIT)"
+#clean macrolibx
+	@echo "$(YELLOW)Entering directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
+	@echo "$(RED)Removing : $(MAGENTA)macrolibx files$(INIT)"
+	@$(MAKE_MACROLIBX) clean
+	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
+#clean build directory
+	@if [ -d $(BUILD_DIR) ]; then echo "$(RED)Removing directory : $(BLUE)$(BUILD_DIR)$(INIT)"; rm -rf $(BUILD_DIR); fi;
+
+fclean: clean
+	@if [ -f $(LIBFT) ]; then echo "$(RED)Removing : $(MAGENTA)$(LIBFT)$(INIT)"; rm -f $(LIBFT); fi;
+	@if [ -f $(MACROLIBX) ]; then echo "$(RED)Removing : $(MAGENTA)$(MACROLIBX)$(INIT)"; rm -f $(MACROLIBX); fi;
+	@if [ -f $(NAME) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME)$(INIT)"; rm -f $(NAME); fi;
+#	@if [ -f $(NAME_BONUS) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME_BONUS)$(INIT)"; rm -f $(NAME_BONUS); fi;
+
+re:	fclean all
+
+.PHONY: all clean fclean re #bonus
+
+-include $(DEP) #s$(DEP_BONUS)
