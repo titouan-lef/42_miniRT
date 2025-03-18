@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 10:09:24 by pchalmin          #+#    #+#             */
-/*   Updated: 2025/03/17 21:38:04 by pchalmin         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minirt.h"
 
 int	check_files_type(char *str)
@@ -37,9 +25,10 @@ void	ft_exit(char *str)
 
 int	main(int argc, char ** argv)
 {
-	t_scene	scene;
+	//t_scene	scene;
 
 	if (argc > 2 || argc < 2 || check_files_type(argv[1]))
 		ft_exit("try miniRT with scene files : ./miniRT \"file_names\".rt");
-	extraction_data(argv[1], &scene);
+	//extraction_data(argv[1], &scene);
+	return (0);
 }
