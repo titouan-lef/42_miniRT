@@ -59,7 +59,7 @@ Remove a local branch `branch_name` (think to switch on an other branch before)
 ```bash
 git branch -d <branch_name>
 ```
-Switch to a branch
+Switch to a branch `branch_name`
 ```bash
 git switch <branch_name>
 ```
@@ -70,6 +70,10 @@ git log
 Initialize the log at the begining of the project
 ```bash
 git config --global alias.adog "log --all --decorate --online --graph"
+```
+Better log
+```bash
+git adog
 ```
 ### Update a local branch
 ```bash
@@ -155,7 +159,7 @@ git rebase --abort
 ### Git Helper
 Change the message of the last commit
 ```bash
-git commit -amend
+git commit --amend
 ```
 Cancel the last commit (go back just before validate the last commit)
 ```bash
