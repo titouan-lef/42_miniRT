@@ -69,7 +69,7 @@ git log
 ```
 Initialize the log at the begining of the project
 ```bash
-git config --global alias.adog "log --all --decorate --online --graph"
+git config --global alias.adog "log --all --decorate --oneline --graph"
 ```
 Better log
 ```bash
@@ -145,7 +145,7 @@ git add <files>
 ``` 
 6. Pass to the next commit
 ```bash
-git --continue
+git rebase --continue
 ```
 7. Push modification
 ```bash
