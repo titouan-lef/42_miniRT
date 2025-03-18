@@ -7,6 +7,23 @@
 # include <fcntl.h>
 # include "libft.h"
 
+
+# ifndef BAD_ARG
+#  define BAD_ARG "try miniRT with scene files : ./miniRT \"file_names\".rt"
+# endif
+
+# ifndef OPEN_FAILED
+#  define OPEN_FAILED "Open at xxx.c at line xx failed please check the presence, permission and reload"
+# endif
+
+# ifndef GNL_NULL
+#  define GNL_NULL "Your files is empty or get_next_line have failed"
+# endif
+
+# ifndef SPLIT_NULL
+#  define SPLIT_NULL "ft_split_charset have failed"
+# endif
+
 /*	RGB range [0-255], lr range [0.0, 1.0]*/
 typedef	struct	s_ambiance
 {
@@ -72,4 +89,7 @@ typedef	struct s_scene
 	//mlx
 }	t_scene;
 
+
+void	exit_error_before_alloc(char *str);
+int		check_files_type(char *str);
 #endif
