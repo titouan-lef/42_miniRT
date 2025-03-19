@@ -25,7 +25,7 @@ static char	*complete_orientation(double *orientation, char *str)
 	return (str);
 }
 
-int	take_psition(t_vector3 *orientation, char *str)
+int	take_orientation(t_vector3 *orientation, char *str)
 {
 	char	*tmp;
 

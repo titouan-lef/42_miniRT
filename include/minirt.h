@@ -112,8 +112,6 @@ typedef	struct s_scene
  ***********************************************/
 void	parsing(int argc, char ** argv, t_scene *scene);
 
-void	exit_error_before_alloc(char *str);
-
 /***********************************************
  *  @file parsing_utils.c
  ***********************************************/
@@ -139,14 +137,25 @@ int 	take_color(t_color *colors, char *str);
 /***********************************************
  *  @file parsing_position.c
  ***********************************************/
-int take_position(t_vector3 *position, char *str);
+int 	take_position(t_vector3 *position, char *str);
 
 /***********************************************
  *  @file parsing_orientation.c
  ***********************************************/
-int take_orientation(t_vector3 *position, char *str);
+int 	take_orientation(t_vector3 *position, char *str);
+
+/***********************************************
+ *  @file parsing_light.c
+ ***********************************************/
+int		light_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_light.c
+ ***********************************************/
+int		sphere_interpreter(t_scene *scene, char **tab);
 
 
+void	exit_error_before_alloc(char *str);
 void	free_tab(char **tab);
 
 #endif
