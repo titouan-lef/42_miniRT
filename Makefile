@@ -29,11 +29,7 @@ CYAN :=		\e[36m
 
 SRC_DIR :=	src/
 
-SRC :=	minirt.c \
-		parsing/parsing.c \
-		parsing/parsing_utils.c \
-		parsing/parsing_exit.c \
-		parsing/parsing_ambient.c 
+SRC :=	minirt.c
 
 #---------- BONUS ----------#
 
