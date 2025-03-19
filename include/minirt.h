@@ -150,10 +150,24 @@ int 	take_orientation(t_vector3 *position, char *str);
 int		light_interpreter(t_scene *scene, char **tab);
 
 /***********************************************
- *  @file parsing_light.c
+ *  @file parsing_sphere.c
  ***********************************************/
 int		sphere_interpreter(t_scene *scene, char **tab);
 
+/***********************************************
+ *  @file parsing_plan.c
+ ***********************************************/
+int		plan_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_cylinder.c
+ ***********************************************/
+int		cylinder_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_cone.c
+ ***********************************************/
+int		cone_interpreter(t_scene *scene, char **tab);
 
 void	exit_error_before_alloc(char *str);
 void	free_tab(char **tab);

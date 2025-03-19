@@ -29,7 +29,7 @@ static int	alloc_new_obj(t_list **head, t_sphere *new_sphere)
 static t_sphere	*alloc_new_sphere(char **tab)
 {
 	t_sphere	*new_sphere;
-	int		error;
+	int			error;
 
 	new_sphere = malloc(sizeof(t_light));
 	error = 0;
@@ -41,7 +41,7 @@ static t_sphere	*alloc_new_sphere(char **tab)
 		return (NULL);
 	}
 	new_sphere->diam = ft_todouble(tab[2], &error);
-	if (error != 0 )
+	if (error != 0)
 	{
 		free (new_sphere);
 		return (NULL);

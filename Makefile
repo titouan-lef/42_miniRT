@@ -38,7 +38,7 @@ SRC :=	minirt.c \
 		parsing/parsing_exit.c \
 		parsing/parsing_light.c \
 		parsing/parsing_orientation.c \
-		parsing/parsing_plane.c \
+		parsing/parsing_plan.c \
 		parsing/parsing_position.c \
 		parsing/parsing_sphere.c \
 		parsing/parsing_utils.c \
