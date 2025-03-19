@@ -4,12 +4,12 @@
 
 static char	*complete_colors(int *color, char *str)
 {
-	int	error;
+	int		error;
 	size_t	i;
 
 	i = 0;
 	error = 0;
-	while(str[i] && str[i] != ',')
+	while (str[i] && str[i] != ',')
 		i++;
 	if (str[i] == ',')
 	{
@@ -25,9 +25,9 @@ static char	*complete_colors(int *color, char *str)
 	return (str);
 }
 
-int take_color(t_color *colors, char *str)
+int	take_color(t_color *colors, char *str)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = str;
 	tmp = complete_colors(&colors->r, tmp);
@@ -39,5 +39,5 @@ int take_color(t_color *colors, char *str)
 	tmp = complete_colors(&colors->b, tmp);
 	if (!tmp || *tmp)
 		return (1);
-	return (0);	
+	return (0);
 }

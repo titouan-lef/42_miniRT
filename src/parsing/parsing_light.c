@@ -19,19 +19,35 @@ static int	alloc_new_node(t_list **head, t_light *new_light)
 static t_light	*alloc_new_light(char **tab)
 {
 	t_light	*new_light;
+	int		error;
 
 	new_light = malloc(sizeof(t_light));
+	error = 0;
 	if (!new_light)
 		return (NULL);
 	if (take_position(&new_light->position, tab[1]))
+	{
+		free(new_light);
+		return (NULL);
+	}
+	new_light->lbr = ft_todouble(tab[2], &error);
+	if (error != 0 || new_light->lbr < 0 || new_light->lbr > 1)
+	{
+		free (new_light);
+		return (NULL);
+	}
+	if (take_color(&new_light->color, tab[3]))
+	{
+		free (new_light);
+		return (NULL);
+	}
+	return (new_light);
 }
 
 int	light_interpreter(t_scene *scene, char **tab)
 {
 	t_light	*new_light;
-	int		error;
 
-	error = 0;
 	if (tab_size(tab) != 4)
 		return (1);
 	new_light = alloc_new_light(tab);

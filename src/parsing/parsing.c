@@ -8,7 +8,7 @@ void	init_scene(t_scene *scene)
 	scene->lst_obj = NULL;
 }
 
-int	data_interpreter(t_scene *scene, char ** tab, int id)
+int	data_interpreter(t_scene *scene, char **tab, int id)
 {
 	int	error;
 
@@ -57,7 +57,7 @@ int	extrac_data(char *str, t_scene *scene)
 
 int	read_scene(int fd, t_scene *scene)
 {
-	char *str;
+	char	*str;
 
 	str = get_next_line_one_file(fd);
 	if (!str)
@@ -77,7 +77,7 @@ int	read_scene(int fd, t_scene *scene)
 	return (0);
 }
 
-void	parsing(int argc, char ** argv, t_scene *scene)
+void	parsing(int argc, char **argv, t_scene *scene)
 {
 	int	fd;
 
@@ -92,5 +92,4 @@ void	parsing(int argc, char ** argv, t_scene *scene)
 		close (fd);
 	}
 	close (fd);
-
 }
