@@ -1,30 +1,38 @@
+/// @todo header
+
 #include "minirt.h"
 
 void	init_scene(t_scene *scene)
 {
 	scene->lst_light = NULL;
-	scene->lst_object = NULL;
+	scene->lst_obj = NULL;
 }
-int	check_valid_id(char *str)
+
+int	data_interpreter(t_scene *scene, char ** tab, int id)
 {
-	if (!ft_strcmp(str, "L"))
+	int	error;
+
+	error = 0;
+	if (id == AMBIENT)
+		error = ambient_interpreter(scene, tab);
+	else if (id == CAMERA)
+		error = camera_interpreter(scene, tab);
+	else if (id == LIGHT)
+		error = light_interpreter(scene, tab);
+	else if (id == SPHERE)
+		error = sphere_interpreter(scene, tab);
+	else if (id == PLAN)
+		error = plane_interpreter(scene, tab);
+	else if (id == CYLINDER)
+		error = cylinder_interpreter(scene, tab);
+	else if (id == CONE)
+		error = cone_interpreter(scene, tab);
+	if (error != 0)
 		return (1);
-	else if (!ft_strcmp(str, "A"))
-		return (2);
-	else if (!ft_strcmp(str, "C"))
-		return (3);
-	else if (!ft_strcmp(str, "sp"))
-		return (4);
-	else if (!ft_strcmp(str, "pl"))
-		return (5);
-	else if (!ft_strcmp(str, "cy"))
-		return (6);
-	else if (!ft_strcmp(str, "co"))
-		return (7);
 	return (0);
 }
 
-int	extrac_data(char *str, int fd, t_scene *scene)
+int	extrac_data(char *str, t_scene *scene)
 {
 	char	**tab;
 	int		id;
@@ -38,8 +46,11 @@ int	extrac_data(char *str, int fd, t_scene *scene)
 		free_tab(tab);
 		return (1);
 	}
-	if (data_fill(scene, tab))
+	if (data_interpreter(scene, tab, id))
+	{
+		free_tab(tab);
 		return (1);
+	}
 	free_tab(tab);
 	return (0);
 }
@@ -53,8 +64,11 @@ int	read_scene(int fd, t_scene *scene)
 		return (1);
 	while (str)
 	{
-		if (extrac_data(str, fd, scene))
+		if (extrac_data(str, scene))
+		{
+			free (str);
 			return (1);
+		}
 		free(str);
 		str = get_next_line_one_file(fd);
 		if (!str)

@@ -1,8 +1,22 @@
+/// @todo header
+
 #include "minirt.h"
+
+size_t	tab_size(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	if (!tab)
+		return (0);
+	while (tab[i])
+		i++;
+	return (i);
+}
 
 int	check_files_type(char *str)
 {
-	int	size;
+	size_t	size;
 
 	size = ft_strlen(str);
 	if (size < 4)
@@ -14,4 +28,29 @@ int	check_files_type(char *str)
 	if (str[size - 3] != '.')
 		return (1);
 	return (0);
+}
+
+/**
+ * @brief Check the first line of tab for look identifer
+ * @param str id of string.
+ * @return nb in fonction of id detected.
+ * @warning 7 is for a cone for bonus.
+ */
+int	check_valid_id(char *str)
+{
+	if (!ft_strcmp(str, "A"))
+		return (AMBIENT);
+	else if (!ft_strcmp(str, "C"))
+		return (CAMERA);
+	else if (!ft_strcmp(str, "L"))
+		return (LIGHT);
+	else if (!ft_strcmp(str, "sp"))
+		return (SPHERE);
+	else if (!ft_strcmp(str, "pl"))
+		return (PLAN);
+	else if (!ft_strcmp(str, "cy"))
+		return (CYLINDER);
+	else if (!ft_strcmp(str, "co"))
+		return (CONE);
+	return (OBJ_ERR);
 }

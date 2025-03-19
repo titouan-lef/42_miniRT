@@ -24,12 +24,30 @@
 #  define SPLIT_NULL "ft_split_charset have failed"
 # endif
 
+typedef enum e_obj_type
+{
+	OBJ_ERR,
+	AMBIENT,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLAN,
+	CYLINDER,
+	CONE,
+}	t_obj_type;
+
+typedef struct s_obj
+{
+	int			type;
+	void		*data;
+}	t_obj;
+
 /*	RGB range [0-255], lr range [0.0, 1.0]*/
-typedef	struct	s_ambiance
+typedef	struct	s_ambient
 {
 	t_color	color;
 	double	lr;
-}	t_ambiance;
+}	t_ambient;
 
 /*	RGB range [0-255], lr range [0.0, 1.0], FOV [0, 180]*/
 typedef	struct	s_camera
@@ -82,14 +100,53 @@ typedef	struct	s_cone
 
 typedef	struct s_scene
 {
-	t_list		*lst_object;
+	t_list		*lst_obj;
 	t_list		*lst_light;
-	t_ambiance	ambiance;
+	t_ambient	ambient;
 	t_camera	camera;
 	//mlx
 }	t_scene;
 
+/***********************************************
+ *  @file parsing.c
+ ***********************************************/
+void	parsing(int argc, char ** argv, t_scene *scene);
 
 void	exit_error_before_alloc(char *str);
+
+/***********************************************
+ *  @file parsing_utils.c
+ ***********************************************/
+size_t	tab_size(char **tab);
 int		check_files_type(char *str);
+int		check_valid_id(char *str);
+
+/***********************************************
+ *  @file parsing_ambient.c
+ ***********************************************/
+int		ambient_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_camera.c
+ ***********************************************/
+int		camera_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_colors.c
+ ***********************************************/
+int 	take_color(t_color *colors, char *str);
+
+/***********************************************
+ *  @file parsing_position.c
+ ***********************************************/
+int take_position(t_vector3 *position, char *str);
+
+/***********************************************
+ *  @file parsing_orientation.c
+ ***********************************************/
+int take_orientation(t_vector3 *position, char *str);
+
+
+void	free_tab(char **tab);
+
 #endif

@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
-#    Updated: 2025/03/18 11:45:38 by tle-floc         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#/// @todo header
 
 #===================== BASE =====================#
 
@@ -39,11 +29,15 @@ CYAN :=		\e[36m
 
 SRC_DIR :=	src/
 
-SRC :=	miniRT.c
+SRC :=	minirt.c \
+		parsing/parsing.c \
+		parsing/parsing_utils.c \
+		parsing/parsing_exit.c \
+		parsing/parsing_ambient.c 
 
 #---------- BONUS ----------#
 
-# SRC_BONUS :=	bonus/fdf_bonus.c \
+# SRC_BONUS :=	bonus/fdf_bonus.c
 
 #==================== OBJECT ====================#
 
@@ -73,6 +67,8 @@ HEADERS =	include/
 
 LIBFT_DIR :=	libft/
 
+LIBFT_HEADER := libft/include/
+
 LIBFT :=		$(addprefix $(LIBFT_DIR), libft.a)
 
 MAKE_LIBFT :=	make -C $(LIBFT_DIR) -j
@@ -97,7 +93,7 @@ $(NAME): $(OBJ) $(LIBFT) $(MACROLIBX)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
-	@$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_HEADER) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
