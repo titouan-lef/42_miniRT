@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 16:07:52 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/01/10 11:07:37 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:12:04 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	**ft_fill_result(char const *s, char c, char **result)
 		result[i] = ft_substr(s, 0, end - s);
 		if (!result[i])
 		{
-			ft_free_matrix((void **)result, i);
+			ft_free_matrix((void ***)&result, i);
 			return (NULL);
 		}
 		++i;

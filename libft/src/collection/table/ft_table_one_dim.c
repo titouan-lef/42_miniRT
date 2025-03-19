@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_table_one_dim.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 16:21:33 by tle-floc          #+#    #+#             */
-/*   Updated: 2024/12/18 17:43:26 by tle-floc         ###   ########.fr       */
+/*   Created: 2025/03/19 15:52:26 by tle-floc          #+#    #+#             */
+/*   Updated: 2025/03/19 17:05:09 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_matrix(void **matrix, size_t size)
+/**
+ * @brief Free table.
+ * @param tab Address of the table.
+ */
+void	ft_free_tab(void **tab)
+{
+	free(*tab);
+	*tab = NULL;
+}
+
+/**
+ * @brief Free table and its elements.
+ * @param tab Address of the table.
+ * @param size Size of table.
+ * @param del Function to free each element in the table.
+ * @warning del function mustn't be null.
+ */
+void	ft_free_complete_tab(void **tab, size_t size, void (*del)(void *))
 {
 	size_t	i;
 
 	i = 0;
 	while (i < size)
 	{
-		free(matrix[i]);
+		del(*tab + i);
 		++i;
 	}
-	free(matrix);
-}
-
-void	ft_clean_matrix(void **matrix)
-{
-	size_t	i;
-
-	i = 0;
-	while (matrix[i] != NULL)
-	{
-		free(matrix[i]);
-		++i;
-	}
-	free(matrix);
+	ft_free_tab(tab);
 }

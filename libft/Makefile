@@ -6,7 +6,7 @@
 #    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
-#    Updated: 2025/03/19 15:26:54 by tle-floc         ###   ########.fr        #
+#    Updated: 2025/03/19 17:11:10 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,8 @@ SRC =		char/ft_check_alnum.c \
 			collection/list/ft_lst_del.c \
 			collection/list/ft_lst_primitive.c \
 			collection/queue/ft_queue_primitive.c \
+			collection/table/ft_table_one_dim.c \
+			collection/table/ft_table_two_dim.c \
 			compare/ft_compare.c \
 			compare/ft_strcompare.c \
 			convert/ft_convert_char.c \
@@ -54,7 +56,6 @@ SRC =		char/ft_check_alnum.c \
 			copy/ft_strcopy.c \
 			get_next_line/get_next_line.c \
 			malloc/ft_calloc.c \
-			malloc/ft_free.c \
 			print/printnumber/ft_printnumber.c \
 			print/printnumber/ft_printnumber_base.c \
 			print/printnumber/ft_printunsignednumber.c \

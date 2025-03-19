@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 00:10:16 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/13 17:45:47 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/19 17:09:47 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,16 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+/* table */
+void	ft_free_tab(void **tab);
+void	ft_free_complete_tab(void **tab, size_t size, void (*del)(void *));
+size_t	ft_matrix_get_row(void **matrix);
+void	ft_free_matrix(void ***matrix, size_t nb_row);
+void	ft_clean_matrix(void ***matrix);
+void	ft_free_complete_matrix(void ***matrix, size_t nb_row, size_t nb_col,
+			void (*del)(void *));
+void	ft_clean_complete_matrix(void ***matrix, size_t nb_col,
+			void (*del)(void *));
 
 #endif
