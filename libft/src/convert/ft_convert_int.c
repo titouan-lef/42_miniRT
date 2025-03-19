@@ -6,24 +6,20 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:34:13 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/13 18:02:54 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:23:02 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-* Goal: Add digit 'c' at the end of 'nb'.
-* 'is_neg' is equal to 0 or 1.
-* nb > max / 10 allows to test :
-* 	nb * 10 > max.
-* digit - is_neg > max - nb allows to test :
-* 	nb + digit > max + is_neg.
-*
-* Return: The new number after add the digit 'c' or 1 if error.
-*
-* Warning: Overflow is an error.
-*/
+/**
+ * @brief Add digit 'c' at the end of 'nb'.
+ * @details 'is_neg' is equal to 0 or 1.
+ * nb > max / 10 allows to test if nb * 10 > max.
+ * digit - is_neg > max - nb allows to test if nb + digit > max + is_neg.
+ * @return The new number after add the digit 'c' or 1 if error.
+ * @warning Overflow is an error.
+ */
 static int	ft_update_number(long long *nb, char c, int is_neg, long long max)
 {
 	long long	digit;
@@ -38,11 +34,10 @@ static int	ft_update_number(long long *nb, char c, int is_neg, long long max)
 	return (0);
 }
 
-/*
-* Goal: Add digit 'c' at the end of 'nb'.
-*
-* Return: 0 on success, 2 if not number and 3 if overflow.
-*/
+/**
+ * @brief Add digit 'c' at the end of 'nb'.
+ * @return 0 on success, 2 if not number and 3 if overflow.
+ */
 static int	ft_char_to_number(long long *nb, const char *nptr, int is_neg,
 				long long max)
 {
@@ -57,15 +52,13 @@ static int	ft_char_to_number(long long *nb, const char *nptr, int is_neg,
 	return (0);
 }
 
-/*
-* Goal: Convert 'nptr' to a long long.
-*
-* Return: A long long and set status to :
-* 	0 on success.
-* 	1 if not a number.
-* 	2 if there is a non-digit character.
-* 	3 if overflow.
-*/
+/**
+ * @brief Convert the string to a long long.
+ * @return A long long and set status to
+ * 1 if not a number,
+ * 2 if there is a non-digit character,
+ * 3 if overflow.
+ */
 long long	ft_to_number(const char *nptr, int *status, long long max)
 {
 	int			is_neg;
