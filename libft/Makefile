@@ -6,7 +6,7 @@
 #    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
-#    Updated: 2025/03/13 18:12:19 by tle-floc         ###   ########.fr        #
+#    Updated: 2025/03/19 15:26:54 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC =		char/ft_check_alnum.c \
 			convert/ft_convert_char.c \
 			convert/ft_convert_int.c \
 			convert/ft_convert_str.c \
+			convert/ft_convert_to_double.c \
 			copy/ft_copy.c \
 			copy/ft_strcopy.c \
 			get_next_line/get_next_line.c \

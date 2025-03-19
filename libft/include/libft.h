@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 18:04:11 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/13 18:13:33 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:13:58 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 /* convert */
 long long	ft_to_number(const char *nptr, int *status, long long max);
 int			ft_toint(int c);
+double		ft_todouble(const char *nptr, int *status);
 int			ft_tochar(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
