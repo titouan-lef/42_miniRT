@@ -29,11 +29,11 @@ CYAN :=		\e[36m
 
 SRC_DIR :=	src/
 
-SRC :=	miniRT.c
+SRC :=	minirt.c
 
 #---------- BONUS ----------#
 
-# SRC_BONUS :=	bonus/fdf_bonus.c \
+# SRC_BONUS :=	bonus/fdf_bonus.c
 
 #==================== OBJECT ====================#
 
@@ -63,6 +63,8 @@ HEADERS =	include/
 
 LIBFT_DIR :=	libft/
 
+LIBFT_HEADER := libft/include/
+
 LIBFT :=		$(addprefix $(LIBFT_DIR), libft.a)
 
 MAKE_LIBFT :=	make -C $(LIBFT_DIR) -j
@@ -87,7 +89,7 @@ $(NAME): $(OBJ) $(LIBFT) $(MACROLIBX)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
-	@$(CC) $(CFLAGS) -I$(HEADERS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_HEADER) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
