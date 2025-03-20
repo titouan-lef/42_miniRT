@@ -6,6 +6,7 @@
 # include <math.h>
 # include <fcntl.h>
 # include "libft.h"
+# include "graphical_system.h"
 
 
 # ifndef BAD_ARG
