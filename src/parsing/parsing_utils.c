@@ -60,11 +60,6 @@ int	check_files_type(char *str)
  */
 int	check_valid_id(char *str)
 {
-	if (!str)
-	{
-		print_error_message(ERR_ID);
-		return (OBJ_ERR);
-	}
 	if (!ft_strcmp(str, "A"))
 		return (AMBIENT);
 	if (!ft_strcmp(str, "C"))
