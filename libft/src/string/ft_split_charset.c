@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 16:07:52 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/19 17:12:50 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:55:57 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	**ft_fill_result(char const *s, char const *charset, char **result)
 	i = 0;
 	while (*s != '\0')
 	{
-		while (ft_strchr(charset, *s))
+		while (*s != '\0' && ft_strchr(charset, *s))
 			++s;
 		if (*s == '\0')
 			break ;
@@ -71,7 +71,7 @@ char	**ft_split_charset(char const *s, char const *charset)
 	char	**result;
 	size_t	nb_substr;
 
-	if (!s)
+	if (!s || !charset)
 		return (NULL);
 	nb_substr = ft_count_substr(s, charset);
 	result = (char **)malloc((nb_substr + 1) * sizeof(char *));
