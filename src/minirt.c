@@ -2,8 +2,10 @@
 
 #include "minirt.h"
 
-int	main(void)
+int	main(int ac, char ** av)
 {
+	(void)ac;
+	(void)av;
 	manage_graphical_system();
 	return (0);
 }

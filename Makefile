@@ -4,7 +4,7 @@
 
 CC =			cc
 
-CFLAGS +=		-Wall -Wextra -Werror -MP -MMD
+CFLAGS +=		-Wall -Wextra -Werror -MP -MMD -g
 
 MATH_FLAG :=	-lm
 
@@ -30,6 +30,19 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
+		parsing/parsing_ambient.c \
+		parsing/parsing_camera.c \
+		parsing/parsing_colors.c \
+		parsing/parsing_cone.c \
+		parsing/parsing_cylinder.c \
+		parsing/parsing_error.c \
+		parsing/parsing_light.c \
+		parsing/parsing_orientation.c \
+		parsing/parsing_plan.c \
+		parsing/parsing_position.c \
+		parsing/parsing_sphere.c \
+		parsing/parsing_utils.c \
+		parsing/parsing.c \
 		graphical_system/event/event.c \
 		graphical_system/graphical_system.c \
 		graphical_system/window.c
