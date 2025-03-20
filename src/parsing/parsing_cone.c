@@ -47,6 +47,7 @@ static t_cone	*alloc_new_cone(char **tab)
 		new_cone->height = ft_todouble(tab[4], &error);
 	if (error != 0)
 	{
+		print_error_message(ERR_CONE);
 		free (new_cone);
 		return (NULL);
 	}

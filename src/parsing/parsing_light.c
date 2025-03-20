@@ -33,6 +33,7 @@ static t_light	*alloc_new_light(char **tab)
 		new_light->lbr = ft_todouble(tab[2], &error);
 	if (error != 0 || new_light->lbr < 0 || new_light->lbr > 1)
 	{
+		print_error_message(ERR_LIGHT);
 		free(new_light);
 		return (NULL);
 	}

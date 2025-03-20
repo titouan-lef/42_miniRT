@@ -43,6 +43,7 @@ static t_plan	*alloc_new_plan(char **tab)
 		error = take_color(&new_plan->color, tab[3]);
 	if (error != 0)
 	{
+		print_error_message(ERR_PLANE);
 		free (new_plan);
 		return (NULL);
 	}

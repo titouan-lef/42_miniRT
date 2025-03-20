@@ -47,6 +47,7 @@ static t_cylinder	*alloc_new_cylinder(char **tab)
 		new_cylinder->height = ft_todouble(tab[4], &error);
 	if (error != 0)
 	{
+		print_error_message(ERR_CYLINDER);
 		free (new_cylinder);
 		return (NULL);
 	}

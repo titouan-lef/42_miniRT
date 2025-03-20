@@ -154,8 +154,11 @@ int		cylinder_interpreter(t_scene *scene, char **tab);
  ***********************************************/
 int		cone_interpreter(t_scene *scene, char **tab);
 
+/***********************************************
+ *  @file parsing_error.c
+ ***********************************************/
 void	exit_error_before_alloc(char *str);
 void	exit_error_parsing(t_scene *scene);
-void	free_tab(char **tab);
+void	print_error_message(char *str);
 
 #endif

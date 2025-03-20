@@ -2,6 +2,12 @@
 
 #include "minirt.h"
 
+void	init_scene(t_scene *scene)
+{
+	scene->lst_light = NULL;
+	scene->lst_obj = NULL;
+}
+
 size_t	tab_size(char **tab)
 {
 	size_t	i;
@@ -38,6 +44,8 @@ int	check_files_type(char *str)
  */
 int	check_valid_id(char *str)
 {
+	if (!str)
+		return (OBJ_ERR);
 	if (!ft_strcmp(str, "A"))
 		return (AMBIENT);
 	else if (!ft_strcmp(str, "C"))
@@ -52,5 +60,6 @@ int	check_valid_id(char *str)
 		return (CYLINDER);
 	else if (!ft_strcmp(str, "co"))
 		return (CONE);
+	print_error_message(ERR_ID);
 	return (OBJ_ERR);
 }

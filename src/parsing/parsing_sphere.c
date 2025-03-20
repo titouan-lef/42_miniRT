@@ -43,6 +43,7 @@ static t_sphere	*alloc_new_sphere(char **tab)
 		error = take_color(&new_sphere->color, tab[3]);
 	if (error != 0)
 	{
+		print_error_message(ERR_SPHERE);
 		free (new_sphere);
 		return (NULL);
 	}

@@ -35,7 +35,7 @@ SRC :=	minirt.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \
 		parsing/parsing_cylinder.c \
-		parsing/parsing_exit.c \
+		parsing/parsing_error.c \
 		parsing/parsing_light.c \
 		parsing/parsing_orientation.c \
 		parsing/parsing_plan.c \
