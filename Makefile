@@ -4,7 +4,7 @@
 
 CC =			cc
 
-CFLAGS +=		-Wall -Wextra -Werror -MP -MMD
+CFLAGS +=		-Wall -Wextra -Werror -MP -MMD -g
 
 MATH_FLAG :=	-lm
 

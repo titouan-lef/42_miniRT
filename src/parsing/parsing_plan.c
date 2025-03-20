@@ -31,21 +31,17 @@ static t_plan	*alloc_new_plan(char **tab)
 	t_plan	*new_plan;
 	int		error;
 
-	new_plan = malloc(sizeof(t_light));
 	error = 0;
+	new_plan = malloc(sizeof(t_light));
 	if (!new_plan)
 		return (NULL);
-	if (take_position(&new_plan->position, tab[1]))
-	{
-		free(new_plan);
-		return (NULL);
-	}
-	if (take_orientation(&new_plan->orientation, tab[2]))
-	{
-		free (new_plan);
-		return (NULL);
-	}
-	if (take_color(&new_plan->color, tab[3]))
+	if (error == 0)
+		error = take_position(&new_plan->position, tab[1]);
+	if (error == 0)
+		error = take_orientation(&new_plan->orientation, tab[2]);
+	if (error == 0)
+		error = take_color(&new_plan->color, tab[3]);
+	if (error != 0)
 	{
 		free (new_plan);
 		return (NULL);

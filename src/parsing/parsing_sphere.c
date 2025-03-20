@@ -31,22 +31,17 @@ static t_sphere	*alloc_new_sphere(char **tab)
 	t_sphere	*new_sphere;
 	int			error;
 
-	new_sphere = malloc(sizeof(t_light));
 	error = 0;
+	new_sphere = malloc(sizeof(t_light));
 	if (!new_sphere)
 		return (NULL);
-	if (take_position(&new_sphere->position, tab[1]))
-	{
-		free(new_sphere);
-		return (NULL);
-	}
-	new_sphere->diam = ft_todouble(tab[2], &error);
+	if (error == 0)
+		error = take_position(&new_sphere->position, tab[1]);
+	if (error == 0)
+		new_sphere->diam = ft_todouble(tab[2], &error);
+	if (error == 0)
+		error = take_color(&new_sphere->color, tab[3]);
 	if (error != 0)
-	{
-		free (new_sphere);
-		return (NULL);
-	}
-	if (take_color(&new_sphere->color, tab[3]))
 	{
 		free (new_sphere);
 		return (NULL);

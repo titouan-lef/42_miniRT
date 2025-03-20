@@ -31,33 +31,21 @@ static t_cone	*alloc_new_cone(char **tab)
 	t_cone	*new_cone;
 	int		error;
 
-	new_cone = malloc(sizeof(t_light));
 	error = 0;
+	new_cone = malloc(sizeof(t_light));
 	if (!new_cone)
 		return (NULL);
-	if (take_position(&new_cone->position, tab[1]))
-	{
-		free(new_cone);
-		return (NULL);
-	}
-	if (take_orientation(&new_cone->orientation, tab[2]))
-	{
-		free (new_cone);
-		return (NULL);
-	}
-	new_cone->diam = ft_todouble(tab[3], &error);
+	if (error == 0)
+		error = take_position(&new_cone->position, tab[1]);
+	if (error == 0)
+		error = take_orientation(&new_cone->orientation, tab[2]);
+	if (error == 0)
+		error = take_color(&new_cone->color, tab[5]);
+	if (error == 0)
+		new_cone->diam = ft_todouble(tab[3], &error);
+	if (error == 0)
+		new_cone->height = ft_todouble(tab[4], &error);
 	if (error != 0)
-	{
-		free (new_cone);
-		return (NULL);
-	}
-	new_cone->height = ft_todouble(tab[4], &error);
-	if (error != 0)
-	{
-		free (new_cone);
-		return (NULL);
-	}
-	if (take_color(&new_cone->color, tab[5]))
 	{
 		free (new_cone);
 		return (NULL);

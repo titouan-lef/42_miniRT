@@ -21,24 +21,19 @@ static t_light	*alloc_new_light(char **tab)
 	t_light	*new_light;
 	int		error;
 
-	new_light = malloc(sizeof(t_light));
 	error = 0;
+	new_light = malloc(sizeof(t_light));
 	if (!new_light)
 		return (NULL);
-	if (take_position(&new_light->position, tab[1]))
-	{
-		free(new_light);
-		return (NULL);
-	}
-	new_light->lbr = ft_todouble(tab[2], &error);
+	if (error == 0)
+		error = take_position(&new_light->position, tab[1]);
+	if (error == 0)
+		error = take_color(&new_light->color, tab[3]);
+	if (error == 0)
+		new_light->lbr = ft_todouble(tab[2], &error);
 	if (error != 0 || new_light->lbr < 0 || new_light->lbr > 1)
 	{
-		free (new_light);
-		return (NULL);
-	}
-	if (take_color(&new_light->color, tab[3]))
-	{
-		free (new_light);
+		free(new_light);
 		return (NULL);
 	}
 	return (new_light);

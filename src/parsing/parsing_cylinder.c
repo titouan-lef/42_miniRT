@@ -31,33 +31,21 @@ static t_cylinder	*alloc_new_cylinder(char **tab)
 	t_cylinder	*new_cylinder;
 	int			error;
 
-	new_cylinder = malloc(sizeof(t_light));
 	error = 0;
+	new_cylinder = malloc(sizeof(t_light));
 	if (!new_cylinder)
 		return (NULL);
-	if (take_position(&new_cylinder->position, tab[1]))
-	{
-		free(new_cylinder);
-		return (NULL);
-	}
-	if (take_orientation(&new_cylinder->orientation, tab[2]))
-	{
-		free (new_cylinder);
-		return (NULL);
-	}
-	new_cylinder->diam = ft_todouble(tab[3], &error);
+	if (error == 0)
+		error = take_position(&new_cylinder->position, tab[1]);
+	if (error == 0)
+		error = take_orientation(&new_cylinder->orientation, tab[2]);
+	if (error == 0)
+		error = take_color(&new_cylinder->color, tab[5]);
+	if (error == 0)
+		new_cylinder->diam = ft_todouble(tab[3], &error);
+	if (error == 0)
+		new_cylinder->height = ft_todouble(tab[4], &error);
 	if (error != 0)
-	{
-		free (new_cylinder);
-		return (NULL);
-	}
-	new_cylinder->height = ft_todouble(tab[4], &error);
-	if (error != 0)
-	{
-		free (new_cylinder);
-		return (NULL);
-	}
-	if (take_color(&new_cylinder->color, tab[5]))
 	{
 		free (new_cylinder);
 		return (NULL);
