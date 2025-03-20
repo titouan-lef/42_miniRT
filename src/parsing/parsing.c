@@ -6,22 +6,22 @@ int	check_scene_composition(t_scene *scene, int nb_ambient, int nb_camera)
 {
 	if (nb_camera != 1)
 	{
-
+		print_error_message(ERR_SCENE);
 		return (1);
 	}
 	if (nb_ambient != 1)
 	{
-
+		print_error_message(ERR_SCENE);
 		return (1);
 	}
 	if (scene->lst_light == NULL)
 	{
-
+		print_error_message(ERR_SCENE);
 		return (1);
 	}
 	if (scene->lst_obj == NULL)
 	{
-
+		print_error_message(ERR_SCENE);
 		return (1);
 	}
 	return (0);

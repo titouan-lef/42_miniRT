@@ -38,6 +38,10 @@ R, G, B colors in the range [0-255]: 255, 255, 255"
 #  define ERR_ARG "Please try ./miniRT \"files_name.rt\""
 # endif
 
+# ifndef ERR_SCENE
+#  define ERR_SCENE "SCENE"
+# endif
+
 # ifndef ERR_ID
 #  define ERR_ID "Please try with a valid object"
 # endif
