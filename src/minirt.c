@@ -4,5 +4,6 @@
 
 int	main(void)
 {
+	manage_graphical_system();
 	return (0);
 }

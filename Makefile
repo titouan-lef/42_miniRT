@@ -30,6 +30,7 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
+		graphical_system/event/event.c \
 		graphical_system/graphical_system.c \
 		graphical_system/window.c
 
