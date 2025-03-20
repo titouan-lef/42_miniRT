@@ -6,22 +6,22 @@ int	check_scene_composition(t_scene *scene, int nb_ambient, int nb_camera)
 {
 	if (nb_camera != 1)
 	{
-		print_error_message(ERR_SCENE);
+		print_error_message(ERR_NB_CAM);
 		return (1);
 	}
 	if (nb_ambient != 1)
 	{
-		print_error_message(ERR_SCENE);
+		print_error_message(ERR_NB_AMB);
 		return (1);
 	}
 	if (scene->lst_light == NULL)
 	{
-		print_error_message(ERR_SCENE);
+		print_error_message(ERR_NO_LIGHT);
 		return (1);
 	}
 	if (scene->lst_obj == NULL)
 	{
-		print_error_message(ERR_SCENE);
+		print_error_message(ERR_NO_OBJ);
 		return (1);
 	}
 	return (0);
@@ -63,13 +63,8 @@ static int	extrac_data(char *line, t_scene *scene, int *ambient, int *camera)
 		ft_clean_matrix((void *)&tab);
 		return (0);
 	}
-	id = check_valid_id(tab[0]);
-	if (id == AMBIENT)
-		*ambient += 1;
-	else if (id == CAMERA)
-		*camera += 1;
-	if (*ambient > 1 || *camera > 1 || id == OBJ_ERR
-		|| data_interpreter(scene, tab, id))
+	id = check_valid_id(tab[0], ambient, camera);
+	if (id == OBJ_ERR || data_interpreter(scene, tab, id))
 	{
 		ft_clean_matrix((void *)&tab);
 		return (1);

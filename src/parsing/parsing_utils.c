@@ -58,12 +58,18 @@ int	check_files_type(char *str)
  * @return nb in fonction of id detected.
  * @warning 7 is for a cone for bonus.
  */
-int	check_valid_id(char *str)
+int	check_valid_id(char *str, int *ambient, int *camera)
 {
 	if (!ft_strcmp(str, "A"))
+	{
+		*ambient += 1;
 		return (AMBIENT);
+	}
 	if (!ft_strcmp(str, "C"))
+	{
+		*camera += 1;
 		return (CAMERA);
+	}
 	if (!ft_strcmp(str, "L"))
 		return (LIGHT);
 	if (!ft_strcmp(str, "sp"))

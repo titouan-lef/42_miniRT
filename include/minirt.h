@@ -104,7 +104,7 @@ int		alloc_new_obj(t_list **head, void *new_sphere, t_obj_type type);
 int		take_dimension(double *dimension, char *str);
 void	init_scene(t_scene *scene);
 int		check_files_type(char *str);
-int		check_valid_id(char *str);
+int		check_valid_id(char *str, int *ambient, int *camera);
 
 /***********************************************
  *  @file parsing_ambient.c

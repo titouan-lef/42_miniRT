@@ -77,8 +77,20 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 #  define ERR_ARG "Please try ./miniRT \"files_name.rt\""
 # endif
 
-# ifndef ERR_SCENE
-#  define ERR_SCENE "SCENE"
+# ifndef ERR_NB_AMB
+#  define ERR_NB_AMB "The SCENE need one ambient AMBIENT"
+# endif
+
+# ifndef ERR_NB_CAM
+#  define ERR_NB_CAM "The SCENE need one CAM"
+# endif
+
+# ifndef ERR_NO_LIGHT
+#  define ERR_NO_LIGHT "The SCENE need minimum one LIGHT"
+# endif
+
+# ifndef ERR_NO_OBJ
+#  define ERR_NO_OBJ "The SCENE need minimum one OBJ"
 # endif
 
 # ifndef ERR_ID
