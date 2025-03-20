@@ -6,11 +6,10 @@ int	camera_interpreter(t_scene *scene, char **tab)
 {
 	int	error;
 
-	error = 0;
-	if (tab_size(tab) != 4)
+	if (ft_matrix_get_row((void **)tab) != 4)
 		return (1);
 	scene->camera.fov = ft_to_number(tab[3], &error, 180);
-	if (error != 0 || scene->camera.fov < 0 || error != 0)
+	if (error != 0 || scene->camera.fov < 0)
 	{
 		print_error_message(ERR_CAMERA);
 		return (1);

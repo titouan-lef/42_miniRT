@@ -31,7 +31,6 @@ static int	data_interpreter(t_scene *scene, char **tab, int id)
 {
 	int	error;
 
-	error = 0;
 	if (id == AMBIENT)
 		error = ambient_interpreter(scene, tab);
 	else if (id == CAMERA)
@@ -46,24 +45,29 @@ static int	data_interpreter(t_scene *scene, char **tab, int id)
 		error = cylinder_interpreter(scene, tab);
 	else if (id == CONE)
 		error = cone_interpreter(scene, tab);
+	else
+		error = 1;
 	return (error);
 }
 
-static int	extrac_data(char *str, t_scene *scene, int *ambient, int *camera)
+static int	extrac_data(char *line, t_scene *scene, int *ambient, int *camera)
 {
 	char	**tab;
 	int		id;
 
-	tab = ft_split_charset(str, "\t\n\v\f\r ");
+	tab = ft_split_charset(line, "\t\n\v\f\r ");
 	if (!tab)
 		return (1);
+	if (tab[0] == NULL)
+	{
+		ft_clean_matrix((void *)&tab);
+		return (0);
+	}
 	id = check_valid_id(tab[0]);
 	if (id == AMBIENT)
 		*ambient += 1;
-	if (id == CAMERA)
+	else if (id == CAMERA)
 		*camera += 1;
-	if (*ambient > 1 || *camera > 1)
-		;
 	if (*ambient > 1 || *camera > 1 || id == OBJ_ERR
 		|| data_interpreter(scene, tab, id))
 	{
@@ -83,8 +87,6 @@ static int	read_scene(int fd, t_scene *scene)
 	nb_ambient = 0;
 	nb_camera = 0;
 	str = get_next_line_one_file(fd);
-	if (!str)
-		return (1);
 	while (str)
 	{
 		if (extrac_data(str, scene, &nb_ambient, &nb_camera))
@@ -104,16 +106,21 @@ int	parsing(int argc, char **argv, t_scene *scene)
 {
 	int	fd;
 
-	init_scene(scene);
 	if (argc != 2 || check_files_type(argv[1]))
-		exit_error_before_alloc(ERR_ARG);
+	{
+		print_error_message(ERR_ARG);
+		return (1);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		exit_error_before_alloc(ERR_OPEN_FAILED);
+	{
+		print_error_message(ERR_OPEN_FAILED);
+		return (1);
+	}
+	init_scene(scene);
 	if (read_scene(fd, scene))
 	{
 		close (fd);
-		exit_error_parsing(scene);
 		return (1);
 	}
 	close (fd);

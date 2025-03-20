@@ -13,12 +13,6 @@ void	free_content_obj(void *content)
 	content = NULL;
 }
 
-void	exit_error_before_alloc(char *str)
-{
-	ft_printf_fd(2, "Error/n%s/n", str);
-	exit (1);
-}
-
 void	exit_error_parsing(t_scene *scene)
 {
 	if (scene->lst_light)

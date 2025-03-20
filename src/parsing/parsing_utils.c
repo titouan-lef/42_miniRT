@@ -2,22 +2,38 @@
 
 #include "minirt.h"
 
+int	alloc_new_obj(t_list **head, void *new_obj, t_obj_type type)
+{
+	t_list	*new_node;
+	t_obj	*obj;
+
+	obj = malloc (sizeof(t_obj));
+	if (!obj)
+		return (1);
+	obj->data = new_obj;
+	obj->type = type;
+	new_node = ft_lstnew(obj);
+	if (!new_node)
+	{
+		free(obj);
+		return (1);
+	}
+	ft_lstadd_front(head, new_node);
+	return (0);
+}
+
 void	init_scene(t_scene *scene)
 {
 	scene->lst_light = NULL;
 	scene->lst_obj = NULL;
 }
 
-size_t	tab_size(char **tab)
+int	take_dimension(double *dimension, char *str)
 {
-	size_t	i;
+	int	error;
 
-	i = 0;
-	if (!tab)
-		return (0);
-	while (tab[i])
-		i++;
-	return (i);
+	*dimension = ft_todouble(str, &error);
+	return (error || *dimension <= 0);
 }
 
 int	check_files_type(char *str)
@@ -45,20 +61,23 @@ int	check_files_type(char *str)
 int	check_valid_id(char *str)
 {
 	if (!str)
+	{
+		print_error_message(ERR_ID);
 		return (OBJ_ERR);
+	}
 	if (!ft_strcmp(str, "A"))
 		return (AMBIENT);
-	else if (!ft_strcmp(str, "C"))
+	if (!ft_strcmp(str, "C"))
 		return (CAMERA);
-	else if (!ft_strcmp(str, "L"))
+	if (!ft_strcmp(str, "L"))
 		return (LIGHT);
-	else if (!ft_strcmp(str, "sp"))
+	if (!ft_strcmp(str, "sp"))
 		return (SPHERE);
-	else if (!ft_strcmp(str, "pl"))
+	if (!ft_strcmp(str, "pl"))
 		return (PLAN);
-	else if (!ft_strcmp(str, "cy"))
+	if (!ft_strcmp(str, "cy"))
 		return (CYLINDER);
-	else if (!ft_strcmp(str, "co"))
+	if (!ft_strcmp(str, "co"))
 		return (CONE);
 	print_error_message(ERR_ID);
 	return (OBJ_ERR);
