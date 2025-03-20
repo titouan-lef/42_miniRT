@@ -13,3 +13,6 @@ libft/libft.a
 # MiniRT
 .build/
 miniRT
+
+# Valgrind Suppress
+valgrind.supp
