@@ -2,17 +2,14 @@
 .vscode/
 
 # MacroLibX
-MacroLibX/libmlx.so
-MacroLibX/objs/
-MacroLibX/runtime/Includes/PreCompiled.h.pch
+miniRT/MacroLibX/libmlx.so
+miniRT/MacroLibX/objs/
+miniRT/MacroLibX/runtime/Includes/PreCompiled.h.pch
 
 # Libft
-libft/.build/
-libft/libft.a
+miniRT/libft/.build/
+miniRT/libft/libft.a
 
 # MiniRT
-.build/
-miniRT
-
-# Valgrind Suppress
-valgrind.supp
+miniRT/.build/
+miniRT/miniRT
