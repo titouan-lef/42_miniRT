@@ -32,13 +32,13 @@ t_vector3	ft_diff_vector3(t_vector3 v1, t_vector3 v2)
 	return (diff);
 }
 
-t_vector3	ft_scalarmult_vector3(t_vector3 v1, double k)
+t_vector3	ft_scalarmult_vector3(t_vector3 v, double k)
 {
 	t_vector3	scalarmult;
 
-	scalarmult.x = v1.x * k;
-	scalarmult.y = v1.y * k;
-	scalarmult.z = v1.z * k;
+	scalarmult.x = v.x * k;
+	scalarmult.y = v.y * k;
+	scalarmult.z = v.z * k;
 	return (scalarmult);
 }
 

@@ -6,13 +6,13 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:43:13 by tle-floc          #+#    #+#             */
-/*   Updated: 2024/12/21 16:32:06 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:42:48 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TRANSFORMATION_H
 # define TRANSFORMATION_H
-# include "vector3.h"
+# include "quaternion.h"
 
 typedef struct s_rotation
 {

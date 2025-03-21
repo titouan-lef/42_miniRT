@@ -22,22 +22,31 @@ t_vector3	ft_create_vector3(double x, double y, double z)
 	return (v);
 }
 
-double	ft_magnitude_vector3(t_vector3 v1)
+double	ft_norm_vector3(t_vector3 v)
 {
 	double	dotproduct;
-	double	magnitude;
+	double	norm;
 
-	dotproduct = ft_dotproduct_vector3(v1, v1);
-	magnitude = sqrt(dotproduct);
-	return (magnitude);
+	dotproduct = ft_dotproduct_vector3(v, v);
+	norm = sqrt(dotproduct);
+	return (norm);
 }
 
 double	ft_distance_vector3(t_vector3 v1, t_vector3 v2)
 {
 	t_vector3	diff;
-	double		magnitude;
+	double		norm;
 
 	diff = ft_diff_vector3(v1, v2);
-	magnitude = ft_magnitude_vector3(diff);
-	return (magnitude);
+	norm = ft_norm_vector3(diff);
+	return (norm);
+}
+
+t_vector3	ft_normalize_vector3(t_vector3 v)
+{
+	double	norm;
+
+	norm = ft_norm_vector3(v);
+	v = ft_scalarmult_vector3(v, 1.0 / norm);
+	return (v);
 }
