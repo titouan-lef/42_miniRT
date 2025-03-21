@@ -101,6 +101,7 @@ int	parsing(int argc, char **argv, t_scene *scene)
 {
 	int	fd;
 
+	init_scene(scene);
 	if (argc != 2 || check_files_type(argv[1]))
 	{
 		print_error_message(ERR_ARG);
@@ -112,7 +113,6 @@ int	parsing(int argc, char **argv, t_scene *scene)
 		print_error_message(ERR_OPEN_FAILED);
 		return (1);
 	}
-	init_scene(scene);
 	if (read_scene(fd, scene))
 	{
 		close (fd);
