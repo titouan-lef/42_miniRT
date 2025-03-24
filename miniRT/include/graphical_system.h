@@ -13,6 +13,14 @@
 #  define ERR_MLX_INIT "Error initialization mlx"
 # endif
 
+# ifndef ERR_BACK_BUFFER_INIT
+#  define ERR_BACK_BUFFER_INIT "Error initialization back buffer"
+# endif
+
+# ifndef ERR_FRONT_BUFFER_INIT
+#  define ERR_FRONT_BUFFER_INIT "Error initialization front buffer"
+# endif
+
 # ifndef ERR_WIN_INIT
 #  define ERR_WIN_INIT "Error initialization window"
 # endif
@@ -63,6 +71,12 @@ typedef enum e_win_event
  * @file graphical_system.c
  ***********************************************/
 int		manage_graphical_system(void);
+
+/***********************************************
+ * @file image.c
+ ***********************************************/
+int		put_image_to_win(t_graph_sys *graph_sys);
+void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c);
 
 /***********************************************
  * @file window.c
