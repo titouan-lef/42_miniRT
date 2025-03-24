@@ -158,4 +158,8 @@ int		cone_interpreter(t_scene *scene, char **tab);
 void	exit_error_parsing(t_scene *scene);
 void	print_error_message(char *str);
 
+
+
+int	ray_lauch_test(t_scene *scene);
+
 #endif

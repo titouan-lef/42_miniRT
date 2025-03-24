@@ -30,6 +30,7 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
+		camera.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \
