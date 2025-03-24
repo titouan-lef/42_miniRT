@@ -6,7 +6,7 @@
 #    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
-#    Updated: 2025/03/21 17:49:28 by tle-floc         ###   ########.fr        #
+#    Updated: 2025/03/24 12:30:08 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,11 +77,13 @@ SRC =		char/ft_check_alnum.c \
 			string/ft_split.c \
 			string/ft_split_charset.c \
 			string/ft_strlen.c \
-			transformation/ft_projection.c \
-			transformation/ft_rotation.c \
-			transformation/ft_quaternion.c \
-			vector3/ft_vector3_primitive.c \
-			vector3/ft_vector3_operation.c \
+			graphical/quaternion/ft_quaternion_operation.c \
+			graphical/quaternion/ft_quaternion_primitive.c \
+			graphical/transformation/ft_projection.c \
+			graphical/transformation/ft_rotation_quaternion.c \
+			graphical/transformation/ft_rotation.c \
+			graphical/vector3/ft_vector3_primitive.c \
+			graphical/vector3/ft_vector3_operation.c \
 			ft_color.c \
 			ft_fill_memory.c
 

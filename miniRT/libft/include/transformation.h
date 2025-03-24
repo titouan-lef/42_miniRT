@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:43:13 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/21 17:42:48 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:34:47 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_vector3	ft_pitch_rotation(t_vector3 p, double angle);
 t_vector3	ft_roll_rotation(t_vector3 p, double angle);
 t_vector3	ft_rotation(t_vector3 p, t_rotation rotation);
 t_rotation	ft_rotation_create(double roll, double pitch, double yaw);
+t_vector3	ft_rotation_quaternion(t_vector3 v, double angle, t_vector3 axis);
 
 /* projection */
 t_vector3	ft_projection(t_vector3 v, t_plane p);

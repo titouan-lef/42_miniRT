@@ -42,11 +42,20 @@ double	ft_distance_vector3(t_vector3 v1, t_vector3 v2)
 	return (norm);
 }
 
+/**
+ * @brief Normalize a vector
+ * @warning The vector must be a nonzero vector.
+ */
 t_vector3	ft_normalize_vector3(t_vector3 v)
 {
 	double	norm;
 
 	norm = ft_norm_vector3(v);
+	if (norm == 0)
+	{
+		ft_putendl_error("Error : try to normalize a zero vector3");
+		return (v);
+	}
 	v = ft_scalarmult_vector3(v, 1.0 / norm);
 	return (v);
 }

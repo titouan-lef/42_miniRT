@@ -13,6 +13,7 @@
 #ifndef VECTOR3_H
 # define VECTOR3_H
 # include <math.h>
+# include "print.h"
 
 typedef struct s_vector3
 {
