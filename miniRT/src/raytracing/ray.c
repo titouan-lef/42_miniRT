@@ -10,7 +10,7 @@ t_color	raytracers(t_scene *scene, t_vector3 pixel)
 	double	length_min;
 	t_list	*head;
 
-	//color = ft_color_create(0, 0, 0, 0);
+	color = ft_color_create(0, 0, 0, 0);
 	length_min = INFINITY;
 	head = scene->lst_obj;
 	while(head)
@@ -33,7 +33,8 @@ t_color	raytracers(t_scene *scene, t_vector3 pixel)
 int	ray_lauch_test(t_scene *scene)
 {
 	t_vector3	pixel;
-	//t_color		pixelcolors;
+	t_vector3	dir;
+	t_color		pixelcolors;
 
 	pixel.z = length_screen(scene->camera.fov);
 	pixel.x = (-1.0 * WIN_WIDTH / 2.0);
@@ -42,9 +43,10 @@ int	ray_lauch_test(t_scene *scene)
 		pixel.y = (-1.0 * WIN_HEIGHT / 2.0);
 		while (pixel.y < WIN_HEIGHT / 2.0)
 		{
-			norm_vecteur(&pixel);
-			printf("%f%f%f\n", pixel.x, pixel.y, pixel.z);
-			//pixelcolors = raytracers(scene, pixel);
+			dir = ft_normalize_vector3(pixel);/** @todo nonzero vector */
+			pixelcolors = raytracers(scene, pixel);
+			if (pixelcolors.b == 255)
+				write(1, "ok\n", 3);
 			//colors_traitement;
 			//put_pixel;
 			pixel.y += 1.0;
