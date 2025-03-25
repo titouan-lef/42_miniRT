@@ -13,6 +13,7 @@
 #ifndef VECTOR3_H
 # define VECTOR3_H
 # include <math.h>
+# include "print.h"
 
 typedef struct s_vector3
 {
@@ -23,13 +24,14 @@ typedef struct s_vector3
 
 /* primitive */
 t_vector3	ft_create_vector3(double x, double y, double z);
-double		ft_magnitude_vector3(t_vector3 v1);
+double		ft_norm_vector3(t_vector3 v);
 double		ft_distance_vector3(t_vector3 v1, t_vector3 v2);
+t_vector3	ft_normalize_vector3(t_vector3 v);
 
 /* operation */
 t_vector3	ft_sum_vector3(t_vector3 v1, t_vector3 v2);
 t_vector3	ft_diff_vector3(t_vector3 v1, t_vector3 v2);
-t_vector3	ft_scalarmult_vector3(t_vector3 v1, double k);
+t_vector3	ft_scalarmult_vector3(t_vector3 v, double k);
 double		ft_dotproduct_vector3(t_vector3 v1, t_vector3 v2);
 t_vector3	ft_crossproduct_vector3(t_vector3 v1, t_vector3 v2);
 

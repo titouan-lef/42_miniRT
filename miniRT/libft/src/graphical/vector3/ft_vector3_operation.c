@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector3_operation.c                             :+:      :+:    :+:   */
+/*   ft_vector3_operation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:46:47 by tle-floc          #+#    #+#             */
-/*   Updated: 2024/12/11 16:20:25 by tle-floc         ###   ########.fr       */
+/*   Created: 2025/03/24 16:09:41 by tle-floc          #+#    #+#             */
+/*   Updated: 2025/03/24 16:09:48 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ t_vector3	ft_diff_vector3(t_vector3 v1, t_vector3 v2)
 	return (diff);
 }
 
-t_vector3	ft_scalarmult_vector3(t_vector3 v1, double k)
+t_vector3	ft_scalarmult_vector3(t_vector3 v, double k)
 {
 	t_vector3	scalarmult;
 
-	scalarmult.x = v1.x * k;
-	scalarmult.y = v1.y * k;
-	scalarmult.z = v1.z * k;
+	scalarmult.x = v.x * k;
+	scalarmult.y = v.y * k;
+	scalarmult.z = v.z * k;
 	return (scalarmult);
 }
 
