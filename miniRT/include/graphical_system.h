@@ -13,6 +13,14 @@
 #  define ERR_MLX_INIT "Error initialization mlx"
 # endif
 
+# ifndef ERR_BACK_BUFFER_INIT
+#  define ERR_BACK_BUFFER_INIT "Error initialization back buffer"
+# endif
+
+# ifndef ERR_FRONT_BUFFER_INIT
+#  define ERR_FRONT_BUFFER_INIT "Error initialization front buffer"
+# endif
+
 # ifndef ERR_WIN_INIT
 #  define ERR_WIN_INIT "Error initialization window"
 # endif
@@ -33,14 +41,23 @@
 # endif
 
 /***********************************************
+ * @struct Double Buffering
+ ***********************************************/
+typedef struct s_double_buffer
+{
+	mlx_image	buffers[2];
+	mlx_image	*back;
+	mlx_image	*front;
+}	t_double_buffer;
+
+/***********************************************
  * @struct Graphical System
  ***********************************************/
 typedef struct s_graph_sys
 {
-	mlx_context	mlx;
-	mlx_window	win;
-	mlx_image	back_buffer;
-	mlx_image	front_buffer;
+	mlx_context		mlx;
+	mlx_window		win;
+	t_double_buffer	buff;
 }	t_graph_sys;
 
 /***********************************************
@@ -60,9 +77,22 @@ typedef enum e_win_event
 }	t_win_event;
 
 /***********************************************
+ * @file double_buffer.c
+ ***********************************************/
+void	swap_buffer(t_double_buffer *buff);
+void	clean_double_buffer(t_graph_sys *graph_sys);
+int		init_double_buffer(t_graph_sys *graph_sys);
+
+/***********************************************
  * @file graphical_system.c
  ***********************************************/
 int		manage_graphical_system(void);
+
+/***********************************************
+ * @file image.c
+ ***********************************************/
+void	put_image_to_win(t_graph_sys *graph_sys);
+void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c);
 
 /***********************************************
  * @file window.c
