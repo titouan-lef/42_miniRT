@@ -41,20 +41,21 @@ static int	init_graphical_data(t_graph_sys *graph_sys)
 
 static void	update(void *param)
 {
-	t_graph_sys	*graph_sys;
+	t_scene	*scene;
+	int		result;
 
-	graph_sys = (t_graph_sys *) param;
+	scene = (t_scene *) param;
+	result = ray_lauch_test(scene);
+	put_image_to_win(&scene->graph_sys);
 }
 
-int	manage_graphical_system(void)
+int	manage_graphical_system(t_scene	*scene)
 {
-	t_graph_sys	graph_sys;
-
-	if (init_graphical_data(&graph_sys))
+	if (init_graphical_data(&scene->graph_sys))
 		return (1);
-	on_event(&graph_sys);
-	mlx_add_loop_hook(graph_sys.mlx, update, &graph_sys);
-	mlx_loop(graph_sys.mlx);
-	clean_graph_sys(&graph_sys);
+	on_event(&scene->graph_sys);
+	mlx_add_loop_hook(scene->graph_sys.mlx, update, scene);
+	mlx_loop(scene->graph_sys.mlx);
+	clean_graph_sys(&scene->graph_sys);
 	return (0);
 }

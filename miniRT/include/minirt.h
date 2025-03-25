@@ -89,7 +89,7 @@ typedef struct s_scene
 	t_list		*lst_light;
 	t_ambient	ambient;
 	t_camera	camera;
-	//mlx
+	t_graph_sys	graph_sys;
 }	t_scene;
 
 /***********************************************
@@ -166,5 +166,10 @@ double	length_screen(double fov);
 double	quadratic_equation(double A, double B, double C);
 
 double	intersect_ray_sphere(t_sphere *sphere, t_vector3 pixel, t_vector3 origin);
+
+/***********************************************
+ * @file graphical_system.c
+ ***********************************************/
+int		manage_graphical_system(t_scene	*scene);
 
 #endif

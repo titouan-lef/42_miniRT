@@ -3,8 +3,10 @@
 #ifndef GRAPHICAL_SYSTEM_H
 # define GRAPHICAL_SYSTEM_H
 
+# include "minirt.h"
 # include <SDL2/SDL_scancode.h>
 # include "../MacroLibX/includes/mlx.h"
+
 
 /***********************************************
  * @brief Error Code
@@ -82,11 +84,6 @@ typedef enum e_win_event
 void	swap_buffer(t_double_buffer *buff);
 void	clean_double_buffer(t_graph_sys *graph_sys);
 int		init_double_buffer(t_graph_sys *graph_sys);
-
-/***********************************************
- * @file graphical_system.c
- ***********************************************/
-int		manage_graphical_system(void);
 
 /***********************************************
  * @file image.c
