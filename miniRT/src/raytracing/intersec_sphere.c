@@ -40,7 +40,7 @@ double	intersect_ray_sphere(t_sphere *sphere, t_vector3 pixel, t_vector3 origin)
 
 	A = A_calculation(pixel);
 	B = B_calculation(origin, sphere->position, pixel);
-	C = C_calculations(origin, sphere->position, sphere->diam);
+	C = C_calculation(origin, sphere->position, sphere->diam);
 	result = quadratic_equation(A, B, C);
 	return (result);
 }

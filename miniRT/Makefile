@@ -30,7 +30,9 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
-		camera.c \
+		raytracing/ray.c \
+		raytracing/intersec_sphere.c \
+		raytracing/calculation.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \
