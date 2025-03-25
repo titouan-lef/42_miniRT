@@ -39,7 +39,7 @@ static int	init_graphical_data(t_graph_sys *graph_sys)
 	return (0);
 }
 
-static void	update(void* param)
+static void	update(void *param)
 {
 	t_graph_sys	*graph_sys;
 
