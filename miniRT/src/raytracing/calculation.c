@@ -25,3 +25,27 @@ void	norm_vecteur(t_vector3 *vector)
 	vector->y = vector->y / norm;
 	vector->z = vector->z / norm;
 }
+
+double	quadratic_equation(double A, double B, double C)
+{
+	double	t1;
+	double	t2;
+	double	delta;
+
+
+	delta = (B * B) - (4 * A * C);
+	if (delta > 0)
+	{
+		t1 = (((-1.0 *B) + sqrt(delta)) / (2 * A));
+		t2 = (((-1.0 *B) - sqrt(delta)) / (2 * A));
+		if (t1 < t2)
+			return (t1);
+		return (t2);
+	}
+	else if (delta == 0)
+	{
+		t1 = (((-1.0 *B) + sqrt(delta)) / (2 * A));
+		return (t1);
+	}
+	return (INFINITY);
+}

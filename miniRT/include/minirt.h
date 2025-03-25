@@ -160,6 +160,8 @@ void	print_error_message(char *str);
 
 
 
-int	ray_lauch_test(t_scene *scene);
+int		ray_lauch_test(t_scene *scene);
+void	norm_vecteur(t_vector3 *vector);
+double	length_screen(double fov);
 
 #endif
