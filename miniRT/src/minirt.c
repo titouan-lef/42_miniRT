@@ -4,10 +4,10 @@
 
 int	main(int ac, char **av)
 {
-	int	result;
+	int		result;
 	t_scene	scene;
 
-	//manage_graphical_system();
+	manage_graphical_system();
 	result = parsing(ac, av, &scene);
 	exit_error_parsing(&scene);
 	return (result);

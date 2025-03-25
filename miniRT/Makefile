@@ -42,6 +42,7 @@ SRC :=	minirt.c \
 		parsing/parsing_utils.c \
 		parsing/parsing.c \
 		graphical_system/event/event.c \
+		graphical_system/double_buffer.c \
 		graphical_system/graphical_system.c \
 		graphical_system/image.c \
 		graphical_system/window.c
