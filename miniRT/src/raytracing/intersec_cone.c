@@ -1,7 +1,7 @@
 /// @todo header
 
 #include "minirt.h"
-static double	A_calculation(t_vector3 D)
+/*static double	A_calculation(t_vector3 D)
 {
 	double	result;
 	
@@ -37,4 +37,4 @@ double	intersect_ray_cone(t_cone *cone, t_vector3 *pixel, t_vector3 origin)
 	C = ;
 	result = quadratic_equation(A, B, C);
 	return (result);
-}
+}*/

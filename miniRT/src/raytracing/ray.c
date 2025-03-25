@@ -13,19 +13,20 @@ t_color	raytracers(t_scene *scene, t_vector3 pixel)
 	color = ft_color_create(0, 0, 0, 0);
 	length_min = INFINITY;
 	head = scene->lst_obj;
-	while(head)
+	while (head)
 	{
-		obj = (t_obj *)scene->lst_obj->content;
+		obj = (t_obj *)head->content;
 		if (obj->type == SPHERE)
 		{
-			length = intersect_ray_sphere((t_sphere *)(obj->data), pixel, scene->camera.position);
+			length = intersect_ray_sphere((t_sphere *)(obj->data),
+					pixel, scene->camera.position);
 			if (length < length_min && length > 1)
 			{
 				length_min = length;
 				color = ((t_sphere *)(obj->data))->color;
 			}
 		}
-		head =head->next;
+		head = head->next;
 	}
 	return (color);
 }
@@ -45,15 +46,12 @@ int	ray_lauch_test(t_scene *scene)
 		{
 			dir = ft_normalize_vector3(pixel);/** @todo nonzero vector */
 			pixelcolors = raytracers(scene, pixel);
-			if (pixelcolors.b == 255)
-				write(1, "ok\n", 3);
 			//colors_traitement;
-			//put_pixel;
+			set_image_pixel(&scene->graph_sys, (pixel.y + WIN_WIDTH / 2.0), (pixel.x + WIN_HEIGHT / 2.0), pixelcolors);
 			pixel.y += 1.0;
 		}
 		pixel.x += 1.0;
 	}
 	return (0);
 }
-
 //closest plus proche

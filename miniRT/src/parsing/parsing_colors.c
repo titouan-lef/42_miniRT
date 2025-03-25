@@ -35,5 +35,6 @@ int	take_color(t_color *colors, char *str)
 	str = complete_colors(&colors->b, str);
 	if (!str || *str)
 		return (1);
+	colors->a = 255;
 	return (0);
 }
