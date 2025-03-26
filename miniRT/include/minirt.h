@@ -173,4 +173,12 @@ double	intersect_ray_cylinder(t_cylinder *cylinder, t_vector3 dir_ray, t_vector3
  ***********************************************/
 int		manage_graphical_system(t_scene	*scene);
 
+/***********************************************
+ * @file event.c
+ ***********************************************/
+void	on_event(t_scene *scene);
+
+void	camera_translation(t_scene *scene, int key);
+void	camera_rotation(t_scene *scene, int key);
+
 #endif

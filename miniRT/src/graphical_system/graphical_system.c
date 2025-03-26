@@ -29,7 +29,7 @@ static int	init_graphical_data(t_graph_sys *graph_sys)
 		mlx_destroy_context(graph_sys->mlx);
 		return (1);
 	}
-	mlx_set_fps_goal(graph_sys->mlx, 60);
+	mlx_set_fps_goal(graph_sys->mlx, FPS);
 	if (init_window(graph_sys))
 	{
 		clean_double_buffer(graph_sys);
@@ -53,7 +53,7 @@ int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->graph_sys))
 		return (1);
-	on_event(&scene->graph_sys);
+	on_event(scene);
 	mlx_add_loop_hook(scene->graph_sys.mlx, update, scene);
 	mlx_loop(scene->graph_sys.mlx);
 	clean_graph_sys(&scene->graph_sys);

@@ -42,6 +42,10 @@
 #  define WIN_NAME "miniRT"
 # endif
 
+# ifndef FPS
+#  define FPS 24
+# endif
+
 /***********************************************
  * @struct Double Buffering
  ***********************************************/
@@ -95,10 +99,5 @@ void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c);
  * @file window.c
  ***********************************************/
 int		init_window(t_graph_sys *graph_sys);
-
-/***********************************************
- * @file event.c
- ***********************************************/
-void	on_event(t_graph_sys *graph_sys);
 
 #endif

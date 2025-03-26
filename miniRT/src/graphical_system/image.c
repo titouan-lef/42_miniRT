@@ -10,6 +10,8 @@
 void	put_image_to_win(t_graph_sys *graph_sys)
 {
 	swap_buffer(&graph_sys->buff);
+	mlx_clear_window(graph_sys->mlx, graph_sys->win,
+		(mlx_color){.rgba = 0x000000FF});
 	mlx_put_image_to_window(graph_sys->mlx, graph_sys->win,
 		*graph_sys->buff.front, 0, 0);
 }
