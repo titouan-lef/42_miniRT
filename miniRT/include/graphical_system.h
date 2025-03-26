@@ -7,6 +7,15 @@
 # include <SDL2/SDL_scancode.h>
 # include "../MacroLibX/includes/mlx.h"
 
+typedef enum e_dir
+{
+	DIR_ERR,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}	t_dir;
+
 
 /***********************************************
  * @brief Error Code
@@ -30,12 +39,20 @@
 /***********************************************
  * @brief Window Info
  ***********************************************/
-# ifndef WIN_WIDTH
-#  define WIN_WIDTH 1920
+# ifndef WIN_W
+#  define WIN_W 1920
 # endif
 
-# ifndef WIN_HEIGHT
-#  define WIN_HEIGHT 1080
+# ifndef WIN_H
+#  define WIN_H 1080
+# endif
+
+# ifndef WIN_HW
+#  define WIN_HW WIN_W / 2
+# endif
+
+# ifndef WIN_HH
+#  define WIN_HH WIN_H / 2
 # endif
 
 # ifndef WIN_NAME
