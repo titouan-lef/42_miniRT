@@ -43,6 +43,8 @@ static char	*complete_position(double *position, char *str)
 
 int	take_orientation(t_vector3 *orientation, char *str)
 {
+	double	norm;
+
 	str = complete_orientation(&orientation->x, str);
 	if (!str || !*str)
 		return (1);
@@ -52,7 +54,8 @@ int	take_orientation(t_vector3 *orientation, char *str)
 	str = complete_orientation(&orientation->z, str);
 	if (!str || *str)
 		return (1);
-	return (0);
+	norm = ft_norm_vector3(*orientation);
+	return (norm != 1);
 }
 
 int	take_position(t_vector3 *position, char *str)

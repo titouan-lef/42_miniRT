@@ -44,6 +44,7 @@ t_color	raytracers(t_list *lst_obj, t_vector3 dir, t_vector3 pos_cam)
 	}
 	return (color);
 }
+
 /**
  * camera regarde (0, 0, 1) et est en position (0, 0, 0).
  */
@@ -54,15 +55,14 @@ int	ray_lauch_test(t_scene *scene)
 	t_color		pixelcolors;
 
 	pixel.z = length_screen(scene->camera.fov);
-	pixel.x = - WIN_WIDTH / 2.0;
+	pixel.x = -WIN_WIDTH / 2.0;
 	while (pixel.x < WIN_WIDTH / 2.0)
 	{
-		pixel.y = - WIN_HEIGHT / 2.0;
+		pixel.y = -WIN_HEIGHT / 2.0;
 		while (pixel.y < WIN_HEIGHT / 2.0)
 		{
 			dir_ray = get_dir_ray(pixel, scene->camera.orientation);
 			pixelcolors = raytracers(scene->lst_obj, dir_ray, scene->camera.position);
-			//colors_traitement;
 			set_image_pixel(&scene->graph_sys, (pixel.x + WIN_WIDTH / 2.0), (pixel.y + WIN_HEIGHT / 2.0), pixelcolors);
 			pixel.y += 1.0;
 		}
