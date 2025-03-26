@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/24 16:09:57 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/26 14:49:27 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ t_vector3	ft_create_vector3(double x, double y, double z)
 	return (v);
 }
 
+/**
+ * @brief Get the norm of a vector, that is its length.
+ */
 double	ft_norm_vector3(t_vector3 v)
 {
 	double	dotproduct;
@@ -32,18 +35,21 @@ double	ft_norm_vector3(t_vector3 v)
 	return (norm);
 }
 
-double	ft_distance_vector3(t_vector3 v1, t_vector3 v2)
+/**
+ * @brief Get the distance between 2 points.
+ */
+double	ft_distance_vector3(t_vector3 p1, t_vector3 p2)
 {
 	t_vector3	diff;
 	double		norm;
 
-	diff = ft_diff_vector3(v1, v2);
+	diff = ft_diff_vector3(p1, p2);
 	norm = ft_norm_vector3(diff);
 	return (norm);
 }
 
 /**
- * @brief Normalize a vector
+ * @brief Normalize a vector, that is the same direction vector with a length of 1.
  * @warning The vector must be a nonzero vector.
  */
 t_vector3	ft_normalize_vector3(t_vector3 v)
