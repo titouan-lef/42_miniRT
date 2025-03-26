@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-static char	*complete_colors(int *color, char *str)
+static char	*complete_colors(uint8_t *color, char *str)
 {
 	int		error;
 	size_t	end;
@@ -13,11 +13,11 @@ static char	*complete_colors(int *color, char *str)
 	if (str[end] == ',')
 	{
 		str[end] = '\0';
-		*color = (int)ft_to_number(str, &error, 255);
+		*color = (uint8_t)ft_to_number(str, &error, 255);
 		end++;
 	}
 	else
-		*color = (int)ft_to_number(str, &error, 255);
+		*color = (uint8_t)ft_to_number(str, &error, 255);
 	if (error != 0 || *color < 0)
 		return (NULL);
 	str += end;
@@ -26,15 +26,19 @@ static char	*complete_colors(int *color, char *str)
 
 int	take_color(t_color *colors, char *str)
 {
-	str = complete_colors(&colors->r, str);
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+
+	str = complete_colors(&r, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_colors(&colors->g, str);
+	str = complete_colors(&g, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_colors(&colors->b, str);
+	str = complete_colors(&b, str);
 	if (!str || *str)
 		return (1);
-	colors->a = 255;
+	*colors = ft_color_create(r, g, b, 255);
 	return (0);
 }

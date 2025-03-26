@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief 
+ */
 static double	a_calculation(t_vector3 d)
 {
 	double	result;
@@ -10,6 +13,9 @@ static double	a_calculation(t_vector3 d)
 	return (result);
 }
 
+/**
+ * @brief 
+ */
 static double	b_calculation(t_vector3 o, t_vector3 c, t_vector3 d)
 {
 	double		result;
@@ -21,6 +27,9 @@ static double	b_calculation(t_vector3 o, t_vector3 c, t_vector3 d)
 	return (result);
 }
 
+/**
+ * @brief 
+ */
 static double	c_calculation(t_vector3 o, t_vector3 c, double r)
 {
 	double		result;
@@ -31,15 +40,18 @@ static double	c_calculation(t_vector3 o, t_vector3 c, double r)
 	return (result);
 }
 
-double	intersect_ray_sphere(t_sphere *sphere, t_vector3 pixel, t_vector3 org)
+/**
+ * @param org Ray origin (camera position).
+ */
+double	intersect_ray_sphere(t_sphere *sphere, t_vector3 dir_ray, t_vector3 org)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	result;
 
-	a = a_calculation(pixel);
-	b = b_calculation(org, sphere->position, pixel);
+	a = a_calculation(dir_ray);
+	b = b_calculation(org, sphere->position, dir_ray);
 	c = c_calculation(org, sphere->position, sphere->diam);
 	result = quadratic_equation(a, b, c);
 	return (result);
