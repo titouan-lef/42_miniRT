@@ -24,8 +24,9 @@ typedef struct s_vector3
 
 /* primitive */
 t_vector3	ft_create_vector3(double x, double y, double z);
+int			ft_is_zero_vector3(t_vector3 v);
 double		ft_norm_vector3(t_vector3 v);
-double		ft_distance_vector3(t_vector3 v1, t_vector3 v2);
+double		ft_distance_vector3(t_vector3 p1, t_vector3 p2);
 t_vector3	ft_normalize_vector3(t_vector3 v);
 
 /* operation */

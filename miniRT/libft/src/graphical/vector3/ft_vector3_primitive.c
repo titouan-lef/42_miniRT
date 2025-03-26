@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/26 14:49:27 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:58:12 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ t_vector3	ft_create_vector3(double x, double y, double z)
 	v.y = y;
 	v.z = z;
 	return (v);
+}
+
+/**
+ * @brief Check if vector is a zero vector, that is a vector(0, 0, 0).
+ */
+int	ft_is_zero_vector3(t_vector3 v)
+{
+	return (v.x == 0 && v.y == 0 && v.z == 0);
 }
 
 /**
@@ -49,7 +57,8 @@ double	ft_distance_vector3(t_vector3 p1, t_vector3 p2)
 }
 
 /**
- * @brief Normalize a vector, that is the same direction vector with a length of 1.
+ * @brief Normalize a vector, that is the same direction vector with a length
+ * of 1.
  * @warning The vector must be a nonzero vector.
  */
 t_vector3	ft_normalize_vector3(t_vector3 v)

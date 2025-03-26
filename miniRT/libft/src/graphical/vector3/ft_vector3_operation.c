@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:41 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/26 15:30:13 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:57:46 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ double	ft_dotproduct_vector3(t_vector3 v1, t_vector3 v2)
 /**
  * @brief Get the cross product of 2 vectors, that is the perpendicular vector
  * of this 2 vectors.
- * @return The perpendicular vector or a zero vector if the 2 vectors are collinear.
+ * @return The perpendicular vector or a zero vector if the 2 vectors are
+ * collinear.
  */
 t_vector3	ft_crossproduct_vector3(t_vector3 v1, t_vector3 v2)
 {
