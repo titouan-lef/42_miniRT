@@ -12,19 +12,18 @@ t_color	raytracers(t_scene *scene, t_vector3 pixel)
 
 	color = ft_color_create(0, 0, 0, 0);
 	length_min = INFINITY;
+	length = 0;
 	head = scene->lst_obj;
 	while (head)
 	{
 		obj = (t_obj *)head->content;
 		if (obj->type == SPHERE)
-		{
 			length = intersect_ray_sphere((t_sphere *)(obj->data),
 					pixel, scene->camera.position);
-			if (length < length_min && length > 1)
-			{
-				length_min = length;
-				color = ((t_sphere *)(obj->data))->color;
-			}
+		if (length < length_min && length > 1)
+		{
+			length_min = length;
+			color = ((t_cylinder *)(obj->data))->color;
 		}
 		head = head->next;
 	}

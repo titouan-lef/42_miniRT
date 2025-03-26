@@ -166,6 +166,7 @@ double	length_screen(double fov);
 double	quadratic_equation(double A, double B, double C);
 
 double	intersect_ray_sphere(t_sphere *sphere, t_vector3 pixel, t_vector3 origin);
+double	intersect_ray_cylinder(t_cylinder *cylinder, t_vector3 dir_ray, t_vector3 org);
 
 /***********************************************
  * @file graphical_system.c
