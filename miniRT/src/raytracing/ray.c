@@ -73,18 +73,18 @@ int	ray_lauch_test(t_scene *scene)
 	t_color		pixel_color;
 
 	pixel.z = length_screen(scene->camera.fov);
-	pixel.x = -WIN_WIDTH / 2.0;
-	while (pixel.x < WIN_WIDTH / 2.0)
+	pixel.x = -WIN_HW;
+	while (pixel.x < WIN_HW)
 	{
-		pixel.y = -WIN_HEIGHT / 2.0;
-		while (pixel.y < WIN_HEIGHT / 2.0)
+		pixel.y = -WIN_HH;
+		while (pixel.y < WIN_HH)
 		{
 			ray_dir = get_ray_dir(pixel, scene->camera.orientation);
 			pixel_color = raytracers(scene->lst_obj, ray_dir,
 					scene->camera.position);
 			//colors_traitement;
-			set_image_pixel(&scene->graph_sys, pixel.x + WIN_WIDTH / 2.0,
-				pixel.y + WIN_HEIGHT / 2.0, pixel_color);
+			set_image_pixel(&scene->graph_sys, pixel.x + WIN_HW,
+				pixel.y + WIN_HH, pixel_color);
 			pixel.y += 1.0;
 		}
 		pixel.x += 1.0;

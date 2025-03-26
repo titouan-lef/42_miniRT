@@ -39,12 +39,32 @@ static int	init_graphical_data(t_graph_sys *graph_sys)
 	return (0);
 }
 
+static void	mouse_event(t_scene *scene, t_graph_sys *graph_sys)
+{
+	int			moov_mose_x;
+	int			moov_mose_y;
+
+	mlx_mouse_get_pos(scene->graph_sys.mlx, &moov_mose_x, &moov_mose_y);
+	if ((moov_mose_x - WIN_HW) % 100 < 0)
+		camera_rotation(scene, LEFT);
+	if ((moov_mose_x - WIN_HW) % 100 > 0)
+		camera_rotation(scene, RIGHT);
+	if ((moov_mose_y - WIN_HH)  % 100 < 0)
+		camera_rotation(scene, UP);
+	if ((moov_mose_y - WIN_HH)  % 100 > 0)
+		camera_rotation(scene, DOWN);
+	mlx_mouse_move(graph_sys->mlx, graph_sys->win, WIN_HW, WIN_HH);
+}
+
 static void	update(void *param)
 {
 	t_scene	*scene;
-	int		result;
+	t_graph_sys	*graph_sys;
+	int			result;
 
 	scene = (t_scene *) param;
+	graph_sys = &scene->graph_sys;
+	mouse_event(scene, graph_sys);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->graph_sys);
 }

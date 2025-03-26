@@ -8,8 +8,8 @@ static mlx_window_create_info	get_win_info(void)
 
 	win_info.render_target = NULL;
 	win_info.title = WIN_NAME;
-	win_info.width = WIN_WIDTH;
-	win_info.height = WIN_HEIGHT;
+	win_info.width = WIN_W;
+	win_info.height = WIN_H;
 	win_info.is_fullscreen = 0;
 	win_info.is_resizable = 0;
 	return (win_info);

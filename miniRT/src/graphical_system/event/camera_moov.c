@@ -22,18 +22,27 @@ void	camera_rotation(t_scene *scene, int key)
 {
 	t_vector3	camera;
 	t_vector3	axis;
-
+	
 	camera = scene->camera.orientation;
-	if (key == SDL_SCANCODE_Q)
+	if (key == UP || key == DOWN)
 	{
 		axis = ft_create_vector3(0, 1, 0);
-		scene->camera.orientation = ft_rotation_quaternion(camera,
+		if (key == UP)
+			scene->camera.orientation = ft_rotation_quaternion(camera,
 				M_PI / 180.0, axis);
-	}
-	if (key == SDL_SCANCODE_E)
-	{
-		axis = ft_create_vector3(0, 1, 0);
-		scene->camera.orientation = ft_rotation_quaternion(camera,
+		else
+			scene->camera.orientation = ft_rotation_quaternion(camera,
 				-M_PI / 180.0, axis);
+	}
+	else 
+	{
+		axis = ft_create_vector3(1, 0, 0);
+		if (key == LEFT)
+			scene->camera.orientation = ft_rotation_quaternion(camera,
+				-M_PI / 180.0, axis);
+		else
+			scene->camera.orientation = ft_rotation_quaternion(camera,
+				M_PI / 180.0, axis);
+
 	}
 }
