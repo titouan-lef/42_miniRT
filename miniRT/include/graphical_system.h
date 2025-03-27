@@ -7,7 +7,6 @@
 # include <SDL2/SDL_scancode.h>
 # include "../MacroLibX/includes/mlx.h"
 
-
 /***********************************************
  * @brief Error Code
  ***********************************************/

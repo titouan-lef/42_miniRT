@@ -47,7 +47,7 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 					cam_pos);
 		else if (obj->type != SPHERE)
 			length = 0;
-		if (length < length_min && length > 1)
+		if (length < length_min)
 		{
 			length_min = length;
 			color = ((t_sphere *)(obj->data))->color;
@@ -56,7 +56,6 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 	}
 	return (color);
 }
-
 
 /**
  * @details To optimize calculations, camera has a position (0,0,0) and a
