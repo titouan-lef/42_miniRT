@@ -7,16 +7,6 @@
 # include <SDL2/SDL_scancode.h>
 # include "../MacroLibX/includes/mlx.h"
 
-typedef enum e_dir
-{
-	DIR_ERR,
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
-}	t_dir;
-
-
 /***********************************************
  * @brief Error Code
  ***********************************************/
@@ -40,19 +30,19 @@ typedef enum e_dir
  * @brief Window Info
  ***********************************************/
 # ifndef WIN_W
-#  define WIN_W 1920
+#  define WIN_W 1920.0
 # endif
 
 # ifndef WIN_H
-#  define WIN_H 1080
+#  define WIN_H 1080.0
 # endif
 
 # ifndef WIN_HW
-#  define WIN_HW WIN_W / 2
+#  define WIN_HW 960.0
 # endif
 
 # ifndef WIN_HH
-#  define WIN_HH WIN_H / 2
+#  define WIN_HH 540.0
 # endif
 
 # ifndef WIN_NAME

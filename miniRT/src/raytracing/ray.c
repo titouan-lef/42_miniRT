@@ -57,7 +57,6 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 	return (color);
 }
 
-
 /**
  * @details To optimize calculations, camera has a position (0,0,0) and a
  * direction (0,0,1), pixel has a position(
