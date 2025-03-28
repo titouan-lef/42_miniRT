@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-void	camera_translation(t_scene *scene, int key)
+static void	camera_translation(t_scene *scene, int key)
 {
 	if (key == SDL_SCANCODE_W)
 		scene->camera.position.z += 10;
@@ -22,7 +22,7 @@ void	camera_translation(t_scene *scene, int key)
  * @brief rotation on x and y
  * @details make a ratio of mouse moove for create a director vector
  */
-void	camera_rotation(t_scene *scene, double x, double y)
+static void	camera_rotation(t_scene *scene, double x, double y)
 {
 	t_vector3	camera;
 	t_vector3	axis;
@@ -32,7 +32,7 @@ void	camera_rotation(t_scene *scene, double x, double y)
 	y = y / WIN_HH - 1;
 	axis = ft_create_vector3(y, -x, 0);
 	scene->camera.orientation = ft_rotation_quaternion(camera,
-			M_PI / 90, axis);
+			M_PI / 22.5, axis);
 }
 
 /**

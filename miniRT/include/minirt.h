@@ -22,13 +22,6 @@ double	intersect_ray_sphere(t_sphere *sphere,
 			t_vector3 pixel, t_vector3 origin);
 double	intersect_ray_cylinder(t_cylinder *cylinder,
 			t_vector3 dir_ray, t_vector3 org);
-
-
-void	camera_translation(t_scene *scene, int key);
-void	camera_rotation(t_scene *scene, double x, double y);
-void	mouse_event(t_scene *scene, t_graph_sys *graph_sys);
-void	key_hook_cam(int key, void *param);
-
 t_color	colors_traitement(t_color obj_color, t_ambient ambient);
 
 #endif

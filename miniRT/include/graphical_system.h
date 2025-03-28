@@ -81,4 +81,10 @@ int		manage_graphical_system(t_scene	*scene);
  ***********************************************/
 void	on_event(t_scene *scene);
 
+/***********************************************
+ * @file camera_moov.c
+ ***********************************************/
+void	mouse_event(t_scene *scene, t_graph_sys *graph_sys);
+void	key_hook_cam(int key, void *param);
+
 #endif
