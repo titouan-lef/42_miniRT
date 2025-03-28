@@ -1,8 +1,7 @@
-#ifndef MINIRTSTRUCT_H
-# define MINIRTSTRUCT_H
+#ifndef MINIRT_STRUCT_H
+# define MINIRT_STRUCT_H
 
 # include "minirt.h"
-# include "libft.h"
 # include <SDL2/SDL_scancode.h>
 # include "../MacroLibX/includes/mlx.h"
 

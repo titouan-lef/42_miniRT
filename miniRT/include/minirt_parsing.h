@@ -1,0 +1,72 @@
+#ifndef MINIRT_PARSING_H
+# define MINIRT_PARSING_H
+
+# include "minirt.h"
+
+/***********************************************
+ *  @file parsing.c
+ ***********************************************/
+int		parsing(int argc, char **argv, t_scene *scene);
+
+/***********************************************
+ *  @file parsing_utils.c
+ ***********************************************/
+int		alloc_new_obj(t_list **head, void *new_sphere, t_obj_type type);
+int		take_dimension(double *dimension, char *str);
+void	init_scene(t_scene *scene);
+int		check_files_type(char *str);
+int		check_valid_id(char *str, int *ambient, int *camera);
+
+/***********************************************
+ *  @file parsing_ambient.c
+ ***********************************************/
+int		ambient_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_camera.c
+ ***********************************************/
+int		camera_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_colors.c
+ ***********************************************/
+int		take_color(t_color *colors, char *str);
+
+/***********************************************
+ *  @file parsing_vecteur.c
+ ***********************************************/
+int		take_position(t_vector3 *position, char *str);
+int		take_orientation(t_vector3 *position, char *str);
+
+/***********************************************
+ *  @file parsing_light.c
+ ***********************************************/
+int		light_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_sphere.c
+ ***********************************************/
+int		sphere_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_plan.c
+ ***********************************************/
+int		plan_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_cylinder.c
+ ***********************************************/
+int		cylinder_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_cone.c
+ ***********************************************/
+int		cone_interpreter(t_scene *scene, char **tab);
+
+/***********************************************
+ *  @file parsing_error.c
+ ***********************************************/
+void	exit_error_parsing(t_scene *scene);
+void	print_error_message(char *str);
+
+#endif

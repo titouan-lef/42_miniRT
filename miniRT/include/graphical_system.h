@@ -71,4 +71,14 @@ void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c);
  ***********************************************/
 int		init_window(t_graph_sys *graph_sys);
 
+/***********************************************
+ * @file graphical_system.c
+ ***********************************************/
+int		manage_graphical_system(t_scene	*scene);
+
+/***********************************************
+ * @file event.c
+ ***********************************************/
+void	on_event(t_scene *scene);
+
 #endif
