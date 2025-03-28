@@ -27,6 +27,24 @@ static t_vector3	get_ray_dir(t_vector3 pixel, t_vector3 cam_dir)
 	return (ray_dir);
 }
 
+t_color	get_color(t_obj *obj)
+{
+	int 	type;
+	t_color	color;
+
+	type = obj->type;
+	if (type == SPHERE)
+		color = ((t_sphere *)(obj->data))->color;
+	else if (type == PLAN)
+		color = ((t_plan *)(obj->data))->color;
+	else if (type == CYLINDER)
+		color = ((t_cylinder *)(obj->data))->color;
+	else
+		color = ((t_cone *)(obj->data))->color;
+	return (color);
+	
+	
+}
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
@@ -45,12 +63,16 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 		if (obj->type == SPHERE)
 			length = intersect_ray_sphere((t_sphere *)(obj->data), ray_dir,
 					cam_pos);
+		else if (obj->type == PLAN)
+			length = intersect_ray_plan((t_plan *)(obj->data), ray_dir,
+					cam_pos);
 		else if (obj->type != SPHERE)
-			length = 0;
+			length = intersect_ray_cylinder((t_cylinder *)(obj->data),
+					ray_dir, cam_pos);
 		if (length < length_min)
 		{
 			length_min = length;
-			color = ((t_sphere *)(obj->data))->color;
+			color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
 	}
@@ -82,9 +104,9 @@ int	ray_lauch_test(t_scene *scene)
 			ray_dir = get_ray_dir(pixel, scene->camera.orientation);
 			pixel_color = raytracers(scene->lst_obj, ray_dir,
 					scene->camera.position);
-			//colors_traitement;
-			set_image_pixel(&scene->graph_sys, pixel.x + WIN_HW,
-				pixel.y + WIN_HH, pixel_color);
+			pixel_color = ambient_colors(pixel_color, scene->ambient);
+			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.x,
+				WIN_HH - pixel.y, pixel_color);
 			pixel.y += 1.0;
 		}
 		pixel.x += 1.0;

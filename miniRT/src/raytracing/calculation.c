@@ -6,7 +6,7 @@ double	length_screen(double fov)
 {
 	double	distance;
 
-	distance = WIN_W / (2.0 * tan(fov * M_PI / 360.0));
+	distance = WIN_HW / (tan(M_PI * fov / 360.0));
 	return (distance);
 }
 

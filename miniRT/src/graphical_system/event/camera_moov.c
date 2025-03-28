@@ -30,7 +30,7 @@ static void	camera_rotation(t_scene *scene, double x, double y)
 	camera = scene->camera.orientation;
 	x = x / WIN_HW - 1;
 	y = y / WIN_HH - 1;
-	axis = ft_create_vector3(y, -x, 0);
+	axis = ft_create_vector3(-y, -x, 0);
 	scene->camera.orientation = ft_rotation_quaternion(camera,
 			M_PI / 22.5, axis);
 }

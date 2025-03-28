@@ -31,8 +31,11 @@ SRC_DIR :=	src/
 
 SRC :=	minirt.c \
 		raytracing/ray.c \
+		raytracing/intersec_plan.c \
 		raytracing/intersec_sphere.c \
+		raytracing/intersec_cylinder.c \
 		raytracing/calculation.c \
+		colors/ambient_colors.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \

@@ -22,6 +22,6 @@ double	intersect_ray_sphere(t_sphere *sphere,
 			t_vector3 pixel, t_vector3 origin);
 double	intersect_ray_cylinder(t_cylinder *cylinder,
 			t_vector3 dir_ray, t_vector3 org);
-t_color	colors_traitement(t_color obj_color, t_ambient ambient);
+t_color	ambient_colors(t_color obj_color, t_ambient ambient);
 
 #endif
