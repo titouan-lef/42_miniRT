@@ -1,6 +1,7 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "minirtstruct.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
@@ -9,88 +10,6 @@
 # include "minirt_err.h"
 # include "graphical_system.h"
 
-typedef enum e_obj_type
-{
-	OBJ_ERR,
-	AMBIENT,
-	CAMERA,
-	LIGHT,
-	SPHERE,
-	PLAN,
-	CYLINDER,
-	CONE,
-}	t_obj_type;
-
-typedef struct s_obj
-{
-	int			type;
-	void		*data;
-}	t_obj;
-
-/*	RGB range [0-255], lr range [0.0, 1.0]*/
-typedef struct s_ambient
-{
-	t_color	color;
-	double	lr;
-}	t_ambient;
-
-/*	RGB range [0-255], lr range [0.0, 1.0], FOV [0, 180]*/
-typedef struct s_camera
-{
-	t_vector3	position;
-	t_vector3	orientation;
-	int			fov;
-}	t_camera;
-
-/*	RGB range [0-255], lbr range [0.0, 1.0]*/
-typedef struct s_light
-{
-	t_color		color;
-	double		lbr;
-	t_vector3	position;
-}	t_light;
-
-typedef struct s_sphere
-{
-	t_color		color;
-	t_vector3	position;
-	double		diam;
-
-}	t_sphere;
-
-typedef struct s_plan
-{
-	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-}	t_plan;
-
-typedef struct s_cylinder
-{
-	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-	double		diam;
-	double		height;
-}	t_cylinder;
-
-typedef struct s_cone
-{
-	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-	double		diam;
-	double		height;
-}	t_cone;
-
-typedef struct s_scene
-{
-	t_list		*lst_obj;
-	t_list		*lst_light;
-	t_ambient	ambient;
-	t_camera	camera;
-	t_graph_sys	graph_sys;
-}	t_scene;
 
 /***********************************************
  *  @file parsing.c
@@ -163,6 +82,8 @@ void	norm_vecteur(t_vector3 *vector);
 double	length_screen(double fov);
 double	quadratic_equation(double A, double B, double C);
 
+double	intersect_ray_plan(t_plan *plan, t_vector3 ray_dir,
+			t_vector3 orig);
 double	intersect_ray_sphere(t_sphere *sphere,
 			t_vector3 pixel, t_vector3 origin);
 double	intersect_ray_cylinder(t_cylinder *cylinder,
@@ -182,5 +103,7 @@ void	camera_translation(t_scene *scene, int key);
 void	camera_rotation(t_scene *scene, double x, double y);
 void	mouse_event(t_scene *scene, t_graph_sys *graph_sys);
 void	key_hook_cam(int key, void *param);
+
+t_color	colors_traitement(t_color obj_color, t_ambient ambient);
 
 #endif

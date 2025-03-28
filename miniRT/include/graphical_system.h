@@ -54,42 +54,6 @@
 # endif
 
 /***********************************************
- * @struct Double Buffering
- ***********************************************/
-typedef struct s_double_buffer
-{
-	mlx_image	buffers[2];
-	mlx_image	*back;
-	mlx_image	*front;
-}	t_double_buffer;
-
-/***********************************************
- * @struct Graphical System
- ***********************************************/
-typedef struct s_graph_sys
-{
-	mlx_context		mlx;
-	mlx_window		win;
-	t_double_buffer	buff;
-}	t_graph_sys;
-
-/***********************************************
- * @enum Window Event
- ***********************************************/
-typedef enum e_win_event
-{
-	WIN_CLOSE,
-	WIN_MOVED,
-	WIN_MINIMIZED,
-	WIN_MAXIMIZED,
-	WIN_ENTER,
-	WIN_FOCUS_GAINED,
-	WIN_LEAVE,
-	WIN_FOCUS_LOST,
-	WIN_SIZE_CHANGED,
-}	t_win_event;
-
-/***********************************************
  * @file double_buffer.c
  ***********************************************/
 void	swap_buffer(t_double_buffer *buff);
