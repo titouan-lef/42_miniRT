@@ -24,7 +24,7 @@ double	quadratic_equation(double a, double b, double c)
 	double	delta;
 
 	delta = b * b - 4 * a * c;
-	if (delta > 0)
+	if (delta > 0 && a != 0)
 	{
 		t1 = (-b + sqrt(delta)) / (2.0 * a);
 		t2 = (-b - sqrt(delta)) / (2.0 * a);
@@ -34,7 +34,7 @@ double	quadratic_equation(double a, double b, double c)
 			return (t1);
 		return (t2);
 	}
-	else if (delta == 0)
+	else if (delta == 0 && a != 0)
 	{
 		t1 = -b / (2.0 * a);
 		if (t1 < 1)

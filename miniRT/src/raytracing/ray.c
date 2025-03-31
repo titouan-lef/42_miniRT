@@ -61,14 +61,12 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 	{
 		obj = (t_obj *)lst_obj->content;
 		if (obj->type == SPHERE)
-			length = intersect_ray_sphere((t_sphere *)(obj->data), ray_dir,
-					cam_pos);
+			length = intersect_ray_sphere((t_sphere *)(obj->data), ray_dir);
 		else if (obj->type == PLAN)
 			length = intersect_ray_plan((t_plan *)(obj->data), ray_dir,
 					cam_pos);
-		else if (obj->type != SPHERE)
-			length = intersect_ray_cylinder((t_cylinder *)(obj->data),
-					ray_dir, cam_pos);
+		else if (obj->type == CYLINDER)
+			length = intersect_ray_cylinder((t_cylinder *)(obj->data), ray_dir);
 		if (length < length_min)
 		{
 			length_min = length;

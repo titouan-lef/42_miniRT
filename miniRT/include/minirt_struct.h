@@ -82,6 +82,8 @@ typedef struct s_sphere
 	t_color		color;
 	t_vector3	position;
 	double		diam;
+	double		r;
+	t_vector3	rs0;
 
 }	t_sphere;
 
@@ -93,6 +95,7 @@ typedef struct s_plan
 	t_color		color;
 	t_vector3	position;
 	t_vector3	orientation;
+	t_vector3	rp0;
 }	t_plan;
 
 /***********************************************
@@ -105,6 +108,12 @@ typedef struct s_cylinder
 	t_vector3	orientation;
 	double		diam;
 	double		height;
+	double		r;
+	t_vector3	ra2;
+	t_vector3	ra1;
+	t_vector3	va;
+	t_vector3	s;
+	t_vector3	ra0;
 }	t_cylinder;
 
 /***********************************************

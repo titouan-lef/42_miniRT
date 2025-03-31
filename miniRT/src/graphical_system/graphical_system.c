@@ -48,6 +48,7 @@ static void	update(void *param)
 	scene = (t_scene *) param;
 	graph_sys = &scene->graph_sys;
 	mouse_event(scene, graph_sys);
+	init_calculation(scene, scene->lst_obj);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->graph_sys);
 }

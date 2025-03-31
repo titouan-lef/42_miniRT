@@ -2,44 +2,32 @@
 
 #include "minirt.h"
 
-static double	a_calculation(t_vector3 n, t_vector3 d)
+t_plane	ft_create_plane(t_vector3 n, t_vector3 p)
 {
-	double	result;
+	t_plane plane;
 
-	result = ft_dotproduct_vector3(n, d);
-	return (result);
-}
+	plane.a = n.x;
+	plane.b = n.y;
+	plane.c = n.z;
+	plane.d = -n.x * p.x - n.y * p.y - n.z * p.z;
 
-static double	b_calculation(t_vector3 a, t_vector3 o, t_vector3 n)
-{
-	double		result;
-	t_vector3	tmp_v1;
-
-	tmp_v1 = ft_diff_vector3(o, a);
-	result = ft_dotproduct_vector3(tmp_v1, n);
-	return (result);
-}
-
-static double	equation_plan(double a, double b)
-{
-	double	result;
-
-	result = b / a;
-	return (result);
+	return (plane);
 }
 
 double	intersect_ray_plan(t_plan *plan, t_vector3 ray_dir, t_vector3 orig)
 {
-	double	a;
-	double	b;
-	double	result;
+	t_vector3	normal;
+	t_plane 	plane;
+	double		scal_product;
+	double		t;
 
-	a = a_calculation(plan->orientation, ray_dir);
-	if (a == 0)
+	normal = plan->orientation;
+	plane = ft_create_plane(normal, plan->position);
+	scal_product = ft_dotproduct_vector3(normal, ray_dir);
+	if (scal_product == 0)
 		return (INFINITY);
-	b = b_calculation(plan->position, orig, plan->orientation);
-	result = equation_plan(a, b);
-	if (result < 1)
+	t = (plane.d + ft_dotproduct_vector3(normal, orig)) / -scal_product;
+	if (t < 1)
 		return (INFINITY);
-	return (result);
+	return (t);
 }

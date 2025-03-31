@@ -18,8 +18,9 @@ t_color	ambient_colors(t_color obj_color, t_ambient ambient)
 	newcolor.b += obj_color.b;
 	return (newcolor);
 }
-
+/*
 t_color light_colors(t_color color, t_list light)
 {
 	
 }
+*/
