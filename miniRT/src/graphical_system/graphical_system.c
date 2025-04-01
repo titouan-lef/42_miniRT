@@ -57,6 +57,7 @@ int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->graph_sys))
 		return (1);
+	mlx_mouse_move(scene->graph_sys.mlx, scene->graph_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
 	mlx_add_loop_hook(scene->graph_sys.mlx, update, scene);
 	mlx_loop(scene->graph_sys.mlx);
