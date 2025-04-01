@@ -29,7 +29,7 @@ static t_vector3	get_ray_dir(t_vector3 pixel, t_vector3 cam_dir)
 
 t_color	get_color(t_obj *obj)
 {
-	int 	type;
+	int		type;
 	t_color	color;
 
 	type = obj->type;
@@ -42,9 +42,8 @@ t_color	get_color(t_obj *obj)
 	else
 		color = ((t_cone *)(obj->data))->color;
 	return (color);
-	
-	
 }
+
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
@@ -66,7 +65,8 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 			length = intersect_ray_plan((t_plan *)(obj->data), ray_dir,
 					cam_pos);
 		else if (obj->type == CYLINDER)
-			length = intersect_ray_cylinder((t_cylinder *)(obj->data), ray_dir);
+			length = intersect_ray_cylinder((t_cylinder *)(obj->data),
+					ray_dir, cam_pos);
 		if (length < length_min)
 		{
 			length_min = length;

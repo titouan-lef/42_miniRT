@@ -17,7 +17,8 @@ void	calculation_cyl_s(t_vector3 *cyl_s, t_vector3 ra1, t_vector3 ra2)
 	*cyl_s = ft_scalarmult_vector3(*cyl_s, 1.0 / ft_norm_vector3(*cyl_s));
 }
 
-void	calculation_cyl_ra0(t_vector3 *ra0, t_vector3 s, t_vector3 low, t_vector3 r0)
+void	calculation_cyl_ra0(t_vector3 *ra0, t_vector3 s, t_vector3 low,
+			t_vector3 r0)
 {
 	*ra0 = ft_diff_vector3(r0, low);
 	*ra0 = ft_crossproduct_vector3(s, *ra0);
