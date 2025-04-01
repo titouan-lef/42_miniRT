@@ -15,13 +15,15 @@ static t_vector3	get_ray_dir(t_vector3 pixel, t_vector3 cam_dir)
 {
 	t_vector3	ray_dir;
 	t_vector3	axis;
+	t_vector3	default_cam_dir;
 	double		angle;
 
+	default_cam_dir = ft_create_vector3(0,0,1);
 	ray_dir = ft_normalize_vector3(pixel);
-	axis = ft_crossproduct_vector3(cam_dir, ray_dir);
+	axis = ft_crossproduct_vector3(cam_dir, default_cam_dir);
 	if (ft_is_zero_vector3(axis))
 		return (ray_dir);
-	angle = ft_dotproduct_vector3(ray_dir, cam_dir);
+	angle = ft_dotproduct_vector3(default_cam_dir, cam_dir);
 	angle = acos(angle);
 	ray_dir = ft_rotation_quaternion(ray_dir, angle, axis);
 	return (ray_dir);
@@ -93,11 +95,11 @@ int	ray_lauch_test(t_scene *scene)
 	t_color		pixel_color;
 
 	pixel.z = length_screen(scene->camera.fov);
-	pixel.x = -WIN_HW;
-	while (pixel.x < WIN_HW)
+	pixel.y = -WIN_HH;
+	while (pixel.y < WIN_HH)
 	{
-		pixel.y = -WIN_HH;
-		while (pixel.y < WIN_HH)
+		pixel.x = -WIN_HW;
+		while (pixel.x < WIN_HW)
 		{
 			ray_dir = get_ray_dir(pixel, scene->camera.orientation);
 			pixel_color = raytracers(scene->lst_obj, ray_dir,
@@ -105,9 +107,9 @@ int	ray_lauch_test(t_scene *scene)
 			pixel_color = ambient_colors(pixel_color, scene->ambient);
 			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.x,
 				WIN_HH - pixel.y, pixel_color);
-			pixel.y += 1.0;
+			pixel.x += 1.0;
 		}
-		pixel.x += 1.0;
+		pixel.y += 1.0;
 	}
 	return (0);
 }
