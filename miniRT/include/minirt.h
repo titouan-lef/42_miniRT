@@ -10,6 +10,7 @@
 # include "minirt_parsing.h"
 # include "minirt_err.h"
 # include "graphical_system.h"
+# include "minirt_colors.h"
 
 int			ray_lauch_test(t_scene *scene);
 void		norm_vecteur(t_vector3 *vector);

@@ -5,15 +5,9 @@
 t_color	ambient_colors(t_color obj_color, t_ambient ambient)
 {
 	t_color	newcolor;
-	int		diviseur;
 
-	diviseur = 1.0 / ambient.lr;
-	newcolor.r = ambient.color.r / diviseur;
-	newcolor.g = ambient.color.g / diviseur;
-	newcolor.b = ambient.color.b / diviseur;
-	newcolor.r += obj_color.r;
-	newcolor.g += obj_color.g;
-	newcolor.b += obj_color.b;
+	newcolor = ft_scalprod_color(ambient.color, ambient.lr);
+	newcolor = ft_multipl_colors(newcolor, obj_color);
 	return (newcolor);
 }
 /*
