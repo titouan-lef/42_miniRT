@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-static t_vector3	va_calculation(t_vector3 s, t_vector3 v)
+/*static t_vector3	va_calculation(t_vector3 s, t_vector3 v)
 {
 	t_vector3	va;
 
@@ -27,15 +27,15 @@ static double	c_calculation(t_vector3 ra0, double r)
 
 	result = ft_dotproduct_vector3(ra0, ra0) - r * r;
 	return (result);
-}
+}*/
 /*
-static double	border_cylinder(double t, t_cylinder *cyl, 
+static double	border_cylinder(double t, t_cylinder *cyl,
 t_vector3 cam_pos, t_vector3 dir_ray)
 {
 	t_vector3	ray;
 	t_vector3	tmp;
 	double		result;
-	
+
 	ray =  ft_scalarmult_vector3(dir_ray, t);
 	ray = 	ft_sum_vector3(cam_pos, ray);
 	tmp = ft_diff_vector3(ray, cyl->ra1);
@@ -52,9 +52,9 @@ t_vector3 cam_pos, t_vector3 dir_ray)
 
 /**
  * @brief Get the smallest factor of intersection greater than or equal to 1.
- * @details 
+ * @details
  */
-double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
+/*double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
 			t_vector3 cam_pos)
 {
 	double	a;
@@ -69,5 +69,52 @@ double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
 	c = c_calculation(cyl->ra0, cyl->r);
 	result = quadratic_equation(a, b, c);
 	return (result);
-}
+}*/
 //result = border_cylinder(result, cyl, cam_pos, dir_ray);
+
+/********************************************************************************** */
+
+static double	a_calculation(double dot_product_dv)
+{
+	return (1 - dot_product_dv * dot_product_dv);
+}
+
+static double	b_calculation(t_vector3 d, t_vector3 v, t_vector3 cs)
+{
+	return (2.0 * (ft_dotproduct_vector3(cs, d) - ft_dotproduct_vector3(cs, v) * ft_dotproduct_vector3(d, v)));
+}
+
+static double	c_calculation(t_vector3 v, t_vector3 cs, double r)
+{
+	double	dot_product_csv;
+
+	dot_product_csv = ft_dotproduct_vector3(cs, v);
+	return (ft_dotproduct_vector3(cs, cs) - dot_product_csv * dot_product_csv - r * r);
+}
+
+/**
+ * @brief Get the smallest factor of intersection greater than or equal to 1.
+ * @details
+ */
+double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray, t_vector3 cam_pos)
+{
+	double	a;
+	double	b;
+	double	c;
+	double	result;
+	t_vector3	d;
+	t_vector3	v;
+	t_vector3	cs;
+	double	dot_product_dv;
+
+	d = ft_normalize_vector3(cyl->orientation);
+	v = ft_normalize_vector3(dir_ray);
+	dot_product_dv = ft_dotproduct_vector3(d, v);
+	cs = ft_diff_vector3(cam_pos, cyl->position);
+
+	a = a_calculation(dot_product_dv);
+	b = b_calculation(d, v, cs);
+	c = c_calculation(v, cs, cyl->r);
+	result = quadratic_equation(a, b, c);
+	return (result);
+}
