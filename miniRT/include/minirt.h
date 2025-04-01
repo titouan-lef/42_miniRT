@@ -26,9 +26,6 @@ double		intersect_ray_sphere(t_sphere *sphere, t_vector3 ray_dir);
 double		intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
 				t_vector3 cam_pos);
 t_vector3	calculation_born(t_vector3 c, t_vector3 n, double d);
-void		calculation_cyl_s(t_vector3 *cyl_s, t_vector3 ra1, t_vector3 ra2);
-void		calculation_cyl_ra0(t_vector3 *ra0, t_vector3 s, t_vector3 low,
-				t_vector3 r0);
 
 t_color		ambient_colors(t_color obj_color, t_ambient ambient);
 

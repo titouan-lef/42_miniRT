@@ -109,11 +109,8 @@ typedef struct s_cylinder
 	double		diam;
 	double		height;
 	double		r;
-	t_vector3	ra2;
-	t_vector3	ra1;
-	t_vector3	va;
-	t_vector3	s;
-	t_vector3	ra0;
+	t_vector3	bc_o;
+	double		bc_o_dot_dir;
 }	t_cylinder;
 
 /***********************************************

@@ -2,94 +2,38 @@
 
 #include "minirt.h"
 
-/*static t_vector3	va_calculation(t_vector3 s, t_vector3 v)
+static int	is_in_height(double t, t_vector3 ray_dir, t_vector3 cam_pos, t_cylinder *cyl)
 {
-	t_vector3	va;
+	t_vector3	p;
+	double		height;
 
-	va = ft_crossproduct_vector3(s, v);
-	va = ft_crossproduct_vector3(va, s);
-	return (va);
+	p = ft_scalarmult_vector3(ray_dir, t);
+	p = ft_sum_vector3(cam_pos, p);
+	p = ft_diff_vector3(p, cyl->position);
+	height = ft_dotproduct_vector3(p, cyl->orientation);
+	if (height < 0)
+		height = -height;
+	return (height <= cyl->height / 2.0);
 }
 
-static double	b_calculation(t_vector3 ra0, t_vector3 va)
+static double	a_calculation(double dir_ray_dot_dir)
 {
-	double		result;
-	t_vector3	tmp;
-
-	tmp = ft_scalarmult_vector3(ra0, 2.0);
-	result = ft_dotproduct_vector3(tmp, va);
-	return (result);
+	return (1 - dir_ray_dot_dir * dir_ray_dot_dir);
 }
 
-static double	c_calculation(t_vector3 ra0, double r)
+static double	b_calculation(t_vector3 bc_o, t_vector3 dir_ray, double bc_o_dot_dir, double dir_ray_dot_dir)
 {
-	double		result;
-
-	result = ft_dotproduct_vector3(ra0, ra0) - r * r;
-	return (result);
-}*/
-/*
-static double	border_cylinder(double t, t_cylinder *cyl,
-t_vector3 cam_pos, t_vector3 dir_ray)
-{
-	t_vector3	ray;
-	t_vector3	tmp;
-	double		result;
-
-	ray =  ft_scalarmult_vector3(dir_ray, t);
-	ray = 	ft_sum_vector3(cam_pos, ray);
-	tmp = ft_diff_vector3(ray, cyl->ra1);
-	result = ft_dotproduct_vector3(ray, cyl->s);
-	if (result < 0)
-	return (INFINITY);
-	tmp = ft_diff_vector3(ray, cyl->ra2);
-	result = ft_dotproduct_vector3(ray, cyl->s);
-	if (result > 0)
-	return (INFINITY);
-	return (t);
+	return (2.0 * (ft_dotproduct_vector3(bc_o, dir_ray) - bc_o_dot_dir * dir_ray_dot_dir));
 }
-*/
 
-/**
- * @brief Get the smallest factor of intersection greater than or equal to 1.
- * @details
- */
-/*double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
-			t_vector3 cam_pos)
+static double	c_calculation(t_vector3 bc_o, double bc_o_dot_dir, double r)
 {
-	double	a;
-	double	b;
-	double	c;
 	double	result;
 
-	(void)cam_pos;
-	cyl->va = va_calculation(cyl->s, dir_ray);
-	a = ft_dotproduct_vector3(cyl->va, cyl->va);
-	b = b_calculation(cyl->ra0, cyl->va);
-	c = c_calculation(cyl->ra0, cyl->r);
-	result = quadratic_equation(a, b, c);
+	result = ft_dotproduct_vector3(bc_o, bc_o);
+	result -= bc_o_dot_dir * bc_o_dot_dir;
+	result -= r * r;
 	return (result);
-}*/
-//result = border_cylinder(result, cyl, cam_pos, dir_ray);
-
-/********************************************************************************** */
-
-static double	a_calculation(double dot_product_dv)
-{
-	return (1 - dot_product_dv * dot_product_dv);
-}
-
-static double	b_calculation(t_vector3 d, t_vector3 v, t_vector3 cs)
-{
-	return (2.0 * (ft_dotproduct_vector3(cs, d) - ft_dotproduct_vector3(cs, v) * ft_dotproduct_vector3(d, v)));
-}
-
-static double	c_calculation(t_vector3 v, t_vector3 cs, double r)
-{
-	double	dot_product_csv;
-
-	dot_product_csv = ft_dotproduct_vector3(cs, v);
-	return (ft_dotproduct_vector3(cs, cs) - dot_product_csv * dot_product_csv - r * r);
 }
 
 /**
@@ -101,20 +45,15 @@ double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray, t_vector3 cam_
 	double	a;
 	double	b;
 	double	c;
+	double	dir_ray_dot_dir;
 	double	result;
-	t_vector3	d;
-	t_vector3	v;
-	t_vector3	cs;
-	double	dot_product_dv;
 
-	d = ft_normalize_vector3(cyl->orientation);
-	v = ft_normalize_vector3(dir_ray);
-	dot_product_dv = ft_dotproduct_vector3(d, v);
-	cs = ft_diff_vector3(cam_pos, cyl->position);
-
-	a = a_calculation(dot_product_dv);
-	b = b_calculation(d, v, cs);
-	c = c_calculation(v, cs, cyl->r);
+	dir_ray_dot_dir = ft_dotproduct_vector3(dir_ray, cyl->orientation);
+	a = a_calculation(dir_ray_dot_dir);
+	b = b_calculation(cyl->bc_o, dir_ray, cyl->bc_o_dot_dir, dir_ray_dot_dir);
+	c = c_calculation(cyl->bc_o, cyl->bc_o_dot_dir, cyl->r);
 	result = quadratic_equation(a, b, c);
+	if (result == INFINITY || !is_in_height(result, dir_ray, cam_pos, cyl))
+		return (INFINITY);
 	return (result);
 }
