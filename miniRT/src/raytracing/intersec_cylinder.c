@@ -36,24 +36,59 @@ static double	c_calculation(t_vector3 bc_o, double bc_o_dot_dir, double r)
 	return (result);
 }
 
+static double	intersect_ray_plan_test(t_vector3 plan_pos, t_vector3 normal, t_vector3 ray_dir, t_vector3 orig)
+{
+	t_plane		plane;
+	double		scal_product;
+	double		t;
+
+	plane = ft_create_plane(normal, plan_pos);
+	scal_product = ft_dotproduct_vector3(normal, ray_dir);
+	if (scal_product == 0)
+		return (INFINITY);
+	t = (plane.d + ft_dotproduct_vector3(normal, orig)) / -scal_product;
+	if (t < 1)
+		return (INFINITY);
+	return (t);
+}
+
 /**
  * @brief Get the smallest factor of intersection greater than or equal to 1.
  * @details
  */
 double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray, t_vector3 cam_pos)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	dir_ray_dot_dir;
-	double	result;
+	double		a;
+	double		b;
+	double		c;
+	double		dir_ray_dot_dir;
+	double		result;
+	t_vector3	p;
+	t_vector3	center;
+	double		tmp;
 
 	dir_ray_dot_dir = ft_dotproduct_vector3(dir_ray, cyl->orientation);
 	a = a_calculation(dir_ray_dot_dir);
 	b = b_calculation(cyl->bc_o, dir_ray, cyl->bc_o_dot_dir, dir_ray_dot_dir);
 	c = c_calculation(cyl->bc_o, cyl->bc_o_dot_dir, cyl->r);
 	result = quadratic_equation(a, b, c);
-	if (result == INFINITY || !is_in_height(result, dir_ray, cam_pos, cyl))
-		return (INFINITY);
+	if (result != INFINITY && !is_in_height(result, dir_ray, cam_pos, cyl))
+		result = INFINITY;
+	center = calculation_born(cyl->position, cyl->orientation, -cyl->height / 2.0);
+	tmp = intersect_ray_plan_test(center, cyl->orientation, dir_ray, cam_pos);
+	if (tmp != INFINITY && tmp < result)
+	{
+		p = ft_sum_vector3(cam_pos, ft_scalarmult_vector3(dir_ray, tmp));
+		if (ft_distance_vector3(p, center) <= cyl->r)
+			result = tmp;
+	}
+	center = calculation_born(cyl->position, cyl->orientation, cyl->height / 2.0);
+	tmp = intersect_ray_plan_test(center, cyl->orientation, dir_ray, cam_pos);
+	if (tmp != INFINITY && tmp < result)
+	{
+		p = ft_sum_vector3(cam_pos, ft_scalarmult_vector3(dir_ray, tmp));
+		if (ft_distance_vector3(p, center) <= cyl->r)
+			result = tmp;
+	}
 	return (result);
 }

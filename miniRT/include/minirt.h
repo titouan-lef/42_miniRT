@@ -21,6 +21,7 @@ void		init_calculation(t_scene *scene, t_list *lst_obj);
 
 double		intersect_ray_plan(t_plan *plan, t_vector3 ray_dir,
 				t_vector3 orig);
+t_plane		ft_create_plane(t_vector3 n, t_vector3 p);
 double		intersect_ray_sphere(t_sphere *sphere, t_vector3 ray_dir);
 
 double		intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
