@@ -2,38 +2,39 @@
 
 #include "minirt.h"
 
-static t_cylinder	*alloc_new_cylinder(char **tab)
+static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 {
-	t_cylinder	*new_cylinder;
+	t_cylinder_obj	*new_cy;
 
-	new_cylinder = malloc(sizeof(t_cylinder));
-	if (!new_cylinder)
+	new_cy = malloc(sizeof(t_cylinder_obj));
+	if (!new_cy)
 		return (NULL);
-	if (take_position(&new_cylinder->position, tab[1])
-		|| take_orientation(&new_cylinder->orientation, tab[2])
-		|| take_dimension(&new_cylinder->diam, tab[3])
-		|| take_dimension(&new_cylinder->height, tab[4])
-		|| take_color(&new_cylinder->color, tab[5]))
+	if (take_pos(&new_cy->cy.pos, tab[1])
+		|| take_dir(&new_cy->cy.dir, tab[2])
+		|| take_dimension(&new_cy->cy.r, tab[3])
+		|| take_dimension(&new_cy->cy.h, tab[4])
+		|| take_color(&new_cy->color, tab[5]))
 	{
 		print_error_message(ERR_CYLINDER);
-		free(new_cylinder);
+		free(new_cy);
 		return (NULL);
 	}
-	return (new_cylinder);
+	new_cy->cy.r *= 0.5;
+	return (new_cy);
 }
 
 int	cylinder_interpreter(t_scene *scene, char **tab)
 {
-	t_cylinder	*new_cylinder;
+	t_cylinder_obj	*new_cy;
 
 	if (ft_matrix_get_row((void **)tab) != 6)
 		return (1);
-	new_cylinder = alloc_new_cylinder(tab);
-	if (!new_cylinder)
+	new_cy = alloc_new_cylinder(tab);
+	if (!new_cy)
 		return (1);
-	if (alloc_new_obj(&scene->lst_obj, new_cylinder, CYLINDER))
+	if (alloc_new_obj(&scene->lst_obj, new_cy, CYLINDER))
 	{
-		free(new_cylinder);
+		free(new_cy);
 		return (1);
 	}
 	return (0);

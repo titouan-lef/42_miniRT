@@ -36,13 +36,13 @@ t_color	get_color(t_obj *obj)
 
 	type = obj->type;
 	if (type == SPHERE)
-		color = ((t_sphere *)(obj->data))->color;
+		color = ((t_sphere_obj *)(obj->data))->color;
 	else if (type == PLAN)
-		color = ((t_plan *)(obj->data))->color;
+		color = ((t_plane_obj *)(obj->data))->color;
 	else if (type == CYLINDER)
-		color = ((t_cylinder *)(obj->data))->color;
+		color = ((t_cylinder_obj *)(obj->data))->color;
 	else
-		color = ((t_cone *)(obj->data))->color;
+		color = ((t_cone_obj *)(obj->data))->color;
 	return (color);
 }
 
@@ -62,12 +62,12 @@ t_color	raytracers(t_list *lst_obj, t_pixel *pixel, t_vector3 cam_pos)
 	{
 		obj = (t_obj *)lst_obj->content;
 		if (obj->type == SPHERE)
-			length = intersect_ray_sphere((t_sphere *)(obj->data), pixel->ray_dir);
+			length = intersect_ray_sphere((t_sphere_obj *)(obj->data), pixel->ray_dir);
 		else if (obj->type == PLAN)
-			length = intersect_ray_plan((t_plan *)(obj->data), pixel->ray_dir,
+			length = intersect_ray_plan((t_plane_obj *)(obj->data), pixel->ray_dir,
 					cam_pos);
 		else if (obj->type == CYLINDER)
-			length = intersect_ray_cylinder((t_cylinder *)(obj->data),
+			length = intersect_ray_cylinder((t_cylinder_obj *)(obj->data),
 					pixel->ray_dir, cam_pos);
 		if (length < length_min)
 		{
@@ -93,7 +93,7 @@ int	ray_lauch_test(t_scene *scene)
 {
 	t_pixel		pixel;
 
-	pixel.pos.z = length_screen(scene->camera.fov);
+	pixel.pos.z = length_screen(scene->cam.fov);
 	pixel.pos.y = -WIN_HH;
 	while (pixel.pos.y < WIN_HH)
 	{
@@ -101,11 +101,10 @@ int	ray_lauch_test(t_scene *scene)
 		while (pixel.pos.x < WIN_HW)
 		{
 			pixel.obj = NULL;
-			pixel.ray_dir = get_ray_dir(pixel.pos, scene->camera.orientation);
-			pixel.color = raytracers(scene->lst_obj, &pixel,
-					scene->camera.position);
+			pixel.ray_dir = get_ray_dir(pixel.pos, scene->cam.dir);
+			pixel.color = raytracers(scene->lst_obj, &pixel, scene->cam.pos);
 			//pixel.color = ambient(pixel.color, &scene->ambient);
-			lighting(&pixel, scene->lst_light, &scene->ambient);
+			//lighting(&pixel, scene->lst_light, &scene->ambient);
 			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.pos.x,
 				WIN_HH - pixel.pos.y, pixel.color);
 			pixel.pos.x += 1.0;

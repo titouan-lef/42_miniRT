@@ -11,11 +11,11 @@ int		parsing(int argc, char **argv, t_scene *scene);
 /***********************************************
  *  @file parsing_utils.c
  ***********************************************/
-int		alloc_new_obj(t_list **head, void *new_sphere, t_obj_type type);
+int		alloc_new_obj(t_list **head, void *new_sp, t_obj_type type);
 int		take_dimension(double *dimension, char *str);
 void	init_scene(t_scene *scene);
 int		check_files_type(char *str);
-int		check_valid_id(char *str, int *ambient, int *camera);
+int		check_valid_id(char *str, int *amb, int *cam);
 
 /***********************************************
  *  @file parsing_ambient.c
@@ -35,8 +35,8 @@ int		take_color(t_color *colors, char *str);
 /***********************************************
  *  @file parsing_vecteur.c
  ***********************************************/
-int		take_position(t_vector3 *position, char *str);
-int		take_orientation(t_vector3 *position, char *str);
+int		take_pos(t_vector3 *pos, char *str);
+int		take_dir(t_vector3 *pos, char *str);
 
 /***********************************************
  *  @file parsing_light.c

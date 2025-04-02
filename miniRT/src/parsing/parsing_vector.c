@@ -21,52 +21,52 @@ static char	*get_vector_value(double *value, char *str, int *error)
 	return (str);
 }
 
-static char	*complete_orientation(double *orientation, char *str)
+static char	*complete_dir(double *dir, char *str)
 {
 	int		error;
 
-	str = get_vector_value(orientation, str, &error);
-	if (error != 0 || *orientation < -1 || *orientation > 1)
+	str = get_vector_value(dir, str, &error);
+	if (error != 0 || *dir < -1 || *dir > 1)
 		return (NULL);
 	return (str);
 }
 
-static char	*complete_position(double *position, char *str)
+static char	*complete_pos(double *pos, char *str)
 {
 	int		error;
 
-	str = get_vector_value(position, str, &error);
+	str = get_vector_value(pos, str, &error);
 	if (error != 0)
 		return (NULL);
 	return (str);
 }
 
-int	take_orientation(t_vector3 *orientation, char *str)
+int	take_dir(t_vector3 *dir, char *str)
 {
 	double	norm;
 
-	str = complete_orientation(&orientation->x, str);
+	str = complete_dir(&dir->x, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_orientation(&orientation->y, str);
+	str = complete_dir(&dir->y, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_orientation(&orientation->z, str);
+	str = complete_dir(&dir->z, str);
 	if (!str || *str)
 		return (1);
-	norm = ft_norm_vector3(*orientation);
+	norm = ft_norm_vector3(*dir);
 	return (norm != 1);
 }
 
-int	take_position(t_vector3 *position, char *str)
+int	take_pos(t_vector3 *pos, char *str)
 {
-	str = complete_position(&position->x, str);
+	str = complete_pos(&pos->x, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_position(&position->y, str);
+	str = complete_pos(&pos->y, str);
 	if (!str || !*str)
 		return (1);
-	str = complete_position(&position->z, str);
+	str = complete_pos(&pos->z, str);
 	if (!str || *str)
 		return (1);
 	return (0);

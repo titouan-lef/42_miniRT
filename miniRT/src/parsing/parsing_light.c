@@ -28,7 +28,7 @@ static t_light	*alloc_new_light(char **tab)
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
 		return (NULL);
-	if (take_position(&new_light->position, tab[1])
+	if (take_pos(&new_light->pos, tab[1])
 		|| take_light_intensity(&new_light->lbr, tab[2])
 		|| take_color(&new_light->color, tab[3]))
 	{
@@ -59,8 +59,8 @@ int	light_interpreter(t_scene *scene, char **tab)
 int	ambient_interpreter(t_scene *scene, char **tab)
 {
 	if (ft_matrix_get_row((void **)tab) != 3
-		|| take_light_intensity(&scene->ambient.lr, tab[1])
-		|| take_color(&scene->ambient.color, tab[2]))
+		|| take_light_intensity(&scene->amb.lr, tab[1])
+		|| take_color(&scene->amb.color, tab[2]))
 	{
 		print_error_message(ERR_AMBIENT);
 		return (1);

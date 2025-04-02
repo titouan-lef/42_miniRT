@@ -46,84 +46,109 @@ typedef struct s_obj
 }	t_obj;
 
 /***********************************************
- * @struct CAMBIENT
+ * @struct AMBIENT
  ***********************************************/
-typedef struct s_ambient
+typedef struct s_amb
 {
 	t_color	color;
 	double	lr;
-}	t_ambient;
+}	t_amb;
 
 /***********************************************
  * @struct CAMERA
  ***********************************************/
-typedef struct s_camera
+typedef struct s_cam
 {
-	t_vector3	position;
-	t_vector3	orientation;
+	t_vector3	pos;
+	t_vector3	dir;
 	int			fov;
-}	t_camera;
+}	t_cam;
 
 /***********************************************
  * @struct LIGHT
+ * @param color Light color.
+ * @param lbr Light brightness.
+ * @param pos Light position.
  ***********************************************/
 typedef struct s_light
 {
 	t_color		color;
 	double		lbr;
-	t_vector3	position;
+	t_vector3	pos;
 }	t_light;
 
 /***********************************************
  * @struct SPHERE
+ * @param 
  ***********************************************/
 typedef struct s_sphere
 {
-	t_color		color;
-	t_vector3	position;
-	double		diam;
+	t_vector3	pos;
 	double		r;
-	t_vector3	rs0;
-
 }	t_sphere;
+
+typedef struct s_math_sp
+{
+	t_vector3	os;
+	double		c_factor;
+}	t_math_sp;
+
+typedef struct s_sphere_obj
+{
+	t_color		color;
+	t_sphere	sp;
+	t_math_sp	mathsp;
+}	t_sphere_obj;
 
 /***********************************************
  * @struct PLAN
  ***********************************************/
-typedef struct s_plan
+typedef struct s_plane_obj
 {
 	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-	t_vector3	rp0;
-}	t_plan;
+	t_plane		pl;
+}	t_plane_obj;
 
 /***********************************************
  * @struct CYLINDER
  ***********************************************/
 typedef struct s_cylinder
 {
-	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-	double		diam;
-	double		height;
+	t_vector3	pos;
+	t_vector3	dir;
+	double		h;
 	double		r;
+}	t_cylinder;
+
+typedef struct s_math_cy
+{
 	t_vector3	bc_o;
 	double		bc_o_dot_dir;
-}	t_cylinder;
+}	t_math_cy;
+
+typedef struct s_cylinder_obj
+{
+	t_color		color;
+	t_cylinder	cy;
+	t_math_cy	mathcy;
+}	t_cylinder_obj;
 
 /***********************************************
  * @struct CONE
  ***********************************************/
 typedef struct s_cone
 {
-	t_color		color;
-	t_vector3	position;
-	t_vector3	orientation;
-	double		diam;
-	double		height;
+	t_vector3	pos;
+	t_vector3	dir;
+	double		h;
+	double		r;
 }	t_cone;
+
+typedef struct s_cone_obj
+{
+	t_color		color;
+	t_cone		co;
+}	t_cone_obj;
 
 /***********************************************
  * @struct Double Buffering
@@ -152,8 +177,8 @@ typedef struct s_scene
 {
 	t_list		*lst_obj;
 	t_list		*lst_light;
-	t_ambient	ambient;
-	t_camera	camera;
+	t_amb		amb;
+	t_cam		cam;
 	t_graph_sys	graph_sys;
 }	t_scene;
 

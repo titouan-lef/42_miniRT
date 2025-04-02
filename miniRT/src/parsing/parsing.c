@@ -2,14 +2,14 @@
 
 #include "minirt.h"
 
-int	check_scene_composition(t_scene *scene, int nb_ambient, int nb_camera)
+int	check_scene_composition(t_scene *scene, int nb_amb, int nb_cam)
 {
-	if (nb_camera != 1)
+	if (nb_cam != 1)
 	{
 		print_error_message(ERR_NB_CAM);
 		return (1);
 	}
-	if (nb_ambient != 1)
+	if (nb_amb != 1)
 	{
 		print_error_message(ERR_NB_AMB);
 		return (1);
@@ -50,7 +50,7 @@ static int	data_interpreter(t_scene *scene, char **tab, int id)
 	return (error);
 }
 
-static int	extrac_data(char *line, t_scene *scene, int *ambient, int *camera)
+static int	extrac_data(char *line, t_scene *scene, int *amb, int *cam)
 {
 	char	**tab;
 	int		id;
@@ -63,7 +63,7 @@ static int	extrac_data(char *line, t_scene *scene, int *ambient, int *camera)
 		ft_clean_matrix((void *)&tab);
 		return (0);
 	}
-	id = check_valid_id(tab[0], ambient, camera);
+	id = check_valid_id(tab[0], amb, cam);
 	if (id == OBJ_ERR || data_interpreter(scene, tab, id))
 	{
 		ft_clean_matrix((void *)&tab);
@@ -76,15 +76,15 @@ static int	extrac_data(char *line, t_scene *scene, int *ambient, int *camera)
 static int	read_scene(int fd, t_scene *scene)
 {
 	char	*str;
-	int		nb_ambient;
-	int		nb_camera;
+	int		nb_amb;
+	int		nb_cam;
 
-	nb_ambient = 0;
-	nb_camera = 0;
+	nb_amb = 0;
+	nb_cam = 0;
 	str = get_next_line_one_file(fd);
 	while (str)
 	{
-		if (extrac_data(str, scene, &nb_ambient, &nb_camera))
+		if (extrac_data(str, scene, &nb_amb, &nb_cam))
 		{
 			free (str);
 			return (1);
@@ -92,7 +92,7 @@ static int	read_scene(int fd, t_scene *scene)
 		free(str);
 		str = get_next_line_one_file(fd);
 	}
-	if (check_scene_composition(scene, nb_ambient, nb_camera))
+	if (check_scene_composition(scene, nb_amb, nb_cam))
 		return (1);
 	return (0);
 }

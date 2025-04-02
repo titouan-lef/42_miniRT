@@ -13,20 +13,16 @@
 # include "minirt_colors.h"
 
 int			ray_lauch_test(t_scene *scene);
-void		norm_vecteur(t_vector3 *vector);
 
 double		length_screen(double fov);
-double		quadratic_equation(double A, double B, double C);
+double		quadratic_equation(double a, double b, double c);
 
 void		init_calculation(t_scene *scene, t_list *lst_obj);
 
-double		intersect_ray_plan(t_plan *plan, t_vector3 ray_dir,
-				t_vector3 orig);
-t_plane		ft_create_plane(t_vector3 n, t_vector3 p);
-double		intersect_ray_sphere(t_sphere *sphere, t_vector3 ray_dir);
+double		intersect_ray_plan(t_plane_obj *plan, t_vector3 ray_dir, t_vector3 orig);
+double		intersect_ray_sphere(t_sphere_obj *sphere, t_vector3 ray_dir);
 
-double		intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
-				t_vector3 cam_pos);
+double		intersect_ray_cylinder(t_cylinder_obj *cyl, t_vector3 ray_dir, t_vector3 cam_pos);
 t_vector3	calculation_born(t_vector3 c, t_vector3 n, double d);
 
 #endif

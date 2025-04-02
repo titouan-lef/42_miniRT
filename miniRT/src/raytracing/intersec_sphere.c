@@ -17,24 +17,12 @@ static double	a_calculation(t_vector3 *ray_dir)
  * @brief Get a factor define by :
  * 2*((p.x-s.x) * ray_dir.x + (p.y-s.y) * ray_dir.y + (p.z-s.z) * ray_dir.z).
  */
-static double	b_calculation(t_vector3 *rs0, t_vector3 *ray_dir)
+static double	b_calculation(t_vector3 *os, t_vector3 *ray_dir)
 {
 	double		result;
 
-	result = ft_dotproduct_vector3(*rs0, *ray_dir);
+	result = ft_dotproduct_vector3(*os, *ray_dir);
 	result *= 2.0;
-	return (result);
-}
-
-/**
- * @brief Get a factor define by :
- * (p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2 - r^2.
- */
-static double	c_calculation(t_vector3 *rs0, double *r)
-{
-	double		result;
-
-	result = ft_dotproduct_vector3(*rs0, *rs0) - (*r * *r);
 	return (result);
 }
 
@@ -53,16 +41,14 @@ static double	c_calculation(t_vector3 *rs0, double *r)
  * @return A factor define on [1, INFINITY[. If INFINITY is return,
  * no intersections found.
  */
-double	intersect_ray_sphere(t_sphere *sphere, t_vector3 ray_dir)
+double	intersect_ray_sphere(t_sphere_obj *sphere, t_vector3 ray_dir)
 {
 	double	a;
 	double	b;
-	double	c;
 	double	result;
 
 	a = a_calculation(&ray_dir);
-	b = b_calculation(&sphere->rs0, &ray_dir);
-	c = c_calculation(&sphere->rs0, &sphere->r);
-	result = quadratic_equation(a, b, c);
+	b = b_calculation(&sphere->mathsp.os, &ray_dir);
+	result = quadratic_equation(a, b, sphere->mathsp.c_factor);
 	return (result);
 }

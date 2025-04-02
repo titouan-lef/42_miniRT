@@ -2,12 +2,12 @@
 
 #include "minirt.h"
 
-t_color	ambient(t_color obj_color, t_ambient *ambient)
+t_color	ambient(t_color obj_color, t_amb *amb)
 {
 	t_color	newcolor;
 
 	(void)obj_color;
-	newcolor = ft_scalprod_color(ambient->color, ambient->lr);
+	newcolor = ft_scalprod_color(amb->color, amb->lr);
 	//newcolor = ft_sum_colors(obj_color, newcolor);
 	return (newcolor);
 }
@@ -18,7 +18,7 @@ t_color	diffuse(t_pixel *pixel, t_light *light, t_vector3 normal)
 	t_color	newcolor;
 	t_vector3	l;
 
-	l = ft_diff_vector3(light->position,ft_scalarmult_vector3(pixel->ray_dir, pixel->d));
+	l = ft_diff_vector3(light->pos,ft_scalarmult_vector3(pixel->ray_dir, pixel->d));
 	l = ft_scalarmult_vector3(l, -1.0);
 	
 	kd = 0.5;
@@ -60,7 +60,7 @@ t_vector3	normal_of_inter(t_pixel *pixel)
 }
 */
 
-void lighting(t_pixel *pixel, t_list *lst_light, t_ambient *amb)
+void lighting(t_pixel *pixel, t_list *lst_light, t_amb *amb)
 {
 	t_light		*light;
 	t_color		newcolor;
