@@ -15,18 +15,17 @@ static void	init_calculation_plan(t_plan *plan, t_scene *scene)
 
 static void	init_calculation_cylinder(t_cylinder *cyl, t_scene *scene)
 {
+	t_vector3	bc;
+
 	cyl->r = cyl->diam / 2.0;
-	cyl->ra2 = calculation_born(cyl->position, cyl->orientation,
-			cyl->height / 2.0);
-	cyl->ra1 = calculation_born(cyl->position, cyl->orientation,
-			-cyl->height / 2.0);
-	calculation_cyl_s(&cyl->s, cyl->ra1, cyl->ra2);
-	calculation_cyl_ra0(&cyl->ra0, cyl->s, cyl->ra1, scene->camera.position);
+	bc = calculation_born(cyl->position, cyl->orientation, -cyl->height / 2.0);
+	cyl->bc_o = ft_diff_vector3(scene->camera.position, bc);
+	cyl->bc_o_dot_dir = ft_dotproduct_vector3(cyl->bc_o, cyl->orientation);
 }
 /*
 static void	init_calculation_cone()
 {
-	
+
 }
 //else if(obj->type == CONE)
 //	init_calculation_cone((t_cone*)(obj->data));

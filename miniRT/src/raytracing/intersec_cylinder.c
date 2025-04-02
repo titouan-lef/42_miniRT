@@ -2,72 +2,93 @@
 
 #include "minirt.h"
 
-static t_vector3	va_calculation(t_vector3 s, t_vector3 v)
+static int	is_in_height(double t, t_vector3 ray_dir, t_vector3 cam_pos, t_cylinder *cyl)
 {
-	t_vector3	va;
+	t_vector3	p;
+	double		height;
 
-	va = ft_crossproduct_vector3(s, v);
-	va = ft_crossproduct_vector3(va, s);
-	return (va);
+	p = ft_scalarmult_vector3(ray_dir, t);
+	p = ft_sum_vector3(cam_pos, p);
+	p = ft_diff_vector3(p, cyl->position);
+	height = ft_dotproduct_vector3(p, cyl->orientation);
+	if (height < 0)
+		height = -height;
+	return (height <= cyl->height / 2.0);
 }
 
-static double	b_calculation(t_vector3 ra0, t_vector3 va)
+static double	a_calculation(double dir_ray_dot_dir)
 {
-	double		result;
-	t_vector3	tmp;
+	return (1 - dir_ray_dot_dir * dir_ray_dot_dir);
+}
 
-	tmp = ft_scalarmult_vector3(ra0, 2.0);
-	result = ft_dotproduct_vector3(tmp, va);
+static double	b_calculation(t_vector3 bc_o, t_vector3 dir_ray, double bc_o_dot_dir, double dir_ray_dot_dir)
+{
+	return (2.0 * (ft_dotproduct_vector3(bc_o, dir_ray) - bc_o_dot_dir * dir_ray_dot_dir));
+}
+
+static double	c_calculation(t_vector3 bc_o, double bc_o_dot_dir, double r)
+{
+	double	result;
+
+	result = ft_dotproduct_vector3(bc_o, bc_o);
+	result -= bc_o_dot_dir * bc_o_dot_dir;
+	result -= r * r;
 	return (result);
 }
 
-static double	c_calculation(t_vector3 ra0, double r)
+static double	intersect_ray_plan_test(t_vector3 plan_pos, t_vector3 normal, t_vector3 ray_dir, t_vector3 orig)
 {
-	double		result;
+	t_plane		plane;
+	double		scal_product;
+	double		t;
 
-	result = ft_dotproduct_vector3(ra0, ra0) - r * r;
-	return (result);
-}
-/*
-static double	border_cylinder(double t, t_cylinder *cyl, 
-t_vector3 cam_pos, t_vector3 dir_ray)
-{
-	t_vector3	ray;
-	t_vector3	tmp;
-	double		result;
-	
-	ray =  ft_scalarmult_vector3(dir_ray, t);
-	ray = 	ft_sum_vector3(cam_pos, ray);
-	tmp = ft_diff_vector3(ray, cyl->ra1);
-	result = ft_dotproduct_vector3(ray, cyl->s);
-	if (result < 0)
-	return (INFINITY);
-	tmp = ft_diff_vector3(ray, cyl->ra2);
-	result = ft_dotproduct_vector3(ray, cyl->s);
-	if (result > 0)
-	return (INFINITY);
+	plane = ft_create_plane(normal, plan_pos);
+	scal_product = ft_dotproduct_vector3(normal, ray_dir);
+	if (scal_product == 0)
+		return (INFINITY);
+	t = (plane.d + ft_dotproduct_vector3(normal, orig)) / -scal_product;
+	if (t < 1)
+		return (INFINITY);
 	return (t);
 }
-*/
 
 /**
  * @brief Get the smallest factor of intersection greater than or equal to 1.
- * @details 
+ * @details
  */
-double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
-			t_vector3 cam_pos)
+double	intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray, t_vector3 cam_pos)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	result;
+	double		a;
+	double		b;
+	double		c;
+	double		dir_ray_dot_dir;
+	double		result;
+	t_vector3	p;
+	t_vector3	center;
+	double		tmp;
 
-	(void)cam_pos;
-	cyl->va = va_calculation(cyl->s, dir_ray);
-	a = ft_dotproduct_vector3(cyl->va, cyl->va);
-	b = b_calculation(cyl->ra0, cyl->va);
-	c = c_calculation(cyl->ra0, cyl->r);
+	dir_ray_dot_dir = ft_dotproduct_vector3(dir_ray, cyl->orientation);
+	a = a_calculation(dir_ray_dot_dir);
+	b = b_calculation(cyl->bc_o, dir_ray, cyl->bc_o_dot_dir, dir_ray_dot_dir);
+	c = c_calculation(cyl->bc_o, cyl->bc_o_dot_dir, cyl->r);
 	result = quadratic_equation(a, b, c);
+	if (result != INFINITY && !is_in_height(result, dir_ray, cam_pos, cyl))
+		result = INFINITY;
+	center = calculation_born(cyl->position, cyl->orientation, -cyl->height / 2.0);
+	tmp = intersect_ray_plan_test(center, cyl->orientation, dir_ray, cam_pos);
+	if (tmp != INFINITY && tmp < result)
+	{
+		p = ft_sum_vector3(cam_pos, ft_scalarmult_vector3(dir_ray, tmp));
+		if (ft_distance_vector3(p, center) <= cyl->r)
+			result = tmp;
+	}
+	center = calculation_born(cyl->position, cyl->orientation, cyl->height / 2.0);
+	tmp = intersect_ray_plan_test(center, cyl->orientation, dir_ray, cam_pos);
+	if (tmp != INFINITY && tmp < result)
+	{
+		p = ft_sum_vector3(cam_pos, ft_scalarmult_vector3(dir_ray, tmp));
+		if (ft_distance_vector3(p, center) <= cyl->r)
+			result = tmp;
+	}
 	return (result);
 }
-//result = border_cylinder(result, cyl, cam_pos, dir_ray);

@@ -22,13 +22,11 @@ void		init_calculation(t_scene *scene, t_list *lst_obj);
 
 double		intersect_ray_plan(t_plan *plan, t_vector3 ray_dir,
 				t_vector3 orig);
+t_plane		ft_create_plane(t_vector3 n, t_vector3 p);
 double		intersect_ray_sphere(t_sphere *sphere, t_vector3 ray_dir);
 
 double		intersect_ray_cylinder(t_cylinder *cyl, t_vector3 dir_ray,
 				t_vector3 cam_pos);
 t_vector3	calculation_born(t_vector3 c, t_vector3 n, double d);
-void		calculation_cyl_s(t_vector3 *cyl_s, t_vector3 ra1, t_vector3 ra2);
-void		calculation_cyl_ra0(t_vector3 *ra0, t_vector3 s, t_vector3 low,
-				t_vector3 r0);
 
 #endif
