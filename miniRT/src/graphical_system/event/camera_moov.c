@@ -13,9 +13,9 @@ static void	camera_translation(t_scene *scene, int key)
 	if (key == SDL_SCANCODE_D)
 		scene->camera.position.x += 10;
 	if (key == SDL_SCANCODE_SPACE)
-		scene->camera.position.y -= 10;
-	if (key == SDL_SCANCODE_F)
 		scene->camera.position.y += 10;
+	if (key == SDL_SCANCODE_F)
+		scene->camera.position.y -= 10;
 }
 
 /**

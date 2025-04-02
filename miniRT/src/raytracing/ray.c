@@ -49,7 +49,7 @@ t_color	get_color(t_obj *obj)
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
+t_color	raytracers(t_list *lst_obj, t_pixel *pixel, t_vector3 cam_pos)
 {
 	t_obj	*obj;
 	t_color	color;
@@ -62,16 +62,17 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
 	{
 		obj = (t_obj *)lst_obj->content;
 		if (obj->type == SPHERE)
-			length = intersect_ray_sphere((t_sphere *)(obj->data), ray_dir);
+			length = intersect_ray_sphere((t_sphere *)(obj->data), pixel->ray_dir);
 		else if (obj->type == PLAN)
-			length = intersect_ray_plan((t_plan *)(obj->data), ray_dir,
+			length = intersect_ray_plan((t_plan *)(obj->data), pixel->ray_dir,
 					cam_pos);
 		else if (obj->type == CYLINDER)
 			length = intersect_ray_cylinder((t_cylinder *)(obj->data),
-					ray_dir, cam_pos);
+					pixel->ray_dir, cam_pos);
 		if (length < length_min)
 		{
 			length_min = length;
+			pixel->obj = obj;
 			color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
@@ -90,26 +91,26 @@ t_color	raytracers(t_list *lst_obj, t_vector3 ray_dir, t_vector3 cam_pos)
  */
 int	ray_lauch_test(t_scene *scene)
 {
-	t_vector3	pixel;
-	t_vector3	ray_dir;
-	t_color		pixel_color;
+	t_pixel		pixel;
 
-	pixel.z = length_screen(scene->camera.fov);
-	pixel.y = -WIN_HH;
-	while (pixel.y < WIN_HH)
+	pixel.pos.z = length_screen(scene->camera.fov);
+	pixel.pos.y = -WIN_HH;
+	while (pixel.pos.y < WIN_HH)
 	{
-		pixel.x = -WIN_HW;
-		while (pixel.x < WIN_HW)
+		pixel.pos.x = -WIN_HW;
+		while (pixel.pos.x < WIN_HW)
 		{
-			ray_dir = get_ray_dir(pixel, scene->camera.orientation);
-			pixel_color = raytracers(scene->lst_obj, ray_dir,
+			pixel.obj = NULL;
+			pixel.ray_dir = get_ray_dir(pixel.pos, scene->camera.orientation);
+			pixel.color = raytracers(scene->lst_obj, &pixel,
 					scene->camera.position);
-			pixel_color = ambient_colors(pixel_color, scene->ambient);
-			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.x,
-				WIN_HH - pixel.y, pixel_color);
-			pixel.x += 1.0;
+			//pixel.color = ambient(pixel.color, &scene->ambient);
+			lighting(&pixel, scene->lst_light, &scene->ambient);
+			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.pos.x,
+				WIN_HH - pixel.pos.y, pixel.color);
+			pixel.pos.x += 1.0;
 		}
-		pixel.y += 1.0;
+		pixel.pos.y += 1.0;
 	}
 	return (0);
 }

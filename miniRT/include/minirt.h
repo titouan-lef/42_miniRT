@@ -31,6 +31,4 @@ void		calculation_cyl_s(t_vector3 *cyl_s, t_vector3 ra1, t_vector3 ra2);
 void		calculation_cyl_ra0(t_vector3 *ra0, t_vector3 s, t_vector3 low,
 				t_vector3 r0);
 
-t_color		ambient_colors(t_color obj_color, t_ambient ambient);
-
 #endif

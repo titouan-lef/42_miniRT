@@ -160,4 +160,16 @@ typedef struct s_scene
 	t_graph_sys	graph_sys;
 }	t_scene;
 
+/***********************************************
+ * @struct PIXEL
+ ***********************************************/
+typedef struct	s_pixel
+{
+	t_color		color;
+	t_vector3	ray_dir;
+	t_vector3	pos;
+	t_obj		*obj;
+	double		d;
+}	t_pixel;
+
 #endif

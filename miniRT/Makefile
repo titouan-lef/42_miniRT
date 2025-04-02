@@ -37,7 +37,7 @@ SRC :=	minirt.c \
 		raytracing/calculation_for_cylinder.c \
 		raytracing/init_calculation.c \
 		raytracing/calculation.c \
-		colors/ambient_colors.c \
+		colors/lighting.c \
 		colors/colors_utils.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
