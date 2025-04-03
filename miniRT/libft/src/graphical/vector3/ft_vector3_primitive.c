@@ -6,15 +6,15 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/26 17:58:12 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:44:41 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector3.h"
 
-t_vector3	ft_create_vector3(double x, double y, double z)
+t_vec3	ft_create_vec3(double x, double y, double z)
 {
-	t_vector3	v;
+	t_vec3	v;
 
 	v.x = x;
 	v.y = y;
@@ -25,20 +25,20 @@ t_vector3	ft_create_vector3(double x, double y, double z)
 /**
  * @brief Check if vector is a zero vector, that is a vector(0, 0, 0).
  */
-int	ft_is_zero_vector3(t_vector3 v)
+int	ft_is_zero_vec3(const t_vec3 *v)
 {
-	return (v.x == 0 && v.y == 0 && v.z == 0);
+	return (v->x == 0 && v->y == 0 && v->z == 0);
 }
 
 /**
  * @brief Get the norm of a vector, that is its length.
  */
-double	ft_norm_vector3(t_vector3 v)
+double	ft_norm_vec3(const t_vec3 *v)
 {
 	double	dotproduct;
 	double	norm;
 
-	dotproduct = ft_dotproduct_vector3(v, v);
+	dotproduct = ft_dotproduct_vec3(v, v);
 	norm = sqrt(dotproduct);
 	return (norm);
 }
@@ -46,13 +46,13 @@ double	ft_norm_vector3(t_vector3 v)
 /**
  * @brief Get the distance between 2 points.
  */
-double	ft_distance_vector3(t_vector3 p1, t_vector3 p2)
+double	ft_distance_vec3(const t_vec3 *p1, const t_vec3 *p2)
 {
-	t_vector3	diff;
-	double		norm;
+	t_vec3	diff;
+	double	norm;
 
-	diff = ft_diff_vector3(p1, p2);
-	norm = ft_norm_vector3(diff);
+	diff = ft_diff_vec3(p1, p2);
+	norm = ft_norm_vec3(&diff);
 	return (norm);
 }
 
@@ -61,16 +61,17 @@ double	ft_distance_vector3(t_vector3 p1, t_vector3 p2)
  * of 1.
  * @warning The vector must be a nonzero vector.
  */
-t_vector3	ft_normalize_vector3(t_vector3 v)
+t_vec3	ft_normalize_vec3(const t_vec3 *v)
 {
+	t_vec3	normalize;
 	double	norm;
 
-	norm = ft_norm_vector3(v);
+	norm = ft_norm_vec3(v);
 	if (norm == 0)
 	{
 		ft_putendl_error("Error : try to normalize a zero vector3");
-		return (v);
+		return (*v);
 	}
-	v = ft_scalarmult_vector3(v, 1.0 / norm);
-	return (v);
+	normalize = ft_scalarmult_vec3(v, 1.0 / norm);
+	return (normalize);
 }

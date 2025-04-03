@@ -41,7 +41,7 @@ static char	*complete_pos(double *pos, char *str)
 	return (str);
 }
 
-int	take_dir(t_vector3 *dir, char *str)
+int	take_dir(t_vec3 *dir, char *str)
 {
 	double	norm;
 
@@ -54,11 +54,11 @@ int	take_dir(t_vector3 *dir, char *str)
 	str = complete_dir(&dir->z, str);
 	if (!str || *str)
 		return (1);
-	norm = ft_norm_vector3(*dir);
+	norm = ft_norm_vec3(dir);
 	return (norm != 1);
 }
 
-int	take_pos(t_vector3 *pos, char *str)
+int	take_pos(t_vec3 *pos, char *str)
 {
 	str = complete_pos(&pos->x, str);
 	if (!str || !*str)

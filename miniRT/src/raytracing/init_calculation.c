@@ -4,22 +4,22 @@
 
 static void	init_calculation_sphere(t_sphere_obj *sphere, t_scene *scene)
 {
-	t_vector3	os;
-	double		r;
+	t_vec3	os;
+	double	r;
 
-	os = ft_diff_vector3(scene->cam.pos, sphere->sp.pos);
+	os = ft_diff_vec3(&scene->cam.pos, &sphere->sp.pos);
 	r = sphere->sp.r;
 	sphere->mathsp.os = os;
-	sphere->mathsp.c_factor = ft_dotproduct_vector3(os, os) - (r * r);
+	sphere->mathsp.c_factor = ft_dotproduct_vec3(&os, &os) - (r * r);
 }
 
 static void	init_calculation_cylinder(t_cylinder_obj *cylinder, t_scene *scene)
 {
-	t_vector3	bc;
+	t_vec3	bc;
 
 	bc = calculation_born(cylinder->cy.pos, cylinder->cy.dir, -cylinder->cy.h / 2.0);
-	cylinder->mathcy.bc_o = ft_diff_vector3(scene->cam.pos, bc);
-	cylinder->mathcy.bc_o_dot_dir = ft_dotproduct_vector3(cylinder->mathcy.bc_o, cylinder->cy.dir);
+	cylinder->mathcy.bc_o = ft_diff_vec3(&scene->cam.pos, &bc);
+	cylinder->mathcy.bc_o_dot_dir = ft_dotproduct_vec3(&cylinder->mathcy.bc_o, &cylinder->cy.dir);
 }
 /*
 static void	init_calculation_cone()

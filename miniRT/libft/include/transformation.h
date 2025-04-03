@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transformation.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:43:13 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/02 19:12:30 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:16:57 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ typedef struct s_rotation
 
 typedef struct s_plane
 {
-	t_vector3	n;
-	double		d;
+	t_vec3	n;
+	double	d;
 }	t_plane;
 
 /* rotation */
-t_vector3	ft_yaw_rotation(t_vector3 p, double angle);
-t_vector3	ft_pitch_rotation(t_vector3 p, double angle);
-t_vector3	ft_roll_rotation(t_vector3 p, double angle);
-t_vector3	ft_rotation(t_vector3 p, t_rotation rotation);
+t_vec3		ft_yaw_rotation(const t_vec3 *p, double angle);
+t_vec3		ft_pitch_rotation(const t_vec3 *p, double angle);
+t_vec3		ft_roll_rotation(const t_vec3 *p, double angle);
+t_vec3		ft_rotation(const t_vec3 *p, const t_rotation *rotation);
 t_rotation	ft_rotation_create(double roll, double pitch, double yaw);
-t_vector3	ft_rotation_quaternion(t_vector3 v, double angle, t_vector3 axis);
+t_vec3		ft_rotation_quat(const t_vec3 *v, double angle, const t_vec3 *vec);
 
 /* projection */
-t_plane		ft_create_plane(t_vector3 n, t_vector3 p);
-t_vector3	ft_projection(t_vector3 v, t_plane pl);
+t_plane		ft_create_plane(const t_vec3 *n, const t_vec3 *p);
+t_vec3		ft_projection(const t_vec3 *v, const t_plane *pl);
 
 #endif

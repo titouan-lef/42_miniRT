@@ -5,11 +5,11 @@
 /**
  * @brief Get a factor define by ray_dir.x^2 + ray_dir.y^2 + ray_dir.z^2.
  */
-static double	a_calculation(t_vector3 *ray_dir)
+static double	a_calculation(t_vec3 *ray_dir)
 {
 	double	result;
 
-	result = ft_dotproduct_vector3(*ray_dir, *ray_dir);
+	result = ft_dotproduct_vec3(ray_dir, ray_dir);
 	return (result);
 }
 
@@ -17,11 +17,11 @@ static double	a_calculation(t_vector3 *ray_dir)
  * @brief Get a factor define by :
  * 2*((p.x-s.x) * ray_dir.x + (p.y-s.y) * ray_dir.y + (p.z-s.z) * ray_dir.z).
  */
-static double	b_calculation(t_vector3 *os, t_vector3 *ray_dir)
+static double	b_calculation(t_vec3 *os, t_vec3 *ray_dir)
 {
 	double		result;
 
-	result = ft_dotproduct_vector3(*os, *ray_dir);
+	result = ft_dotproduct_vec3(os, ray_dir);
 	result *= 2.0;
 	return (result);
 }
@@ -41,7 +41,7 @@ static double	b_calculation(t_vector3 *os, t_vector3 *ray_dir)
  * @return A factor define on [1, INFINITY[. If INFINITY is return,
  * no intersections found.
  */
-double	intersect_ray_sphere(t_sphere_obj *sphere, t_vector3 ray_dir)
+double	intersect_ray_sphere(t_sphere_obj *sphere, t_vec3 ray_dir)
 {
 	double	a;
 	double	b;
