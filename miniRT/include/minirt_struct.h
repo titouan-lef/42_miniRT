@@ -124,8 +124,11 @@ typedef struct s_cylinder
 
 typedef struct s_math_cy
 {
-	t_vec3	bc_o;
-	double	bc_o_dot_dir;
+	t_vec3	os;
+	double	os_dot_odir;
+	double	c_factor;
+	t_vec3	top;
+	t_vec3	bottom;
 }	t_math_cy;
 
 typedef struct s_cylinder_obj

@@ -81,7 +81,7 @@ static t_ray	get_ray(const t_vec3 *default_dir, const t_cam *cam)
 	return (ray);
 }
 
-static t_intersec get_near_intersec(const t_vec3 *default_dir, const t_cam *cam, const t_list *lst_obj)
+static t_intersec	get_near_intersec(const t_vec3 *default_dir, const t_cam *cam, const t_list *lst_obj)
 {
 	t_intersec	intersec;
 
