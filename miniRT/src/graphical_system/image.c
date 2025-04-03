@@ -22,5 +22,13 @@ void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c)
 	mlx_color	color;
 
 	color.rgba = ft_get_rgba(c);
-	mlx_set_image_pixel(graph_sys->mlx, *graph_sys->buff.back, x, y, color);
+	while (y < (y + 1 + 16 * graph_sys->def))
+	{
+		while (x < (x + 1 + 16 * graph_sys->def))
+		{
+			mlx_set_image_pixel(graph_sys->mlx, *graph_sys->buff.back, x , y, color);
+			x++;
+		}
+		y++;
+	}
 }

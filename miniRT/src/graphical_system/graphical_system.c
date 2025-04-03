@@ -36,6 +36,7 @@ static int	init_graphical_data(t_graph_sys *graph_sys)
 		mlx_destroy_context(graph_sys->mlx);
 		return (1);
 	}
+	graph_sys->def = 0;
 	return (0);
 }
 

@@ -107,9 +107,9 @@ int	ray_lauch_test(t_scene *scene)
 			//lighting(&pixel, scene->lst_light, &scene->ambient);
 			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.pos.x,
 				WIN_HH - pixel.pos.y, pixel.color);
-			pixel.pos.x += 1.0;
+			pixel.pos.x += (1.0 + (16 * scene->graph_sys.def - 1));
 		}
-		pixel.pos.y += 1.0;
+		pixel.pos.y += (1.0 + (9 * scene->graph_sys.def - 1));
 	}
 	return (0);
 }

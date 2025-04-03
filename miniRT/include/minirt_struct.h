@@ -168,6 +168,7 @@ typedef struct s_graph_sys
 	mlx_context		mlx;
 	mlx_window		win;
 	t_double_buffer	buff;
+	int				def;
 }	t_graph_sys;
 
 /***********************************************
@@ -185,7 +186,7 @@ typedef struct s_scene
 /***********************************************
  * @struct PIXEL
  ***********************************************/
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	t_color		color;
 	t_vector3	ray_dir;
@@ -193,5 +194,15 @@ typedef struct	s_pixel
 	t_obj		*obj;
 	double		d;
 }	t_pixel;
+
+/***********************************************
+ * @struct PIX
+ ***********************************************/
+typedef struct s_pix
+{
+	int		x;
+	int		y;
+	double	z;
+}	t_pix;
 
 #endif
