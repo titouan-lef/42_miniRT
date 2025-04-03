@@ -47,22 +47,14 @@ typedef struct s_obj
 
 /***********************************************
  * @struct AMBIENT
+ * @param color Light color.
+ * @param lr Light ratio.
  ***********************************************/
 typedef struct s_amb
 {
 	t_color	color;
 	double	lr;
 }	t_amb;
-
-/***********************************************
- * @struct CAMERA
- ***********************************************/
-typedef struct s_cam
-{
-	t_vec3	pos;
-	t_vec3	dir;
-	int		fov;
-}	t_cam;
 
 /***********************************************
  * @struct LIGHT
@@ -76,6 +68,16 @@ typedef struct s_light
 	double	lbr;
 	t_vec3	pos;
 }	t_light;
+
+/***********************************************
+ * @struct CAMERA
+ ***********************************************/
+typedef struct s_cam
+{
+	t_vec3	pos;
+	t_vec3	dir;
+	int		fov;
+}	t_cam;
 
 /***********************************************
  * @struct SPHERE
@@ -185,15 +187,25 @@ typedef struct s_scene
 }	t_scene;
 
 /***********************************************
- * @struct PIXEL
+ * @struct RAY
+ * @param s Ray start.
+ * @param dir Ray direction.
  ***********************************************/
-typedef struct s_pixel
+typedef struct s_ray
 {
-	t_color	color;
-	t_vec3	ray_dir;
-	t_vec3	pos;
+	t_vec3	s;
+	t_vec3	dir;
+}	t_ray;
+
+/***********************************************
+ * @struct INTERSECTION
+ ***********************************************/
+typedef struct s_intersec
+{
+	t_ray	ray;
 	t_obj	*obj;
-	double	d;
-}	t_pixel;
+	t_vec3	p;
+	t_color	color;
+}	t_intersec;
 
 #endif

@@ -12,20 +12,20 @@ t_color	ambient(t_color obj_color, t_amb *amb, double kd)
 	return (color);
 }
 
-void lighting(t_pixel *pixel, t_list *lst_light, t_amb *amb)
+void lighting(t_intersec *intersec, t_list *lst_light, t_amb *amb)
 {
 	t_light	*light;
 	t_color	newcolor;
 	double	kd;
 
 	kd = 1.0;
-	if (pixel->obj == NULL)
+	if (intersec->obj == NULL)
 		return ;
-	newcolor = ambient(pixel->color, amb, kd);
+	newcolor = ambient(intersec->color, amb, kd);
 	while (lst_light)
 	{
 		light = (t_light *)lst_light->content;
 		lst_light = lst_light->next;
 	}
-	pixel->color = newcolor;
+	intersec->color = newcolor;
 }

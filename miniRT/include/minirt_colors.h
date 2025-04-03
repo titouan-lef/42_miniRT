@@ -6,7 +6,7 @@
 t_color	ft_sum_colors(t_color c1, t_color c2);
 t_color	ft_scalprod_color(t_color color, double k);
 t_color	ft_multipl_colors(t_color c1, t_color c2);
-void lighting(t_pixel *pixel, t_list *lst_light, t_amb *amb);
+void lighting(t_intersec *intersec, t_list *lst_light, t_amb *amb);
 t_color	ambient(t_color obj_color, t_amb *amb, double kd);
 
 

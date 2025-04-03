@@ -50,7 +50,7 @@ static void	update(void *param)
 	scene = (t_scene *) param;
 	g_sys = &scene->g_sys;
 	mouse_event(scene, g_sys);
-	init_calculation(scene, scene->lst_obj);
+	init_calculation(&scene->cam.pos, scene->lst_obj);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);
 }

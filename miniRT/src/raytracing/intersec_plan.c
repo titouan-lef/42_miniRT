@@ -2,15 +2,15 @@
 
 #include "minirt.h"
 
-double	intersect_ray_plan(t_plane_obj *plane, const t_vec3 *ray_dir, const t_vec3 *orig)
+double	intersect_ray_plan(const t_plane_obj *plane, const t_ray *ray)
 {
 	double		scal_product;
 	double		t;
 
-	scal_product = ft_dotproduct_vec3(&plane->pl.n, ray_dir);
+	scal_product = ft_dotproduct_vec3(&plane->pl.n, &ray->dir);
 	if (scal_product == 0)
 		return (INFINITY);
-	t = (plane->pl.d + ft_dotproduct_vec3(&plane->pl.n, orig)) / -scal_product;
+	t = (plane->pl.d + ft_dotproduct_vec3(&plane->pl.n, &ray->s)) / -scal_product;
 	if (t < 1)
 		return (INFINITY);
 	return (t);

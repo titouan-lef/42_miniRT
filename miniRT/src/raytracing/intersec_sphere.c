@@ -41,7 +41,7 @@ static double	b_calculation(const t_vec3 *os, const t_vec3 *ray_dir)
  * @return A factor define on [1, INFINITY[. If INFINITY is return,
  * no intersections found.
  */
-double	intersect_ray_sphere(t_sphere_obj *sphere, const t_vec3 *ray_dir)
+double	intersect_ray_sphere(const t_sphere_obj *sphere, const t_vec3 *ray_dir)
 {
 	double	a;
 	double	b;

@@ -2,34 +2,7 @@
 
 #include "minirt.h"
 
-/**
- * @brief Get the ray direction as a function of camera direction.
- * @details Angle is define by dot product because the 2 vector are normalized.
- * Camera is considerate at the position (0,0,0).
- * @param pixel Pixel position.
- * @param cam_dir Camera direction.
- * @warning Pixel and camera direction must be nonzero vector and camera
- * direction must be normalized.
- */
-static t_vec3	get_ray_dir(const t_vec3 *pixel, const t_vec3 *cam_dir)
-{
-	t_vec3	ray_dir;
-	t_vec3	axis;
-	t_vec3	default_cam_dir;
-	double	angle;
-
-	default_cam_dir = ft_create_vec3(0, 0, 1);
-	ray_dir = ft_normalize_vec3(pixel);
-	axis = ft_crossproduct_vec3(cam_dir, &default_cam_dir);
-	if (ft_is_zero_vec3(&axis))
-		return (ray_dir);
-	angle = ft_dotproduct_vec3(&default_cam_dir, cam_dir);
-	angle = acos(angle);
-	ray_dir = ft_rotation_quat(&ray_dir, angle, &axis);
-	return (ray_dir);
-}
-
-t_color	get_color(t_obj *obj)
+t_color	get_color(const t_obj *obj)
 {
 	int		type;
 	t_color	color;
@@ -49,36 +22,74 @@ t_color	get_color(t_obj *obj)
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-t_color	raytracers(t_list *lst_obj, t_pixel *pixel, const t_vec3 *cam_pos)
+void	raytracers(const t_list *lst_obj, t_intersec *intersect)
 {
 	t_obj	*obj;
-	t_color	color;
-	double	length;
-	double	length_min;
+	double	dist;
+	double	dist_min;
 
-	color = ft_color_create(0, 0, 0, 255);
-	length_min = INFINITY;
+	dist_min = INFINITY;
 	while (lst_obj)
 	{
 		obj = (t_obj *)lst_obj->content;
 		if (obj->type == SPHERE)
-			length = intersect_ray_sphere((t_sphere_obj *)(obj->data),
-					&pixel->ray_dir);
+			dist = intersect_ray_sphere((t_sphere_obj *)(obj->data), &intersect->ray.dir);
 		else if (obj->type == PLAN)
-			length = intersect_ray_plan((t_plane_obj *)(obj->data),
-					&pixel->ray_dir, cam_pos);
+			dist = intersect_ray_plan((t_plane_obj *)(obj->data), &intersect->ray);
 		else if (obj->type == CYLINDER)
-			length = intersect_ray_cylinder((t_cylinder_obj *)(obj->data),
-					&pixel->ray_dir, cam_pos);
-		if (length < length_min)
+			dist = intersect_ray_cylinder((t_cylinder_obj *)(obj->data), &intersect->ray);
+		if (dist < dist_min)
 		{
-			length_min = length;
-			pixel->obj = obj;
-			color = get_color(obj);
+			dist_min = dist;
+			intersect->obj = obj;
+			intersect->color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
 	}
-	return (color);
+	if (intersect->obj != NULL)
+	{
+		intersect->p = ft_scalarmult_vec3(&intersect->ray.dir, dist_min);
+		intersect->p = ft_sum_vec3(&intersect->p, &intersect->ray.s);
+	}
+}
+
+/**
+ * @brief Get the ray direction as a function of camera direction.
+ * @details Angle is define by dot product because the 2 vector are normalized.
+ * Camera is considerate at the position (0,0,0).
+ * @param default_dir Ray direction if camera has (0,0,1) direction.
+ * @param cam_dir Camera direction.
+ * @warning Pixel and camera direction must be nonzero vector and camera
+ * direction must be normalized.
+ */
+static t_ray	get_ray(const t_vec3 *default_dir, const t_cam *cam)
+{
+	t_ray	ray;
+	t_vec3	axis;
+	t_vec3	default_cam_dir;
+	double	angle;
+
+	ray.s = cam->pos;
+	default_cam_dir = ft_create_vec3(0, 0, 1);
+	ray.dir = ft_normalize_vec3(default_dir);
+	axis = ft_crossproduct_vec3(&cam->dir, &default_cam_dir);
+	if (ft_is_zero_vec3(&axis))
+		return (ray);
+	angle = ft_dotproduct_vec3(&default_cam_dir, &cam->dir);
+	angle = acos(angle);
+	ray.dir = ft_rotation_quat(&ray.dir, angle, &axis);
+	return (ray);
+}
+
+static t_intersec get_near_intersec(const t_vec3 *default_dir, const t_cam *cam, const t_list *lst_obj)
+{
+	t_intersec	intersec;
+
+	intersec.obj = NULL;
+	intersec.ray = get_ray(default_dir, cam);
+	intersec.color = ft_color_create(0, 0, 0, 255);
+	raytracers(lst_obj, &intersec);
+	return (intersec);
 }
 
 /**
@@ -92,25 +103,27 @@ t_color	raytracers(t_list *lst_obj, t_pixel *pixel, const t_vec3 *cam_pos)
  */
 int	ray_lauch_test(t_scene *scene)
 {
-	t_pixel		pixel;
+	t_intersec	intersec;
+	t_vec3		default_dir;
+	int			x;
+	int			y;
 
-	pixel.pos.z = length_screen(scene->cam.fov);
-	pixel.pos.y = -WIN_HH;
-	while (pixel.pos.y < WIN_HH)
+	default_dir.z = length_screen(scene->cam.fov);
+	y = 0;
+	while (y < WIN_H)
 	{
-		pixel.pos.x = -WIN_HW;
-		while (pixel.pos.x < WIN_HW)
+		default_dir.y = y - WIN_HH;
+		x = 0;
+		while (x < WIN_W)
 		{
-			pixel.obj = NULL;
-			pixel.ray_dir = get_ray_dir(&pixel.pos, &scene->cam.dir);
-			pixel.color = raytracers(scene->lst_obj, &pixel, &scene->cam.pos);
+			default_dir.x = x - WIN_HW;
+			intersec = get_near_intersec(&default_dir, &scene->cam, scene->lst_obj);
 			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
-			lighting(&pixel, scene->lst_light, &scene->amb);
-			set_image_pixel(&scene->g_sys, WIN_HW + pixel.pos.x,
-				WIN_HH + pixel.pos.y, pixel.color);
-			pixel.pos.x += scene->g_sys.def_w;
+			lighting(&intersec, scene->lst_light, &scene->amb);
+			set_image_pixel(&scene->g_sys, x, y, intersec.color);
+			x += scene->g_sys.def_w;
 		}
-		pixel.pos.y += scene->g_sys.def_h;
+		y += scene->g_sys.def_h;
 	}
 	return (0);
 }
