@@ -11,7 +11,7 @@
  * @warning Pixel and camera direction must be nonzero vector and camera
  * direction must be normalized.
  */
-static t_vec3	get_ray_dir(t_vec3 pixel, t_vec3 cam_dir)
+static t_vec3	get_ray_dir(const t_vec3 *pixel, const t_vec3 *cam_dir)
 {
 	t_vec3	ray_dir;
 	t_vec3	axis;
@@ -19,11 +19,11 @@ static t_vec3	get_ray_dir(t_vec3 pixel, t_vec3 cam_dir)
 	double	angle;
 
 	default_cam_dir = ft_create_vec3(0, 0, 1);
-	ray_dir = ft_normalize_vec3(&pixel);
-	axis = ft_crossproduct_vec3(&cam_dir, &default_cam_dir);
+	ray_dir = ft_normalize_vec3(pixel);
+	axis = ft_crossproduct_vec3(cam_dir, &default_cam_dir);
 	if (ft_is_zero_vec3(&axis))
 		return (ray_dir);
-	angle = ft_dotproduct_vec3(&default_cam_dir, &cam_dir);
+	angle = ft_dotproduct_vec3(&default_cam_dir, cam_dir);
 	angle = acos(angle);
 	ray_dir = ft_rotation_quat(&ray_dir, angle, &axis);
 	return (ray_dir);
@@ -49,7 +49,7 @@ t_color	get_color(t_obj *obj)
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-t_color	raytracers(t_list *lst_obj, t_pixel *pixel, t_vec3 cam_pos)
+t_color	raytracers(t_list *lst_obj, t_pixel *pixel, const t_vec3 *cam_pos)
 {
 	t_obj	*obj;
 	t_color	color;
@@ -63,13 +63,13 @@ t_color	raytracers(t_list *lst_obj, t_pixel *pixel, t_vec3 cam_pos)
 		obj = (t_obj *)lst_obj->content;
 		if (obj->type == SPHERE)
 			length = intersect_ray_sphere((t_sphere_obj *)(obj->data),
-					pixel->ray_dir);
+					&pixel->ray_dir);
 		else if (obj->type == PLAN)
 			length = intersect_ray_plan((t_plane_obj *)(obj->data),
-					pixel->ray_dir, cam_pos);
+					&pixel->ray_dir, cam_pos);
 		else if (obj->type == CYLINDER)
 			length = intersect_ray_cylinder((t_cylinder_obj *)(obj->data),
-					pixel->ray_dir, cam_pos);
+					&pixel->ray_dir, cam_pos);
 		if (length < length_min)
 		{
 			length_min = length;
@@ -102,8 +102,8 @@ int	ray_lauch_test(t_scene *scene)
 		while (pixel.pos.x < WIN_HW)
 		{
 			pixel.obj = NULL;
-			pixel.ray_dir = get_ray_dir(pixel.pos, scene->cam.dir);
-			pixel.color = raytracers(scene->lst_obj, &pixel, scene->cam.pos);
+			pixel.ray_dir = get_ray_dir(&pixel.pos, &scene->cam.dir);
+			pixel.color = raytracers(scene->lst_obj, &pixel, &scene->cam.pos);
 			//pixel.color = ambient(pixel.color, &scene->ambient);
 			//lighting(&pixel, scene->lst_light, &scene->ambient);
 			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.pos.x,
