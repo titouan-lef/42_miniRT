@@ -15,25 +15,25 @@
 # include <math.h>
 # include "print.h"
 
-typedef struct s_vector3
+typedef struct s_vec3
 {
 	double	x;
 	double	y;
 	double	z;
-}	t_vector3;
+}	t_vec3;
 
 /* primitive */
-t_vector3	ft_create_vector3(double x, double y, double z);
-int			ft_is_zero_vector3(t_vector3 v);
-double		ft_norm_vector3(t_vector3 v);
-double		ft_distance_vector3(t_vector3 p1, t_vector3 p2);
-t_vector3	ft_normalize_vector3(t_vector3 v);
+t_vec3	ft_create_vec3(double x, double y, double z);
+int		ft_is_zero_vec3(const t_vec3 *v);
+double	ft_norm_vec3(const t_vec3 *v);
+double	ft_distance_vec3(const t_vec3 *p1, const t_vec3 *p2);
+t_vec3	ft_normalize_vec3(const t_vec3 *v);
 
 /* operation */
-t_vector3	ft_sum_vector3(t_vector3 v1, t_vector3 v2);
-t_vector3	ft_diff_vector3(t_vector3 v1, t_vector3 v2);
-t_vector3	ft_scalarmult_vector3(t_vector3 v, double k);
-double		ft_dotproduct_vector3(t_vector3 v1, t_vector3 v2);
-t_vector3	ft_crossproduct_vector3(t_vector3 v1, t_vector3 v2);
+t_vec3	ft_sum_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	ft_diff_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	ft_scalarmult_vec3(const t_vec3 *v, double k);
+double	ft_dotproduct_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	ft_crossproduct_vec3(const t_vec3 *v1, const t_vec3 *v2);
 
 #endif

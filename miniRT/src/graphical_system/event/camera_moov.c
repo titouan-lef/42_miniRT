@@ -24,14 +24,14 @@ static void	camera_translation(t_scene *scene, int key)
  */
 static void	camera_rotation(t_scene *scene, double x, double y)
 {
-	t_vector3	cam;
-	t_vector3	axis;
+	t_vec3	cam;
+	t_vec3	axis;
 
 	cam = scene->cam.dir;
 	x = x / WIN_HW - 1;
 	y = y / WIN_HH - 1;
-	axis = ft_create_vector3(y, -x, 0);
-	scene->cam.dir = ft_rotation_quaternion(cam, M_PI / 90, axis);
+	axis = ft_create_vec3(y, -x, 0);
+	scene->cam.dir = ft_rotation_quat(&cam, M_PI / 90, &axis);
 }
 
 /**
@@ -40,8 +40,8 @@ static void	camera_rotation(t_scene *scene, double x, double y)
  */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys)
 {
-	int			mv_mouse_x;
-	int			mv_mouse_y;
+	int	mv_mouse_x;
+	int	mv_mouse_y;
 
 	mlx_mouse_get_pos(scene->g_sys.mlx, &mv_mouse_x, &mv_mouse_y);
 	if ((mv_mouse_x - WIN_HW) / 100 != 0 || (mv_mouse_y - WIN_HH) / 100 != 0)

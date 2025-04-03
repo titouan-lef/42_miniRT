@@ -41,8 +41,8 @@ typedef enum e_win_event
  ***********************************************/
 typedef struct s_obj
 {
-	int			type;
-	void		*data;
+	int		type;
+	void	*data;
 }	t_obj;
 
 /***********************************************
@@ -59,9 +59,9 @@ typedef struct s_amb
  ***********************************************/
 typedef struct s_cam
 {
-	t_vector3	pos;
-	t_vector3	dir;
-	int			fov;
+	t_vec3	pos;
+	t_vec3	dir;
+	int		fov;
 }	t_cam;
 
 /***********************************************
@@ -72,25 +72,25 @@ typedef struct s_cam
  ***********************************************/
 typedef struct s_light
 {
-	t_color		color;
-	double		lbr;
-	t_vector3	pos;
+	t_color	color;
+	double	lbr;
+	t_vec3	pos;
 }	t_light;
 
 /***********************************************
  * @struct SPHERE
- * @param 
+ * @param
  ***********************************************/
 typedef struct s_sphere
 {
-	t_vector3	pos;
-	double		r;
+	t_vec3	pos;
+	double	r;
 }	t_sphere;
 
 typedef struct s_math_sp
 {
-	t_vector3	os;
-	double		c_factor;
+	t_vec3	os;
+	double	c_factor;
 }	t_math_sp;
 
 typedef struct s_sphere_obj
@@ -105,8 +105,8 @@ typedef struct s_sphere_obj
  ***********************************************/
 typedef struct s_plane_obj
 {
-	t_color		color;
-	t_plane		pl;
+	t_color	color;
+	t_plane	pl;
 }	t_plane_obj;
 
 /***********************************************
@@ -114,16 +114,16 @@ typedef struct s_plane_obj
  ***********************************************/
 typedef struct s_cylinder
 {
-	t_vector3	pos;
-	t_vector3	dir;
-	double		h;
-	double		r;
+	t_vec3	pos;
+	t_vec3	dir;
+	double	h;
+	double	r;
 }	t_cylinder;
 
 typedef struct s_math_cy
 {
-	t_vector3	bc_o;
-	double		bc_o_dot_dir;
+	t_vec3	bc_o;
+	double	bc_o_dot_dir;
 }	t_math_cy;
 
 typedef struct s_cylinder_obj
@@ -138,16 +138,16 @@ typedef struct s_cylinder_obj
  ***********************************************/
 typedef struct s_cone
 {
-	t_vector3	pos;
-	t_vector3	dir;
-	double		h;
-	double		r;
+	t_vec3	pos;
+	t_vec3	dir;
+	double	h;
+	double	r;
 }	t_cone;
 
 typedef struct s_cone_obj
 {
-	t_color		color;
-	t_cone		co;
+	t_color	color;
+	t_cone	co;
 }	t_cone_obj;
 
 /***********************************************
@@ -189,11 +189,11 @@ typedef struct s_scene
  ***********************************************/
 typedef struct s_pixel
 {
-	t_color		color;
-	t_vector3	ray_dir;
-	t_vector3	pos;
-	t_obj		*obj;
-	double		d;
+	t_color	color;
+	t_vec3	ray_dir;
+	t_vec3	pos;
+	t_obj	*obj;
+	double	d;
 }	t_pixel;
 
 #endif

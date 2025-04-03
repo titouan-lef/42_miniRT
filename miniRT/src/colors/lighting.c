@@ -12,28 +12,29 @@ t_color	ambient(t_color obj_color, t_amb *amb)
 	return (newcolor);
 }
 
-t_color	diffuse(t_pixel *pixel, t_light *light, t_vector3 normal)
+t_color	diffuse(t_pixel *pixel, t_light *light, t_vec3 normal)
 {
 	double	kd;
 	t_color	newcolor;
-	t_vector3	l;
+	t_vec3	l;
 
-	l = ft_diff_vector3(light->pos,ft_scalarmult_vector3(pixel->ray_dir, pixel->d));
-	l = ft_scalarmult_vector3(l, -1.0);
-	
+	l = ft_scalarmult_vec3(&pixel->ray_dir, pixel->d);
+	l = ft_diff_vec3(&light->pos, &l);
+	l = ft_scalarmult_vec3(&l, -1.0);
+
 	kd = 0.5;
-	kd = kd * light->lbr * ft_dotproduct_vector3(l, normal);
+	kd = kd * light->lbr * ft_dotproduct_vec3(&l, &normal);
 	newcolor = ft_scalprod_color(light->color, kd);
 	return (newcolor);
 }
-	
+
 /*
 t_color	specular()
 {
-	
+
 }
 
-t_vector3	ft_get_obj_dir(t_obj *obj)
+t_vec3	ft_get_obj_dir(t_obj *obj)
 {
 	if (obj->type == PLAN)
 	return(((t_plan *)(obj->data))->orientation);
@@ -43,18 +44,18 @@ t_vector3	ft_get_obj_dir(t_obj *obj)
 	return(((t_cone *)(obj->data))->orientation);
 }
 
-t_vector3	normal_of_inter(t_pixel *pixel)
+t_vec3	normal_of_inter(t_pixel *pixel)
 {
-	t_vector3	normal;
-	
+	t_vec3	normal;
+
 	if (pixel->obj->type == SPHERE)
 	{
-		normal = ft_diff_vector3(((t_sphere *)(pixel->obj->data))->position, ft_scalarmult_vector3(pixel->ray_dir, pixel->d));
+		normal = ft_diff_vec3(((t_sphere *)(pixel->obj->data))->position, ft_scalarmult_vec3(pixel->ray_dir, pixel->d));
 		printf("%f | %f | %f \n", normal.x , normal.y, normal.z);
 	}
 	else
 	{
-		normal = ft_crossproduct_vector3(ft_get_obj_dir(pixel->obj), pixel->ray_dir);
+		normal = ft_crossproduct_vec3(ft_get_obj_dir(pixel->obj), pixel->ray_dir);
 	}
 	return (normal);
 }
@@ -64,8 +65,8 @@ void lighting(t_pixel *pixel, t_list *lst_light, t_amb *amb)
 {
 	t_light		*light;
 	t_color		newcolor;
-	//t_vector3	normal;
-	
+	//t_vec3	normal;
+
 	if (pixel->obj == NULL)
 		return ;
 	newcolor = ambient(pixel->color, amb);

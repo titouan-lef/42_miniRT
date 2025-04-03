@@ -35,8 +35,8 @@ int		take_color(t_color *colors, char *str);
 /***********************************************
  *  @file parsing_vecteur.c
  ***********************************************/
-int		take_pos(t_vector3 *pos, char *str);
-int		take_dir(t_vector3 *pos, char *str);
+int		take_pos(t_vec3 *pos, char *str);
+int		take_dir(t_vec3 *pos, char *str);
 
 /***********************************************
  *  @file parsing_light.c

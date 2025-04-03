@@ -6,18 +6,18 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:04 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/24 15:30:09 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:55:40 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "quaternion.h"
 
-t_quaternion	ft_create_quaternion(double scalar, t_vector3 axis)
+t_quat	ft_create_quat(double scalar, const t_vec3 *vec)
 {
-	t_quaternion	q;
+	t_quat	q;
 
 	q.scalar = scalar;
-	q.axis = axis;
+	q.vec = *vec;
 	return (q);
 }
 
@@ -27,11 +27,11 @@ t_quaternion	ft_create_quaternion(double scalar, t_vector3 axis)
  * and its conjugation (here, the order of product isn't important).
  * A norm of size 0 occurs only with a quaterion(0, (0,0,0)).
  */
-double	ft_norm_quaternion(t_quaternion q)
+double	ft_norm_quat(const t_quat *q)
 {
 	double	norm;
 
-	norm = q.scalar * q.scalar + ft_dotproduct_vector3(q.axis, q.axis);
+	norm = q->scalar * q->scalar + ft_dotproduct_vec3(&q->vec, &q->vec);
 	norm = sqrt(norm);
 	return (norm);
 }
@@ -41,31 +41,34 @@ double	ft_norm_quaternion(t_quaternion q)
  * @return A new quaternion.
  * @warning The quaternion must be a nonzero quaternion.
  */
-t_quaternion	ft_unit_quaternion(t_quaternion q)
+t_quat	ft_unit_quat(const t_quat *q)
 {
+	t_quat	result;
 	double	norm;
 
-	norm = ft_norm_quaternion(q);
+	norm = ft_norm_quat(q);
 	if (norm == 0)
 	{
 		ft_putendl_error("Error : try to normalize a zero quaternion");
-		return (q);
+		return (*q);
 	}
-	q = ft_scalarmult_quaternion(q, 1.0 / norm);
-	return (q);
+	result = ft_scalarmult_quat(q, 1.0 / norm);
+	return (result);
 }
 
 /**
  * @brief Get the conjugation of a quaternions.
  * @details The conjugation of a quaternion Q(real, imaginary) is
- * Q'(real, -imaginary). Real is the scalar part and imaginary the axis part.
+ * Q'(real, -imaginary). Real is the scalar part and imaginary the vector part.
  * @return A new quaternion.
- * @warning q value isn't modified.
  */
-t_quaternion	ft_conjugate_quaternion(t_quaternion q)
+t_quat	ft_conjugate_quat(const t_quat *q)
 {
-	q.axis = ft_scalarmult_vector3(q.axis, -1);
-	return (q);
+	t_quat	result;
+
+	result.scalar = q->scalar;
+	result.vec = ft_scalarmult_vec3(&q->vec, -1);
+	return (result);
 }
 
 /**
@@ -73,20 +76,20 @@ t_quaternion	ft_conjugate_quaternion(t_quaternion q)
  * @return A new quaternion.
  * @warning Quaternion must be a nonzero quaternion.
  */
-t_quaternion	ft_inverse_quaternion(t_quaternion q)
+t_quat	ft_inverse_quat(const t_quat *q)
 {
-	t_quaternion	inverse;
-	double			norm;
-	double			divisor;
+	t_quat	inverse;
+	double	norm;
+	double	divisor;
 
-	norm = ft_norm_quaternion(q);
+	norm = ft_norm_quat(q);
 	if (norm == 0)
 	{
 		ft_putendl_error("Error : try to normalize a zero quaternion");
-		return (q);
+		return (*q);
 	}
 	divisor = 1.0 / (norm * norm);
-	inverse = ft_conjugate_quaternion(q);
-	inverse = ft_scalarmult_quaternion(inverse, divisor);
+	inverse = ft_conjugate_quat(q);
+	inverse = ft_scalarmult_quat(&inverse, divisor);
 	return (inverse);
 }

@@ -12,17 +12,19 @@
 # include "graphical_system.h"
 # include "minirt_colors.h"
 
-int			ray_lauch_test(t_scene *scene);
+int		ray_lauch_test(t_scene *scene);
 
-double		length_screen(double fov);
-double		quadratic_equation(double a, double b, double c);
+double	length_screen(double fov);
+double	quadratic_equation(double a, double b, double c);
 
-void		init_calculation(t_scene *scene, t_list *lst_obj);
+void	init_calculation(t_scene *scene, t_list *lst_obj);
 
-double		intersect_ray_plan(t_plane_obj *plan, t_vector3 ray_dir, t_vector3 orig);
-double		intersect_ray_sphere(t_sphere_obj *sphere, t_vector3 ray_dir);
+double	intersect_ray_plan(t_plane_obj *plan, const t_vec3 *ray_dir,
+			const t_vec3 *orig);
+double	intersect_ray_sphere(t_sphere_obj *sphere, const t_vec3 *ray_dir);
 
-double		intersect_ray_cylinder(t_cylinder_obj *cyl, t_vector3 ray_dir, t_vector3 cam_pos);
-t_vector3	calculation_born(t_vector3 c, t_vector3 n, double d);
+double	intersect_ray_cylinder(t_cylinder_obj *cyl, const t_vec3 *ray_dir,
+			const t_vec3 *cam_pos);
+t_vec3	calculation_born(const t_vec3 *c, const t_vec3 *n, double d);
 
 #endif

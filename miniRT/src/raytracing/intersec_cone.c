@@ -1,31 +1,31 @@
 /// @todo header
 
 #include "minirt.h"
-/*static double	A_calculation(t_vector3 D)
+/*static double	A_calculation(t_vec3 D)
 {
 	double	result;
-	
-	result = 
+
+	result =
 	return (result);
 }
 
-static double	B_calculation(t_vector3 O, t_vector3 C, t_vector3 D)
-{
-	double		result;
-	
-	result = 
-	return (result);
-}
-
-static double	C_calculation(t_vector3 O, t_vector3 C, double r)
+static double	B_calculation(t_vec3 O, t_vec3 C, t_vec3 D)
 {
 	double		result;
 
-	result = 
+	result =
 	return (result);
 }
 
-double	intersect_ray_cone(t_cone *cone, t_vector3 *pixel, t_vector3 origin)
+static double	C_calculation(t_vec3 O, t_vec3 C, double r)
+{
+	double		result;
+
+	result =
+	return (result);
+}
+
+double	intersect_ray_cone(t_cone *cone, t_vec3 *pixel, t_vec3 origin)
 {
 	double	A;
 	double	B;
