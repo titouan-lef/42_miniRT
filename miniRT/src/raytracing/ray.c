@@ -104,8 +104,8 @@ int	ray_lauch_test(t_scene *scene)
 			pixel.obj = NULL;
 			pixel.ray_dir = get_ray_dir(&pixel.pos, &scene->cam.dir);
 			pixel.color = raytracers(scene->lst_obj, &pixel, &scene->cam.pos);
-			//pixel.color = ambient(pixel.color, &scene->ambient);
-			//lighting(&pixel, scene->lst_light, &scene->ambient);
+			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
+			lighting(&pixel, scene->lst_light, &scene->amb);
 			set_image_pixel(&scene->g_sys, WIN_HW + pixel.pos.x,
 				WIN_HH + pixel.pos.y, pixel.color);
 			pixel.pos.x += scene->g_sys.def_w;
