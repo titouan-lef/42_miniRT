@@ -57,19 +57,19 @@
  * @file double_buffer.c
  ***********************************************/
 void	swap_buffer(t_double_buffer *buff);
-void	clean_double_buffer(t_graph_sys *graph_sys);
-int		init_double_buffer(t_graph_sys *graph_sys);
+void	clean_double_buffer(t_graph_sys *g_sys);
+int		init_double_buffer(t_graph_sys *g_sys);
 
 /***********************************************
  * @file image.c
  ***********************************************/
-void	put_image_to_win(t_graph_sys *graph_sys);
-void	set_image_pixel(t_graph_sys *graph_sys, int x, int y, t_color c);
+void	put_image_to_win(t_graph_sys *g_sys);
+void	set_image_pixel(t_graph_sys *g_sys, int x, int y, t_color c);
 
 /***********************************************
  * @file window.c
  ***********************************************/
-int		init_window(t_graph_sys *graph_sys);
+int		init_window(t_graph_sys *g_sys);
 
 /***********************************************
  * @file graphical_system.c
@@ -84,7 +84,7 @@ void	on_event(t_scene *scene);
 /***********************************************
  * @file camera_moov.c
  ***********************************************/
-void	mouse_event(t_scene *scene, t_graph_sys *graph_sys);
+void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
 #endif

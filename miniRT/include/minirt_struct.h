@@ -168,7 +168,8 @@ typedef struct s_graph_sys
 	mlx_context		mlx;
 	mlx_window		win;
 	t_double_buffer	buff;
-	int				def;
+	int				def_w;
+	int				def_h;
 }	t_graph_sys;
 
 /***********************************************
@@ -180,7 +181,7 @@ typedef struct s_scene
 	t_list		*lst_light;
 	t_amb		amb;
 	t_cam		cam;
-	t_graph_sys	graph_sys;
+	t_graph_sys	g_sys;
 }	t_scene;
 
 /***********************************************
@@ -194,15 +195,5 @@ typedef struct s_pixel
 	t_obj		*obj;
 	double		d;
 }	t_pixel;
-
-/***********************************************
- * @struct PIX
- ***********************************************/
-typedef struct s_pix
-{
-	int		x;
-	int		y;
-	double	z;
-}	t_pix;
 
 #endif

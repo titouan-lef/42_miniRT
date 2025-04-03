@@ -25,6 +25,7 @@ static void	window_hook(int event, void *param)
 static void	key_hook_fwin(int key, void *param)
 {
 	static int	fullscreen = 0;
+	static int	resol = 0;
 	t_graph_sys	*mlx;
 
 	mlx = (t_graph_sys *)param;
@@ -32,6 +33,20 @@ static void	key_hook_fwin(int key, void *param)
 	{
 		fullscreen = 1 - fullscreen;
 		mlx_set_window_fullscreen(mlx->mlx, mlx->win, fullscreen);
+	}
+	if (key == SDL_SCANCODE_F10)
+	{
+		resol = 1 - resol;
+		if (resol == 1)
+		{
+			mlx->def_h = 9;
+			mlx->def_w = 16;
+		}
+		else
+		{
+			mlx->def_h = 1;
+			mlx->def_w = 1;
+		}
 	}
 }
 
@@ -42,23 +57,23 @@ static void	key_hook_fwin(int key, void *param)
  */
 static void	keydown_event(t_scene *scene)
 {
-	t_graph_sys	*graph_sys;
+	t_graph_sys	*g_sys;
 
-	graph_sys = &scene->graph_sys;
-	mlx_on_event(graph_sys->mlx, graph_sys->win, MLX_KEYDOWN, key_hook,
-		graph_sys->mlx);
-	mlx_on_event(graph_sys->mlx, graph_sys->win, MLX_KEYDOWN, key_hook_cam,
+	g_sys = &scene->g_sys;
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook,
+		g_sys->mlx);
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook_cam,
 		scene);
 }
 
 void	on_event(t_scene *scene)
 {
-	t_graph_sys	*graph_sys;
+	t_graph_sys	*g_sys;
 
-	graph_sys = &scene->graph_sys;
-	mlx_on_event(graph_sys->mlx, graph_sys->win, MLX_WINDOW_EVENT, window_hook,
-		graph_sys->mlx);
-	mlx_on_event(graph_sys->mlx, graph_sys->win, MLX_KEYUP, key_hook_fwin,
-		&scene->graph_sys);
+	g_sys = &scene->g_sys;
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_WINDOW_EVENT, window_hook,
+		g_sys->mlx);
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYUP, key_hook_fwin,
+		&scene->g_sys);
 	keydown_event(scene);
 }

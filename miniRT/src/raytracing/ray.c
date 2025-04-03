@@ -105,11 +105,11 @@ int	ray_lauch_test(t_scene *scene)
 			pixel.color = raytracers(scene->lst_obj, &pixel, scene->cam.pos);
 			//pixel.color = ambient(pixel.color, &scene->ambient);
 			//lighting(&pixel, scene->lst_light, &scene->ambient);
-			set_image_pixel(&scene->graph_sys, WIN_HW + pixel.pos.x,
-				WIN_HH - pixel.pos.y, pixel.color);
-			pixel.pos.x += (1.0 + (16 * scene->graph_sys.def - 1));
+			set_image_pixel(&scene->g_sys, WIN_HW + pixel.pos.x,
+				WIN_HH + pixel.pos.y, pixel.color);
+			pixel.pos.x += scene->g_sys.def_w;
 		}
-		pixel.pos.y += (1.0 + (9 * scene->graph_sys.def - 1));
+		pixel.pos.y += scene->g_sys.def_h;
 	}
 	return (0);
 }

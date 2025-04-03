@@ -2,17 +2,17 @@
 
 #include "minirt.h"
 
-static void	clean_graph_sys(t_graph_sys *graph_sys)
+static void	clean_graph_sys(t_graph_sys *g_sys)
 {
-	mlx_destroy_window(graph_sys->mlx, graph_sys->win);
-	clean_double_buffer(graph_sys);
-	mlx_destroy_context(graph_sys->mlx);
+	mlx_destroy_window(g_sys->mlx, g_sys->win);
+	clean_double_buffer(g_sys);
+	mlx_destroy_context(g_sys->mlx);
 }
 
-static int	init_mlx(t_graph_sys *graph_sys)
+static int	init_mlx(t_graph_sys *g_sys)
 {
-	graph_sys->mlx = mlx_init();
-	if (graph_sys->mlx == MLX_NULL_HANDLE)
+	g_sys->mlx = mlx_init();
+	if (g_sys->mlx == MLX_NULL_HANDLE)
 	{
 		ft_putendl_error(ERR_MLX_INIT);
 		return (1);
@@ -20,48 +20,49 @@ static int	init_mlx(t_graph_sys *graph_sys)
 	return (0);
 }
 
-static int	init_graphical_data(t_graph_sys *graph_sys)
+static int	init_graphical_data(t_graph_sys *g_sys)
 {
-	if (init_mlx(graph_sys))
+	if (init_mlx(g_sys))
 		return (1);
-	if (init_double_buffer(graph_sys))
+	if (init_double_buffer(g_sys))
 	{
-		mlx_destroy_context(graph_sys->mlx);
+		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
-	mlx_set_fps_goal(graph_sys->mlx, FPS);
-	if (init_window(graph_sys))
+	mlx_set_fps_goal(g_sys->mlx, FPS);
+	if (init_window(g_sys))
 	{
-		clean_double_buffer(graph_sys);
-		mlx_destroy_context(graph_sys->mlx);
+		clean_double_buffer(g_sys);
+		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
-	graph_sys->def = 0;
+	g_sys->def_h = 1;
+	g_sys->def_w = 1;
 	return (0);
 }
 
 static void	update(void *param)
 {
 	t_scene		*scene;
-	t_graph_sys	*graph_sys;
+	t_graph_sys	*g_sys;
 	int			result;
 
 	scene = (t_scene *) param;
-	graph_sys = &scene->graph_sys;
-	mouse_event(scene, graph_sys);
+	g_sys = &scene->g_sys;
+	mouse_event(scene, g_sys);
 	init_calculation(scene, scene->lst_obj);
 	result = ray_lauch_test(scene);
-	put_image_to_win(&scene->graph_sys);
+	put_image_to_win(&scene->g_sys);
 }
 
 int	manage_graphical_system(t_scene	*scene)
 {
-	if (init_graphical_data(&scene->graph_sys))
+	if (init_graphical_data(&scene->g_sys))
 		return (1);
-	mlx_mouse_move(scene->graph_sys.mlx, scene->graph_sys.win, WIN_HW, WIN_HH);
+	mlx_mouse_move(scene->g_sys.mlx, scene->g_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
-	mlx_add_loop_hook(scene->graph_sys.mlx, update, scene);
-	mlx_loop(scene->graph_sys.mlx);
-	clean_graph_sys(&scene->graph_sys);
+	mlx_add_loop_hook(scene->g_sys.mlx, update, scene);
+	mlx_loop(scene->g_sys.mlx);
+	clean_graph_sys(&scene->g_sys);
 	return (0);
 }
