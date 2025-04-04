@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:03:14 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 15:21:42 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:13:46 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,22 @@ t_vec3	ft_projection(const t_vec3 *v, const t_plane *pl)
 	proj = ft_scalarmult_vec3(&pl->n, t);
 	proj = ft_sum_vec3(&proj, v);
 	return (proj);
+}
+
+/**
+ * @brief Apply a translation on a point.
+ * @param p Coordinates of the current point.
+ * @param v Direction vector of the translation.
+ * @param dist Distance of the translation.
+ * @return Coordinates of the point after translation.
+ * @warning v must be normalized if distance must be respected.
+ */
+t_vec3	ft_translation(const t_vec3 *p, const t_vec3 *v, double dist)
+{
+	t_vec3	new_p;
+
+	new_p.x = p->x + v->x * dist;
+	new_p.y = p->y + v->y * dist;
+	new_p.z = p->z + v->z * dist;
+	return (new_p);
 }
