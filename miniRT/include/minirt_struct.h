@@ -192,6 +192,7 @@ typedef struct s_pixel
 	t_color	color;
 	t_vec3	ray_dir;
 	t_vec3	pos;
+	t_vec3	normal;
 	t_obj	*obj;
 	double	d;
 }	t_pixel;

@@ -74,6 +74,7 @@ t_color	raytracers(t_list *lst_obj, t_pixel *pixel, const t_vec3 *cam_pos)
 		{
 			length_min = length;
 			pixel->obj = obj;
+			pixel->d = length;
 			color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
@@ -104,8 +105,7 @@ int	ray_lauch_test(t_scene *scene)
 			pixel.obj = NULL;
 			pixel.ray_dir = get_ray_dir(&pixel.pos, &scene->cam.dir);
 			pixel.color = raytracers(scene->lst_obj, &pixel, &scene->cam.pos);
-			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
-			lighting(&pixel, scene->lst_light, &scene->amb);
+			//lighting(&pixel, scene->lst_light, &scene->amb);
 			set_image_pixel(&scene->g_sys, WIN_HW + pixel.pos.x,
 				WIN_HH + pixel.pos.y, pixel.color);
 			pixel.pos.x += scene->g_sys.def_w;
