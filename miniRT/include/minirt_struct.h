@@ -15,7 +15,7 @@ typedef enum e_obj_type
 	CAMERA,
 	LIGHT,
 	SPHERE,
-	PLAN,
+	PLANE,
 	CYLINDER,
 	CONE,
 }	t_obj_type;
@@ -103,12 +103,13 @@ typedef struct s_sphere_obj
 }	t_sphere_obj;
 
 /***********************************************
- * @struct PLAN
+ * @struct PLANE
  ***********************************************/
 typedef struct s_plane_obj
 {
 	t_color	color;
 	t_plane	pl;
+	double	math_os_dot_odir;
 }	t_plane_obj;
 
 /***********************************************
@@ -118,7 +119,7 @@ typedef struct s_cylinder
 {
 	t_vec3	pos;
 	t_vec3	dir;
-	double	h;
+	double	hh;
 	double	r;
 }	t_cylinder;
 
@@ -127,8 +128,10 @@ typedef struct s_math_cy
 	t_vec3	os;
 	double	os_dot_odir;
 	double	c_factor;
-	t_vec3	top;
-	t_vec3	bottom;
+	t_vec3	b;
+	t_vec3	t;
+	double	bs_dot_odir;
+	double	ts_dot_odir;
 }	t_math_cy;
 
 typedef struct s_cylinder_obj

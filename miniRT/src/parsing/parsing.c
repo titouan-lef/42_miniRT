@@ -39,7 +39,7 @@ static int	data_interpreter(t_scene *scene, char **tab, int id)
 		error = light_interpreter(scene, tab);
 	else if (id == SPHERE)
 		error = sphere_interpreter(scene, tab);
-	else if (id == PLAN)
+	else if (id == PLANE)
 		error = plan_interpreter(scene, tab);
 	else if (id == CYLINDER)
 		error = cylinder_interpreter(scene, tab);

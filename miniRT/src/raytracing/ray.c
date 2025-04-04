@@ -10,7 +10,7 @@ t_color	get_color(const t_obj *obj)
 	type = obj->type;
 	if (type == SPHERE)
 		color = ((t_sphere_obj *)(obj->data))->color;
-	else if (type == PLAN)
+	else if (type == PLANE)
 		color = ((t_plane_obj *)(obj->data))->color;
 	else if (type == CYLINDER)
 		color = ((t_cylinder_obj *)(obj->data))->color;
@@ -19,10 +19,28 @@ t_color	get_color(const t_obj *obj)
 	return (color);
 }
 
+double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
+{
+	double	dist;
+
+	if (obj->type == SPHERE)
+		dist = intersect_ray_sphere((t_sphere_obj *)(obj->data),
+				&inter->ray.dir);
+	else if (obj->type == PLANE)
+		dist = intersect_ray_plane((t_plane_obj *)(obj->data),
+				&inter->ray);
+	else if (obj->type == CYLINDER)
+		dist = intersect_ray_cylinder((t_cylinder_obj *)(obj->data),
+				&inter->ray);
+	else
+		dist = INFINITY;
+	return (dist);
+}
+
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-void	raytracers(const t_list *lst_obj, t_intersec *intersect)
+void	raytracers(const t_list *lst_obj, t_intersec *inter)
 {
 	t_obj	*obj;
 	double	dist;
@@ -32,61 +50,57 @@ void	raytracers(const t_list *lst_obj, t_intersec *intersect)
 	while (lst_obj)
 	{
 		obj = (t_obj *)lst_obj->content;
-		if (obj->type == SPHERE)
-			dist = intersect_ray_sphere((t_sphere_obj *)(obj->data), &intersect->ray.dir);
-		else if (obj->type == PLAN)
-			dist = intersect_ray_plan((t_plane_obj *)(obj->data), &intersect->ray);
-		else if (obj->type == CYLINDER)
-			dist = intersect_ray_cylinder((t_cylinder_obj *)(obj->data), &intersect->ray);
+		dist = intersect_ray_obj(obj, inter);
 		if (dist < dist_min)
 		{
 			dist_min = dist;
-			intersect->obj = obj;
-			intersect->color = get_color(obj);
+			inter->obj = obj;
+			inter->color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
 	}
-	if (intersect->obj != NULL)
-		intersect->p = ft_translation(&intersect->ray.s, &intersect->ray.dir, dist_min);
+	if (inter->obj != NULL)
+		inter->p = ft_translation(&inter->ray.s, &inter->ray.dir, dist_min);
 }
 
 /**
  * @brief Get the ray direction as a function of camera direction.
  * @details Angle is define by dot product because the 2 vector are normalized.
  * Camera is considerate at the position (0,0,0).
- * @param default_dir Ray direction if camera has (0,0,1) direction.
+ * @param basic_dir Ray direction if camera has (0,0,1) direction.
  * @param cam_dir Camera direction.
  * @warning Pixel and camera direction must be nonzero vector and camera
  * direction must be normalized.
  */
-static t_ray	get_ray(const t_vec3 *default_dir, const t_cam *cam)
+static t_ray	get_ray(const t_vec3 *basic_dir, const t_cam *cam)
 {
 	t_ray	ray;
 	t_vec3	axis;
-	t_vec3	default_cam_dir;
+	t_vec3	basic_cam_dir;
 	double	angle;
 
 	ray.s = cam->pos;
-	default_cam_dir = ft_create_vec3(0, 0, 1);
-	ray.dir = ft_normalize_vec3(default_dir);
-	axis = ft_cross_vec3(&cam->dir, &default_cam_dir);
+	basic_cam_dir = ft_create_vec3(0, 0, 1);
+	ray.dir = ft_normalize_vec3(basic_dir);
+	axis = ft_cross_vec3(&cam->dir, &basic_cam_dir);
 	if (ft_is_zero_vec3(&axis))
 		return (ray);
-	angle = ft_dot_vec3(&default_cam_dir, &cam->dir);
+	angle = ft_dot_vec3(&basic_cam_dir, &cam->dir);
 	angle = acos(angle);
 	ray.dir = ft_rotation_quat(&ray.dir, angle, &axis);
 	return (ray);
 }
 
-static t_intersec	get_near_intersec(const t_vec3 *default_dir, const t_cam *cam, const t_list *lst_obj)
+static t_intersec	get_near_intersec(const t_vec3 *basic_dir,
+	const t_cam *cam, const t_list *lst_obj)
 {
-	t_intersec	intersec;
+	t_intersec	inter;
 
-	intersec.obj = NULL;
-	intersec.ray = get_ray(default_dir, cam);
-	intersec.color = ft_color_create(0, 0, 0, 255);
-	raytracers(lst_obj, &intersec);
-	return (intersec);
+	inter.obj = NULL;
+	inter.ray = get_ray(basic_dir, cam);
+	inter.color = ft_color_create(0, 0, 0, 255);
+	raytracers(lst_obj, &inter);
+	return (inter);
 }
 
 /**
@@ -100,24 +114,24 @@ static t_intersec	get_near_intersec(const t_vec3 *default_dir, const t_cam *cam,
  */
 int	ray_lauch_test(t_scene *scene)
 {
-	t_intersec	intersec;
-	t_vec3		default_dir;
+	t_intersec	inter;
+	t_vec3		basic_dir;
 	int			x;
 	int			y;
 
-	default_dir.z = length_screen(scene->cam.fov);
+	basic_dir.z = length_screen(scene->cam.fov);
 	y = 0;
 	while (y < WIN_H)
 	{
-		default_dir.y = y - WIN_HH;
+		basic_dir.y = y - WIN_HH;
 		x = 0;
 		while (x < WIN_W)
 		{
-			default_dir.x = x - WIN_HW;
-			intersec = get_near_intersec(&default_dir, &scene->cam, scene->lst_obj);
+			basic_dir.x = x - WIN_HW;
+			inter = get_near_intersec(&basic_dir, &scene->cam, scene->lst_obj);
 			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
-			lighting(&intersec, scene->lst_light, &scene->amb);
-			set_image_pixel(&scene->g_sys, x, y, intersec.color);
+			lighting(&inter, scene->lst_light, &scene->amb);
+			set_image_pixel(&scene->g_sys, x, y, inter.color);
 			x += scene->g_sys.def_w;
 		}
 		y += scene->g_sys.def_h;

@@ -12,7 +12,7 @@ static int	is_in_height(double t, const t_ray *ray, const t_cylinder_obj *cyl)
 	height = ft_dot_vec3(&p, &cyl->cy.dir);
 	if (height < 0)
 		height = -height;
-	return (height <= cyl->cy.h / 2.0);
+	return (height <= cyl->cy.hh);
 }
 
 static double	a_calculation(double raydir_dot_odir)
@@ -20,7 +20,8 @@ static double	a_calculation(double raydir_dot_odir)
 	return (1 - raydir_dot_odir * raydir_dot_odir);
 }
 
-static double	b_calculation(const t_vec3 *os, const t_vec3 *raydir, double os_dot_odir, double raydir_dot_odir)
+static double	b_calculation(const t_vec3 *os, const t_vec3 *raydir,
+	double os_dot_odir, double raydir_dot_odir)
 {
 	double	dot;
 
@@ -28,33 +29,25 @@ static double	b_calculation(const t_vec3 *os, const t_vec3 *raydir, double os_do
 	return (2.0 * (dot - os_dot_odir * raydir_dot_odir));
 }
 
-static double	intersect_ray_plan_test(const t_vec3 *plan_pos, const t_vec3 *normal, const t_ray *ray)
-{
-	t_plane	plane;
-	double	scal_product;
-	double	t;
-
-	plane = ft_create_plane(normal, plan_pos);
-	scal_product = ft_dot_vec3(normal, &ray->dir);
-	if (scal_product == 0)
-		return (INFINITY);
-	t = (plane.d + ft_dot_vec3(normal, &ray->s)) / -scal_product;
-	if (t < 1)
-		return (INFINITY);
-	return (t);
-}
-
-static double	intersect_cap(const t_cylinder *cy, const t_ray *ray, const t_vec3 *cap_center, double dist)
+static double	intersect_caps(const t_cylinder_obj *cy_obj, const t_ray *ray,
+	double dist, double raydir_dot_odir)
 {
 	t_vec3	p;
-	double	tmp;
+	double	t;
 
-	tmp = intersect_ray_plan_test(cap_center, &cy->dir, ray);
-	if (tmp != INFINITY && tmp < dist)
+	t = intersect_ray_plane_value(cy_obj->mathcy.bs_dot_odir, raydir_dot_odir);
+	if (t != INFINITY && t < dist)
 	{
-		p = ft_translation(&ray->s, &ray->dir, tmp);
-		if (ft_distance_vec3(&p, cap_center) <= cy->r)
-			dist = tmp;
+		p = ft_translation(&ray->s, &ray->dir, t);
+		if (ft_distance_vec3(&p, &cy_obj->mathcy.b) <= cy_obj->cy.r)
+			dist = t;
+	}
+	t = intersect_ray_plane_value(cy_obj->mathcy.ts_dot_odir, raydir_dot_odir);
+	if (t != INFINITY && t < dist)
+	{
+		p = ft_translation(&ray->s, &ray->dir, t);
+		if (ft_distance_vec3(&p, &cy_obj->mathcy.t) <= cy_obj->cy.r)
+			dist = t;
 	}
 	return (dist);
 }
@@ -72,11 +65,11 @@ double	intersect_ray_cylinder(const t_cylinder_obj *cyl, const t_ray *ray)
 
 	raydir_dot_odir = ft_dot_vec3(&ray->dir, &cyl->cy.dir);
 	a = a_calculation(raydir_dot_odir);
-	b = b_calculation(&cyl->mathcy.os, &ray->dir, cyl->mathcy.os_dot_odir, raydir_dot_odir);
+	b = b_calculation(&cyl->mathcy.os, &ray->dir, cyl->mathcy.os_dot_odir,
+			raydir_dot_odir);
 	result = quadratic_equation(a, b, cyl->mathcy.c_factor);
 	if (result != INFINITY && !is_in_height(result, ray, cyl))
 		result = INFINITY;
-	result = intersect_cap(&cyl->cy, ray, &cyl->mathcy.bottom, result);
-	result = intersect_cap(&cyl->cy, ray, &cyl->mathcy.top, result);
+	result = intersect_caps(cyl, ray, result, raydir_dot_odir);
 	return (result);
 }

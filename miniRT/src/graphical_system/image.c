@@ -30,7 +30,8 @@ void	set_image_pixel(t_graph_sys *g_sys, int x, int y, t_color c)
 		j = 0;
 		while (j < g_sys->def_w)
 		{
-			mlx_set_image_pixel(g_sys->mlx, *g_sys->buff.back, x + j, y + i, color);
+			mlx_set_image_pixel(g_sys->mlx, *g_sys->buff.back, x + j, y + i,
+				color);
 			j++;
 		}
 		i++;

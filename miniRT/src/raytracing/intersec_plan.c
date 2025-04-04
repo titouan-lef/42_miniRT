@@ -2,16 +2,24 @@
 
 #include "minirt.h"
 
-double	intersect_ray_plan(const t_plane_obj *plane, const t_ray *ray)
+double	intersect_ray_plane_value(double os_dot_odir, double raydir_dot_odir)
 {
-	double		scal_product;
-	double		t;
+	double	t;
 
-	scal_product = ft_dot_vec3(&plane->pl.n, &ray->dir);
-	if (scal_product == 0)
+	if (raydir_dot_odir == 0)
 		return (INFINITY);
-	t = (plane->pl.d + ft_dot_vec3(&plane->pl.n, &ray->s)) / -scal_product;
+	t = -os_dot_odir / raydir_dot_odir;
 	if (t < 1)
 		return (INFINITY);
+	return (t);
+}
+
+double	intersect_ray_plane(const t_plane_obj *plane, const t_ray *ray)
+{
+	double	raydir_dot_odir;
+	double	t;
+
+	raydir_dot_odir = ft_dot_vec3(&plane->pl.n, &ray->dir);
+	t = intersect_ray_plane_value(plane->math_os_dot_odir, raydir_dot_odir);
 	return (t);
 }

@@ -12,7 +12,7 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 	if (take_pos(&new_cy->cy.pos, tab[1])
 		|| take_dir(&new_cy->cy.dir, tab[2])
 		|| take_dimension(&new_cy->cy.r, tab[3])
-		|| take_dimension(&new_cy->cy.h, tab[4])
+		|| take_dimension(&new_cy->cy.hh, tab[4])
 		|| take_color(&new_cy->color, tab[5]))
 	{
 		print_error_message(ERR_CYLINDER);
@@ -20,6 +20,7 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 		return (NULL);
 	}
 	new_cy->cy.r *= 0.5;
+	new_cy->cy.hh *= 0.5;
 	return (new_cy);
 }
 

@@ -75,7 +75,7 @@ int	check_valid_id(char *str, int *ambient, int *camera)
 	if (!ft_strcmp(str, "sp"))
 		return (SPHERE);
 	if (!ft_strcmp(str, "pl"))
-		return (PLAN);
+		return (PLANE);
 	if (!ft_strcmp(str, "cy"))
 		return (CYLINDER);
 	if (!ft_strcmp(str, "co"))
