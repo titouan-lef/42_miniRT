@@ -38,6 +38,7 @@ SRC :=	minirt.c \
 		raytracing/calculation.c \
 		colors/lighting.c \
 		colors/colors_utils.c \
+		colors/diffuse.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \

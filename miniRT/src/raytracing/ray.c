@@ -130,7 +130,7 @@ int	ray_lauch_test(t_scene *scene)
 			basic_dir.x = x - WIN_HW;
 			inter = get_near_intersec(&basic_dir, &scene->cam, scene->lst_obj);
 			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
-			lighting(&inter, scene->lst_light, &scene->amb);
+			//lighting(&inter, scene->lst_light, &scene->amb);
 			set_image_pixel(&scene->g_sys, x, y, inter.color);
 			x += scene->g_sys.def_w;
 		}
