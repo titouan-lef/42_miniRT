@@ -9,7 +9,7 @@ static double	a_calculation(const t_vec3 *ray_dir)
 {
 	double	result;
 
-	result = ft_dotproduct_vec3(ray_dir, ray_dir);
+	result = ft_dot_vec3(ray_dir, ray_dir);
 	return (result);
 }
 
@@ -21,7 +21,7 @@ static double	b_calculation(const t_vec3 *os, const t_vec3 *ray_dir)
 {
 	double		result;
 
-	result = ft_dotproduct_vec3(os, ray_dir);
+	result = ft_dot_vec3(os, ray_dir);
 	result *= 2.0;
 	return (result);
 }

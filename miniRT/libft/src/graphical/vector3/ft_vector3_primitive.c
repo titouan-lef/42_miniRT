@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 11:44:41 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	ft_norm_vec3(const t_vec3 *v)
 	double	dotproduct;
 	double	norm;
 
-	dotproduct = ft_dotproduct_vec3(v, v);
+	dotproduct = ft_dot_vec3(v, v);
 	norm = sqrt(dotproduct);
 	return (norm);
 }
@@ -72,6 +72,6 @@ t_vec3	ft_normalize_vec3(const t_vec3 *v)
 		ft_putendl_error("Error : try to normalize a zero vector3");
 		return (*v);
 	}
-	normalize = ft_scalarmult_vec3(v, 1.0 / norm);
+	normalize = ft_scalmult_vec3(v, 1.0 / norm);
 	return (normalize);
 }

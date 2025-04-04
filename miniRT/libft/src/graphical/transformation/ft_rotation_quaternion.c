@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 11:41:26 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 13:52:39 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_quat	ft_create_unit_quat(double angle, const t_vec3 *vec)
 	q.scalar = cos(angle / 2.0);
 	sinus = sin(angle / 2.0);
 	normalize_vec = ft_normalize_vec3(vec);
-	q.vec = ft_scalarmult_vec3(&normalize_vec, sinus);
+	q.vec = ft_scalmult_vec3(&normalize_vec, sinus);
 	return (q);
 }
 

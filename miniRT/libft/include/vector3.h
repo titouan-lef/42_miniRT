@@ -32,8 +32,8 @@ t_vec3	ft_normalize_vec3(const t_vec3 *v);
 /* operation */
 t_vec3	ft_sum_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	ft_diff_vec3(const t_vec3 *v1, const t_vec3 *v2);
-t_vec3	ft_scalarmult_vec3(const t_vec3 *v, double k);
-double	ft_dotproduct_vec3(const t_vec3 *v1, const t_vec3 *v2);
-t_vec3	ft_crossproduct_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	ft_scalmult_vec3(const t_vec3 *v, double k);
+double	ft_dot_vec3(const t_vec3 *v1, const t_vec3 *v2);
+t_vec3	ft_cross_vec3(const t_vec3 *v1, const t_vec3 *v2);
 
 #endif

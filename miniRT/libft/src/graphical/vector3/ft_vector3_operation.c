@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:41 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 11:44:43 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vec3	ft_diff_vec3(const t_vec3 *v1, const t_vec3 *v2)
 	return (diff);
 }
 
-t_vec3	ft_scalarmult_vec3(const t_vec3 *v, double k)
+t_vec3	ft_scalmult_vec3(const t_vec3 *v, double k)
 {
 	t_vec3	scalarmult;
 
@@ -46,7 +46,7 @@ t_vec3	ft_scalarmult_vec3(const t_vec3 *v, double k)
  * @brief Get the dot product of 2 vectors v1 and v2, that is the result of
  * ||v1|| * ||v2|| * cos(v1, v2).
  */
-double	ft_dotproduct_vec3(const t_vec3 *v1, const t_vec3 *v2)
+double	ft_dot_vec3(const t_vec3 *v1, const t_vec3 *v2)
 {
 	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }
@@ -57,7 +57,7 @@ double	ft_dotproduct_vec3(const t_vec3 *v1, const t_vec3 *v2)
  * @return The perpendicular vector or a zero vector if the 2 vectors are
  * collinear.
  */
-t_vec3	ft_crossproduct_vec3(const t_vec3 *v1, const t_vec3 *v2)
+t_vec3	ft_cross_vec3(const t_vec3 *v1, const t_vec3 *v2)
 {
 	t_vec3	crossproduct;
 

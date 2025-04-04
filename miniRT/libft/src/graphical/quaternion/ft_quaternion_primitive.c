@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 13:50:04 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 13:55:40 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ double	ft_norm_quat(const t_quat *q)
 {
 	double	norm;
 
-	norm = q->scalar * q->scalar + ft_dotproduct_vec3(&q->vec, &q->vec);
+	norm = q->scalar * q->scalar + ft_dot_vec3(&q->vec, &q->vec);
 	norm = sqrt(norm);
 	return (norm);
 }
@@ -67,7 +67,7 @@ t_quat	ft_conjugate_quat(const t_quat *q)
 	t_quat	result;
 
 	result.scalar = q->scalar;
-	result.vec = ft_scalarmult_vec3(&q->vec, -1);
+	result.vec = ft_scalmult_vec3(&q->vec, -1);
 	return (result);
 }
 

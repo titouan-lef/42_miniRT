@@ -48,7 +48,7 @@ void	raytracers(const t_list *lst_obj, t_intersec *intersect)
 	}
 	if (intersect->obj != NULL)
 	{
-		intersect->p = ft_scalarmult_vec3(&intersect->ray.dir, dist_min);
+		intersect->p = ft_scalmult_vec3(&intersect->ray.dir, dist_min);
 		intersect->p = ft_sum_vec3(&intersect->p, &intersect->ray.s);
 	}
 }
@@ -72,10 +72,10 @@ static t_ray	get_ray(const t_vec3 *default_dir, const t_cam *cam)
 	ray.s = cam->pos;
 	default_cam_dir = ft_create_vec3(0, 0, 1);
 	ray.dir = ft_normalize_vec3(default_dir);
-	axis = ft_crossproduct_vec3(&cam->dir, &default_cam_dir);
+	axis = ft_cross_vec3(&cam->dir, &default_cam_dir);
 	if (ft_is_zero_vec3(&axis))
 		return (ray);
-	angle = ft_dotproduct_vec3(&default_cam_dir, &cam->dir);
+	angle = ft_dot_vec3(&default_cam_dir, &cam->dir);
 	angle = acos(angle);
 	ray.dir = ft_rotation_quat(&ray.dir, angle, &axis);
 	return (ray);
