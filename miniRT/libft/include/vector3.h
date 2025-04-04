@@ -22,18 +22,27 @@ typedef struct s_vec3
 	double	z;
 }	t_vec3;
 
-/* primitive */
+/***********************************************
+ * @file ft_vector3_primitive.c
+ ***********************************************/
 t_vec3	ft_create_vec3(double x, double y, double z);
 int		ft_is_zero_vec3(const t_vec3 *v);
-double	ft_norm_vec3(const t_vec3 *v);
-double	ft_distance_vec3(const t_vec3 *p1, const t_vec3 *p2);
 t_vec3	ft_normalize_vec3(const t_vec3 *v);
+t_vec3	ft_translation(const t_vec3 *p, const t_vec3 *v, double dist);
 
-/* operation */
+/***********************************************
+ * @file ft_vector3_operation.c
+ ***********************************************/
 t_vec3	ft_sum_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	ft_diff_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	ft_scalmult_vec3(const t_vec3 *v, double k);
 double	ft_dot_vec3(const t_vec3 *v1, const t_vec3 *v2);
 t_vec3	ft_cross_vec3(const t_vec3 *v1, const t_vec3 *v2);
+
+/***********************************************
+ * @file ft_vector3_measure.c
+ ***********************************************/
+double	ft_norm_vec3(const t_vec3 *v);
+double	ft_distance_vec3(const t_vec3 *p1, const t_vec3 *p2);
 
 #endif

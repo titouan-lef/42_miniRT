@@ -47,10 +47,7 @@ void	raytracers(const t_list *lst_obj, t_intersec *intersect)
 		lst_obj = lst_obj->next;
 	}
 	if (intersect->obj != NULL)
-	{
-		intersect->p = ft_scalmult_vec3(&intersect->ray.dir, dist_min);
-		intersect->p = ft_sum_vec3(&intersect->p, &intersect->ray.s);
-	}
+		intersect->p = ft_translation(&intersect->ray.s, &intersect->ray.dir, dist_min);
 }
 
 /**

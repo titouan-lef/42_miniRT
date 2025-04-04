@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:52:16 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,6 @@ int	ft_is_zero_vec3(const t_vec3 *v)
 }
 
 /**
- * @brief Get the norm of a vector, that is its length.
- */
-double	ft_norm_vec3(const t_vec3 *v)
-{
-	double	dotproduct;
-	double	norm;
-
-	dotproduct = ft_dot_vec3(v, v);
-	norm = sqrt(dotproduct);
-	return (norm);
-}
-
-/**
- * @brief Get the distance between 2 points.
- */
-double	ft_distance_vec3(const t_vec3 *p1, const t_vec3 *p2)
-{
-	t_vec3	diff;
-	double	norm;
-
-	diff = ft_diff_vec3(p1, p2);
-	norm = ft_norm_vec3(&diff);
-	return (norm);
-}
-
-/**
  * @brief Normalize a vector, that is the same direction vector with a length
  * of 1.
  * @warning The vector must be a nonzero vector.
@@ -74,4 +48,22 @@ t_vec3	ft_normalize_vec3(const t_vec3 *v)
 	}
 	normalize = ft_scalmult_vec3(v, 1.0 / norm);
 	return (normalize);
+}
+
+/**
+ * @brief Apply a translation on a point.
+ * @param p Coordinates of the current point.
+ * @param v Direction vector of the translation.
+ * @param dist Distance of the translation.
+ * @return Coordinates of the point after translation.
+ * @warning v must be normalized if distance must be respected.
+ */
+t_vec3	ft_translation(const t_vec3 *p, const t_vec3 *v, double dist)
+{
+	t_vec3	new_p;
+
+	new_p.x = p->x + v->x * dist;
+	new_p.y = p->y + v->y * dist;
+	new_p.z = p->z + v->z * dist;
+	return (new_p);
 }

@@ -6,7 +6,7 @@
 #    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 22:29:47 by tle-floc          #+#    #+#              #
-#    Updated: 2025/03/24 12:30:08 by tle-floc         ###   ########.fr        #
+#    Updated: 2025/04/04 11:57:55 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRC =		char/ft_check_alnum.c \
 			graphical/transformation/ft_rotation.c \
 			graphical/vector3/ft_vector3_primitive.c \
 			graphical/vector3/ft_vector3_operation.c \
+			graphical/vector3/ft_vector3_measure.c \
 			ft_color.c \
 			ft_fill_memory.c
 

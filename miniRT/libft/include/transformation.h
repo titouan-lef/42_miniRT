@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 18:43:13 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 14:16:57 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:54:43 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,23 @@ typedef struct s_plane
 	double	d;
 }	t_plane;
 
-/* rotation */
+/***********************************************
+ * @file ft_rotation.c
+ ***********************************************/
 t_vec3		ft_yaw_rotation(const t_vec3 *p, double angle);
 t_vec3		ft_pitch_rotation(const t_vec3 *p, double angle);
 t_vec3		ft_roll_rotation(const t_vec3 *p, double angle);
 t_vec3		ft_rotation(const t_vec3 *p, const t_rotation *rotation);
 t_rotation	ft_rotation_create(double roll, double pitch, double yaw);
+
+/***********************************************
+ * @file ft_rotation_quaternion.c
+ ***********************************************/
 t_vec3		ft_rotation_quat(const t_vec3 *v, double angle, const t_vec3 *vec);
 
-/* projection */
+/***********************************************
+ * @file ft_projection.c
+ ***********************************************/
 t_plane		ft_create_plane(const t_vec3 *n, const t_vec3 *p);
 t_vec3		ft_projection(const t_vec3 *v, const t_plane *pl);
 

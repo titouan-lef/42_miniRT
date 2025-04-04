@@ -7,8 +7,7 @@ static int	is_in_height(double t, const t_ray *ray, const t_cylinder_obj *cyl)
 	t_vec3	p;
 	double	height;
 
-	p = ft_scalmult_vec3(&ray->dir, t);
-	p = ft_sum_vec3(&ray->s, &p);
+	p = ft_translation(&ray->s, &ray->dir, t);
 	p = ft_diff_vec3(&p, &cyl->cy.pos);
 	height = ft_dot_vec3(&p, &cyl->cy.dir);
 	if (height < 0)
@@ -53,8 +52,7 @@ static double	intersect_cap(const t_cylinder *cy, const t_ray *ray, const t_vec3
 	tmp = intersect_ray_plan_test(cap_center, &cy->dir, ray);
 	if (tmp != INFINITY && tmp < dist)
 	{
-		p = ft_scalmult_vec3(&ray->dir, tmp);
-		p = ft_sum_vec3(&ray->s, &p);
+		p = ft_translation(&ray->s, &ray->dir, tmp);
 		if (ft_distance_vec3(&p, cap_center) <= cy->r)
 			dist = tmp;
 	}

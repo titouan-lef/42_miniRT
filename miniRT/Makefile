@@ -34,7 +34,6 @@ SRC :=	minirt.c \
 		raytracing/intersec_plan.c \
 		raytracing/intersec_sphere.c \
 		raytracing/intersec_cylinder.c \
-		raytracing/calculation_for_cylinder.c \
 		raytracing/init_calculation.c \
 		raytracing/calculation.c \
 		colors/lighting.c \

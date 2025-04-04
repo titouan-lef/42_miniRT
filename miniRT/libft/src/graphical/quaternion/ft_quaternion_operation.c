@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 11:39:02 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/04 11:23:45 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:38:26 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,18 @@ t_quat	ft_scalarmult_quat(const t_quat *q, double k)
 
 /**
  * @brief Get the product of 2 quaternions.
+ * @details scalar result = q1.s * q2.s - q1->v . q2.v and
+ * vector result = q1.v ^ q2.v + q1.v * q2.s + q2.v * q1.s
  * @return A new quaternion.
  * @warning The order of product is important.
  */
 t_quat	ft_product_quat(const t_quat *q1, const t_quat *q2)
 {
 	t_quat	q;
-	t_vec3	tmp;
 
 	q.scalar = q1->scalar * q2->scalar - ft_dot_vec3(&q1->vec, &q2->vec);
-	q.vec = ft_scalmult_vec3(&q1->vec, q2->scalar);
-	tmp = ft_scalmult_vec3(&q2->vec, q1->scalar);
-	q.vec = ft_sum_vec3(&q.vec, &tmp);
-	tmp = ft_cross_vec3(&q1->vec, &q2->vec);
-	q.vec = ft_sum_vec3(&q.vec, &tmp);
+	q.vec = ft_cross_vec3(&q1->vec, &q2->vec);
+	q.vec = ft_translation(&q.vec, &q1->vec, q2->scalar);
+	q.vec = ft_translation(&q.vec, &q2->vec, q1->scalar);
 	return (q);
 }

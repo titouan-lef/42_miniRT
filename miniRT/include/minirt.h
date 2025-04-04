@@ -23,6 +23,4 @@ double	intersect_ray_plan(const t_plane_obj *plane, const t_ray *ray);
 double	intersect_ray_sphere(const t_sphere_obj *sphere, const t_vec3 *ray_dir);
 double	intersect_ray_cylinder(const t_cylinder_obj *cyl, const t_ray *ray);
 
-t_vec3	calculation_born(const t_vec3 *c, const t_vec3 *n, double d);
-
 #endif
