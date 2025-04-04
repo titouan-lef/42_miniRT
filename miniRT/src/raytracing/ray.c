@@ -2,24 +2,7 @@
 
 #include "minirt.h"
 
-t_color	get_color(const t_obj *obj)
-{
-	int		type;
-	t_color	color;
-
-	type = obj->type;
-	if (type == SPHERE)
-		color = ((t_sphere_obj *)(obj->data))->color;
-	else if (type == PLANE)
-		color = ((t_plane_obj *)(obj->data))->color;
-	else if (type == CYLINDER)
-		color = ((t_cylinder_obj *)(obj->data))->color;
-	else
-		color = ((t_cone_obj *)(obj->data))->color;
-	return (color);
-}
-
-double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
+static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 {
 	double	dist;
 
@@ -40,7 +23,7 @@ double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-void	raytracers(const t_list *lst_obj, t_intersec *inter)
+static void	raytracers(const t_list *lst_obj, t_intersec *inter)
 {
 	t_obj	*obj;
 	double	dist;
@@ -55,7 +38,6 @@ void	raytracers(const t_list *lst_obj, t_intersec *inter)
 		{
 			dist_min = dist;
 			inter->obj = obj;
-			inter->color = get_color(obj);
 		}
 		lst_obj = lst_obj->next;
 	}
@@ -98,7 +80,6 @@ static t_intersec	get_near_intersec(const t_vec3 *basic_dir,
 
 	inter.obj = NULL;
 	inter.ray = get_ray(basic_dir, cam);
-	inter.color = ft_color_create(0, 0, 0, 255);
 	raytracers(lst_obj, &inter);
 	return (inter);
 }
@@ -116,6 +97,7 @@ int	ray_lauch_test(t_scene *scene)
 {
 	t_intersec	inter;
 	t_vec3		basic_dir;
+	t_color		c;
 	int			x;
 	int			y;
 
@@ -129,9 +111,8 @@ int	ray_lauch_test(t_scene *scene)
 		{
 			basic_dir.x = x - WIN_HW;
 			inter = get_near_intersec(&basic_dir, &scene->cam, scene->lst_obj);
-			//pixel.color = ambient(pixel.color, &scene->amb, 1.0);
-			//lighting(&inter, scene->lst_light, &scene->amb);
-			set_image_pixel(&scene->g_sys, x, y, inter.color);
+			c = lighting(&inter, scene->lst_light, &scene->amb);
+			set_image_pixel(&scene->g_sys, x, y, c);
 			x += scene->g_sys.def_w;
 		}
 		y += scene->g_sys.def_h;

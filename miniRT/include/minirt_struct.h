@@ -211,7 +211,6 @@ typedef struct s_intersec
 	t_ray	ray;
 	t_obj	*obj;
 	t_vec3	p;
-	t_color	color;
 }	t_intersec;
 
 #endif

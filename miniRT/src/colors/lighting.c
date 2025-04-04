@@ -1,53 +1,66 @@
 /// @todo header
 
 #include "minirt.h"
-/*
-static t_color	ambient(t_color obj_color, t_amb *amb, double kd)
+
+static t_color	ambient(t_amb *amb, double kd)
 {
 	t_color	color;
 	
 	color = ft_scal_color(amb->color, kd * amb->lr);
-	color = ft_mult_colors(obj_color, color);
 	return (color);
 }
 
-t_vec3	ft_get_normal(t_vec3 c_sp, t_pixel *pixel)
+static t_color	get_color(const t_obj *obj)
 {
-	t_vec3	result;
-	
-	result = ft_scalarmult_vec3(&pixel->ray_dir, pixel->d);
-	result = ft_diff_vec3(&result, &c_sp);
-	result = ft_normalize_vec3(&result);
-	return (result);
+	int		type;
+	t_color	color;
+
+	type = obj->type;
+	if (type == SPHERE)
+		color = ((t_sphere_obj *)(obj->data))->color;
+	else if (type == PLANE)/** @todo Place on first in if */  
+		color = ((t_plane_obj *)(obj->data))->color;
+	else if (type == CYLINDER)
+		color = ((t_cylinder_obj *)(obj->data))->color;
+	else
+		color = ((t_cone_obj *)(obj->data))->color;
+	return (color);
 }
 
-t_vec3	get_normal(t_obj *obj, t_pixel *pixel)
+static t_vec3 get_normal(t_intersec *inter)
 {
-	t_vec3	result;
-	
-	result = ft_get_normal(((t_sphere_obj *)(obj->data))->sp.pos, pixel);
-	return (result);
+	t_vec3		n;
+	t_sphere	sp;
+
+	sp = ((t_sphere_obj *)inter->obj->data)->sp;
+	n = ft_diff_vec3(&inter->p, &sp.pos);
+	n = ft_normalize_vec3(&n);
+	return (n);
 }
 
-
-void lighting(t_intersec *intersec, t_list *lst_light, t_amb *amb)
+t_color lighting(t_intersec *inter, t_list *lst_light, t_amb *amb)
 {
+	double	kd;// a garder ?
 	t_light	*light;
-	t_color	newcolor;
-	double	kd;
+	t_color	c;
+	t_color	total_light;
+	t_vec3	n;
 
-	kd = 1.0;
-	if (intersec->obj == NULL)
-		return ;
-	newcolor = ambient(intersec->color, amb, kd);
-
+	if (inter->obj == NULL)
+	{
+		c = ft_color_create(0, 0, 0, 255);
+		return (c);
+	}
+	kd = 1;
+	total_light = ambient(amb, kd);
+	n = get_normal(inter);
 	while (lst_light)
 	{
 		light = (t_light *)lst_light->content;
-		//newcolor = diffuse(newcolor, light, pixel, kd);
+		total_light = ft_sum_colors(total_light, diffuse(light, inter, &n, kd));
 		lst_light = lst_light->next;
 	}
-	intersec->color = newcolor;
+	c = get_color(inter->obj);
+	c = ft_mult_colors(c, total_light);
+	return (c);
 }
-
-*/
