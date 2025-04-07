@@ -51,6 +51,7 @@ t_color	ft_scal_color(t_color color, double k)
 		result.r = 0;
 		result.g = 0;
 		result.b = 0;
+		//printf("%f\n", k);
 	}
 	else
 	{

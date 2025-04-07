@@ -7,7 +7,7 @@ static int	take_fov(int *fov, char *str)
 	int	error;
 
 	*fov = ft_to_number(str, &error, 180);
-	return (error || fov < 0);
+	return (error || *fov < 0);
 }
 
 int	camera_interpreter(t_scene *scene, char **tab)
