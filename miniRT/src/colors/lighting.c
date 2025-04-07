@@ -27,17 +27,6 @@ static t_color	get_color(const t_obj *obj)
 	return (color);
 }
 
-static t_vec3 get_normal(t_intersec *inter)
-{
-	t_vec3		n;
-	t_sphere	sp;
-
-	sp = ((t_sphere_obj *)inter->obj->data)->sp;
-	n = ft_diff_vec3(&inter->p, &sp.pos);
-	n = ft_normalize_vec3(&n);
-	return (n);
-}
-
 t_color lighting(t_intersec *inter, t_list *lst_light, t_amb *amb)
 {
 	double	kd;// a garder ?
