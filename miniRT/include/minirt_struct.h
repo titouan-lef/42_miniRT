@@ -1,3 +1,5 @@
+/// @todo header
+
 #ifndef MINIRT_STRUCT_H
 # define MINIRT_STRUCT_H
 

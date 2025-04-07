@@ -1,3 +1,5 @@
+/// @todo header
+
 #ifndef MINIRT_COLORS_H
 # define MINIRT_COLORS_H
 
@@ -15,5 +17,7 @@ t_color diffuse(t_light *light, double kd, double fact);
 t_color specular(t_light *light,t_intersec *inter, t_vec3 *n, double kd, double fact);
 
 double	cos_angle_light(t_light *light,t_intersec *inter, t_vec3 *n);
+
+t_vec3 get_normal(t_intersec *inter);
 
 #endif

@@ -98,7 +98,7 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_OPEN_FAILED
-#  define ERR_OPEN_FAILED "Open at xxx.c at line xx failed please \
+#  define ERR_OPEN_FAILED "Open at xxx.c at line xx failed please\
 check the presence, permission and reload"
 # endif
 
