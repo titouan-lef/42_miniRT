@@ -18,7 +18,7 @@ static char	*complete_colors(uint8_t *color, char *str)
 	}
 	else
 		*color = (uint8_t)ft_to_number(str, &error, 255);
-	if (error != 0 || *color < 0)//probleme under flow
+	if (error != 0 || *color < 0) //probleme under flow
 		return (NULL);
 	str += end;
 	return (str);

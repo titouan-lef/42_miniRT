@@ -23,7 +23,11 @@ void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj);
 
 double	intersect_ray_plane_value(double os_dot_odir, double raydir_dot_odir);
 double	intersect_ray_plane(const t_plane_obj *plane, const t_ray *ray);
+double	intersect_light_plane(const t_plane_obj *plane, const t_ray *ray);
+
 double	intersect_ray_sphere(const t_sphere_obj *sphere, const t_vec3 *ray_dir);
+double	intersect_light_sphere(const t_sphere_obj *sphere, const t_ray *ray);
+
 double	intersect_ray_cylinder(const t_cylinder_obj *cyl, const t_ray *ray);
 
 #endif

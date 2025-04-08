@@ -111,7 +111,7 @@ int	ray_lauch_test(t_scene *scene)
 		{
 			basic_dir.x = x - WIN_HW;
 			inter = get_near_intersec(&basic_dir, &scene->cam, scene->lst_obj);
-			c = lighting(&inter, scene->lst_light, &scene->amb);
+			c = lighting(&inter, scene->lst_obj, scene->lst_light, &scene->amb);
 			set_image_pixel(&scene->g_sys, x, y, c);
 			x += scene->g_sys.def_w;
 		}

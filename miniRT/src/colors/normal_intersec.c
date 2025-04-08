@@ -17,7 +17,7 @@ static t_vec3	get_normal_plane(t_vec3 *n_plane, t_intersec *inter)
 
 	if (0.0 < ft_dot_vec3(n_plane, &inter->ray.dir))
 		n = ft_scalmult_vec3(n_plane, -1);
-	else 
+	else
 		n = *n_plane;
 	return (n);
 }
@@ -32,10 +32,10 @@ static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 	tmp_v = ft_diff_vec3(&inter->p, &cyl->cy.pos);
 	m = ft_dot_vec3(&tmp_v, &cyl->cy.dir);
 	if (ft_distance_vec3(&cyl->mathcy.b, &inter->p) <= cyl->cy.r)
-		n = get_normal_plane(&n, inter);
+		n = get_normal_plane(&cyl->cy.dir, inter);
 	else if (ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
 		n = get_normal_plane(&cyl->cy.dir, inter);
-	else 
+	else
 	{
 		tmp_v2 = ft_scalmult_vec3(&cyl->cy.dir, m);
 		n = ft_diff_vec3(&tmp_v, &tmp_v2);
@@ -56,7 +56,7 @@ static t_vec3	get_normal_cone(t_cone_obj *cone, t_intersec *inter)
 	return (n);
 }
 
-t_vec3 get_normal(t_intersec *inter)
+t_vec3	get_normal(t_intersec *inter)
 {
 	t_vec3	n;
 	t_obj	*obj;

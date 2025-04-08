@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-double	cos_angle_light(t_light *light,t_intersec *inter, t_vec3 *n)
+double	cos_angle_light(t_light *light, t_intersec *inter, t_vec3 *n)
 {
 	t_vec3	light_dir;
 	double	fact;
@@ -13,20 +13,20 @@ double	cos_angle_light(t_light *light,t_intersec *inter, t_vec3 *n)
 	return (fact);
 }
 
-t_color diffuse(t_light *light, double kd, double fact)
+t_color	diffuse(t_light *light, double kd, double fact)
 {
-	t_color color;
+	t_color	color;
 
 	color = ft_scal_color(light->color, fact * light->lbr * kd);
 	return (color);
 }
 
-t_color specular(t_light *light,t_intersec *inter, t_vec3 *n, double kd, double fact)
+t_color	specular(t_light *light, t_intersec *inter, t_vec3 *n, double kd, double fact)
 {
-	t_color color;
+	t_color	color;
 	t_vec3	inv_light_dir;
 	t_vec3	reflect_dir;
-	t_vec3  inv_ray_dir;
+	t_vec3	inv_ray_dir;
 	double	result;
 
 	fact = 2 * fact;
@@ -36,7 +36,9 @@ t_color specular(t_light *light,t_intersec *inter, t_vec3 *n, double kd, double 
 	reflect_dir = ft_normalize_vec3(&reflect_dir);
 	inv_ray_dir = ft_scalmult_vec3(&inter->ray.dir, -1);
 	result = ft_dot_vec3(&reflect_dir, &inv_ray_dir);
-	result = pow(result, 10);
+	if (result <= 0)
+		return (ft_color_create(0, 0, 0, 255));
+	result = pow(result, 2);
 	color = ft_scal_color(light->color, result * light->lbr * kd);
 	return (color);
 }

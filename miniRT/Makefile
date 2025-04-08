@@ -40,6 +40,7 @@ SRC :=	minirt.c \
 		colors/normal_intersec.c \
 		colors/colors_utils.c \
 		colors/diffuse.c \
+		colors/shadow.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \

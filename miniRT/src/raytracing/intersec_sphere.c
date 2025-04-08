@@ -52,3 +52,22 @@ double	intersect_ray_sphere(const t_sphere_obj *sphere, const t_vec3 *ray_dir)
 	result = quadratic_equation(a, b, sphere->mathsp.c_factor);
 	return (result);
 }
+
+double	intersect_light_sphere(const t_sphere_obj *sphere, const t_ray *ray)
+{
+	double		a;
+	double		b;
+	double		result;
+	t_math_sp	mathsp;
+	t_vec3		os;
+	double		r;
+
+	os = ft_diff_vec3(&ray->s, &sphere->sp.pos);
+	r = sphere->sp.r;
+	mathsp.os = os;
+	mathsp.c_factor = ft_dot_vec3(&os, &os) - r * r;
+	a = a_calculation(&ray->dir);
+	b = b_calculation(&mathsp.os, &ray->dir);
+	result = quadratic_equation(a, b, mathsp.c_factor);
+	return (result);
+}
