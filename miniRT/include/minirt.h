@@ -13,6 +13,7 @@
 # include "minirt_err.h"
 # include "graphical_system.h"
 # include "minirt_colors.h"
+# include "menu_text.h"
 
 int		ray_lauch_test(t_scene *scene);
 

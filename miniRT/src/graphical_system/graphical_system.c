@@ -36,6 +36,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
+	g_sys->menu_enable = 0;
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
 	return (0);
@@ -53,6 +54,8 @@ static void	update(void *param)
 	init_calculation(&scene->cam.pos, scene->lst_obj);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);
+	if (g_sys->menu_enable != 0)
+		menu_management(scene, g_sys);
 }
 
 int	manage_graphical_system(t_scene	*scene)

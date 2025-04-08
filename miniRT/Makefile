@@ -56,6 +56,7 @@ SRC :=	minirt.c \
 		graphical_system/event/camera_moov.c \
 		graphical_system/double_buffer.c \
 		graphical_system/graphical_system.c \
+		graphical_system/menu.c \
 		graphical_system/image.c \
 		graphical_system/window.c
 

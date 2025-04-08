@@ -87,4 +87,8 @@ void	on_event(t_scene *scene);
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
+void	key_hook_menu_enable(int key, void *param);
+
+void	menu_management(t_scene *scene, t_graph_sys *g_sys);
+
 #endif
