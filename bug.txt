@@ -1,0 +1,6 @@
+Rotation camera
+bruit quand la light est inclut dans le plan
+optimisation des ordre des objets
+underflow parsing(uni8_t)
+vector normaliser parsing;
+
