@@ -37,7 +37,7 @@ static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 		n = get_normal_plane(&cyl->cy.dir, inter);
 	else 
 	{
-		tmp_v2 = ft_scalmult_vec3(&cyl->cy.dir, m); 
+		tmp_v2 = ft_scalmult_vec3(&cyl->cy.dir, m);
 		n = ft_diff_vec3(&tmp_v, &tmp_v2);
 		n = ft_normalize_vec3(&n);
 	}

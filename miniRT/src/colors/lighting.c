@@ -50,6 +50,11 @@ t_color lighting(t_intersec *inter, t_list *lst_light, t_amb *amb)
 	{
 		light = (t_light *)lst_light->content;
 		cos_angle = cos_angle_light(light, inter, &n);
+		if (cos_angle <= 0)
+		{
+			lst_light = lst_light->next;
+			continue ;
+		}
 		total_light = ft_sum_colors(total_light, diffuse(light, kd, cos_angle));
 		spec_effect = ft_sum_colors(spec_effect , specular(light, inter, &n, kd, cos_angle));
 		lst_light = lst_light->next;
