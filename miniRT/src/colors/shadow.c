@@ -10,7 +10,7 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 		dist = intersect_light_plane((t_plane_obj *)(obj->data),
 				ray);
 	else if (obj->type == SPHERE)
-		dist = intersect_light_sphere((t_sphere_obj *)(obj->data),
+		dist = intersect_light_sphere(&((t_sphere_obj *)(obj->data))->sp,
 				ray);
 	else if (obj->type == CYLINDER)
 		dist = intersect_light_cylinder(&((t_cylinder_obj *)(obj->data))->cy, ray);
