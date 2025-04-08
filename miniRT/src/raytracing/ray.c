@@ -13,8 +13,10 @@ static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 		dist = intersect_ray_plane((t_plane_obj *)(obj->data),
 				&inter->ray);
 	else if (obj->type == CYLINDER)
-		dist = intersect_ray_cylinder((t_cylinder_obj *)(obj->data),
-				&inter->ray);
+	{
+		t_cylinder_obj	*cy_obj = (t_cylinder_obj *)(obj->data);
+		dist = intersect_ray_cylinder(&cy_obj->cy, &cy_obj->mathcy, &inter->ray);
+	}
 	else
 		dist = INFINITY;
 	return (dist);

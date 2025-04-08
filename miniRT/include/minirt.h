@@ -20,6 +20,7 @@ double	length_screen(double fov);
 double	quadratic_equation(double a, double b, double c);
 
 void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj);
+void	init_math_cylinder(const t_vec3 *ray_s, const t_cylinder *cy, t_math_cy *mathcy);
 
 double	intersect_ray_plane_value(double os_dot_odir, double raydir_dot_odir);
 double	intersect_ray_plane(const t_plane_obj *plane, const t_ray *ray);
@@ -28,6 +29,7 @@ double	intersect_light_plane(const t_plane_obj *plane, const t_ray *ray);
 double	intersect_ray_sphere(const t_sphere_obj *sphere, const t_vec3 *ray_dir);
 double	intersect_light_sphere(const t_sphere_obj *sphere, const t_ray *ray);
 
-double	intersect_ray_cylinder(const t_cylinder_obj *cyl, const t_ray *ray);
+double	intersect_ray_cylinder(const t_cylinder *cy, const t_math_cy *mathcy, const t_ray *ray);
+double	intersect_light_cylinder(const t_cylinder *cy, const t_ray *ray);
 
 #endif

@@ -13,25 +13,24 @@ static void	init_math_sphere(const t_vec3 *ray_s, t_sphere_obj *sphere)
 	sphere->mathsp.c_factor = ft_dot_vec3(&os, &os) - r * r;
 }
 
-static void	init_math_cylinder(const t_vec3 *ray_s, t_cylinder_obj *cy_obj)
+void	init_math_cylinder(const t_vec3 *ray_s, const t_cylinder *cy, t_math_cy *mathcy)
 {
 	t_vec3	os;
 	double	r;
 	double	os_dot_odir;
 	t_vec3	tmp;
 
-	os = ft_diff_vec3(ray_s, &cy_obj->cy.pos);
-	r = cy_obj->cy.r;
-	os_dot_odir = ft_dot_vec3(&os, &cy_obj->cy.dir);
-	tmp = ft_scalmult_vec3(&cy_obj->cy.dir, cy_obj->cy.hh);
-	cy_obj->mathcy.os = os;
-	cy_obj->mathcy.os_dot_odir = os_dot_odir;
-	cy_obj->mathcy.c_factor = ft_dot_vec3(&os, &os) - os_dot_odir * os_dot_odir
-		- r * r;
-	cy_obj->mathcy.b = ft_diff_vec3(&cy_obj->cy.pos, &tmp);
-	cy_obj->mathcy.t = ft_sum_vec3(&cy_obj->cy.pos, &tmp);
-	cy_obj->mathcy.bs_dot_odir = os_dot_odir + cy_obj->cy.hh;
-	cy_obj->mathcy.ts_dot_odir = os_dot_odir - cy_obj->cy.hh;
+	os = ft_diff_vec3(ray_s, &cy->pos);
+	r = cy->r;
+	os_dot_odir = ft_dot_vec3(&os, &cy->dir);
+	tmp = ft_scalmult_vec3(&cy->dir, cy->hh);
+	mathcy->os = os;
+	mathcy->os_dot_odir = os_dot_odir;
+	mathcy->c_factor = ft_dot_vec3(&os, &os) - os_dot_odir * os_dot_odir - r * r;
+	mathcy->b = ft_diff_vec3(&cy->pos, &tmp);
+	mathcy->t = ft_sum_vec3(&cy->pos, &tmp);
+	mathcy->bs_dot_odir = os_dot_odir + cy->hh;
+	mathcy->ts_dot_odir = os_dot_odir - cy->hh;
 }
 
 static void	init_math_plane(const t_vec3 *ray_s, t_plane_obj *plane)
@@ -57,7 +56,10 @@ void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj)
 		if (obj->type == SPHERE)
 			init_math_sphere(ray_s, (t_sphere_obj *)(obj->data));
 		else if (obj->type == CYLINDER)
-			init_math_cylinder(ray_s, (t_cylinder_obj *)(obj->data));
+		{
+			t_cylinder_obj *cy_obj = (t_cylinder_obj *)(obj->data);
+			init_math_cylinder(ray_s, &cy_obj->cy, &cy_obj->mathcy);
+		}
 		else if (obj->type == PLANE)
 			init_math_plane(ray_s, (t_plane_obj *)(obj->data));
 		lst_obj = lst_obj->next;

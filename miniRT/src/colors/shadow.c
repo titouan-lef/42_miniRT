@@ -6,15 +6,14 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 {
 	double	dist;
 
-	/*else if (obj->type == CYLINDER)
-		dist = intersect_light_cylinder((t_cylinder_obj *)(obj->data),
-				&ray);*/
 	if (obj->type == PLANE)
 		dist = intersect_light_plane((t_plane_obj *)(obj->data),
 				ray);
 	else if (obj->type == SPHERE)
 		dist = intersect_light_sphere((t_sphere_obj *)(obj->data),
 				ray);
+	else if (obj->type == CYLINDER)
+		dist = intersect_light_cylinder(&((t_cylinder_obj *)(obj->data))->cy, ray);
 	else
 		dist = INFINITY;
 	return (dist);
@@ -34,7 +33,7 @@ int	shadow(t_list *lst_obj, t_light *light, t_vec3 *p)
 	{
 		obj = (t_obj *)lst_obj->content;
 		dist = intersect_light(obj, &ray);
-		if (dist < dist_min - 0.01)//@todo check precision 
+		if (dist < dist_min - 0.01)//@todo check precision
 			return (1);
 		lst_obj = lst_obj->next;
 	}
