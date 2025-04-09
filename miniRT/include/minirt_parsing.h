@@ -51,7 +51,7 @@ int		light_interpreter(t_scene *scene, char **tab);
 int		sphere_interpreter(t_scene *scene, char **tab);
 
 /***********************************************
- *  @file parsing_plan.c
+ *  @file parsing_plane.c
  ***********************************************/
 int		plan_interpreter(t_scene *scene, char **tab);
 

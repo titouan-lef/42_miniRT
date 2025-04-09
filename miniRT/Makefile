@@ -30,13 +30,13 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
-		raytracing/equation/equation_cy.c \
-		raytracing/equation/equation_pl.c \
-		raytracing/equation/equation_sp.c \
+		raytracing/equation/equation_cylinder.c \
+		raytracing/equation/equation_plane.c \
+		raytracing/equation/equation_sphere.c \
 		raytracing/ray.c \
-		raytracing/intersec_plan.c \
-		raytracing/intersec_sphere.c \
-		raytracing/intersec_cylinder.c \
+		raytracing/intersect_plane.c \
+		raytracing/intersect_sphere.c \
+		raytracing/intersect_cylinder.c \
 		raytracing/init_calculation.c \
 		raytracing/calculation.c \
 		colors/lighting.c \
@@ -50,7 +50,7 @@ SRC :=	minirt.c \
 		parsing/parsing_cylinder.c \
 		parsing/parsing_error.c \
 		parsing/parsing_light.c \
-		parsing/parsing_plan.c \
+		parsing/parsing_plane.c \
 		parsing/parsing_vector.c \
 		parsing/parsing_sphere.c \
 		parsing/parsing_utils.c \
