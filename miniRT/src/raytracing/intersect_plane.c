@@ -2,7 +2,8 @@
 
 #include "minirt.h"
 
-static double	intersect_pl(const t_plane *pl, double os_dot_odir, const t_vec3 *ray_dir)
+static double	intersect_pl(const t_plane *pl, double os_dot_odir,
+	const t_vec3 *ray_dir)
 {
 	double	result;
 	double	raydir_dot_odir;

@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-static	void init_calculation_sp(const t_vec3 *ray_s, const t_obj *obj)
+static void	init_calculation_sp(const t_vec3 *ray_s, const t_obj *obj)
 {
 	t_sphere_obj	*sp_obj;
 
@@ -10,7 +10,7 @@ static	void init_calculation_sp(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_sp(ray_s, &sp_obj->sp, &sp_obj->mathsp);
 }
 
-static	void init_calculation_pl(const t_vec3 *ray_s, const t_obj *obj)
+static void	init_calculation_pl(const t_vec3 *ray_s, const t_obj *obj)
 {
 	t_plane_obj	*pl_obj;
 
@@ -18,7 +18,7 @@ static	void init_calculation_pl(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_pl(ray_s, &pl_obj->pl, &pl_obj->math_os_dot_odir);
 }
 
-static	void init_calculation_cy(const t_vec3 *ray_s, const t_obj *obj)
+static void	init_calculation_cy(const t_vec3 *ray_s, const t_obj *obj)
 {
 	t_cylinder_obj	*cy_obj;
 
@@ -26,7 +26,7 @@ static	void init_calculation_cy(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_cy(ray_s, &cy_obj->cy, &cy_obj->mathcy);
 }
 
-/*static	void init_calculation_co(const t_vec3 *ray_s, const t_obj *obj)
+/*static void	init_calculation_co(const t_vec3 *ray_s, const t_obj *obj)
 {
 	t_cone_obj	*co_obj;
 

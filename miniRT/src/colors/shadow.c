@@ -16,6 +16,7 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 		dist = INFINITY;
 	return (dist);
 }
+
 int	shadow(t_list *lst_obj, t_light *light, t_vec3 *p)
 {
 	t_ray	ray;

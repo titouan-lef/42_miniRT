@@ -15,7 +15,8 @@ static int	is_in_height(const t_ray *ray, const t_cylinder *cy, double t)
 	return (height <= cy->hh);
 }
 
-static double	inter_infinite_cy(const t_cylinder *cy, const t_math_cy *mathcy, const t_ray *ray, double raydir_dot_odir)
+static double	inter_infinite_cy(const t_cylinder *cy,
+	const t_math_cy *mathcy, const t_ray *ray, double raydir_dot_odir)
 {
 	double	result;
 
@@ -29,7 +30,8 @@ static double	inter_infinite_cy(const t_cylinder *cy, const t_math_cy *mathcy, c
  * @brief Get the smallest factor of intersection greater than or equal to 1.
  * @details
  */
-static double	intersect_cy(const t_cylinder *cy, const t_math_cy *mathcy, const t_ray *ray)
+static double	intersect_cy(const t_cylinder *cy, const t_math_cy *mathcy,
+	const t_ray *ray)
 {
 	double	result;
 	double	raydir_dot_odir;

@@ -45,10 +45,13 @@ void	init_math_pl(const t_vec3 *ray_s, const t_plane *pl, double *mathpl);
 
 /** @file equation_sphere.c */
 double	solve_eq_sp(const t_math_sp *mathsp, const t_vec3 *ray_dir);
-void	init_math_sp(const t_vec3 *ray_s, const t_sphere *sp, t_math_sp *mathsp);
+void	init_math_sp(const t_vec3 *ray_s, const t_sphere *sp,
+			t_math_sp *mathsp);
 
 /** @file equation_cylinder.c */
-double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray, double raydir_dot_odir);
-void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy, t_math_cy *mathcy);
+double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray,
+			double raydir_dot_odir);
+void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
+			t_math_cy *mathcy);
 
 #endif
