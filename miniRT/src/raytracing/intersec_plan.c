@@ -2,36 +2,34 @@
 
 #include "minirt.h"
 
-double	intersect_ray_plane_value(double os_dot_odir, double raydir_dot_odir)
+static double	intersect_pl(const t_plane *pl, double os_dot_odir, const t_vec3 *ray_dir)
 {
-	double	t;
+	double	result;
+	double	raydir_dot_odir;
 
-	if (raydir_dot_odir == 0)
-		return (INFINITY);
-	t = -os_dot_odir / raydir_dot_odir;
-	if (t < 1)
-		return (INFINITY);
-	return (t);
+	raydir_dot_odir = ft_dot_vec3(&pl->n, ray_dir);
+	result = solve_eq_pl(os_dot_odir, raydir_dot_odir);
+	return (result);
 }
 
-double	intersect_ray_plane(const t_plane_obj *plane, const t_ray *ray)
+double	intersect_ray_pl(const t_obj *obj, const t_vec3 *ray_dir)
 {
-	double	raydir_dot_odir;
-	double	t;
+	double		result;
+	t_plane_obj	*pl_obj;
 
-	raydir_dot_odir = ft_dot_vec3(&plane->pl.n, &ray->dir);
-	t = intersect_ray_plane_value(plane->math_os_dot_odir, raydir_dot_odir);
-	return (t);
+	pl_obj = (t_plane_obj *)obj->data;
+	result = intersect_pl(&pl_obj->pl, pl_obj->math_os_dot_odir, ray_dir);
+	return (result);
 }
 
-double	intersect_light_plane(const t_plane_obj *plane, const t_ray *ray)
+double	intersect_light_pl(const t_obj *obj, const t_ray *ray)
 {
-	double	raydir_dot_odir;
-	double	math_os_dot_odir;
-	double	t;
+	double		result;
+	t_plane_obj	*pl_obj;
+	double		os_dot_odir;
 
-	math_os_dot_odir = plane->pl.d + ft_dot_vec3(&plane->pl.n, &ray->s);
-	raydir_dot_odir = ft_dot_vec3(&plane->pl.n, &ray->dir);
-	t = intersect_ray_plane_value(math_os_dot_odir, raydir_dot_odir);
-	return (t);
+	pl_obj = (t_plane_obj *)obj->data;
+	init_math_pl(&ray->s, &pl_obj->pl, &os_dot_odir);
+	result = intersect_pl(&pl_obj->pl, os_dot_odir, &ray->dir);
+	return (result);
 }

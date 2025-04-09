@@ -7,12 +7,11 @@ static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 	double	dist;
 
 	if (obj->type == SPHERE)
-		dist = intersect_ray_sphere(obj, &inter->ray.dir);
+		dist = intersect_ray_sp(obj, &inter->ray.dir);
 	else if (obj->type == PLANE)
-		dist = intersect_ray_plane((t_plane_obj *)(obj->data),
-				&inter->ray);
+		dist = intersect_ray_pl(obj, &inter->ray.dir);
 	else if (obj->type == CYLINDER)
-		dist = intersect_ray_cylinder(obj, &inter->ray);
+		dist = intersect_ray_cy(obj, &inter->ray);
 	else
 		dist = INFINITY;
 	return (dist);

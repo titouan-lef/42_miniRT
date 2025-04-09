@@ -31,6 +31,7 @@ SRC_DIR :=	src/
 
 SRC :=	minirt.c \
 		raytracing/equation/equation_cy.c \
+		raytracing/equation/equation_pl.c \
 		raytracing/equation/equation_sp.c \
 		raytracing/ray.c \
 		raytracing/intersec_plan.c \
