@@ -64,6 +64,7 @@ SRC :=	minirt.c \
 		graphical_system/event/event.c \
 		graphical_system/event/camera_moov.c \
 		graphical_system/event/event_menu.c \
+		graphical_system/put_menu.c \
 		graphical_system/event/event_obj_moov.c
 
 #---------- BONUS ----------#

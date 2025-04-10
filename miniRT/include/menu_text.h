@@ -5,40 +5,24 @@
 
 # include "minirt.h"
 
-# ifndef OBJ_T
-#  define OBJ_T "Object Translation:"
+# ifndef X
+#  define X "On X axis"
 # endif
 
-# ifndef OBJ_R
-#  define OBJ_R "Object Rotation:"
+# ifndef Y
+#  define Y "On Y axis"
 # endif
 
-# ifndef LGT_T
-#  define LGT_T "Light:"
+# ifndef Z
+#  define Z "On Z axis"
 # endif
 
-# ifndef X_T
-#  define X_T "Translation on the X axis"
+# ifndef D
+#  define D "Change Diameter"
 # endif
 
-# ifndef X_R
-#  define X_R "Rotation on the X axis"
-# endif
-
-# ifndef Y_T
-#  define Y_T "Translation on the Y axis"
-# endif
-
-# ifndef Y_R
-#  define Y_R "Rotation on the Y axis"
-# endif
-
-# ifndef Z_T
-#  define Z_T "Translation on the Z axis"
-# endif
-
-# ifndef Z_R
-#  define Z_R "Rotation on the Z axis"
+# ifndef H
+#  define H "Change Height"
 # endif
 
 # ifndef M
@@ -51,6 +35,50 @@
 
 # ifndef M_L
 #  define M_L "Press L for select Light"
+# endif
+
+# ifndef LGT
+#  define LGT "Translation of Light"
+# endif
+
+# ifndef OBJ_SP_T
+#  define OBJ_SP_T "Translation of Sphere"
+# endif
+
+# ifndef OBJ_SP_S
+#  define OBJ_SP_S "Size of Sphere"
+# endif
+
+# ifndef OBJ_PL_T
+#  define OBJ_PL_T "Translation of Plane"
+# endif
+
+# ifndef OBJ_PL_R
+#  define OBJ_PL_R "Rotation of Plane"
+# endif
+
+# ifndef OBJ_CY_T
+#  define OBJ_CY_T "Translation of Cylinder"
+# endif
+
+# ifndef OBJ_CY_R
+#  define OBJ_CY_R "Rotation of Cylinder"
+# endif
+
+# ifndef OBJ_CY_S
+#  define OBJ_CY_S "Size of Cylinder"
+# endif
+
+# ifndef OBJ_CO_T
+#  define OBJ_CO_T "Translation of Cone"
+# endif
+
+# ifndef OBJ_CO_R
+#  define OBJ_CO_R "Rotation of Cone"
+# endif
+
+# ifndef OBJ_CO_S
+#  define OBJ_CO_S "Size of Cone"
 # endif
 
 #endif
