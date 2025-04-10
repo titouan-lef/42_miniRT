@@ -78,6 +78,8 @@ typedef struct s_cam
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	right;
+	t_vec3	up;
 	int		fov;
 }	t_cam;
 
