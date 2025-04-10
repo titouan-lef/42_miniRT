@@ -178,7 +178,7 @@ typedef struct s_menu
 	int		enable;
 	int		select_obj;
 	int		select_l;
-	int 	select_data;
+	int		select_data;
 	t_obj	*obj;
 	t_light	*light;
 }	t_menu;

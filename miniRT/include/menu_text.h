@@ -43,15 +43,14 @@
 
 # ifndef M
 #  define M "Menu:"
-#endif
+# endif
 
 # ifndef M_O
 #  define M_O "Press O for select Object"
-#endif
+# endif
 
 # ifndef M_L
 #  define M_L "Press L for select Light"
-#endif
-
+# endif
 
 #endif
