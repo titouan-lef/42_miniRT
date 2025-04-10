@@ -26,14 +26,6 @@ static void	init_calculation_cy(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_cy(ray_s, &cy_obj->cy, &cy_obj->mathcy);
 }
 
-/*static void	init_calculation_co(const t_vec3 *ray_s, const t_obj *obj)
-{
-	t_cone_obj	*co_obj;
-
-	co_obj = (t_cone_obj *)(obj->data);
-	init_math_co(ray_s, &co_obj->co, &co_obj->mathco);
-}
-*/
 void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj)
 {
 	t_obj	*obj;
