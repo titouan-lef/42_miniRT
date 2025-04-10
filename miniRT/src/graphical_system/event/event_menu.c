@@ -30,26 +30,6 @@ static void	key_hook_menu_handle(int key, void *param)
 	}
 }
 
-void	key_hook_select_moov(int key, void *param)
-{
-	t_menu	*menu;
-
-	menu = (t_menu *)param;
-	if (key == SDL_SCANCODE_R)
-		menu->select_rotation = 1 - menu->select_rotation;
-}
-
-static void	key_hook_menu_defile(int key, void *param)
-{
-	t_menu	*menu;
-
-	menu = (t_menu *)param;
-	if (key == SDL_SCANCODE_UP)
-		defile(&menu->select_data, 1, 3, -1);
-	else if (key == SDL_SCANCODE_DOWN)
-		defile(&menu->select_data, 1, 3, 1);
-}
-
 static void	key_hook_select_obj(int key, void *param)
 {
 	t_scene			*scene;
@@ -92,22 +72,27 @@ static void	key_hook_select_light(int key, void *param)
 		scene->g_sys.menu.light = (t_light *)next->content;
 	}
 }
-void	data_change(int key, void *param)
+
+void	key_hook_select_change(int key, void *param)
 {
 	t_menu	*menu;
 
 	menu = (t_menu *)param;
-	if (menu->select_l != 0)
+	if (key == SDL_SCANCODE_UP)
+		defile(&menu->select_data, 1, 3, -1);
+	if (key == SDL_SCANCODE_DOWN)
+		defile(&menu->select_data, 1, 3, 1);
+	if (key == SDL_SCANCODE_R)
 	{
-		key_hook_light_translation(key, param);
+		menu->select_rotation = 1 - menu->select_rotation;
+		if (menu->select_resize == 1)
+			menu->select_resize = 1 - menu->select_resize;
 	}
-	if (menu->select_obj != 0)
+	if (key == SDL_SCANCODE_H)
 	{
-		key_hook_select_moov(key, param);
-		if (menu->select_rotation != 0)
-			key_hook_obj_rotation(key, param);
-		else
-			key_hook_obj_translation(key, param);
+		menu->select_resize = 1 - menu->select_resize;
+		if (menu->select_rotation == 1)
+			menu->select_rotation = 1 - menu->select_rotation;
 	}
 }
 
@@ -115,8 +100,6 @@ void	menu_event(t_scene *scene)
 {
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_menu_handle, &scene->g_sys.menu);
-	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
-		key_hook_menu_defile, &scene->g_sys.menu);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_obj, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,

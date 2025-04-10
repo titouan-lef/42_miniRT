@@ -17,6 +17,7 @@ void	init_menu(t_menu *menu)
 	menu->select_obj = 0;
 	menu->select_l = 0;
 	menu->select_rotation = 0;
+	menu->select_resize = 0;
 	menu->select_data = 1;
 }
 

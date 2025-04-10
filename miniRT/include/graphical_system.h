@@ -95,12 +95,13 @@ void	init_menu(t_menu *menu);
 t_vec3	*get_vec_pos(t_obj *obj);
 t_vec3	*get_vec_dir(t_obj *obj);
 
-
 void	menu_management(t_graph_sys *g_sys);
 void	menu_event(t_scene *scene);
 
+void	menu_obj_display(t_graph_sys *g_sys);
+void	put_menu(t_graph_sys *g_sys, const char **text);
 
-void	key_hook_light_translation(int key, void *param);
-void	key_hook_obj_translation(int key, void *param);
-void	key_hook_obj_rotation(int key, void *param);
+void	key_hook_select_change(int key, void *param);
+void	data_change(int key, void *param);
+
 #endif

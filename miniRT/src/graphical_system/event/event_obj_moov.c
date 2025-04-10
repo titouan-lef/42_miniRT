@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-void	key_hook_light_translation(int key, void *param)
+static void	key_hook_light_translation(int key, void *param)
 {
 	t_menu	*menu;
 	double	moov;
@@ -21,7 +21,7 @@ void	key_hook_light_translation(int key, void *param)
 		menu->light->pos.z += moov;
 }
 
-void	key_hook_obj_translation(int key, void *param)
+static void	key_hook_obj_translation(int key, void *param)
 {
 	t_menu	*menu;
 	t_vec3	*data;
@@ -42,7 +42,7 @@ void	key_hook_obj_translation(int key, void *param)
 		data->z += moov;
 }
 
-void	key_hook_obj_rotation(int key, void *param)
+static void	key_hook_obj_rotation(int key, void *param)
 {
 	t_menu	*menu;
 	t_vec3	*data;
@@ -60,10 +60,44 @@ void	key_hook_obj_rotation(int key, void *param)
 	data = get_vec_dir(menu->obj);
 	moov = 0;
 	if (data == NULL || (axis.x == 0 && axis.y == 0 && axis.z == 0))
-		return;
+		return ;
 	if (key == SDL_SCANCODE_RIGHT)
-		moov =  M_PI / 90;
+		moov = M_PI / 90;
 	else if (key == SDL_SCANCODE_LEFT)
 		moov = -M_PI / 90;
 	*data = ft_rotation_quat(data, moov, &axis);
+}
+
+static void	key_hook_obj_resize(int key, void *param)
+{
+	t_menu	*menu;
+	double	add;
+
+	menu = (t_menu *)param;
+	add = 0;
+	if (key == SDL_SCANCODE_RIGHT)
+		add = 50;
+	else if (key == SDL_SCANCODE_LEFT)
+		add = -50;
+}
+
+void	data_change(int key, void *param)
+{
+	t_menu	*menu;
+
+	menu = (t_menu *)param;
+	if (menu->select_l != 0)
+	{
+		key_hook_light_translation(key, param);
+	}
+	if (menu->select_obj != 0)
+	{
+		key_hook_select_change(key, param);
+		if (menu->select_rotation != 0)
+			key_hook_obj_rotation(key, param);
+		else if (menu->select_resize != 0)
+			key_hook_obj_resize(key, param);
+		else
+			key_hook_obj_translation(key, param);
+	}
 }
