@@ -94,19 +94,19 @@ static void	key_hook_select_light(int key, void *param)
 	}
 }
 
-static void	key_hook_obj_and_light_translation(int key, void *param)
+void	key_hook_obj_and_light_translation(int key, void *param)
 {
 	t_menu	*menu;
 	t_vec3	*data;
 	double	moov;
 
 	menu = (t_menu *)param;
-	if (menu->select_l != 0)
-		data = &menu->light->pos;
-	else
-		data = get_vec_pos(menu->obj);
 	if (menu->select_obj != 0 || menu->select_l != 0)
-	{
+	{ 
+		if (menu->select_l != 0)
+		data = &menu->light->pos;
+		else
+		data = get_vec_pos(menu->obj);
 		moov = 0.00000;
 		if (key == SDL_SCANCODE_RIGHT)
 			moov = 50;

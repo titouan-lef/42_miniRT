@@ -60,7 +60,15 @@ void	menu_selec_display(t_graph_sys *g_sys)
 		y += 15;
 		i++;
 	}
+	char chaine[50];//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->x);//debug
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, 60, clr, chaine);//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->y);//debug
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, 75, clr, chaine);//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->z);//debug
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, 90, clr, chaine);//debug
 }
+
 
 void	menu_management(t_graph_sys *g_sys)
 {

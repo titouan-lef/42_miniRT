@@ -181,6 +181,7 @@ typedef struct s_menu
 	int		select_data;
 	t_obj	*obj;
 	t_light	*light;
+	t_vec3	*cam_dir;
 }	t_menu;
 
 /***********************************************

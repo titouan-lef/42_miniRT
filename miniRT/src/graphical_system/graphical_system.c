@@ -55,7 +55,10 @@ static void	update(void *param)
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.enable != 0)
+	{
+		scene->g_sys.menu.cam_dir = &scene->cam.dir;//debug
 		menu_management(g_sys);
+	}
 }
 
 int	manage_graphical_system(t_scene	*scene)
