@@ -7,15 +7,19 @@ static double	a_calculation(double angle_factor, double raydir_dot_odir)
 	return (1 - angle_factor * raydir_dot_odir * raydir_dot_odir);
 }
 
-static double	b_calculation(const t_math_co *mathco, const t_vec3 *raydir, double raydir_dot_odir)
+static double	b_calculation(const t_math_co *mathco, const t_vec3 *raydir,
+	double raydir_dot_odir)
 {
 	double	dot;
+	double	product;
 
 	dot = ft_dot_vec3(&mathco->bs, raydir);
-	return (2.0 * (dot - mathco->angle_factor * mathco->bs_dot_odir * raydir_dot_odir));
+	product = mathco->angle_factor * mathco->bs_dot_odir * raydir_dot_odir;
+	return (2.0 * (dot - product));
 }
 
-static double	c_calculation(const t_vec3 *bs, double bs_dot_odir, double angle_factor)
+static double	c_calculation(const t_vec3 *bs, double bs_dot_odir,
+	double angle_factor)
 {
 	double	dot;
 
@@ -48,7 +52,7 @@ void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco)
 	b = ft_diff_vec3(&co->pos, &tmp);
 	bs = ft_diff_vec3(ray_s, &b);
 	bs_dot_odir = ft_dot_vec3(&bs, &co->dir);
-	angle_factor =  co->r / co->h;
+	angle_factor = co->r / co->h;
 	angle_factor = 1 + angle_factor * angle_factor;
 	mathco->b = b;
 	mathco->bs = bs;

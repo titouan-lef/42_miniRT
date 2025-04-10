@@ -30,7 +30,7 @@ static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 	double	m;
 
 	if (ft_distance_vec3(&cyl->mathcy.b, &inter->p) <= cyl->cy.r
-			|| ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
+		|| ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
 		n = get_normal_plane(&cyl->cy.dir, inter);
 	else
 	{
