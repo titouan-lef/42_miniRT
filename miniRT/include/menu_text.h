@@ -41,4 +41,17 @@
 #  define Z_R "Rotation on the Z axis"
 # endif
 
+# ifndef M
+#  define M "Menu:"
+#endif
+
+# ifndef M_O
+#  define M_O "Press O for select Object"
+#endif
+
+# ifndef M_L
+#  define M_L "Press L for select Light"
+#endif
+
+
 #endif

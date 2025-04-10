@@ -5,8 +5,8 @@
 void	menu_obj_display(t_graph_sys *g_sys)
 {
 	mlx_color	color[7];
-	int i;
-	
+	int			i;
+
 	i = 0;
 	while (i < 7)
 		color[i++].rgba = 0xFFFFFFFF;
@@ -24,21 +24,39 @@ void	menu_obj_display(t_graph_sys *g_sys)
 
 void	menu_light_display(t_graph_sys *g_sys)
 {
-	mlx_color	color[4];
-	const char	*message[4] = {LGT_T, X_T, Y_T, Z_T};
+	mlx_color	clr[4];
+	const char	*text[4] = {LGT_T, X_T, Y_T, Z_T};
 	int			i;
 	int			y;
 
 	i = 0;
-	y = 165;
+	y = 15;
 	while (i < 4)
-		color[i++].rgba = 0xFFFFFFFF;
+		clr[i++].rgba = 0xFFFFFFFF;
 	if (g_sys->menu.select_l != 0)
-		color[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
 	i = 0;
 	while (i < 4)
 	{
-		mlx_string_put(g_sys->mlx, g_sys->win, 1, y, color[i], (char *)message[i]);
+		mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[i], (char *)text[i]);
+		y += 15;
+		i++;
+	}
+}
+
+void	menu_selec_display(t_graph_sys *g_sys)
+{
+	mlx_color	clr;
+	const char	*text[3] = {M, M_O, M_L};
+	int			i;
+	int			y;
+
+	i = 0;
+	y = 15;
+	clr.rgba = 0xFFFFFFFF;
+	while (i < 3)
+	{
+		mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr, (char *)text[i]);
 		y += 15;
 		i++;
 	}
@@ -46,6 +64,10 @@ void	menu_light_display(t_graph_sys *g_sys)
 
 void	menu_management(t_graph_sys *g_sys)
 {
-	menu_obj_display(g_sys);
-	menu_light_display(g_sys);
+	if (g_sys->menu.select_l == 0 && g_sys->menu.select_obj == 0)
+		menu_selec_display(g_sys);
+	if (g_sys->menu.select_obj != 0)
+		menu_obj_display(g_sys);
+	else if (g_sys->menu.select_l != 0)
+		menu_light_display(g_sys);
 }
