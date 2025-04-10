@@ -56,7 +56,7 @@ static void	update(void *param)
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.enable != 0)
 	{
-		scene->g_sys.menu.cam_dir = &scene->cam.dir;//debug
+		scene->g_sys.menu.cam = &scene->cam;//debug
 		menu_management(g_sys);
 	}
 }

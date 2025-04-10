@@ -54,16 +54,29 @@ static void	raytracers(const t_list *lst_obj, t_intersec *inter)
 static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
 {
 	t_ray	ray;
+	t_vec3	local_dir_normalise;
+
+	ray.s = cam->pos;
+	local_dir_normalise = ft_normalize_vec3(local_dir);
+	ray.dir.x = cam->right.x * local_dir_normalise.x + cam->up.x * local_dir_normalise.y + cam->dir.x + local_dir_normalise.z;
+	ray.dir.y = cam->right.y * local_dir_normalise.x + cam->up.y * local_dir_normalise.y + cam->dir.y + local_dir_normalise.z;
+	ray.dir.z = cam->right.z * local_dir_normalise.x + cam->up.z * local_dir_normalise.y + cam->dir.z + local_dir_normalise.z;
+	return (ray);
+
+	/*
+	t_ray	ray;
 	t_vec3	axis;
 	t_vec3	local_cam_dir;
+	t_vec3	cam_right;
 	t_vec3	tmp;
 	double	angle;
 
 	ray.s = cam->pos;
 	ray.dir = ft_normalize_vec3(local_dir);
 	local_cam_dir = ft_create_vec3(0, 0, 1);
-	if (cam->dir.x == local_cam_dir.x && cam->dir.y == local_cam_dir.y && cam->dir.z == local_cam_dir.z)
-		return (ray);
+	cam_right = ft_create_vec3(1, 0, 0);
+	//if (cam->dir.x == local_cam_dir.x && cam->dir.y == local_cam_dir.y && cam->dir.z == local_cam_dir.z)
+		//return (ray);
 
 	tmp = ft_create_vec3(cam->dir.x, 0, cam->dir.z);
 	tmp = ft_normalize_vec3(&tmp);
@@ -73,6 +86,7 @@ static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
 		angle = -angle;
 	axis = ft_create_vec3(0, 1, 0);
 	ray.dir = ft_rotation_quat(&ray.dir, angle, &axis);
+	cam_right = ft_rotation_quat(&cam_right, angle, &axis);
 
 	angle = ft_dot_vec3(&tmp, &cam->dir);
 	angle = acos(angle);
@@ -80,8 +94,13 @@ static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
 		angle = -angle;
 	axis = ft_create_vec3(1, 0, 0);
 	ray.dir = ft_rotation_quat(&ray.dir, angle, &axis);
+	cam_right = ft_rotation_quat(&cam_right, angle, &axis);
 
-	return (ray);
+	angle = ft_dot_vec3(&cam_right, &cam->right);
+	angle = acos(angle);
+	ray.dir = ft_rotation_quat(&ray.dir, angle, &cam->dir);
+
+	return (ray);*/
 
 	/*axis = ft_cross_vec3(&local_cam_dir, &cam->dir);
 	if (ft_is_zero_vec3(&axis))
