@@ -30,10 +30,12 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
+		raytracing/equation/equation_cone.c \
 		raytracing/equation/equation_cylinder.c \
 		raytracing/equation/equation_plane.c \
 		raytracing/equation/equation_sphere.c \
 		raytracing/ray.c \
+		raytracing/intersect_cone.c \
 		raytracing/intersect_plane.c \
 		raytracing/intersect_sphere.c \
 		raytracing/intersect_cylinder.c \

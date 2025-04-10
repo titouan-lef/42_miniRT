@@ -12,6 +12,8 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 		dist = intersect_light_sp(obj, ray);
 	else if (obj->type == CYLINDER)
 		dist = intersect_light_cy(obj, ray);
+	else if (obj->type == CONE)
+		dist = intersect_light_co(obj, ray);
 	else
 		dist = INFINITY;
 	return (dist);

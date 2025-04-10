@@ -42,13 +42,14 @@ t_color	ft_dif_colors(t_color c1, t_color c2)
 	return (result);
 }
 
-static uint8_t 	ft_clamp(uint8_t color, double k)
+static uint8_t	ft_clamp(uint8_t color, double k)
 {
 	if (k > 0 && color > 255.0 / k)
 		return (255);
 	else
 		return (color * k);
 }
+
 t_color	ft_scal_color(t_color color, double k)
 {
 	t_color	result;

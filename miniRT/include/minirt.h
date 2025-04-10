@@ -37,6 +37,10 @@ double	intersect_light_sp(const t_obj *obj, const t_ray *ray);
 double	intersect_ray_cy(const t_obj *obj, const t_ray *ray);
 double	intersect_light_cy(const t_obj *obj, const t_ray *ray);
 
+/** @file intersect_cone.c */
+double	intersect_ray_co(const t_obj *obj, const t_ray *ray);
+double	intersect_light_co(const t_obj *obj, const t_ray *ray);
+
 /***********************************************
  * @details EQUATION
  ***********************************************/
@@ -54,5 +58,10 @@ double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray,
 			double raydir_dot_odir);
 void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 			t_math_cy *mathcy);
+
+/** @file equation_cone.c */
+double	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
+			double raydir_dot_odir);
+void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
 
 #endif

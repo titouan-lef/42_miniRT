@@ -154,10 +154,22 @@ typedef struct s_cone
 	double	r;
 }	t_cone;
 
+typedef struct s_math_co
+{
+	t_vec3	b;
+	t_vec3	bs;
+	double	angle_factor;
+	double	bs_dot_odir;
+	double	c_factor;
+	t_vec3	t;
+	double	ts_dot_odir;
+}	t_math_co;
+
 typedef struct s_cone_obj
 {
-	t_color	color;
-	t_cone	co;
+	t_color		color;
+	t_cone		co;
+	t_math_co	mathco;
 }	t_cone_obj;
 
 /***********************************************
