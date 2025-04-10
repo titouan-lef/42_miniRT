@@ -55,7 +55,7 @@ static void	update(void *param)
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.enable != 0)
-		menu_management(scene, g_sys);
+		menu_management(g_sys);
 }
 
 int	manage_graphical_system(t_scene	*scene)

@@ -5,28 +5,40 @@
 
 # include "minirt.h"
 
-# ifndef CAM_T_POS
-#  define CAM_T_POS "Camera position :"
+# ifndef OBJ_T
+#  define OBJ_T "Object Translation:"
 # endif
 
-# ifndef CAM_T_DIR
-#  define CAM_T_DIR "Camera direction :"
+# ifndef OBJ_R
+#  define OBJ_R "Object Rotation:"
 # endif
 
-# ifndef OBJ_T_POS
-#  define OBJ_T_POS "Object position :"
+# ifndef LGT_T
+#  define LGT_T "Light:"
 # endif
 
-# ifndef OBJ_T_DIR
-#  define OBJ_T_DIR "Object direction :"
+# ifndef X_T
+#  define X_T "Translation on the X axis"
 # endif
 
-# ifndef LGT_T_POS
-#  define LGT_T_POS "Light position :"
+# ifndef X_R
+#  define X_R "Rotation on the X axis"
 # endif
 
-# ifndef LGT_T_DIR
-#  define LGT_T_DIR "Light direction :"
+# ifndef Y_T
+#  define Y_T "Translation on the Y axis"
+# endif
+
+# ifndef Y_R
+#  define Y_R "Rotation on the Y axis"
+# endif
+
+# ifndef Z_T
+#  define Z_T "Translation on the Z axis"
+# endif
+
+# ifndef Z_R
+#  define Z_R "Rotation on the Z axis"
 # endif
 
 #endif
