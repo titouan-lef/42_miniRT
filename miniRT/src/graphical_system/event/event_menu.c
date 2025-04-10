@@ -36,7 +36,7 @@ void	key_hook_select_moov(int key, void *param)
 
 	menu = (t_menu *)param;
 	if (key == SDL_SCANCODE_R)
-		menu->r = 1 - menu->r;
+		menu->select_rotation = 1 - menu->select_rotation;
 }
 
 static void	key_hook_menu_defile(int key, void *param)
@@ -104,7 +104,7 @@ void	data_change(int key, void *param)
 	if (menu->select_obj != 0)
 	{
 		key_hook_select_moov(key, param);
-		if (menu->r != 0)
+		if (menu->select_rotation != 0)
 			key_hook_obj_rotation(key, param);
 		else
 			key_hook_obj_translation(key, param);

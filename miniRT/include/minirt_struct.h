@@ -191,7 +191,7 @@ typedef struct s_menu
 	int		select_obj;
 	int		select_l;
 	int		select_data;
-	int		r;
+	int		select_rotation;
 	t_obj	*obj;
 	t_light	*light;
 	t_vec3	*cam_dir;//debug

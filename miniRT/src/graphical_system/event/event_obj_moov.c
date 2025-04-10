@@ -31,10 +31,7 @@ void	key_hook_obj_translation(int key, void *param)
 	moov = 0;
 	data = get_vec_pos(menu->obj);
 	if (key == SDL_SCANCODE_RIGHT)
-	{
 		moov = 50;
-		write(1, "salut", 5);
-	}
 	else if (key == SDL_SCANCODE_LEFT)
 		moov = -50;
 	if (menu->select_data == 1)
