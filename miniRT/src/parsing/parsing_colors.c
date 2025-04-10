@@ -5,6 +5,7 @@
 static char	*complete_colors(uint8_t *color, char *str)
 {
 	int		error;
+	double	clr;
 	size_t	end;
 
 	end = 0;
@@ -13,13 +14,14 @@ static char	*complete_colors(uint8_t *color, char *str)
 	if (str[end] == ',')
 	{
 		str[end] = '\0';
-		*color = (uint8_t)ft_to_number(str, &error, 255);
+		clr = ft_to_number(str, &error, 255);
 		end++;
 	}
 	else
-		*color = (uint8_t)ft_to_number(str, &error, 255);
-	if (error != 0 || *color < 0) //probleme under flow
+		clr = ft_to_number(str, &error, 255);
+	if (error != 0 || clr < 0)
 		return (NULL);
+	*color = (uint8_t)clr;
 	str += end;
 	return (str);
 }

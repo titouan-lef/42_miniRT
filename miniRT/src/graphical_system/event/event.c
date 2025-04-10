@@ -76,4 +76,5 @@ void	on_event(t_scene *scene)
 	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYUP, key_hook_fwin,
 		&scene->g_sys);
 	keydown_event(scene);
+	menu_event(scene);
 }
