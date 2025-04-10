@@ -28,7 +28,7 @@ void	menu_obj_display(t_graph_sys *g_sys)
 	const char	*translation[4] = {OBJ_T, X_T, Y_T, Z_T};
 	const char	*rotate[4] = {OBJ_R, X_R, Y_R, Z_R};
 	
-	if (g_sys->menu.r !=0)
+	if (g_sys->menu.select_rotation !=0)
 		put_menu(g_sys, rotate);
 	else 
 		put_menu(g_sys, translation);	
