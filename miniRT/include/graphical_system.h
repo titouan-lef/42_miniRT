@@ -87,9 +87,20 @@ void	on_event(t_scene *scene);
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
-void	menu_management(t_graph_sys *g_sys);
-void	menu_event(t_scene *scene);
+/***********************************************
+ * @file camera_moov.c
+ ***********************************************/
 void	defile(int *position, int start, int end, int moov);
 void	init_menu(t_menu *menu);
 t_vec3	*get_vec_pos(t_obj *obj);
+t_vec3	*get_vec_dir(t_obj *obj);
+
+
+void	menu_management(t_graph_sys *g_sys);
+void	menu_event(t_scene *scene);
+
+
+void	key_hook_light_translation(int key, void *param);
+void	key_hook_obj_translation(int key, void *param);
+void	key_hook_obj_rotation(int key, void *param);
 #endif

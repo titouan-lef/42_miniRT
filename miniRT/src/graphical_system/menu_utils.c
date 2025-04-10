@@ -16,6 +16,7 @@ void	init_menu(t_menu *menu)
 	menu->enable = 0;
 	menu->select_obj = 0;
 	menu->select_l = 0;
+	menu->r = 0;
 	menu->select_data = 1;
 }
 
@@ -29,4 +30,15 @@ t_vec3	*get_vec_pos(t_obj *obj)
 		return (&((t_cylinder_obj *)(obj->data))->cy.pos);
 	else
 		return (&((t_cone_obj *)(obj->data))->co.pos);
+}
+
+t_vec3	*get_vec_dir(t_obj *obj)
+{
+	if (obj->type == PLANE)
+		return (&((t_plane_obj *)(obj->data))->pl.n);
+	else if (obj->type == CYLINDER)
+		return (&((t_cylinder_obj *)(obj->data))->cy.dir);
+	else
+		return (&((t_cone_obj *)(obj->data))->co.dir);
+	return (NULL);
 }

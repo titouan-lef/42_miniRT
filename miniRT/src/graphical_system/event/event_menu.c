@@ -30,25 +30,24 @@ static void	key_hook_menu_handle(int key, void *param)
 	}
 }
 
+void	key_hook_select_moov(int key, void *param)
+{
+	t_menu	*menu;
+
+	menu = (t_menu *)param;
+	if (key == SDL_SCANCODE_R)
+		menu->r = 1 - menu->r;
+}
+
 static void	key_hook_menu_defile(int key, void *param)
 {
 	t_menu	*menu;
 
 	menu = (t_menu *)param;
 	if (key == SDL_SCANCODE_UP)
-	{
-		if (menu->select_l != 0)
-			defile(&menu->select_data, 1, 3, -1);
-		else
-			defile(&menu->select_data, 1, 6, -1);
-	}
+		defile(&menu->select_data, 1, 3, -1);
 	else if (key == SDL_SCANCODE_DOWN)
-	{
-		if (menu->select_l != 0)
-			defile(&menu->select_data, 1, 3, 1);
-		else
-			defile(&menu->select_data, 1, 6, 1);
-	}
+		defile(&menu->select_data, 1, 3, 1);
 }
 
 static void	key_hook_select_obj(int key, void *param)
@@ -93,31 +92,22 @@ static void	key_hook_select_light(int key, void *param)
 		scene->g_sys.menu.light = (t_light *)next->content;
 	}
 }
-
-void	key_hook_obj_and_light_translation(int key, void *param)
+void	data_change(int key, void *param)
 {
 	t_menu	*menu;
-	t_vec3	*data;
-	double	moov;
 
 	menu = (t_menu *)param;
-	if (menu->select_obj != 0 || menu->select_l != 0)
-	{ 
-		if (menu->select_l != 0)
-		data = &menu->light->pos;
+	if (menu->select_l != 0)
+	{
+		key_hook_light_translation(key, param);
+	}
+	if (menu->select_obj != 0)
+	{
+		key_hook_select_moov(key, param);
+		if (menu->r != 0)
+			key_hook_obj_rotation(key, param);
 		else
-		data = get_vec_pos(menu->obj);
-		moov = 0.00000;
-		if (key == SDL_SCANCODE_RIGHT)
-			moov = 50;
-		else if (key == SDL_SCANCODE_LEFT)
-			moov = -50;
-		if (menu->select_data == 1)
-			data->x += moov;
-		else if (menu->select_data == 2)
-			data->y += moov;
-		else if (menu->select_data == 3)
-			data->z += moov;
+			key_hook_obj_translation(key, param);
 	}
 }
 
@@ -126,11 +116,11 @@ void	menu_event(t_scene *scene)
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_menu_handle, &scene->g_sys.menu);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
+		key_hook_menu_defile, &scene->g_sys.menu);
+	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_obj, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_light, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
-		key_hook_menu_defile, &scene->g_sys.menu);
-	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
-		key_hook_obj_and_light_translation, &scene->g_sys.menu);
+		data_change, &scene->g_sys.menu);
 }
