@@ -87,4 +87,9 @@ void	on_event(t_scene *scene);
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
+void	menu_management(t_graph_sys *g_sys);
+void	menu_event(t_scene *scene);
+void	defile(int *position, int start, int end, int moov);
+void	init_menu(t_menu *menu);
+t_vec3	*get_vec_pos(t_obj *obj);
 #endif

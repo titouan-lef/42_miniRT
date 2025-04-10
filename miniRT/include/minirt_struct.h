@@ -173,6 +173,20 @@ typedef struct s_double_buffer
 }	t_double_buffer;
 
 /***********************************************
+ * @struct Menu
+ ***********************************************/
+typedef struct s_menu
+{
+	int		enable;
+	int		select_obj;
+	int		select_l;
+	int		select_data;
+	t_obj	*obj;
+	t_light	*light;
+	t_vec3	*cam_dir;
+}	t_menu;
+
+/***********************************************
  * @struct Graphical System
  ***********************************************/
 typedef struct s_graph_sys
@@ -180,6 +194,7 @@ typedef struct s_graph_sys
 	mlx_context		mlx;
 	mlx_window		win;
 	t_double_buffer	buff;
+	t_menu			menu;
 	int				def_w;
 	int				def_h;
 }	t_graph_sys;

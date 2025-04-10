@@ -31,9 +31,8 @@ static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 
 	tmp_v = ft_diff_vec3(&inter->p, &cyl->cy.pos);
 	m = ft_dot_vec3(&tmp_v, &cyl->cy.dir);
-	if (ft_distance_vec3(&cyl->mathcy.b, &inter->p) <= cyl->cy.r)
-		n = get_normal_plane(&cyl->cy.dir, inter);
-	else if (ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
+	if (ft_distance_vec3(&cyl->mathcy.b, &inter->p) <= cyl->cy.r
+			|| ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
 		n = get_normal_plane(&cyl->cy.dir, inter);
 	else
 	{
