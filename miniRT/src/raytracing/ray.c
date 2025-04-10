@@ -12,6 +12,8 @@ static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 		dist = intersect_ray_pl(obj, &inter->ray.dir);
 	else if (obj->type == CYLINDER)
 		dist = intersect_ray_cy(obj, &inter->ray);
+	else if (obj->type == CONE)
+		dist = intersect_ray_co(obj, &inter->ray);
 	else
 		dist = INFINITY;
 	return (dist);

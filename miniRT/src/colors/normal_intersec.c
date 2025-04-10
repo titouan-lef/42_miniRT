@@ -25,33 +25,41 @@ static t_vec3	get_normal_plane(t_vec3 *n_plane, t_intersec *inter)
 static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 {
 	t_vec3	n;
-	t_vec3	tmp_v;
-	t_vec3	tmp_v2;
+	t_vec3	op;
+	t_vec3	m_odir;
 	double	m;
 
-	tmp_v = ft_diff_vec3(&inter->p, &cyl->cy.pos);
-	m = ft_dot_vec3(&tmp_v, &cyl->cy.dir);
 	if (ft_distance_vec3(&cyl->mathcy.b, &inter->p) <= cyl->cy.r
 			|| ft_distance_vec3(&cyl->mathcy.t, &inter->p) <= cyl->cy.r)
 		n = get_normal_plane(&cyl->cy.dir, inter);
 	else
 	{
-		tmp_v2 = ft_scalmult_vec3(&cyl->cy.dir, m);
-		n = ft_diff_vec3(&tmp_v, &tmp_v2);
+		op = ft_diff_vec3(&inter->p, &cyl->cy.pos);
+		m = ft_dot_vec3(&op, &cyl->cy.dir);
+		m_odir = ft_scalmult_vec3(&cyl->cy.dir, m);
+		n = ft_diff_vec3(&op, &m_odir);
 		n = ft_normalize_vec3(&n);
 	}
 	return (n);
 }
 
-static t_vec3	get_normal_cone(t_cone_obj *cone, t_intersec *inter)
+static t_vec3	get_normal_cone(t_cone_obj *co_obj, t_intersec *inter)
 {
 	t_vec3	n;
+	t_vec3	bp;
+	t_vec3	m_odir;
+	double	m;
 
-	(void)inter;
-	(void)cone;
-	n = ft_create_vec3(0, 0, 0);
-	//n = ft_diff_vec3(&inter->p, &cone->co);
-	//n = ft_normalize_vec3(&n);
+	bp = ft_diff_vec3(&inter->p, &co_obj->mathco.b);
+	m = ft_dot_vec3(&bp, &co_obj->co.dir);
+	if (m >= co_obj->co.h - 0.01)
+		n = get_normal_plane(&co_obj->co.dir, inter);
+	else
+	{
+		m_odir = ft_scalmult_vec3(&co_obj->co.dir, m);
+		n = ft_translation(&bp, &m_odir, -co_obj->mathco.c_factor);
+		n = ft_normalize_vec3(&n);
+	}
 	return (n);
 }
 
