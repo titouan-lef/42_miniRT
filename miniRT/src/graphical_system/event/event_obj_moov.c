@@ -71,14 +71,20 @@ static void	key_hook_obj_rotation(int key, void *param)
 static void	key_hook_obj_resize(int key, void *param)
 {
 	t_menu	*menu;
-	double	add;
+	double	*data;
 
 	menu = (t_menu *)param;
-	add = 0;
+	data = NULL;
+	if (menu->select_data == 1)
+		data = get_obj_diam(menu->obj);
+	else if (menu->select_data == 2)
+		data = get_obj_height(menu->obj);
+	if (data ==NULL)
+		return ; 
 	if (key == SDL_SCANCODE_RIGHT)
-		add = 50;
+		*data += 50;
 	else if (key == SDL_SCANCODE_LEFT)
-		add = -50;
+		*data -= 50;
 }
 
 void	data_change(int key, void *param)

@@ -39,7 +39,27 @@ t_vec3	*get_vec_dir(t_obj *obj)
 		return (&((t_plane_obj *)(obj->data))->pl.n);
 	else if (obj->type == CYLINDER)
 		return (&((t_cylinder_obj *)(obj->data))->cy.dir);
-	else
+	else if (obj->type == CONE)
 		return (&((t_cone_obj *)(obj->data))->co.dir);
+	return (NULL);
+}
+
+double	*get_obj_diam(t_obj *obj)
+{
+	if (obj->type == SPHERE)
+		return (&((t_sphere_obj *)(obj->data))->sp.r);
+	else if (obj->type == CYLINDER)
+		return (&((t_cylinder_obj *)(obj->data))->cy.r);
+	else if (obj->type == CONE)
+		return (&((t_cone_obj *)(obj->data))->co.r);
+	return (NULL);
+}
+
+double	*get_obj_height(t_obj *obj)
+{
+	if (obj->type == CYLINDER)
+		return (&((t_cylinder_obj *)(obj->data))->cy.hh);
+	else if (obj->type == CONE)
+		return (&((t_cone_obj *)(obj->data))->co.h);
 	return (NULL);
 }

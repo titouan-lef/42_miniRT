@@ -94,6 +94,8 @@ void	defile(int *position, int start, int end, int moov);
 void	init_menu(t_menu *menu);
 t_vec3	*get_vec_pos(t_obj *obj);
 t_vec3	*get_vec_dir(t_obj *obj);
+double	*get_obj_height(t_obj *obj);
+double	*get_obj_diam(t_obj *obj);
 
 void	menu_management(t_graph_sys *g_sys);
 void	menu_event(t_scene *scene);
