@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-void	put_menu_sphere(t_graph_sys *g_sys)
+static void	put_menu_sphere(t_graph_sys *g_sys)
 {
 	const char	*translation[4] = {OBJ_SP_T, X, Y, Z};
 	const char	*resize[4] = {OBJ_SP_S, D, " ", " "};
@@ -13,7 +13,7 @@ void	put_menu_sphere(t_graph_sys *g_sys)
 		put_menu(g_sys, translation);
 }
 
-void	put_menu_plane(t_graph_sys *g_sys)
+static void	put_menu_plane(t_graph_sys *g_sys)
 {
 	const char	*translation[4] = {OBJ_PL_T, X, Y, Z};
 	const char	*rotate[4] = {OBJ_PL_R, X, Y, Z};
@@ -24,7 +24,7 @@ void	put_menu_plane(t_graph_sys *g_sys)
 		put_menu(g_sys, translation);
 }
 
-void	put_menu_cylinder(t_graph_sys *g_sys)
+static void	put_menu_cylinder(t_graph_sys *g_sys)
 {
 	const char	*translation[4] = {OBJ_CY_T, X, Y, Z};
 	const char	*rotate[4] = {OBJ_CY_R, X, Y, Z};
@@ -38,7 +38,7 @@ void	put_menu_cylinder(t_graph_sys *g_sys)
 		put_menu(g_sys, translation);
 }
 
-void	put_menu_cone(t_graph_sys *g_sys)
+static void	put_menu_cone(t_graph_sys *g_sys)
 {
 	const char	*translation[4] = {OBJ_CO_T, X, Y, Z};
 	const char	*rotate[4] = {OBJ_CO_R, X, Y, Z};
