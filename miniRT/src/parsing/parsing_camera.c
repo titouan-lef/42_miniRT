@@ -32,8 +32,6 @@ int	camera_interpreter(t_scene *scene, char **tab)
 			up_wish = ft_create_vec3(0, 0, 1);
 	}
 	scene->cam.right = ft_cross_vec3(&up_wish, &scene->cam.dir);
-	scene->cam.right = ft_normalize_vec3(&scene->cam.right);
 	scene->cam.up = ft_cross_vec3(&scene->cam.dir, &scene->cam.right);
-	scene->cam.up = ft_normalize_vec3(&scene->cam.up);
 	return (0);
 }

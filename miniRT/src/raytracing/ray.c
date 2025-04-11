@@ -56,9 +56,12 @@ static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
 	t_ray	ray;
 
 	ray.s = cam->pos;
-	ray.dir.x = cam->right.x * local_dir->x + cam->up.x * local_dir->y + cam->dir.x * local_dir->z;
-	ray.dir.y = cam->right.y * local_dir->x + cam->up.y * local_dir->y + cam->dir.y * local_dir->z;
-	ray.dir.z = cam->right.z * local_dir->x + cam->up.z * local_dir->y + cam->dir.z * local_dir->z;
+	ray.dir.x = cam->right.x * local_dir->x + cam->up.x * local_dir->y
+		+ cam->dir.x * local_dir->z;
+	ray.dir.y = cam->right.y * local_dir->x + cam->up.y * local_dir->y
+		+ cam->dir.y * local_dir->z;
+	ray.dir.z = cam->right.z * local_dir->x + cam->up.z * local_dir->y
+		+ cam->dir.z * local_dir->z;
 	ray.dir = ft_normalize_vec3(&ray.dir);
 	return (ray);
 }

@@ -31,14 +31,14 @@ static void	camera_rotation(t_cam *cam, double x, double y)
 	{
 		angle = M_PI * (x - 1) * SENSITIVITY;
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->up);
-		cam->right = ft_rotation_quat(&cam->right, angle, &cam->up);
+		cam->right = ft_cross_vec3(&cam->up, &cam->dir);
 	}
 	y = y / WIN_HW;
 	if (y > 0.05)
 	{
 		angle = -M_PI * (y - WIN_HH / WIN_HW) * SENSITIVITY;
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->right);
-		cam->up = ft_rotation_quat(&cam->up, angle, &cam->right);
+		cam->up = ft_cross_vec3(&cam->dir, &cam->right);
 	}
 }
 
