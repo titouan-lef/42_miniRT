@@ -88,22 +88,39 @@ void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
 /***********************************************
- * @file camera_moov.c
+ * @file menu_utils.c
  ***********************************************/
 void	defile(int *position, int start, int end, int moov);
 void	init_menu(t_menu *menu);
+
+/***********************************************
+ * @file get_obj_data.c
+ ***********************************************/
 t_vec3	*get_vec_pos(t_obj *obj);
 t_vec3	*get_vec_dir(t_obj *obj);
 double	*get_obj_height(t_obj *obj);
 double	*get_obj_diam(t_obj *obj);
 
-void	menu_management(t_graph_sys *g_sys);
-void	menu_event(t_scene *scene);
+/***********************************************
+ * @file event_obj_moov.c
+ ***********************************************/
+void	data_change(int key, void *param);
 
-void	menu_obj_display(t_graph_sys *g_sys);
+/***********************************************
+ * @file event_menu.c
+ ***********************************************/
+void	menu_event(t_scene *scene);
+void	key_hook_select_change(int key, void *param);
+
+/***********************************************
+ * @file put_menu.c
+ ***********************************************/
 void	put_menu(t_graph_sys *g_sys, const char **text);
 
-void	key_hook_select_change(int key, void *param);
-void	data_change(int key, void *param);
+/***********************************************
+ * @file put_menu.c
+ ***********************************************/
+void	menu_obj_display(t_graph_sys *g_sys);
+void	menu_management(t_graph_sys *g_sys);
 
 #endif

@@ -82,9 +82,12 @@ static void	key_hook_obj_resize(int key, void *param)
 	if (data ==NULL)
 		return ; 
 	if (key == SDL_SCANCODE_RIGHT)
-		*data += 50;
+		*data += 10;
 	else if (key == SDL_SCANCODE_LEFT)
-		*data -= 50;
+	{
+		if (*data > 0)
+			*data -= 10;
+	}
 }
 
 void	data_change(int key, void *param)

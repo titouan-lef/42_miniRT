@@ -57,17 +57,18 @@ SRC :=	minirt.c \
 		parsing/parsing_sphere.c \
 		parsing/parsing_utils.c \
 		parsing/parsing.c \
-		graphical_system/menu.c \
 		graphical_system/image.c \
 		graphical_system/window.c \
-		graphical_system/menu_utils.c \
 		graphical_system/double_buffer.c \
 		graphical_system/graphical_system.c \
 		graphical_system/event/event.c \
 		graphical_system/event/camera_moov.c \
-		graphical_system/event/event_menu.c \
-		graphical_system/put_menu.c \
-		graphical_system/event/event_obj_moov.c
+		graphical_system/menu/menu_utils.c \
+		graphical_system/menu/menu.c \
+		graphical_system/menu/get_obj_data.c \
+		graphical_system/menu/put_menu.c \
+		graphical_system/menu/event_menu.c \
+		graphical_system/menu/event_obj_moov.c
 
 #---------- BONUS ----------#
 

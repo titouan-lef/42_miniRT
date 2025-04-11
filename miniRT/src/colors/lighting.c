@@ -18,7 +18,7 @@ static t_color	get_color(const t_obj *obj)
 	type = obj->type;
 	if (type == SPHERE)
 		color = ((t_sphere_obj *)(obj->data))->color;
-	else if (type == PLANE) /** @todo Place on first in if */  
+	else if (type == PLANE) /** @todo Place on first in if */
 		color = ((t_plane_obj *)(obj->data))->color;
 	else if (type == CYLINDER)
 		color = ((t_cylinder_obj *)(obj->data))->color;
@@ -35,7 +35,7 @@ t_color	lighting(t_intersec *inter, t_list *lst_obj, t_list *lst_light, t_amb *a
 	t_color	c;
 	t_vec3	n;
 	double	cos_angle;
-	double	kd;// a garder ?
+	double	kd;/*a garder ?*/
 
 	if (inter->obj == NULL)
 	{
