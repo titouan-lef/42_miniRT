@@ -169,3 +169,49 @@ Remove the last commit (remove commit and modifications)
 ```bash
 git reset --hard HEAD~1
 ```
+
+## Link
+### Raytracing
+[Basic Raytracing](https://www.gabrielgambetta.com/computer-graphics-from-scratch/02-basic-raytracing.html)
+
+[Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
+
+[Ray Tracer in Computer Graphics](https://physique.cmaisonneuve.qc.ca/svezina/nyc/note_nyc/NYC_CHAP_6_IMPRIMABLE_4.pdf)
+
+[Realistic Surface Rendering](https://www.research.autodesk.com/app/uploads/2023/03/rendu-realiste-de-surfaces.pdf_reckRMcEDKfhimCkK.pdf)
+
+
+### Quaternions
+[Quaternion - Wikipedia](https://en.wikipedia.org/wiki/Quaternion)
+
+[Quaternion - Wikipedia fr](https://fr.wikipedia.org/wiki/Quaternion)
+
+[Quaternions and spatial rotation - Wikipedia](https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation)
+
+[Quaternions and spatial rotation - Wikipedia fr](https://fr.wikipedia.org/wiki/Quaternions_et_rotation_dans_l%27espace)
+
+[Implementing Quaternions in C++](https://www.haroldserrano.com/blog/developing-a-math-engine-in-c-implementing-quaternions)
+
+[Rotations, Orientation and Quaternions](https://ch.mathworks.com/help/fusion/ug/rotations-orientation-and-quaternions.html)
+
+
+### Math
+[Cylinder Formula - Stack Overflow](https://stackoverflow.com/questions/73866852/ray-cylinder-intersection-formula)
+
+[Object Formula](https://hugi.scene.org/online/hugi24/coding%20graphics%20chris%20dragan%20raytracing%20shapes.htm)
+
+[Change of basis - Wikipedia](https://en.wikipedia.org/wiki/Change_of_basis)
+
+[Change of basis - Wikipedia fr](https://fr.wikipedia.org/wiki/Changement_de_base_(alg%C3%A8bre_lin%C3%A9aire))
+
+
+### Camera
+[Orientation - Game Development](https://gamedev.stackexchange.com/questions/121654/getting-the-right-vector-from-the-forward-vector)
+
+
+### GeoGebra
+[GeoGebra 3D](https://www.geogebra.org/3d)
+
+[Dot Product](https://www.geogebra.org/m/Yu6869By)
+
+[Cross Product](https://www.geogebra.org/m/psMTGDgc)
