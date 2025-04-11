@@ -53,6 +53,10 @@
 #  define FPS 24
 # endif
 
+# ifndef SENSITIVITY
+#  define SENSITIVITY 0.1
+# endif
+
 /***********************************************
  * @file double_buffer.c
  ***********************************************/

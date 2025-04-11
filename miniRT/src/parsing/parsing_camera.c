@@ -12,6 +12,8 @@ static int	take_fov(int *fov, char *str)
 
 int	camera_interpreter(t_scene *scene, char **tab)
 {
+	t_vec3	up_wish;
+
 	if (ft_matrix_get_row((void **)tab) != 4)
 		return (1);
 	if (take_pos(&scene->cam.pos, tab[1])
@@ -21,5 +23,15 @@ int	camera_interpreter(t_scene *scene, char **tab)
 		print_error_message(ERR_CAMERA);
 		return (1);
 	}
+	up_wish = ft_create_vec3(0, 1, 0);
+	if (scene->cam.dir.x == 0 && scene->cam.dir.z == 0)
+	{
+		if (scene->cam.dir.y == 1)
+			up_wish = ft_create_vec3(0, 0, -1);
+		else if (scene->cam.dir.y == -1)
+			up_wish = ft_create_vec3(0, 0, 1);
+	}
+	scene->cam.right = ft_cross_vec3(&up_wish, &scene->cam.dir);
+	scene->cam.up = ft_cross_vec3(&scene->cam.dir, &scene->cam.right);
 	return (0);
 }
