@@ -61,26 +61,12 @@ void	menu_selec_display(t_graph_sys *g_sys)
 		i++;
 	}
 	char chaine[50];//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->dir.x);//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->x);//debug
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, 60, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->dir.y);//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->y);//debug
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, 75, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->dir.z);//debug
+	sprintf(chaine, "%f", g_sys->menu.cam_dir->z);//debug
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, 90, clr, chaine);//debug
-
-	sprintf(chaine, "%f", g_sys->menu.cam->right.x);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 120, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->right.y);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 135, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->right.z);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 150, clr, chaine);//debug
-
-	sprintf(chaine, "%f", g_sys->menu.cam->up.x);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 180, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->up.y);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 195, clr, chaine);//debug
-	sprintf(chaine, "%f", g_sys->menu.cam->up.z);//debug
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, 210, clr, chaine);//debug
 }
 
 
