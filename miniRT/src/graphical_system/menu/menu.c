@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Display the menu
+ */
 void	put_menu(t_graph_sys *g_sys, const char **text)
 {
 	mlx_color	clr[4];
@@ -23,6 +26,9 @@ void	put_menu(t_graph_sys *g_sys, const char **text)
 	}
 }
 
+/**
+ * @brief Manage display of menu light
+ */
 void	menu_light_display(t_graph_sys *g_sys)
 {
 	mlx_color	clr[4];
@@ -45,6 +51,9 @@ void	menu_light_display(t_graph_sys *g_sys)
 	}
 }
 
+/**
+ * @brief Manage display of menu general
+ */
 void	menu_selec_display(t_graph_sys *g_sys)
 {
 	mlx_color	clr;
@@ -70,6 +79,9 @@ void	menu_selec_display(t_graph_sys *g_sys)
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, 90, clr, chaine);//debug
 }
 
+/**
+ * @brief Manage select display menu
+ */
 void	menu_management(t_graph_sys *g_sys)
 {
 	if (g_sys->menu.select_l == 0 && g_sys->menu.select_obj == 0)

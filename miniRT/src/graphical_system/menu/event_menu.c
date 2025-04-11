@@ -2,6 +2,11 @@
 
 #include "minirt.h"
 
+/**
+ * @brief When you press M menu open if you press again M menu close.
+ * if menu is open you can press O for open menu obj and L for open menu liight.
+ * if you press again on O or L the menu obj or menu light close
+ */
 static void	key_hook_menu_handle(int key, void *param)
 {
 	t_menu	*menu;
@@ -30,6 +35,9 @@ static void	key_hook_menu_handle(int key, void *param)
 	}
 }
 
+/**
+ * @brief when the menu obj you can press N for select the next obj
+ */
 static void	key_hook_select_obj(int key, void *param)
 {
 	t_scene			*scene;
@@ -51,6 +59,9 @@ static void	key_hook_select_obj(int key, void *param)
 	}
 }
 
+/**
+ * @brief when the menu light you can press N for select the next light
+ */
 static void	key_hook_select_light(int key, void *param)
 {
 	t_scene			*scene;
@@ -73,6 +84,12 @@ static void	key_hook_select_light(int key, void *param)
 	}
 }
 
+/**
+ * @brief when the menu obj or menu light is open you can press up arrow or down arrow for selec a paam you want to change
+ * if you press R or H you change type o data is change.
+ * R for rotation.
+ * H for size. 
+ */
 void	key_hook_select_change(int key, void *param)
 {
 	t_menu	*menu;

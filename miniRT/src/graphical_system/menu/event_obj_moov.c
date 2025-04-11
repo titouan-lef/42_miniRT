@@ -2,6 +2,11 @@
 
 #include "minirt.h"
 
+/**
+ * @brief translation of light on x when select data = 1,
+ * y when select data = 2
+ * z when select data = 3. 
+ */
 static void	key_hook_light_translation(int key, void *param)
 {
 	t_menu	*menu;
@@ -21,6 +26,11 @@ static void	key_hook_light_translation(int key, void *param)
 		menu->light->pos.z += moov;
 }
 
+/**
+ * @brief translation of obj on x when select data = 1,
+ * y when select data = 2
+ * z when select data = 3. 
+ */
 static void	key_hook_obj_translation(int key, void *param)
 {
 	t_menu	*menu;
@@ -42,6 +52,11 @@ static void	key_hook_obj_translation(int key, void *param)
 		data->z += moov;
 }
 
+/**
+ * @brief rottation of obj on x when select data = 1,
+ * y when select data = 2
+ * z when select data = 3. 
+ */
 static void	key_hook_obj_rotation(int key, void *param)
 {
 	t_menu	*menu;
@@ -68,6 +83,11 @@ static void	key_hook_obj_rotation(int key, void *param)
 	*data = ft_rotation_quat(data, moov, &axis);
 }
 
+/**
+ * @brief resize of obj
+ * diam when select data = 1
+ * height when select data = 2. 
+ */
 static void	key_hook_obj_resize(int key, void *param)
 {
 	t_menu	*menu;
@@ -90,6 +110,9 @@ static void	key_hook_obj_resize(int key, void *param)
 	}
 }
 
+/**
+ * @brief Manageme key for modification data obj select
+ */
 void	data_change(int key, void *param)
 {
 	t_menu	*menu;

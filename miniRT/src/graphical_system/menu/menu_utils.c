@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief defile the value with a start , end and increment
+ */
 void	defile(int *position, int start, int end, int moov)
 {
 	*position += moov;
@@ -11,6 +14,9 @@ void	defile(int *position, int start, int end, int moov)
 		*position = end;
 }
 
+/**
+ * @brief Init all value of sttruct menu 
+ */
 void	init_menu(t_menu *menu)
 {
 	menu->enable = 0;

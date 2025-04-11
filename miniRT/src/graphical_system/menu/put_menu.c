@@ -52,6 +52,9 @@ static void	put_menu_cone(t_graph_sys *g_sys)
 		put_menu(g_sys, translation);
 }
 
+/**
+ * @brief Manage display of menu obj
+ */
 void	menu_obj_display(t_graph_sys *g_sys)
 {
 	if (g_sys->menu.obj->type == SPHERE)
