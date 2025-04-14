@@ -25,6 +25,14 @@
 #  define H "Change Height"
 # endif
 
+# ifndef T
+#  define T "Translation :"
+# endif
+
+# ifndef R
+#  define R "Rotation :"
+# endif
+
 # ifndef M
 #  define M "Menu:"
 # endif
@@ -38,47 +46,23 @@
 # endif
 
 # ifndef LGT
-#  define LGT "Translation of Light"
+#  define LGT "Light"
 # endif
 
-# ifndef OBJ_SP_T
-#  define OBJ_SP_T "Translation of Sphere"
+# ifndef OBJ_SP
+#  define OBJ_SP "Sphere"
 # endif
 
-# ifndef OBJ_SP_S
-#  define OBJ_SP_S "Size of Sphere"
+# ifndef OBJ_PL
+#  define OBJ_PL "Plane"
 # endif
 
-# ifndef OBJ_PL_T
-#  define OBJ_PL_T "Translation of Plane"
+# ifndef OBJ_CY
+#  define OBJ_CY "Cylinder"
 # endif
 
-# ifndef OBJ_PL_R
-#  define OBJ_PL_R "Rotation of Plane"
-# endif
-
-# ifndef OBJ_CY_T
-#  define OBJ_CY_T "Translation of Cylinder"
-# endif
-
-# ifndef OBJ_CY_R
-#  define OBJ_CY_R "Rotation of Cylinder"
-# endif
-
-# ifndef OBJ_CY_S
-#  define OBJ_CY_S "Size of Cylinder"
-# endif
-
-# ifndef OBJ_CO_T
-#  define OBJ_CO_T "Translation of Cone"
-# endif
-
-# ifndef OBJ_CO_R
-#  define OBJ_CO_R "Rotation of Cone"
-# endif
-
-# ifndef OBJ_CO_S
-#  define OBJ_CO_S "Size of Cone"
+# ifndef OBJ_CO
+#  define OBJ_CO "Cone"
 # endif
 
 #endif

@@ -4,8 +4,8 @@
 
 static void	put_menu_sphere(t_graph_sys *g_sys)
 {
-	const char	*translation[4] = {OBJ_SP_T, X, Y, Z};
-	const char	*resize[4] = {OBJ_SP_S, D, " ", " "};
+	const char	*translation[4] = {OBJ_SP, X, Y, Z};
+	const char	*resize[4] = {OBJ_SP, D, " ", " "};
 
 	if (g_sys->menu.select_resize != 0)
 		put_menu(g_sys, resize);
@@ -15,8 +15,8 @@ static void	put_menu_sphere(t_graph_sys *g_sys)
 
 static void	put_menu_plane(t_graph_sys *g_sys)
 {
-	const char	*translation[4] = {OBJ_PL_T, X, Y, Z};
-	const char	*rotate[4] = {OBJ_PL_R, X, Y, Z};
+	const char	*translation[4] = {OBJ_PL, X, Y, Z};
+	const char	*rotate[4] = {OBJ_PL, X, Y, Z};
 
 	if (g_sys->menu.select_rotation != 0)
 		put_menu(g_sys, rotate);
@@ -26,9 +26,9 @@ static void	put_menu_plane(t_graph_sys *g_sys)
 
 static void	put_menu_cylinder(t_graph_sys *g_sys)
 {
-	const char	*translation[4] = {OBJ_CY_T, X, Y, Z};
-	const char	*rotate[4] = {OBJ_CY_R, X, Y, Z};
-	const char	*resize[4] = {OBJ_CY_S, D, H, " "};
+	const char	*translation[4] = {OBJ_CY, X, Y, Z};
+	const char	*rotate[4] = {OBJ_CY, X, Y, Z};
+	const char	*resize[4] = {OBJ_CY, D, H, " "};
 
 	if (g_sys->menu.select_rotation != 0)
 		put_menu(g_sys, rotate);
@@ -40,9 +40,9 @@ static void	put_menu_cylinder(t_graph_sys *g_sys)
 
 static void	put_menu_cone(t_graph_sys *g_sys)
 {
-	const char	*translation[4] = {OBJ_CO_T, X, Y, Z};
-	const char	*rotate[4] = {OBJ_CO_R, X, Y, Z};
-	const char	*resize[4] = {OBJ_CO_S, D, H, " "};
+	const char	*translation[4] = {OBJ_CO, X, Y, Z};
+	const char	*rotate[4] = {OBJ_CO, X, Y, Z};
+	const char	*resize[4] = {OBJ_CO, D, H, " "};
 
 	if (g_sys->menu.select_rotation != 0)
 		put_menu(g_sys, rotate);
