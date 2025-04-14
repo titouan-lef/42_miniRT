@@ -55,6 +55,7 @@ SRC :=	minirt.c \
 		parsing/parsing_plane.c \
 		parsing/parsing_vector.c \
 		parsing/parsing_sphere.c \
+		parsing/lst_parsing.c \
 		parsing/parsing_utils.c \
 		parsing/parsing.c \
 		graphical_system/image.c \

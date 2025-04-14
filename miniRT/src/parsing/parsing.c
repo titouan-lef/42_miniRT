@@ -2,24 +2,25 @@
 
 #include "minirt.h"
 
-int	check_scene_composition(t_scene *scene, int nb_amb, int nb_cam)
+static int	check_scene_composition(t_lst_parse *lst_parse,
+	int single_entity[2])
 {
-	if (nb_cam != 1)
+	if (single_entity[0] != 1)
 	{
 		print_error_message(ERR_NB_CAM);
 		return (1);
 	}
-	if (nb_amb != 1)
+	if (single_entity[1] != 1)
 	{
 		print_error_message(ERR_NB_AMB);
 		return (1);
 	}
-	if (scene->lst_light == NULL)
+	if (lst_parse->lst_l == NULL)
 	{
 		print_error_message(ERR_NO_LIGHT);
 		return (1);
 	}
-	if (scene->lst_obj == NULL)
+	if (lst_parse->lst_obj == NULL)
 	{
 		print_error_message(ERR_NO_OBJ);
 		return (1);
@@ -27,7 +28,8 @@ int	check_scene_composition(t_scene *scene, int nb_amb, int nb_cam)
 	return (0);
 }
 
-static int	data_interpreter(t_scene *scene, char **tab, int id)
+static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
+	char **tab, int id)
 {
 	int	error;
 
@@ -36,21 +38,22 @@ static int	data_interpreter(t_scene *scene, char **tab, int id)
 	else if (id == CAMERA)
 		error = camera_interpreter(scene, tab);
 	else if (id == LIGHT)
-		error = light_interpreter(scene, tab);
+		error = light_interpreter(&lst_parse->lst_l, tab);
 	else if (id == SPHERE)
-		error = sphere_interpreter(scene, tab);
+		error = sphere_interpreter(&lst_parse->lst_obj, tab);
 	else if (id == PLANE)
-		error = plan_interpreter(scene, tab);
+		error = plan_interpreter(&lst_parse->lst_obj, tab);
 	else if (id == CYLINDER)
-		error = cylinder_interpreter(scene, tab);
+		error = cylinder_interpreter(&lst_parse->lst_obj, tab);
 	else if (id == CONE)
-		error = cone_interpreter(scene, tab);
+		error = cone_interpreter(&lst_parse->lst_obj, tab);
 	else
 		error = 1;
 	return (error);
 }
 
-static int	extrac_data(char *line, t_scene *scene, int *amb, int *cam)
+static int	extrac_data(char *line, t_scene *scene, t_lst_parse *lst_parse,
+	int single_entity[2])
 {
 	char	**tab;
 	int		id;
@@ -63,8 +66,8 @@ static int	extrac_data(char *line, t_scene *scene, int *amb, int *cam)
 		ft_clean_matrix((void *)&tab);
 		return (0);
 	}
-	id = check_valid_id(tab[0], amb, cam);
-	if (id == OBJ_ERR || data_interpreter(scene, tab, id))
+	id = check_valid_id(tab[0], single_entity);
+	if (id == OBJ_ERR || data_interpreter(scene, lst_parse, tab, id))
 	{
 		ft_clean_matrix((void *)&tab);
 		return (1);
@@ -73,18 +76,17 @@ static int	extrac_data(char *line, t_scene *scene, int *amb, int *cam)
 	return (0);
 }
 
-static int	read_scene(int fd, t_scene *scene)
+static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 {
 	char	*str;
-	int		nb_amb;
-	int		nb_cam;
+	int		single_entity[2];
 
-	nb_amb = 0;
-	nb_cam = 0;
+	single_entity[0] = 0;
+	single_entity[1] = 0;
 	str = get_next_line_one_file(fd);
 	while (str)
 	{
-		if (extrac_data(str, scene, &nb_amb, &nb_cam))
+		if (extrac_data(str, scene, lst_parse, single_entity))
 		{
 			free (str);
 			return (1);
@@ -92,16 +94,18 @@ static int	read_scene(int fd, t_scene *scene)
 		free(str);
 		str = get_next_line_one_file(fd);
 	}
-	if (check_scene_composition(scene, nb_amb, nb_cam))
+	if (check_scene_composition(lst_parse, single_entity))
 		return (1);
+	lst_parse_to_tab(scene, lst_parse);
 	return (0);
 }
 
 int	parsing(int argc, char **argv, t_scene *scene)
 {
-	int	fd;
+	t_lst_parse	lst_parse;
+	int			fd;
 
-	init_scene(scene);
+	init_scene(scene, &lst_parse);
 	if (argc != 2 || check_files_type(argv[1]))
 	{
 		print_error_message(ERR_ARG);
@@ -113,7 +117,7 @@ int	parsing(int argc, char **argv, t_scene *scene)
 		print_error_message(ERR_OPEN_FAILED);
 		return (1);
 	}
-	if (read_scene(fd, scene))
+	if (read_scene(fd, scene, &lst_parse))
 	{
 		close (fd);
 		return (1);

@@ -10,16 +10,19 @@ t_color	ft_dif_colors(t_color c1, t_color c2);
 t_color	ft_scal_color(t_color color, double k);
 t_color	ft_mult_colors(t_color c1, t_color c2);
 
-t_color	lighting(t_intersec *inter, t_list *lst_obj, t_list *lst_light, t_amb *amb);
+t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
+			const t_amb *amb);
 
-t_color	diffuse(t_light *light, double kd, double fact);
+t_color	diffuse(const t_light *light, double kd, double fact);
 
-t_color	specular(t_light *light, t_intersec *inter, t_vec3 *n, double kd, double fact);
+t_color	specular(const t_light *light, const t_intersec *inter,
+			const t_vec3 *n, double kd, double fact);
 
-double	cos_angle_light(t_light *light, t_intersec *inter, t_vec3 *n);
+double	cos_angle_light(const t_light *light, const t_intersec *inter,
+			const t_vec3 *n);
 
-t_vec3	get_normal(t_intersec *inter);
+t_vec3	get_normal(const t_intersec *inter);
 
-int		shadow(t_list *lst_obj, t_light *light, t_vec3 *p);
+int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
 
 #endif

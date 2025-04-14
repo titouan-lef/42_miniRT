@@ -20,7 +20,7 @@ int		ray_lauch_test(t_scene *scene);
 double	length_screen(double fov);
 double	quadratic_equation(double a, double b, double c);
 
-void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj);
+void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 
 /***********************************************
  * @details INTERSECTION

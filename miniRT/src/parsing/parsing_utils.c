@@ -22,10 +22,12 @@ int	alloc_new_obj(t_list **head, void *new_obj, t_obj_type type)
 	return (0);
 }
 
-void	init_scene(t_scene *scene)
+void	init_scene(t_scene *scene, t_lst_parse *lst_parse)
 {
-	scene->lst_light = NULL;
-	scene->lst_obj = NULL;
+	scene->tab_obj = NULL;
+	scene->tab_l = NULL;
+	lst_parse->lst_obj = NULL;
+	lst_parse->lst_l = NULL;
 }
 
 int	take_dimension(double *dimension, char *str)
@@ -58,17 +60,17 @@ int	check_files_type(char *str)
  * @return nb in fonction of id detected.
  * @warning 7 is for a cone for bonus.
  */
-int	check_valid_id(char *str, int *ambient, int *camera)
+int	check_valid_id(char *str, int single_entity[2])
 {
-	if (!ft_strcmp(str, "A"))
-	{
-		*ambient += 1;
-		return (AMBIENT);
-	}
 	if (!ft_strcmp(str, "C"))
 	{
-		*camera += 1;
+		single_entity[0] += 1;
 		return (CAMERA);
+	}
+	if (!ft_strcmp(str, "A"))
+	{
+		single_entity[1] += 1;
+		return (AMBIENT);
 	}
 	if (!ft_strcmp(str, "L"))
 		return (LIGHT);

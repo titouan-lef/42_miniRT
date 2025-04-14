@@ -218,12 +218,21 @@ typedef struct s_graph_sys
  ***********************************************/
 typedef struct s_scene
 {
-	t_list		*lst_obj;
-	t_list		*lst_light;
+	t_obj		**tab_obj;
+	t_light		**tab_l;
 	t_amb		amb;
 	t_cam		cam;
 	t_graph_sys	g_sys;
 }	t_scene;
+
+/***********************************************
+ * @struct Parsing List
+ ***********************************************/
+typedef struct s_lst_parse
+{
+	t_list	*lst_obj;
+	t_list	*lst_l;
+}	t_lst_parse;
 
 /***********************************************
  * @struct RAY
@@ -241,9 +250,9 @@ typedef struct s_ray
  ***********************************************/
 typedef struct s_intersec
 {
-	t_ray	ray;
-	t_obj	*obj;
-	t_vec3	p;
+	t_ray		ray;
+	const t_obj	*obj;
+	t_vec3		p;
 }	t_intersec;
 
 #endif

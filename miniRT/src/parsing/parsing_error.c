@@ -1,24 +1,31 @@
 #include "minirt.h"
 
-void	free_content_light(void *content)
+static void	free_content_obj(t_obj **tab_obj)
 {
-	free(content);
-	content = NULL;
-}
+	size_t	i;
 
-void	free_content_obj(void *content)
-{
-	free(((t_obj *)content)->data);
-	free(content);
-	content = NULL;
+	i = 0;
+	while (tab_obj[i] != NULL)
+	{
+		free(tab_obj[i]->data);
+		tab_obj[i]->data = NULL;
+		free(tab_obj[i]);
+		tab_obj[i] = NULL;
+		++i;
+	}
+	free(tab_obj);
+	tab_obj = NULL;
 }
 
 void	exit_error_parsing(t_scene *scene)
 {
-	if (scene->lst_light)
-		ft_lstclear(&scene->lst_light, free_content_light);
-	if (scene->lst_obj)
-		ft_lstclear(&scene->lst_obj, free_content_obj);
+	if (scene->tab_obj)
+	{
+		free_content_obj(scene->tab_obj);
+		scene->tab_obj = NULL;
+	}
+	if (scene->tab_l)
+		ft_clean_matrix((void ***)&scene->tab_l);
 }
 
 void	print_error_message(char *str)

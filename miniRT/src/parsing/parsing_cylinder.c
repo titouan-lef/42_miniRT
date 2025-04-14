@@ -24,7 +24,7 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 	return (new_cy);
 }
 
-int	cylinder_interpreter(t_scene *scene, char **tab)
+int	cylinder_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cylinder_obj	*new_cy;
 
@@ -33,7 +33,7 @@ int	cylinder_interpreter(t_scene *scene, char **tab)
 	new_cy = alloc_new_cylinder(tab);
 	if (!new_cy)
 		return (1);
-	if (alloc_new_obj(&scene->lst_obj, new_cy, CYLINDER))
+	if (alloc_new_obj(lst_obj, new_cy, CYLINDER))
 	{
 		free(new_cy);
 		return (1);

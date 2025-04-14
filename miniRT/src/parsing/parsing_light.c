@@ -39,18 +39,18 @@ static t_light	*alloc_new_light(char **tab)
 	return (new_light);
 }
 
-int	light_interpreter(t_scene *scene, char **tab)
+int	light_interpreter(t_list **lst_l, char **tab)
 {
-	t_light	*new_light;
+	t_light	*new_l;
 
 	if (ft_matrix_get_row((void **)tab) != 4)
 		return (1);
-	new_light = alloc_new_light(tab);
-	if (!new_light)
+	new_l = alloc_new_light(tab);
+	if (!new_l)
 		return (1);
-	if (alloc_new_node(&scene->lst_light, new_light))
+	if (alloc_new_node(lst_l, new_l))
 	{
-		free (new_light);
+		free (new_l);
 		return (1);
 	}
 	return (0);

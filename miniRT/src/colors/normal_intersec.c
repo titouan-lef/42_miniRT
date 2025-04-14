@@ -2,7 +2,8 @@
 
 #include "minirt.h"
 
-static t_vec3	get_normal_sphere(t_sphere_obj *sphere, t_intersec *inter)
+static t_vec3	get_normal_sphere(const t_sphere_obj *sphere,
+	const t_intersec *inter)
 {
 	t_vec3	n;
 
@@ -11,7 +12,7 @@ static t_vec3	get_normal_sphere(t_sphere_obj *sphere, t_intersec *inter)
 	return (n);
 }
 
-static t_vec3	get_normal_plane(t_vec3 *n_plane, t_intersec *inter)
+static t_vec3	get_normal_plane(const t_vec3 *n_plane, const t_intersec *inter)
 {
 	t_vec3	n;
 
@@ -22,7 +23,8 @@ static t_vec3	get_normal_plane(t_vec3 *n_plane, t_intersec *inter)
 	return (n);
 }
 
-static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
+static t_vec3	get_normal_cylinder(const t_cylinder_obj *cyl,
+	const t_intersec *inter)
 {
 	t_vec3	n;
 	t_vec3	op;
@@ -43,7 +45,8 @@ static t_vec3	get_normal_cylinder(t_cylinder_obj *cyl, t_intersec *inter)
 	return (n);
 }
 
-static t_vec3	get_normal_cone(t_cone_obj *co_obj, t_intersec *inter)
+static t_vec3	get_normal_cone(const t_cone_obj *co_obj,
+	const t_intersec *inter)
 {
 	t_vec3	n;
 	t_vec3	bp;
@@ -63,19 +66,19 @@ static t_vec3	get_normal_cone(t_cone_obj *co_obj, t_intersec *inter)
 	return (n);
 }
 
-t_vec3	get_normal(t_intersec *inter)
+t_vec3	get_normal(const t_intersec *inter)
 {
-	t_vec3	n;
-	t_obj	*obj;
+	const t_obj	*obj;
+	t_vec3		n;
 
-	obj = (t_obj *)inter->obj;
+	obj = inter->obj;
 	if (obj->type == PLANE)
-		n = get_normal_plane(&((t_plane_obj *)inter->obj->data)->pl.n, inter);
+		n = get_normal_plane(&((t_plane_obj *)obj->data)->pl.n, inter);
 	else if (obj->type == SPHERE)
-		n = get_normal_sphere((t_sphere_obj *)inter->obj->data, inter);
+		n = get_normal_sphere((t_sphere_obj *)obj->data, inter);
 	else if (obj->type == CYLINDER)
-		n = get_normal_cylinder((t_cylinder_obj *)inter->obj->data, inter);
+		n = get_normal_cylinder((t_cylinder_obj *)obj->data, inter);
 	else
-		n = get_normal_cone((t_cone_obj *)inter->obj->data, inter);
+		n = get_normal_cone((t_cone_obj *)obj->data, inter);
 	return (n);
 }

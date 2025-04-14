@@ -23,7 +23,7 @@ static t_plane_obj	*alloc_new_plan(char **tab)
 	return (new_pl);
 }
 
-int	plan_interpreter(t_scene *scene, char **tab)
+int	plan_interpreter(t_list **lst_obj, char **tab)
 {
 	t_plane_obj	*new_pl;
 
@@ -32,7 +32,7 @@ int	plan_interpreter(t_scene *scene, char **tab)
 	new_pl = alloc_new_plan(tab);
 	if (!new_pl)
 		return (1);
-	if (alloc_new_obj(&scene->lst_obj, new_pl, PLANE))
+	if (alloc_new_obj(lst_obj, new_pl, PLANE))
 	{
 		free(new_pl);
 		return (1);

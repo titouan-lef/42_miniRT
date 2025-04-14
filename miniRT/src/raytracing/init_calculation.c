@@ -34,21 +34,21 @@ static void	init_calculation_co(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_co(ray_s, &co_obj->co, &co_obj->mathco);
 }
 
-void	init_calculation(const t_vec3 *ray_s, t_list *lst_obj)
+void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj)
 {
-	t_obj	*obj;
+	size_t	i;
 
-	while (lst_obj)
+	i = 0;
+	while (tab_obj[i] != NULL)
 	{
-		obj = (t_obj *)lst_obj->content;
-		if (obj->type == SPHERE)
-			init_calculation_sp(ray_s, obj);
-		else if (obj->type == CYLINDER)
-			init_calculation_cy(ray_s, obj);
-		else if (obj->type == PLANE)
-			init_calculation_pl(ray_s, obj);
-		else if (obj->type == CONE)
-			init_calculation_co(ray_s, obj);
-		lst_obj = lst_obj->next;
+		if (tab_obj[i]->type == SPHERE)
+			init_calculation_sp(ray_s, tab_obj[i]);
+		else if (tab_obj[i]->type == CYLINDER)
+			init_calculation_cy(ray_s, tab_obj[i]);
+		else if (tab_obj[i]->type == PLANE)
+			init_calculation_pl(ray_s, tab_obj[i]);
+		else if (tab_obj[i]->type == CONE)
+			init_calculation_co(ray_s, tab_obj[i]);
+		++i;
 	}
 }

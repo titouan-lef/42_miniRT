@@ -40,22 +40,22 @@ static void	key_hook_menu_handle(int key, void *param)
  */
 static void	key_hook_select_obj(int key, void *param)
 {
+	static size_t	i;
 	t_scene			*scene;
-	static t_list	*obj_next;
 
 	scene = (t_scene *)param;
 	if (scene->g_sys.menu.select_obj == 0)
 	{
-		obj_next = scene->lst_obj;
+		i = 0;
 		return ;
 	}
-	scene->g_sys.menu.obj = (t_obj *)obj_next->content;
+	scene->g_sys.menu.obj = scene->tab_obj[i];
 	if (key == SDL_SCANCODE_N)
 	{
 		if (scene->g_sys.menu.select_obj != 0)
-			obj_next = obj_next->next;
-		if (obj_next == NULL)
-			obj_next = scene->lst_obj;
+			++i;
+		if (scene->tab_obj[i] == NULL)
+			i = 0;
 	}
 }
 
@@ -64,31 +64,31 @@ static void	key_hook_select_obj(int key, void *param)
  */
 static void	key_hook_select_light(int key, void *param)
 {
+	static size_t	i;
 	t_scene			*scene;
-	static t_list	*next;
 
 	scene = (t_scene *)param;
 	if (scene->g_sys.menu.select_l == 0)
 	{
-		next = scene->lst_light;
+		i = 0;
 		return ;
 	}
-	scene->g_sys.menu.light = (t_light *)next->content;
+	scene->g_sys.menu.light = scene->tab_l[i];
 	if (key == SDL_SCANCODE_N)
 	{
 		if (scene->g_sys.menu.select_l != 0)
-			next = next->next;
-		if (next == NULL)
-			next = scene->lst_light;
-		scene->g_sys.menu.light = (t_light *)next->content;
+			++i;
+		if (scene->tab_l[i] == NULL)
+			i = 0;
 	}
 }
 
 /**
- * @brief when the menu obj or menu light is open you can press up arrow or down arrow for selec a paam you want to change
- * if you press R or H you change type o data is change.
+ * @brief when the menu obj or menu light is open you can press up arrow or
+ * down arrow for selec a paam you want to change.
+ * If you press R or H you change type o data is change.
  * R for rotation.
- * H for size. 
+ * H for size.
  */
 void	key_hook_select_change(int key, void *param)
 {

@@ -22,23 +22,21 @@ static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
-static void	raytracers(const t_list *lst_obj, t_intersec *inter)
+static void	raytracers(t_obj **tab_obj, t_intersec *inter)
 {
-	t_obj	*obj;
 	double	dist;
 	double	dist_min;
 
 	dist_min = INFINITY;
-	while (lst_obj)
+	while (*tab_obj != NULL)
 	{
-		obj = (t_obj *)lst_obj->content;
-		dist = intersect_ray_obj(obj, inter);
+		dist = intersect_ray_obj(*tab_obj, inter);
 		if (dist < dist_min)
 		{
 			dist_min = dist;
-			inter->obj = obj;
+			inter->obj = *tab_obj;
 		}
-		lst_obj = lst_obj->next;
+		++tab_obj;
 	}
 	if (inter->obj != NULL)
 		inter->p = ft_translation(&inter->ray.s, &inter->ray.dir, dist_min);
@@ -69,13 +67,13 @@ static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
 }
 
 static t_intersec	get_near_intersec(const t_vec3 *local_dir,
-	const t_cam *cam, const t_list *lst_obj)
+	const t_cam *cam, t_obj **tab_obj)
 {
 	t_intersec	inter;
 
 	inter.obj = NULL;
 	inter.ray = get_ray(local_dir, cam);
-	raytracers(lst_obj, &inter);
+	raytracers(tab_obj, &inter);
 	return (inter);
 }
 
@@ -105,8 +103,8 @@ int	ray_lauch_test(t_scene *scene)
 		while (x < WIN_W)
 		{
 			local_dir.x = x - WIN_HW;
-			inter = get_near_intersec(&local_dir, &scene->cam, scene->lst_obj);
-			c = lighting(&inter, scene->lst_obj, scene->lst_light, &scene->amb);
+			inter = get_near_intersec(&local_dir, &scene->cam, scene->tab_obj);
+			c = lighting(&inter, scene->tab_obj, scene->tab_l, &scene->amb);
 			set_image_pixel(&scene->g_sys, x, y, c);
 			x += scene->g_sys.def_w;
 		}

@@ -2,7 +2,8 @@
 
 #include "minirt.h"
 
-double	cos_angle_light(t_light *light, t_intersec *inter, t_vec3 *n)
+double	cos_angle_light(const t_light *light, const t_intersec *inter,
+	const t_vec3 *n)
 {
 	t_vec3	light_dir;
 	double	fact;
@@ -13,7 +14,7 @@ double	cos_angle_light(t_light *light, t_intersec *inter, t_vec3 *n)
 	return (fact);
 }
 
-t_color	diffuse(t_light *light, double kd, double fact)
+t_color	diffuse(const t_light *light, double kd, double fact)
 {
 	t_color	color;
 
@@ -21,7 +22,7 @@ t_color	diffuse(t_light *light, double kd, double fact)
 	return (color);
 }
 
-t_color	specular(t_light *light, t_intersec *inter, t_vec3 *n, double kd, double fact)
+t_color	specular(const t_light *light, const t_intersec *inter, const t_vec3 *n, double kd, double fact)
 {
 	t_color	color;
 	t_vec3	inv_light_dir;

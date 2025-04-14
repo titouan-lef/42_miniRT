@@ -5,7 +5,7 @@
 /**
  * @brief translation of light on x when select data = 1,
  * y when select data = 2
- * z when select data = 3. 
+ * z when select data = 3.
  */
 static void	key_hook_light_translation(int key, void *param)
 {
@@ -29,7 +29,7 @@ static void	key_hook_light_translation(int key, void *param)
 /**
  * @brief translation of obj on x when select data = 1,
  * y when select data = 2
- * z when select data = 3. 
+ * z when select data = 3.
  */
 static void	key_hook_obj_translation(int key, void *param)
 {
@@ -55,7 +55,7 @@ static void	key_hook_obj_translation(int key, void *param)
 /**
  * @brief rottation of obj on x when select data = 1,
  * y when select data = 2
- * z when select data = 3. 
+ * z when select data = 3.
  */
 static void	key_hook_obj_rotation(int key, void *param)
 {
@@ -86,7 +86,7 @@ static void	key_hook_obj_rotation(int key, void *param)
 /**
  * @brief resize of obj
  * diam when select data = 1
- * height when select data = 2. 
+ * height when select data = 2.
  */
 static void	key_hook_obj_resize(int key, void *param)
 {
@@ -99,8 +99,8 @@ static void	key_hook_obj_resize(int key, void *param)
 		data = get_obj_diam(menu->obj);
 	else if (menu->select_data == 2)
 		data = get_obj_height(menu->obj);
-	if (data ==NULL)
-		return ; 
+	if (data == NULL)
+		return ;
 	if (key == SDL_SCANCODE_RIGHT)
 		*data += 10;
 	else if (key == SDL_SCANCODE_LEFT)

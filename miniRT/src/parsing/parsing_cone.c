@@ -23,7 +23,7 @@ static t_cone_obj	*alloc_new_cone(char **tab)
 	return (new_co);
 }
 
-int	cone_interpreter(t_scene *scene, char **tab)
+int	cone_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cone_obj	*new_co;
 
@@ -32,7 +32,7 @@ int	cone_interpreter(t_scene *scene, char **tab)
 	new_co = alloc_new_cone(tab);
 	if (!new_co)
 		return (1);
-	if (alloc_new_obj(&scene->lst_obj, new_co, CONE))
+	if (alloc_new_obj(lst_obj, new_co, CONE))
 	{
 		free(new_co);
 		return (1);

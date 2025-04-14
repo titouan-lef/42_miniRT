@@ -19,10 +19,9 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 	return (dist);
 }
 
-int	shadow(t_list *lst_obj, t_light *light, t_vec3 *p)
+int	shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p)
 {
 	t_ray	ray;
-	t_obj	*obj;
 	double	dist;
 	double	dist_min;
 
@@ -30,13 +29,12 @@ int	shadow(t_list *lst_obj, t_light *light, t_vec3 *p)
 	ray.dir = ft_diff_vec3(p, &light->pos);
 	dist_min = ft_norm_vec3(&ray.dir);
 	ray.dir = ft_normalize_vec3(&ray.dir);
-	while (lst_obj)
+	while (*tab_obj != NULL)
 	{
-		obj = (t_obj *)lst_obj->content;
-		dist = intersect_light(obj, &ray);
+		dist = intersect_light(*tab_obj, &ray);
 		if (dist < dist_min - 0.01)//@todo check precision
 			return (1);
-		lst_obj = lst_obj->next;
+		++tab_obj;
 	}
 	return (0);
 }

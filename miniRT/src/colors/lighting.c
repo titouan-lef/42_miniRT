@@ -2,7 +2,7 @@
 
 #include "minirt.h"
 
-static t_color	ambient(t_amb *amb, double kd)
+static t_color	ambient(const t_amb *amb, double kd)
 {
 	t_color	color;
 
@@ -27,9 +27,8 @@ static t_color	get_color(const t_obj *obj)
 	return (color);
 }
 
-t_color	lighting(t_intersec *inter, t_list *lst_obj, t_list *lst_light, t_amb *amb)
+t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, const t_amb *amb)
 {
-	t_light	*light;
 	t_color	spec_effect;
 	t_color	total_light;
 	t_color	c;
@@ -46,18 +45,17 @@ t_color	lighting(t_intersec *inter, t_list *lst_obj, t_list *lst_light, t_amb *a
 	n = get_normal(inter);
 	total_light = ambient(amb, kd);
 	spec_effect = ft_color_create(0, 0, 0, 255);
-	while (lst_light)
+	while (*tab_l != NULL)
 	{
-		light = (t_light *)lst_light->content;
-		cos_angle = cos_angle_light(light, inter, &n);
-		if (cos_angle <= 0 || shadow(lst_obj, light, &inter->p))
+		cos_angle = cos_angle_light(*tab_l, inter, &n);
+		if (cos_angle <= 0 || shadow(tab_obj, *tab_l, &inter->p))
 		{
-			lst_light = lst_light->next;
+			++tab_l;
 			continue ;
 		}
-		total_light = ft_sum_colors(total_light, diffuse(light, kd, cos_angle));
-		spec_effect = ft_sum_colors(spec_effect, specular(light, inter, &n, kd, cos_angle));
-		lst_light = lst_light->next;
+		total_light = ft_sum_colors(total_light, diffuse(*tab_l, kd, cos_angle));
+		spec_effect = ft_sum_colors(spec_effect, specular(*tab_l, inter, &n, kd, cos_angle));
+		++tab_l;
 	}
 	c = get_color(inter->obj);
 	c = ft_mult_colors(c, total_light);

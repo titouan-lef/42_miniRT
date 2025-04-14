@@ -21,7 +21,7 @@ static t_sphere_obj	*alloc_new_sphere(char **tab)
 	return (new_sp);
 }
 
-int	sphere_interpreter(t_scene *scene, char **tab)
+int	sphere_interpreter(t_list **lst_obj, char **tab)
 {
 	t_sphere_obj	*new_sp;
 
@@ -30,7 +30,7 @@ int	sphere_interpreter(t_scene *scene, char **tab)
 	new_sp = alloc_new_sphere(tab);
 	if (!new_sp)
 		return (1);
-	if (alloc_new_obj(&scene->lst_obj, new_sp, SPHERE))
+	if (alloc_new_obj(lst_obj, new_sp, SPHERE))
 	{
 		free(new_sp);
 		return (1);
