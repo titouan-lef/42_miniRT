@@ -56,10 +56,29 @@ void	mouse_event(t_scene *scene, t_graph_sys *g_sys)
 	mlx_mouse_move(g_sys->mlx, g_sys->win, WIN_HW, WIN_HH);
 }
 
+void	camera_rotation_key(t_cam  *cam, int key)
+{
+	double	angle;
+
+	if (key == SDL_SCANCODE_Q)
+	{
+		angle = M_PI * 0.1 * SENSITIVITY;
+		cam->right = ft_rotation_quat(&cam->right, angle, &cam->dir);
+		cam->up = ft_cross_vec3(&cam->dir, &cam->right);
+	}
+	if (key == SDL_SCANCODE_E)
+	{
+		angle = -M_PI * 0.1 * SENSITIVITY;
+		cam->right = ft_rotation_quat(&cam->right, angle, &cam->dir);
+		cam->up = ft_cross_vec3(&cam->dir, &cam->right);
+	}
+}
+
 void	key_hook_cam(int key, void *param)
 {
 	t_scene	*scene;
 
 	scene = (t_scene *) param;
+	camera_rotation_key(&scene->cam, key);
 	camera_translation(&scene->cam, key);
 }
