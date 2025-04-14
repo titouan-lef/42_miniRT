@@ -26,19 +26,19 @@ void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
  * @details INTERSECTION
  ***********************************************/
 /** @file intersect_plane.c */
-double	intersect_ray_pl(const t_obj *obj, const t_vec3 *ray_dir);
+void	intersect_ray_pl(const t_obj *obj, t_intersec *inter);
 double	intersect_light_pl(const t_obj *obj, const t_ray *ray);
 
 /** @file intersect_sphere.c */
-double	intersect_ray_sp(const t_obj *obj, const t_vec3 *ray_dir);
+void	intersect_ray_sp(const t_obj *obj, t_intersec *inter);
 double	intersect_light_sp(const t_obj *obj, const t_ray *ray);
 
 /** @file intersect_cylinder.c */
-double	intersect_ray_cy(const t_obj *obj, const t_ray *ray);
+void	intersect_ray_cy(const t_obj *obj, t_intersec *inter);
 double	intersect_light_cy(const t_obj *obj, const t_ray *ray);
 
 /** @file intersect_cone.c */
-double	intersect_ray_co(const t_obj *obj, const t_ray *ray);
+void	intersect_ray_co(const t_obj *obj, t_intersec *inter);
 double	intersect_light_co(const t_obj *obj, const t_ray *ray);
 
 /***********************************************
@@ -54,14 +54,17 @@ void	init_math_sp(const t_vec3 *ray_s, const t_sphere *sp,
 			t_math_sp *mathsp);
 
 /** @file equation_cylinder.c */
-double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray,
-			double raydir_dot_odir);
+double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray);
 void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 			t_math_cy *mathcy);
 
 /** @file equation_cone.c */
-double	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
-			double raydir_dot_odir);
+double	solve_eq_co(const t_math_co *mathco, const t_ray *ray);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
+
+
+
+
+t_soluce	create_soluce(double t, const t_vec3 *p, const t_vec3 *n);
 
 #endif

@@ -32,7 +32,6 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, cons
 	t_color	spec_effect;
 	t_color	total_light;
 	t_color	c;
-	t_vec3	n;
 	double	cos_angle;
 	double	kd;/*a garder ?*/
 
@@ -42,19 +41,18 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, cons
 		return (c);
 	}
 	kd = 1;
-	n = get_normal(inter);
 	total_light = ambient(amb, kd);
 	spec_effect = ft_color_create(0, 0, 0, 255);
 	while (*tab_l != NULL)
 	{
-		cos_angle = cos_angle_light(*tab_l, inter, &n);
-		if (cos_angle <= 0 || shadow(tab_obj, *tab_l, &inter->p))
+		cos_angle = cos_angle_light(*tab_l, inter, &inter->soluce.n);
+		if (cos_angle <= 0 || shadow(tab_obj, *tab_l, &inter->soluce.p))
 		{
 			++tab_l;
 			continue ;
 		}
 		total_light = ft_sum_colors(total_light, diffuse(*tab_l, kd, cos_angle));
-		spec_effect = ft_sum_colors(spec_effect, specular(*tab_l, inter, &n, kd, cos_angle));
+		spec_effect = ft_sum_colors(spec_effect, specular(*tab_l, inter, &inter->soluce.n, kd, cos_angle));
 		++tab_l;
 	}
 	c = get_color(inter->obj);

@@ -34,6 +34,7 @@ SRC :=	minirt.c \
 		raytracing/equation/equation_cylinder.c \
 		raytracing/equation/equation_plane.c \
 		raytracing/equation/equation_sphere.c \
+		raytracing/intersection/intersect.c \
 		raytracing/ray.c \
 		raytracing/intersect_cone.c \
 		raytracing/intersect_plane.c \

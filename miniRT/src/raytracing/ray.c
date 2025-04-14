@@ -2,21 +2,16 @@
 
 #include "minirt.h"
 
-static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
+static void	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
 {
-	double	dist;
-
 	if (obj->type == SPHERE)
-		dist = intersect_ray_sp(obj, &inter->ray.dir);
+		intersect_ray_sp(obj, inter);
 	else if (obj->type == PLANE)
-		dist = intersect_ray_pl(obj, &inter->ray.dir);
+		intersect_ray_pl(obj, inter);
 	else if (obj->type == CYLINDER)
-		dist = intersect_ray_cy(obj, &inter->ray);
+		intersect_ray_cy(obj, inter);
 	else if (obj->type == CONE)
-		dist = intersect_ray_co(obj, &inter->ray);
-	else
-		dist = INFINITY;
-	return (dist);
+		intersect_ray_co(obj, inter);
 }
 
 /**
@@ -24,22 +19,12 @@ static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
  */
 static void	raytracers(t_obj **tab_obj, t_intersec *inter)
 {
-	double	dist;
-	double	dist_min;
-
-	dist_min = INFINITY;
+	inter->soluce.t = INFINITY;
 	while (*tab_obj != NULL)
 	{
-		dist = intersect_ray_obj(*tab_obj, inter);
-		if (dist < dist_min)
-		{
-			dist_min = dist;
-			inter->obj = *tab_obj;
-		}
+		intersect_ray_obj(*tab_obj, inter);
 		++tab_obj;
 	}
-	if (inter->obj != NULL)
-		inter->p = ft_translation(&inter->ray.s, &inter->ray.dir, dist_min);
 }
 
 /**
