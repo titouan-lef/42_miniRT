@@ -45,7 +45,7 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, cons
 	spec_effect = ft_color_create(0, 0, 0, 255);
 	while (*tab_l != NULL)
 	{
-		cos_angle = cos_angle_light(*tab_l, inter, &inter->soluce.n);
+		cos_angle = cos_angle_light(*tab_l, &inter->soluce);
 		if (cos_angle <= 0 || shadow(tab_obj, *tab_l, &inter->soluce.p))
 		{
 			++tab_l;

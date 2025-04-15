@@ -8,6 +8,7 @@ static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 	t_vec3	op;
 	double	m;
 	t_vec3	m_odir;
+	t_vec3	n;
 
 	if (t >= inter->soluce.t)
 		return (0);
@@ -19,8 +20,9 @@ static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 	m_odir = ft_scalmult_vec3(&cy->dir, m);
 	inter->soluce.t = t;
 	inter->soluce.p = p;
-	inter->soluce.n = ft_diff_vec3(&op, &m_odir);
-	inter->soluce.n = ft_normalize_vec3(&inter->soluce.n);
+	n = ft_diff_vec3(&op, &m_odir);
+	n = ft_normalize_vec3(&n);
+	update_n_soluce(&n, &inter->ray.dir, &inter->soluce);
 	return (1);
 }
 
@@ -43,7 +45,7 @@ static int	intersect_cy(const t_cylinder *cy, t_math_cy *mathcy,
 	t = solve_eq_cy(mathcy, &inter->ray);
 	has_inter_lateral = inter_lateral_cy(cy, t, inter);
 	if (has_inter_base && !has_inter_lateral)
-		update_n_soluce_pl(&cy->dir, mathcy->raydir_dot_odir, &inter->soluce);
+		update_n_soluce_lite(&cy->dir, mathcy->raydir_dot_odir, &inter->soluce);
 	return (has_inter_base || has_inter_lateral);
 }
 

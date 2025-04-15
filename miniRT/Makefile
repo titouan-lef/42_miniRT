@@ -35,15 +35,14 @@ SRC :=	minirt.c \
 		raytracing/equation/equation_plane.c \
 		raytracing/equation/equation_sphere.c \
 		raytracing/intersection/intersect.c \
+		raytracing/intersection/intersect_cone.c \
+		raytracing/intersection/intersect_plane.c \
+		raytracing/intersection/intersect_sphere.c \
+		raytracing/intersection/intersect_cylinder.c \
+		raytracing/calculation/init_calculation.c \
+		raytracing/calculation/calculation.c \
 		raytracing/ray.c \
-		raytracing/intersect_cone.c \
-		raytracing/intersect_plane.c \
-		raytracing/intersect_sphere.c \
-		raytracing/intersect_cylinder.c \
-		raytracing/init_calculation.c \
-		raytracing/calculation.c \
 		colors/lighting.c \
-		colors/normal_intersec.c \
 		colors/colors_utils.c \
 		colors/diffuse.c \
 		colors/shadow.c \

@@ -18,7 +18,8 @@
 int		ray_lauch_test(t_scene *scene);
 
 double	length_screen(double fov);
-double	quadratic_equation(double a, double b, double c);
+void	quadratic_equation(double result[2], double a, double b, double c);
+double	min_quadratic_equation(double a, double b, double c);
 
 void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 
@@ -29,7 +30,9 @@ void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 int		intersect_base(const t_vec3 *base_center, double r, double t,
 			t_intersec *inter);
 void	update_soluce_sp(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
-void	update_n_soluce_pl(const t_vec3 *n, double raydir_dot_odir,
+void	update_n_soluce_lite(const t_vec3 *n, double raydir_dot_odir,
+			t_soluce *soluce);
+void	update_n_soluce(const t_vec3 *n, const t_vec3 *ray_dir,
 			t_soluce *soluce);
 void	update_soluce_pl(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
 
@@ -67,7 +70,8 @@ void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 			t_math_cy *mathcy);
 
 /** @file equation_cone.c */
-double	solve_eq_co(const t_math_co *mathco, const t_ray *ray);
+void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
+			double result[2]);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
 
 #endif

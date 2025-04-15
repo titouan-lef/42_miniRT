@@ -57,7 +57,7 @@ double	solve_eq_sp(const t_math_sp *mathsp, const t_vec3 *ray_dir)
 
 	a = a_calculation(ray_dir);
 	b = b_calculation(&mathsp->os, ray_dir);
-	result = quadratic_equation(a, b, mathsp->c_factor);
+	result = min_quadratic_equation(a, b, mathsp->c_factor);
 	return (result);
 }
 

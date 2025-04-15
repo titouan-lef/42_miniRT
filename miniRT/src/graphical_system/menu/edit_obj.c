@@ -4,12 +4,10 @@
 
 static void	obj_resize(double *r, int sign)
 {
-	if ( *r - DIST < 0 && sign < 0)
+	if (*r - DIST < 0 && sign < 0)
 		*r = 0;
 	else
-	{
 		*r += DIST * sign;
-	}
 }
 
 void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
@@ -17,12 +15,12 @@ void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 	t_vec3	r_axis;
 
 	if (menu->select_data == 1)
-		cone->co.pos.x +=  DIST * sign;
+		cone->co.pos.x += DIST * sign;
 	else if (menu->select_data == 2)
-		cone->co.pos.y +=  DIST * sign;
+		cone->co.pos.y += DIST * sign;
 	else if (menu->select_data == 3)
-		cone->co.pos.z +=  DIST * sign;
-	else if (menu->select_data > 3 && menu->select_data < 7) 
+		cone->co.pos.z += DIST * sign;
+	else if (menu->select_data > 3 && menu->select_data < 7)
 	{
 		if (menu->select_data == 4)
 			r_axis = ft_create_vec3(1, 0, 0);
@@ -43,12 +41,12 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 	t_vec3	r_axis;
 
 	if (menu->select_data == 1)
-		cylinder->cy.pos.x +=  DIST * sign;
+		cylinder->cy.pos.x += DIST * sign;
 	else if (menu->select_data == 2)
-		cylinder->cy.pos.y +=  DIST * sign;
+		cylinder->cy.pos.y += DIST * sign;
 	else if (menu->select_data == 3)
-		cylinder->cy.pos.z +=  DIST * sign;
-	else if (menu->select_data > 3 && menu->select_data < 7) 
+		cylinder->cy.pos.z += DIST * sign;
+	else if (menu->select_data > 3 && menu->select_data < 7)
 	{
 		if (menu->select_data == 4)
 			r_axis = ft_create_vec3(1, 0, 0);
@@ -70,7 +68,7 @@ void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 
 	if (menu->select_data == 1)
 		plane->pl.d += DIST * sign;
-	else 
+	else
 	{
 		if (menu->select_data == 2)
 			r_axis = ft_create_vec3(1, 0, 0);
@@ -88,11 +86,11 @@ void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere)
 {
 	if (menu->select_data == 1)
-		sphere->sp.pos.x +=  DIST * sign;
+		sphere->sp.pos.x += DIST * sign;
 	else if (menu->select_data == 2)
-		sphere->sp.pos.y +=  DIST * sign;
+		sphere->sp.pos.y += DIST * sign;
 	else if (menu->select_data == 3)
-		sphere->sp.pos.z +=  DIST * sign;
+		sphere->sp.pos.z += DIST * sign;
 	else if (menu->select_data == 4)
 		obj_resize(&sphere->sp.r, sign);
- }
+}

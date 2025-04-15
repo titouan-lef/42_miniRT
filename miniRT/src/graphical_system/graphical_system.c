@@ -58,7 +58,7 @@ static void	update(void *param)
 	{
 		init_menu(&g_sys->menu);
 		g_sys->menu.light = *scene->tab_l;
-		g_sys->menu.obj = *scene->tab_obj;	
+		g_sys->menu.obj = *scene->tab_obj;
 	}
 	if (g_sys->menu.enable != 0)
 		menu_management(g_sys);

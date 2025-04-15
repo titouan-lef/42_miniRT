@@ -43,7 +43,6 @@ static void	put_menu_plane(t_graph_sys *g_sys)
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 90, clr[4], (char *)text[6]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 105, clr[5], (char *)text[7]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 120, clr[6], (char *)text[8]);
-
 }
 
 static void	put_menu_cylinder(t_graph_sys *g_sys)
