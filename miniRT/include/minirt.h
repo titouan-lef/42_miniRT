@@ -25,6 +25,14 @@ void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 /***********************************************
  * @details INTERSECTION
  ***********************************************/
+/** @file intersect.c */
+int		intersect_base(const t_vec3 *base_center, double r, double t,
+			t_intersec *inter);
+void	update_soluce_sp(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
+void	update_n_soluce_pl(const t_vec3 *n, double raydir_dot_odir,
+			t_soluce *soluce);
+void	update_soluce_pl(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
+
 /** @file intersect_plane.c */
 void	intersect_ray_pl(const t_obj *obj, t_intersec *inter);
 double	intersect_light_pl(const t_obj *obj, const t_ray *ray);
@@ -61,10 +69,5 @@ void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 /** @file equation_cone.c */
 double	solve_eq_co(const t_math_co *mathco, const t_ray *ray);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
-
-
-
-
-t_soluce	create_soluce(double t, const t_vec3 *p, const t_vec3 *n);
 
 #endif

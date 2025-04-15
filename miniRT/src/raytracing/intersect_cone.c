@@ -2,77 +2,70 @@
 
 #include "minirt.h"
 
-static void	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
-	const t_ray *ray, t_soluce *soluce)
+static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
+	double t, t_intersec *inter)
 {
-	double	t;
 	t_vec3	p;
 	t_vec3	bp;
 	double	m;
 	t_vec3	m_odir;
 
-	t = solve_eq_co(mathco, ray);
-	if (t >= soluce->t)
-		return ;
-	p = ft_translation(&ray->s, &ray->dir, t);
+	if (t >= inter->soluce.t)
+		return (0);
+	p = ft_translation(&inter->ray.s, &inter->ray.dir, t);
 	bp = ft_diff_vec3(&p, &mathco->b);
 	m = ft_dot_vec3(&bp, &co->dir);
-	if (m < 0 || m > co->h)
-		return ;
+	if (m <= 0 || m > co->h)
+		return (0);
 	m_odir = ft_scalmult_vec3(&co->dir, m);
-	soluce->t = t;
-	soluce->p = p;
-	soluce->n = ft_translation(&bp, &m_odir, -mathco->c_factor);
-	soluce->n = ft_normalize_vec3(&soluce->n);
+	inter->soluce.t = t;
+	inter->soluce.p = p;
+	inter->soluce.n = ft_translation(&bp, &m_odir, -mathco->angle_factor);
+	inter->soluce.n = ft_normalize_vec3(&inter->soluce.n);
+	return (1);
 }
 
 /**
  * @brief Get the smallest factor of intersection greater than or equal to 1.
  * @details
  */
-static void	intersect_co(const t_cone *co, t_math_co *mathco,
-	const t_ray *ray, t_soluce *soluce)
+static int	intersect_co(const t_cone *co, t_math_co *mathco, t_intersec *inter)
 {
+	int		has_inter_lateral;
+	int		has_inter_base;
 	double	t;
-	t_vec3	p;
-	t_vec3	n;
 
-	mathco->raydir_dot_odir = ft_dot_vec3(&ray->dir, &co->dir);
-	inter_lateral_co(co, mathco, ray, soluce);
-	if (0 < mathco->raydir_dot_odir)
-		n = ft_scalmult_vec3(&co->dir, -1);
-	else
-		n = co->dir;
+	mathco->raydir_dot_odir = ft_dot_vec3(&inter->ray.dir, &co->dir);
 	t = solve_eq_pl(mathco->ts_dot_odir, mathco->raydir_dot_odir);
-	if (t < soluce->t)
-	{
-		p = ft_translation(&ray->s, &ray->dir, t);
-		if (ft_distance_vec3(&p, &mathco->t) <= co->r)
-			*soluce = create_soluce(t, &p, &n);
-	}
+	has_inter_base = intersect_base(&mathco->t, co->r, t, inter);
+	t = solve_eq_co(mathco, &inter->ray);
+	has_inter_lateral = inter_lateral_co(co, mathco, t, inter);
+	if (has_inter_base && !has_inter_lateral)
+		update_n_soluce_pl(&co->dir, mathco->raydir_dot_odir, &inter->soluce);
+	return (has_inter_base || has_inter_lateral);
 }
 
 void	intersect_ray_co(const t_obj *obj, t_intersec *inter)
 {
 	t_cone_obj	*co_obj;
-	double	t;
+	int			has_inter;
 
 	co_obj = (t_cone_obj *)obj->data;
-	t = inter->soluce.t;
-	intersect_co(&co_obj->co, &co_obj->mathco, &inter->ray, &inter->soluce);
-	if (inter->soluce.t < t)
+	has_inter = intersect_co(&co_obj->co, &co_obj->mathco, inter);
+	if (has_inter)
 		inter->obj = obj;
 }
 
 double	intersect_light_co(const t_obj *obj, const t_ray *ray)
 {
-	t_soluce	soluce;
+	t_intersec	inter;
 	t_cone_obj	*co_obj;
 	t_math_co	mathco;
 
 	co_obj = (t_cone_obj *)obj->data;
-	soluce.t = INFINITY;
+	inter.ray = *ray;
+	inter.soluce.t = INFINITY;
 	init_math_co(&ray->s, &co_obj->co, &mathco);
-	intersect_co(&co_obj->co, &mathco, ray, &soluce);
-	return (soluce.t);
+	intersect_co(&co_obj->co, &mathco, &inter);
+	return (inter.soluce.t);
 }

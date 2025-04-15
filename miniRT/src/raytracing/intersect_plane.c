@@ -23,11 +23,6 @@ void	intersect_ray_pl(const t_obj *obj, t_intersec *inter)
 	if (t >= inter->soluce.t)
 		return ;
 	inter->soluce.t = t;
-	inter->soluce.p = ft_translation(&inter->ray.s, &inter->ray.dir, t);
-	if (0.0 < ft_dot_vec3(&pl_obj->pl.n, &inter->ray.dir))
-		inter->soluce.n = ft_scalmult_vec3(&pl_obj->pl.n, -1);
-	else
-		inter->soluce.n = pl_obj->pl.n;
 	inter->obj = obj;
 }
 

@@ -2,84 +2,72 @@
 
 #include "minirt.h"
 
-static void	inter_lateral_cy(const t_cylinder *cy, const t_math_cy *mathcy,
-	const t_ray *ray, t_soluce *soluce)
+static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 {
-	double	t;
 	t_vec3	p;
 	t_vec3	op;
 	double	m;
 	t_vec3	m_odir;
 
-	t = solve_eq_cy(mathcy, ray);
-	if (t >= soluce->t)
-		return ;
-	p = ft_translation(&ray->s, &ray->dir, t);
+	if (t >= inter->soluce.t)
+		return (0);
+	p = ft_translation(&inter->ray.s, &inter->ray.dir, t);
 	op = ft_diff_vec3(&p, &cy->pos);
 	m = ft_dot_vec3(&op, &cy->dir);
 	if (fabs(m) > cy->hh)
-		return ;
+		return (0);
 	m_odir = ft_scalmult_vec3(&cy->dir, m);
-	soluce->t = t;
-	soluce->p = p;
-	soluce->n = ft_diff_vec3(&op, &m_odir);
-	soluce->n = ft_normalize_vec3(&soluce->n);
+	inter->soluce.t = t;
+	inter->soluce.p = p;
+	inter->soluce.n = ft_diff_vec3(&op, &m_odir);
+	inter->soluce.n = ft_normalize_vec3(&inter->soluce.n);
+	return (1);
 }
 
 /**
  * @brief Get the smallest factor of intersection greater than or equal to 1.
  * @details
  */
-static void	intersect_cy(const t_cylinder *cy, t_math_cy *mathcy,
-	const t_ray *ray, t_soluce *soluce)
+static int	intersect_cy(const t_cylinder *cy, t_math_cy *mathcy,
+	t_intersec *inter)
 {
+	int		has_inter_lateral;
+	int		has_inter_base;
 	double	t;
-	t_vec3	p;
-	t_vec3	n;
 
-	mathcy->raydir_dot_odir = ft_dot_vec3(&ray->dir, &cy->dir);
-	inter_lateral_cy(cy, mathcy, ray, soluce);
-	if (0 < mathcy->raydir_dot_odir)
-		n = ft_scalmult_vec3(&cy->dir, -1);
-	else
-		n = cy->dir;
+	mathcy->raydir_dot_odir = ft_dot_vec3(&inter->ray.dir, &cy->dir);
 	t = solve_eq_pl(mathcy->bs_dot_odir, mathcy->raydir_dot_odir);
-	if (t < soluce->t)
-	{
-		p = ft_translation(&ray->s, &ray->dir, t);
-		if (ft_distance_vec3(&p, &mathcy->b) <= cy->r)
-			*soluce = create_soluce(t, &p, &n);
-	}
+	has_inter_base = intersect_base(&mathcy->b, cy->r, t, inter);
 	t = solve_eq_pl(mathcy->ts_dot_odir, mathcy->raydir_dot_odir);
-	if (t < soluce->t)
-	{
-		p = ft_translation(&ray->s, &ray->dir, t);
-		if (ft_distance_vec3(&p, &mathcy->t) <= cy->r)
-			*soluce = create_soluce(t, &p, &n);
-	}
+	has_inter_base += intersect_base(&mathcy->t, cy->r, t, inter);
+	t = solve_eq_cy(mathcy, &inter->ray);
+	has_inter_lateral = inter_lateral_cy(cy, t, inter);
+	if (has_inter_base && !has_inter_lateral)
+		update_n_soluce_pl(&cy->dir, mathcy->raydir_dot_odir, &inter->soluce);
+	return (has_inter_base || has_inter_lateral);
 }
 
 void	intersect_ray_cy(const t_obj *obj, t_intersec *inter)
 {
 	t_cylinder_obj	*cy_obj;
-	double	t;
+	int				has_inter;
 
 	cy_obj = (t_cylinder_obj *)obj->data;
-	t = inter->soluce.t;
-	intersect_cy(&cy_obj->cy, &cy_obj->mathcy, &inter->ray, &inter->soluce);
-	if (inter->soluce.t < t)
+	has_inter = intersect_cy(&cy_obj->cy, &cy_obj->mathcy, inter);
+	if (has_inter)
 		inter->obj = obj;
 }
 
 double	intersect_light_cy(const t_obj *obj, const t_ray *ray)
 {
-	t_soluce		soluce;
+	t_intersec		inter;
 	t_cylinder_obj	*cy_obj;
 	t_math_cy		mathcy;
 
 	cy_obj = (t_cylinder_obj *)obj->data;
-	soluce.t = INFINITY;
+	inter.ray = *ray;
+	inter.soluce.t = INFINITY;
 	init_math_cy(&ray->s, &cy_obj->cy, &mathcy);
-	intersect_cy(&cy_obj->cy, &mathcy, ray, &soluce);
-	return (soluce.t);
+	intersect_cy(&cy_obj->cy, &mathcy, &inter);
+	return (inter.soluce.t);
 }
