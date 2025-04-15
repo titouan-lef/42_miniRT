@@ -35,13 +35,14 @@ static int	intersect_co(const t_cone *co, t_math_co *mathco, t_intersec *inter)
 {
 	int		has_inter_lateral;
 	int		has_inter_base;
-	double	t;
+	double	t[2];
 
 	mathco->raydir_dot_odir = ft_dot_vec3(&inter->ray.dir, &co->dir);
-	t = solve_eq_pl(mathco->ts_dot_odir, mathco->raydir_dot_odir);
-	has_inter_base = intersect_base(&mathco->t, co->r, t, inter);
-	t = solve_eq_co(mathco, &inter->ray);
-	has_inter_lateral = inter_lateral_co(co, mathco, t, inter);
+	t[0] = solve_eq_pl(mathco->ts_dot_odir, mathco->raydir_dot_odir);
+	has_inter_base = intersect_base(&mathco->t, co->r, t[0], inter);
+	solve_eq_co(mathco, &inter->ray, t);
+	has_inter_lateral = inter_lateral_co(co, mathco, t[0], inter);
+	has_inter_lateral += inter_lateral_co(co, mathco, t[1], inter);
 	if (has_inter_base && !has_inter_lateral)
 		update_n_soluce_lite(&co->dir, mathco->raydir_dot_odir, &inter->soluce);
 	return (has_inter_base || has_inter_lateral);

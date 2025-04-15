@@ -17,29 +17,36 @@ double	length_screen(double fov)
  * @return A factor define on [1, INFINITY[. If INFINITY is return,
  * no solution found.
  */
-double	quadratic_equation(double a, double b, double c)
+void	quadratic_equation(double result[2], double a, double b, double c)
 {
-	double	t1;
-	double	t2;
 	double	delta;
 
+	result[0] = INFINITY;
+	result[1] = INFINITY;
+	if (a == 0)
+		return ;
 	delta = b * b - 4 * a * c;
-	if (delta > 0 && a != 0)
+	if (delta < 0)
+		return ;
+	if (delta > 0)
 	{
-		t1 = (-b + sqrt(delta)) / (2.0 * a);
-		t2 = (-b - sqrt(delta)) / (2.0 * a);
-		if (t1 < 1 && t2 < 1)
-			return (INFINITY);
-		if (t2 < 1 || t1 < t2)
-			return (t1);
-		return (t2);
+		result[0] = (-b + sqrt(delta)) / (2.0 * a);
+		result[1] = (-b - sqrt(delta)) / (2.0 * a);
+		if (result[1] < 1)
+			result[1] = INFINITY;
 	}
-	else if (delta == 0 && a != 0)
-	{
-		t1 = -b / (2.0 * a);
-		if (t1 < 1)
-			return (INFINITY);
-		return (t1);
-	}
-	return (INFINITY);
+	else
+		result[0] = -b / (2.0 * a);
+	if (result[0] < 1)
+		result[0] = INFINITY;
+}
+
+double	min_quadratic_equation(double a, double b, double c)
+{
+	double	result[2];
+
+	quadratic_equation(result, a, b, c);
+	if (result[0] < result[1])
+		return (result[0]);
+	return (result[1]);
 }

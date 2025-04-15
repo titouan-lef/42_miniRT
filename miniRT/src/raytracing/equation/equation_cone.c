@@ -27,16 +27,14 @@ static double	c_calculation(const t_vec3 *bs, double bs_dot_odir,
 	return (dot - angle_factor * bs_dot_odir * bs_dot_odir);
 }
 
-double	solve_eq_co(const t_math_co *mathco, const t_ray *ray)
+void	solve_eq_co(const t_math_co *mathco, const t_ray *ray, double result[2])
 {
-	double	result;
 	double	a;
 	double	b;
 
 	a = a_calculation(mathco->angle_factor, mathco->raydir_dot_odir);
 	b = b_calculation(mathco, &ray->dir, mathco->raydir_dot_odir);
-	result = quadratic_equation(a, b, mathco->c_factor);
-	return (result);
+	quadratic_equation(result, a, b, mathco->c_factor);
 }
 
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco)

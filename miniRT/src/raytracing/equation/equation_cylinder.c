@@ -33,7 +33,7 @@ double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray)
 	a = a_calculation(mathcy->raydir_dot_odir);
 	b = b_calculation(&mathcy->os, &ray->dir, mathcy->os_dot_odir,
 			mathcy->raydir_dot_odir);
-	result = quadratic_equation(a, b, mathcy->c_factor);
+	result = min_quadratic_equation(a, b, mathcy->c_factor);
 	return (result);
 }
 
