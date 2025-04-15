@@ -56,7 +56,7 @@ void	mouse_event(t_scene *scene, t_graph_sys *g_sys)
 	mlx_mouse_move(g_sys->mlx, g_sys->win, WIN_HW, WIN_HH);
 }
 
-void	camera_rotation_key(t_cam  *cam, int key)
+void	camera_rotation_key(t_cam *cam, int key)
 {
 	double	angle;
 

@@ -2,20 +2,23 @@
 
 #include "minirt.h"
 
-double	intersect_ray_sp(const t_obj *obj, const t_vec3 *ray_dir)
+void	intersect_ray_sp(const t_obj *obj, t_intersec *inter)
 {
-	double			result;
 	t_sphere_obj	*sp_obj;
+	double			t;
 
 	sp_obj = (t_sphere_obj *)obj->data;
-	result = solve_eq_sp(&sp_obj->mathsp, ray_dir);
-	return (result);
+	t = solve_eq_sp(&sp_obj->mathsp, &inter->ray.dir);
+	if (t >= inter->soluce.t)
+		return ;
+	inter->soluce.t = t;
+	inter->obj = obj;
 }
 
 double	intersect_light_sp(const t_obj *obj, const t_ray *ray)
 {
-	double			result;
 	t_sphere_obj	*sp_obj;
+	double			result;
 	t_math_sp		mathsp;
 
 	sp_obj = (t_sphere_obj *)obj->data;

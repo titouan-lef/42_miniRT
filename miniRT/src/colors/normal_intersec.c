@@ -2,12 +2,12 @@
 
 #include "minirt.h"
 
-static t_vec3	get_normal_sphere(const t_sphere_obj *sphere,
+/*static t_vec3	get_normal_sphere(const t_sphere_obj *sphere,
 	const t_intersec *inter)
 {
 	t_vec3	n;
 
-	n = ft_diff_vec3(&inter->p, &sphere->sp.pos);
+	n = ft_diff_vec3(&inter->soluce.p, &sphere->sp.pos);
 	n = ft_normalize_vec3(&n);
 	return (n);
 }
@@ -53,7 +53,7 @@ static t_vec3	get_normal_cone(const t_cone_obj *co_obj,
 	t_vec3	m_odir;
 	double	m;
 
-	bp = ft_diff_vec3(&inter->p, &co_obj->mathco.b);
+	bp = ft_diff_vec3(&inter->soluce.p, &co_obj->mathco.b);
 	m = ft_dot_vec3(&bp, &co_obj->co.dir);
 	if (m >= co_obj->co.h - 0.01)
 		n = get_normal_plane(&co_obj->co.dir, inter);
@@ -77,8 +77,8 @@ t_vec3	get_normal(const t_intersec *inter)
 	else if (obj->type == SPHERE)
 		n = get_normal_sphere((t_sphere_obj *)obj->data, inter);
 	else if (obj->type == CYLINDER)
-		n = get_normal_cylinder((t_cylinder_obj *)obj->data, inter);
+		n = inter->soluce.n;
 	else
 		n = get_normal_cone((t_cone_obj *)obj->data, inter);
 	return (n);
-}
+}*/

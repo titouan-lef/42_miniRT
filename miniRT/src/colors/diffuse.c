@@ -8,7 +8,7 @@ double	cos_angle_light(const t_light *light, const t_intersec *inter,
 	t_vec3	light_dir;
 	double	fact;
 
-	light_dir = ft_diff_vec3(&light->pos, &inter->p);
+	light_dir = ft_diff_vec3(&light->pos, &inter->soluce.p);
 	light_dir = ft_normalize_vec3(&light_dir);
 	fact = ft_dot_vec3(&light_dir, n);
 	return (fact);
@@ -31,7 +31,7 @@ t_color	specular(const t_light *light, const t_intersec *inter, const t_vec3 *n,
 	double	result;
 
 	fact = 2 * fact;
-	inv_light_dir = ft_diff_vec3(&inter->p, &light->pos);
+	inv_light_dir = ft_diff_vec3(&inter->soluce.p, &light->pos);
 	inv_light_dir = ft_normalize_vec3(&inv_light_dir);
 	reflect_dir = ft_translation(&inv_light_dir, n, fact);
 	reflect_dir = ft_normalize_vec3(&reflect_dir);

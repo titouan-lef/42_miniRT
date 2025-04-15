@@ -24,16 +24,15 @@ static double	c_calculation(const t_vec3 *os, double os_dot_odir, double r)
 	return (dot - os_dot_odir * os_dot_odir - r * r);
 }
 
-double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray,
-	double raydir_dot_odir)
+double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray)
 {
 	double	result;
 	double	a;
 	double	b;
 
-	a = a_calculation(raydir_dot_odir);
+	a = a_calculation(mathcy->raydir_dot_odir);
 	b = b_calculation(&mathcy->os, &ray->dir, mathcy->os_dot_odir,
-			raydir_dot_odir);
+			mathcy->raydir_dot_odir);
 	result = quadratic_equation(a, b, mathcy->c_factor);
 	return (result);
 }
