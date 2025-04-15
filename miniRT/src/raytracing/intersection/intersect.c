@@ -26,7 +26,8 @@ void	update_n_soluce_lite(const t_vec3 *n, double raydir_dot_n,
 		soluce->n = *n;
 }
 
-void	update_n_soluce(const t_vec3 *n, const t_vec3 *ray_dir, t_soluce *soluce)
+void	update_n_soluce(const t_vec3 *n, const t_vec3 *ray_dir,
+	t_soluce *soluce)
 {
 	double	raydir_dot_n;
 
