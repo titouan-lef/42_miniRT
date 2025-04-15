@@ -57,6 +57,10 @@
 #  define SENSITIVITY 0.1
 # endif
 
+# ifndef DIST
+#  define DIST 10
+# endif
+
 /***********************************************
  * @file double_buffer.c
  ***********************************************/
@@ -104,27 +108,34 @@ t_vec3	*get_vec_pos(t_obj *obj);
 t_vec3	*get_vec_dir(t_obj *obj);
 double	*get_obj_height(t_obj *obj);
 double	*get_obj_diam(t_obj *obj);
+int		get_range(t_obj *obj);
 
 /***********************************************
- * @file event_obj_moov.c
+ * @file edit_data.c
  ***********************************************/
 void	data_change(int key, void *param);
+
+/***********************************************
+ * @file edit_obj.c
+ ***********************************************/
+void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone);
+void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder);
+void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane);
+void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere);
 
 /***********************************************
  * @file event_menu.c
  ***********************************************/
 void	menu_event(t_scene *scene);
-void	key_hook_select_change(int key, void *param);
-
-/***********************************************
- * @file put_menu.c
- ***********************************************/
-void	put_menu(t_graph_sys *g_sys, const char **text);
 
 /***********************************************
  * @file put_menu.c
  ***********************************************/
 void	menu_obj_display(t_graph_sys *g_sys);
+
+/***********************************************
+ * @file menu.c
+ ***********************************************/
 void	menu_management(t_graph_sys *g_sys);
 
 #endif

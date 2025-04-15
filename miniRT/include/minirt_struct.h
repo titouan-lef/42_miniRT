@@ -190,11 +190,8 @@ typedef struct s_double_buffer
 typedef struct s_menu
 {
 	int		enable;
-	int		select_obj;
-	int		select_l;
+	int		select_type;
 	int		select_data;
-	int		select_rotation;
-	int		select_resize;
 	t_obj	*obj;
 	t_light	*light;
 	t_vec3	*cam_dir;//debug

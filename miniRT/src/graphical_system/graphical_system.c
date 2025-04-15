@@ -54,11 +54,14 @@ static void	update(void *param)
 	init_calculation(&scene->cam.pos, scene->tab_obj);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);
-	if (g_sys->menu.enable != 0)
+	if (g_sys->menu.enable == 0)
 	{
-		scene->g_sys.menu.cam_dir = &scene->cam.dir;//debug
-		menu_management(g_sys);
+		init_menu(&g_sys->menu);
+		g_sys->menu.light = *scene->tab_l;
+		g_sys->menu.obj = *scene->tab_obj;	
 	}
+	if (g_sys->menu.enable != 0)
+		menu_management(g_sys);
 }
 
 int	manage_graphical_system(t_scene	*scene)

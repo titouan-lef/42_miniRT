@@ -44,3 +44,13 @@ double	*get_obj_height(t_obj *obj)
 		return (&((t_cone_obj *)(obj->data))->co.h);
 	return (NULL);
 }
+
+int	get_range(t_obj *obj)
+{
+	if (obj->type == SPHERE)
+		return (4);
+	else if (obj->type == PLANE)
+		return (6);
+	else
+		return (8);
+}

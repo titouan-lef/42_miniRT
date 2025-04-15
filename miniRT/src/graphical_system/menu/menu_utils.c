@@ -20,9 +20,6 @@ void	defile(int *position, int start, int end, int moov)
 void	init_menu(t_menu *menu)
 {
 	menu->enable = 0;
-	menu->select_obj = 0;
-	menu->select_l = 0;
-	menu->select_rotation = 0;
-	menu->select_resize = 0;
+	menu->select_type = 0;
 	menu->select_data = 1;
 }

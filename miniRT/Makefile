@@ -64,12 +64,13 @@ SRC :=	minirt.c \
 		graphical_system/graphical_system.c \
 		graphical_system/event/event.c \
 		graphical_system/event/camera_moov.c \
-		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/menu.c \
-		graphical_system/menu/get_obj_data.c \
+		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/put_menu.c \
+		graphical_system/menu/get_obj_data.c \
 		graphical_system/menu/event_menu.c \
-		graphical_system/menu/event_obj_moov.c
+		graphical_system/menu/edit_obj.c \
+		graphical_system/menu/edit_data.c
 
 #---------- BONUS ----------#
 
