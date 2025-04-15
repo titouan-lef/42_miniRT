@@ -29,8 +29,9 @@ void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 int		intersect_base(const t_vec3 *base_center, double r, double t,
 			t_intersec *inter);
 void	update_soluce_sp(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
-void	update_n_soluce_pl(const t_vec3 *n, double raydir_dot_odir,
+void	update_n_soluce_lite(const t_vec3 *n, double raydir_dot_odir,
 			t_soluce *soluce);
+void	update_n_soluce(const t_vec3 *n, const t_vec3 *ray_dir, t_soluce *soluce);
 void	update_soluce_pl(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
 
 /** @file intersect_plane.c */
