@@ -2,15 +2,14 @@
 
 #include "minirt.h"
 
-double	cos_angle_light(const t_light *light, const t_intersec *inter,
-	const t_vec3 *n)
+double	cos_angle_light(const t_light *l, const t_soluce *soluce)
 {
-	t_vec3	light_dir;
+	t_vec3	pl;
 	double	fact;
 
-	light_dir = ft_diff_vec3(&light->pos, &inter->soluce.p);
-	light_dir = ft_normalize_vec3(&light_dir);
-	fact = ft_dot_vec3(&light_dir, n);
+	pl = ft_diff_vec3(&l->pos, &soluce->p);
+	pl = ft_normalize_vec3(&pl);
+	fact = ft_dot_vec3(&pl, &soluce->n);
 	return (fact);
 }
 
