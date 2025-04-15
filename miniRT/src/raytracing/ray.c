@@ -2,44 +2,33 @@
 
 #include "minirt.h"
 
-static double	intersect_ray_obj(const t_obj *obj, t_intersec *inter)
-{
-	double	dist;
-
-	if (obj->type == SPHERE)
-		dist = intersect_ray_sp(obj, &inter->ray.dir);
-	else if (obj->type == PLANE)
-		dist = intersect_ray_pl(obj, &inter->ray.dir);
-	else if (obj->type == CYLINDER)
-		dist = intersect_ray_cy(obj, &inter->ray);
-	else if (obj->type == CONE)
-		dist = intersect_ray_co(obj, &inter->ray);
-	else
-		dist = INFINITY;
-	return (dist);
-}
-
 /**
  * @brief Get the object color of the first object intersect by the ray.
  */
 static void	raytracers(t_obj **tab_obj, t_intersec *inter)
 {
-	double	dist;
-	double	dist_min;
+	size_t	i;
 
-	dist_min = INFINITY;
-	while (*tab_obj != NULL)
+	i = 0;
+	while (tab_obj[i] != NULL)
 	{
-		dist = intersect_ray_obj(*tab_obj, inter);
-		if (dist < dist_min)
-		{
-			dist_min = dist;
-			inter->obj = *tab_obj;
-		}
-		++tab_obj;
+		if (tab_obj[i]->type == SPHERE)
+			intersect_ray_sp(tab_obj[i], inter);
+		else if (tab_obj[i]->type == PLANE)
+			intersect_ray_pl(tab_obj[i], inter);
+		else if (tab_obj[i]->type == CYLINDER)
+			intersect_ray_cy(tab_obj[i], inter);
+		else if (tab_obj[i]->type == CONE)
+			intersect_ray_co(tab_obj[i], inter);
+		++i;
 	}
 	if (inter->obj != NULL)
-		inter->p = ft_translation(&inter->ray.s, &inter->ray.dir, dist_min);
+	{
+		if (inter->obj->type == SPHERE)
+			update_soluce_sp(inter->obj, &inter->ray, &inter->soluce);
+		else if (inter->obj->type == PLANE)
+			update_soluce_pl(inter->obj, &inter->ray, &inter->soluce);
+	}
 }
 
 /**
@@ -73,6 +62,7 @@ static t_intersec	get_near_intersec(const t_vec3 *local_dir,
 
 	inter.obj = NULL;
 	inter.ray = get_ray(local_dir, cam);
+	inter.soluce.t = INFINITY;
 	raytracers(tab_obj, &inter);
 	return (inter);
 }

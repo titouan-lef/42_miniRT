@@ -136,6 +136,7 @@ typedef struct s_math_cy
 	t_vec3	t;
 	double	bs_dot_odir;
 	double	ts_dot_odir;
+	double	raydir_dot_odir;
 }	t_math_cy;
 
 typedef struct s_cylinder_obj
@@ -165,6 +166,7 @@ typedef struct s_math_co
 	double	c_factor;
 	t_vec3	t;
 	double	ts_dot_odir;
+	double	raydir_dot_odir;
 }	t_math_co;
 
 typedef struct s_cone_obj
@@ -245,11 +247,18 @@ typedef struct s_ray
 /***********************************************
  * @struct INTERSECTION
  ***********************************************/
+typedef struct s_soluce
+{
+	double	t;
+	t_vec3	p;
+	t_vec3	n;
+}	t_soluce;
+
 typedef struct s_intersec
 {
 	t_ray		ray;
 	const t_obj	*obj;
-	t_vec3		p;
+	t_soluce	soluce;
 }	t_intersec;
 
 #endif
