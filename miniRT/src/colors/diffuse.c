@@ -13,15 +13,16 @@ double	cos_angle_light(const t_light *l, const t_soluce *soluce)
 	return (fact);
 }
 
-t_color	diffuse(const t_light *light, double kd, double fact)
+t_color	diffuse(const t_light *light, double fact)
 {
 	t_color	color;
 
-	color = ft_scal_color(light->color, fact * light->lbr * kd);
+	color = ft_scal_color(light->color, fact * light->lbr * KD);
 	return (color);
 }
 
-t_color	specular(const t_light *light, const t_intersec *inter, const t_vec3 *n, double kd, double fact)
+t_color	specular(const t_light *light, const t_intersec *inter,
+	const t_vec3 *n, double fact)
 {
 	t_color	color;
 	t_vec3	inv_light_dir;
@@ -39,6 +40,6 @@ t_color	specular(const t_light *light, const t_intersec *inter, const t_vec3 *n,
 	if (result <= 0)
 		return (ft_color_create(0, 0, 0, 255));
 	result = pow(result, 2);
-	color = ft_scal_color(light->color, result * light->lbr * kd);
+	color = ft_scal_color(light->color, result * light->lbr * KD);
 	return (color);
 }
