@@ -1,8 +1,8 @@
 /// @todo header
 
 #include "minirt.h"
- 
-t_vec2 uv_sp(t_vec3 p, void *ts)
+
+t_vec2	uv_sp(t_vec3 p, void *ts)
 {
 	t_vec2	result;
 
@@ -11,12 +11,12 @@ t_vec2 uv_sp(t_vec3 p, void *ts)
 	result.y = fmod(p.y, 2.0);
 	return (result);
 }
-t_vec2 uv_pl(t_vec3 p, void *ts)
+
+t_vec2	uv_pl(t_vec3 p, void *ts)
 {
 	t_vec2	result;
 
 	(void)ts;
-
 	if (p.x >= 0)
 		result.x = p.x;
 	else
@@ -29,7 +29,8 @@ t_vec2 uv_pl(t_vec3 p, void *ts)
 	result.y = fmod(result.y, 1.0);
 	return (result);
 }
-t_vec2 uv_cy(t_vec3 p, void *ts)
+
+t_vec2	uv_cy(t_vec3 p, void *ts)
 {
 	t_vec2	result;
 
@@ -38,7 +39,8 @@ t_vec2 uv_cy(t_vec3 p, void *ts)
 	result.y = p.y / 2;
 	return (result);
 }
-t_vec2 uv_co(t_vec3 p, void *ts)
+
+t_vec2	uv_co(t_vec3 p, void *ts)
 {
 	t_vec2	result;
 
@@ -48,7 +50,7 @@ t_vec2 uv_co(t_vec3 p, void *ts)
 	return (result);
 }
 
-t_color uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *))
+t_color	uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *))
 {
 	t_vec2	uv;
 
@@ -59,7 +61,7 @@ t_color uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *))
 		return (c[1]);
 }
 
-t_color inv_color(t_color c)
+t_color	inv_color(t_color c)
 {
 	t_color	inv_c;
 

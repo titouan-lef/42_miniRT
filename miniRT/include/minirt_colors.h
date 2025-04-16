@@ -34,7 +34,7 @@ t_vec3	get_normal(const t_intersec *inter);
 
 int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
 
-t_color inv_color(t_color c);
+t_color	inv_color(t_color c);
 t_color	uv_manager(const t_intersec *inter, t_color c_obj);
 
 #endif
