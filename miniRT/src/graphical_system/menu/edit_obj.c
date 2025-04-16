@@ -28,7 +28,8 @@ void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 			r_axis = ft_create_vec3(0, 1, 0);
 		else if (menu->select_data == 6)
 			r_axis = ft_create_vec3(0, 0, 1);
-		cone->co.dir = ft_rotation_quat(&cone->co.dir, M_PI / 90 * sign, &r_axis);
+		cone->co.dir = ft_rotation_quat(&cone->co.dir,
+				M_PI / 90 * sign, &r_axis);
 	}
 	else if (menu->select_data == 7)
 		obj_resize(&cone->co.h, sign);
@@ -54,7 +55,8 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 			r_axis = ft_create_vec3(0, 1, 0);
 		else if (menu->select_data == 6)
 			r_axis = ft_create_vec3(0, 0, 1);
-		cylinder->cy.dir = ft_rotation_quat(&cylinder->cy.dir, M_PI / 90 * sign, &r_axis);
+		cylinder->cy.dir = ft_rotation_quat(&cylinder->cy.dir,
+				M_PI / 90 * sign, &r_axis);
 	}
 	else if (menu->select_data == 7)
 		obj_resize(&cylinder->cy.r, sign);
@@ -76,7 +78,8 @@ void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 			r_axis = ft_create_vec3(0, 1, 0);
 		else if (menu->select_data == 4)
 			r_axis = ft_create_vec3(0, 0, 1);
-		plane->pl.n = ft_rotation_quat(&plane->pl.n, M_PI / 22.5 * sign, &r_axis);
+		plane->pl.n = ft_rotation_quat(&plane->pl.n,
+				M_PI / 22.5 * sign, &r_axis);
 	}
 }
 

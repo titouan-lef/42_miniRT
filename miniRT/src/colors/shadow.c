@@ -32,7 +32,7 @@ int	shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p)
 	while (*tab_obj != NULL)
 	{
 		dist = intersect_light(*tab_obj, &ray);
-		if (dist < dist_min - 0.01)//@todo check precision
+		if (dist < dist_min - 0.01)
 			return (1);
 		++tab_obj;
 	}
