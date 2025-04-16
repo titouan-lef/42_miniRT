@@ -2,63 +2,85 @@
 
 #include "minirt.h"
 
-t_vec2	uv_sp(t_vec3 p, void *ts)
+static t_vec2	uv_sp(t_vec3 p, void *arg)
 {
-	t_vec2	result;
+	t_vec2			uv;
+	t_sphere_obj	*sp_obj;
+	t_vec3			op;
 
-	(void)ts;
-	result.x = fmod(p.x, 2.0);
-	result.y = fmod(p.y, 2.0);
-	return (result);
+	sp_obj = (t_sphere_obj *)arg;
+	op = ft_diff_vec3(&p, &sp_obj->sp.pos);
+	uv.x = acos(op.z / sp_obj->sp.r) / M_PI;
+	if (uv.x == 1)
+		uv.x = 0;
+	uv.y = 0.5 + 0.5 * atan2(op.y, op.x) / M_PI;
+	if (uv.y == 1)
+		uv.y = 0;
+	return (uv);
 }
 
-t_vec2	uv_pl(t_vec3 p, void *ts)
-{
-	t_vec2	result;
-
-	(void)ts;
-	if (p.x >= 0)
-		result.x = p.x;
-	else
-		result.x = -p.x + 0.5;
-	if (p.z >= 0)
-		result.y = p.z;
-	else
-		result.y = -p.z + 0.5;
-	result.x = fmod(result.x, 1.0);
-	result.y = fmod(result.y, 1.0);
-	return (result);
-}
-
-t_vec2	uv_cy(t_vec3 p, void *ts)
-{
-	t_vec2	result;
-
-	(void)ts;
-	result.x = p.x / 2;
-	result.y = p.y / 2;
-	return (result);
-}
-
-t_vec2	uv_co(t_vec3 p, void *ts)
-{
-	t_vec2	result;
-
-	(void)ts;
-	result.x = p.x / 2;
-	result.y = p.y / 2;
-	return (result);
-}
-
-t_color	uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *))
+static t_vec2	uv_pl(t_vec3 p, void *arg)
 {
 	t_vec2	uv;
 
-	uv = f(p, NULL);
-	if ((uv.x < 0.5 && uv.y < 0.5) || ((uv.x >= 0.5 && uv.y >= 0.5)))
-		return (c[0]);
+	(void)arg;
+	if (p.x >= 0)
+		uv.x = p.x;
 	else
-		return (c[1]);
+		uv.x = -p.x + 0.5;
+	if (p.z >= 0)
+		uv.y = p.z;
+	else
+		uv.y = -p.z + 0.5;
+	uv.x = fmod(uv.x, 1.0);
+	uv.y = fmod(uv.y, 1.0);
+	return (uv);
+}
+
+static t_vec2	uv_cy(t_vec3 p, void *arg)
+{
+	t_vec2	uv;
+
+	(void)arg;
+	uv.x = p.x / 2;
+	uv.y = p.y / 2;
+	return (uv);
+}
+
+static t_vec2	uv_co(t_vec3 p, void *arg)
+{
+	t_vec2	uv;
+
+	(void)arg;
+	uv.x = p.x / 2;
+	uv.y = p.y / 2;
+	return (uv);
+}
+
+static int	ft_exp(int n)
+{
+	int	result;
+
+	result = 1;
+	while (n > 0)
+	{
+		result *= 2;
+		--n;
+	}
+	return (result);
+}
+
+static t_color	uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *), void *arg)
+{
+	const int	div = 6;
+	int			sq;
+	t_vec2		uv;
+
+	uv = f(p, arg);
+	sq = ft_exp(div);
+	if ((int)fmod(uv.x * sq, 2) == (int)fmod(uv.y * sq, 2))
+		return (c[0]);
+	return (c[1]);
 }
 
 t_color	inv_color(t_color c)
@@ -77,12 +99,12 @@ t_color	uv_manager(const t_intersec *inter, t_color c_obj)
 	tab_c[0] = c_obj;
 	tab_c[1] = inv_color(c_obj);
 	if (inter->obj->type == SPHERE)
-		c = uv(tab_c, inter->soluce.p, &uv_sp);
+		c = uv(tab_c, inter->soluce.p, &uv_sp, (void *)inter->obj->data);
 	else if (inter->obj->type == PLANE)
-		c = uv(tab_c, inter->soluce.p, &uv_pl);
+		c = uv(tab_c, inter->soluce.p, &uv_pl, (void *)inter->obj->data);
 	else if (inter->obj->type == CYLINDER)
-		c = uv(tab_c, inter->soluce.p, &uv_cy);
+		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter->obj->data);
 	else
-		c = uv(tab_c, inter->soluce.p, &uv_co);
+		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter->obj->data);
 	return (c);
 }
