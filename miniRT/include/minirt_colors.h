@@ -9,6 +9,12 @@
 #  define KD 1
 # endif
 
+typedef struct s_vec2
+{
+	double	x;
+	double	y;
+}	t_vec2;
+
 t_color	ft_sum_colors(t_color c1, t_color c2);
 t_color	ft_dif_colors(t_color c1, t_color c2);
 t_color	ft_scal_color(t_color color, double k);
@@ -27,5 +33,8 @@ double	cos_angle_light(const t_light *light, const t_soluce *soluce);
 t_vec3	get_normal(const t_intersec *inter);
 
 int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
+
+t_color inv_color(t_color c);
+t_color	uv_manager(const t_intersec *inter, t_color c_obj);
 
 #endif

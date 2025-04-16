@@ -70,7 +70,8 @@ SRC :=	minirt.c \
 		graphical_system/menu/get_obj_data.c \
 		graphical_system/menu/event_menu.c \
 		graphical_system/menu/edit_obj.c \
-		graphical_system/menu/edit_data.c
+		graphical_system/menu/edit_data.c \
+		colors/patterns/checkerboard_pattern.c
 
 #---------- BONUS ----------#
 
