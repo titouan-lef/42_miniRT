@@ -39,21 +39,27 @@ static t_vec2	uv_pl(t_vec3 p, void *arg)
 
 static t_vec2	uv_cy(t_vec3 p, void *arg)
 {
-	t_vec2	uv;
+	t_vec2			uv;
+	t_cylinder_obj	*cy_obj;
+	double			theta;
 
-	(void)arg;
-	uv.x = p.x / 2;
-	uv.y = p.y / 2;
+	cy_obj = (t_cylinder_obj *)arg;
+	theta = atan2(p.z, p.x);
+	uv.x = (theta / (2 * M_PI));
+	uv.y = p.y / cy_obj->cy.hh;
 	return (uv);
 }
 
 static t_vec2	uv_co(t_vec3 p, void *arg)
 {
-	t_vec2	uv;
+	t_vec2			uv;
+	t_cone_obj	*co_obj;
+	double			theta;
 
-	(void)arg;
-	uv.x = p.x / 2;
-	uv.y = p.y / 2;
+	co_obj = (t_cone_obj *)arg;
+	theta = atan2(p.z, p.x);
+	uv.x = (theta / (2 * M_PI));
+	uv.y = p.y / co_obj->co.h;
 	return (uv);
 }
 
@@ -72,7 +78,7 @@ static int	ft_exp(int n)
 
 static t_color	uv(t_color c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *), void *arg)
 {
-	const int	div = 6;
+	const int	div = 3;
 	int			sq;
 	t_vec2		uv;
 
