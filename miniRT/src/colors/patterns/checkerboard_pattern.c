@@ -41,12 +41,20 @@ static t_vec2	uv_cy(t_vec3 p, void *arg)
 {
 	t_vec2			uv;
 	t_cylinder_obj	*cy_obj;
-	double			theta;
+	t_vec3			op;
+	t_intersec		*inter;
+	double			m;
 
-	cy_obj = (t_cylinder_obj *)arg;
-	theta = atan2(p.z, p.x);
-	uv.x = (theta / (2 * M_PI));
-	uv.y = p.y / cy_obj->cy.hh;
+	inter = (t_intersec *)arg;
+	cy_obj = (t_cylinder_obj *)inter->obj->data;
+	op = ft_diff_vec3(&p, &cy_obj->cy.pos);
+	m = ft_dot_vec3(&op, &cy_obj->cy.dir);
+	uv.x = (m + cy_obj->cy.hh) / (2 * cy_obj->cy.hh);
+	if (uv.x >= 1)
+		uv.x = 0;
+	uv.y = 0.5 + 0.5 * atan2(ft_dot_vec3(&op, &cy_obj->cy.right), ft_dot_vec3(&op, &cy_obj->cy.up)) / M_PI;
+	if (uv.y >= 1)
+		uv.y = 0;
 	return (uv);
 }
 
@@ -109,7 +117,7 @@ t_color	uv_manager(const t_intersec *inter, t_color c_obj)
 	else if (inter->obj->type == PLANE)
 		c = uv(tab_c, inter->soluce.p, &uv_pl, (void *)inter->obj->data);
 	else if (inter->obj->type == CYLINDER)
-		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter->obj->data);
+		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter);
 	else
 		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter->obj->data);
 	return (c);

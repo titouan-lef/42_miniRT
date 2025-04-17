@@ -123,6 +123,8 @@ typedef struct s_cylinder
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	right;
+	t_vec3	up;
 	double	hh;
 	double	r;
 }	t_cylinder;
