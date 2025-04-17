@@ -24,25 +24,22 @@ static void	put_menu_sphere(t_graph_sys *g_sys)
 
 static void	put_menu_plane(t_graph_sys *g_sys)
 {
-	const char	*txt[9] = {OBJ_PL, T, X, Y, Z, R, X, Y, Z};
-	mlx_color	clr[7];
+	const char	*txt[6] = {OBJ_PL, T, R, X, Y, Z};
+	mlx_color	clr[5];
 	int			i;
 	int			y;
 
 	i = 0;
 	y = 15;
-	while (i < 7)
+	while (i < 5)
 		clr[i++].rgba = 0xFFFFFFFF;
 	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[0], (char *)txt[0]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[0], (char *)txt[1]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[1], (char *)txt[2]);
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[1], (char *)txt[1]);
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[0], (char *)txt[2]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 45, clr[2], (char *)txt[3]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 60, clr[3], (char *)txt[4]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 75, clr[0], (char *)txt[5]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 90, clr[4], (char *)txt[6]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 105, clr[5], (char *)txt[7]);
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 120, clr[6], (char *)txt[8]);
+	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 75, clr[4], (char *)txt[5]);
 }
 
 static void	put_menu_cylinder(t_graph_sys *g_sys)
