@@ -51,6 +51,6 @@ t_color	uv_manager(const t_intersec *inter, t_color c_obj)
 	else if (inter->obj->type == CYLINDER)
 		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter);
 	else
-		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter->obj->data);
+		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter);
 	return (c);
 }

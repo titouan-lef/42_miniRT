@@ -63,11 +63,20 @@ t_vec2	uv_co(t_vec3 p, void *arg)
 {
 	t_vec2		uv;
 	t_cone_obj	*co_obj;
-	double		theta;
+	t_vec3		op;
+	t_intersec	*inter;
+	double		m;
 
-	co_obj = (t_cone_obj *)arg;
-	theta = atan2(p.z, p.x);
-	uv.x = (theta / (2 * M_PI));
-	uv.y = p.y / co_obj->co.h;
+	inter = (t_intersec *)arg;
+	co_obj = (t_cone_obj *)inter->obj->data;
+	op = ft_diff_vec3(&p, &co_obj->co.pos);
+	m = ft_dot_vec3(&op, &co_obj->co.dir);
+	uv.x = (m + co_obj->co.h) / (2 * co_obj->co.h);
+	if (uv.x >= 1)
+		uv.x = 0;
+	uv.y = 0.5 + 0.5 * atan2(ft_dot_vec3(&op, &co_obj->co.right),
+			ft_dot_vec3(&op, &co_obj->co.up)) / M_PI;
+	if (uv.y >= 1)
+		uv.y = 0;
 	return (uv);
 }
