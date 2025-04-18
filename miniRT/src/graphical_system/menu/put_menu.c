@@ -69,7 +69,7 @@ static void	put_menu_cylinder(t_graph_sys *g_sys)
 
 static void	put_menu_cone(t_graph_sys *g_sys)
 {
-	const char	*txt[11] = {OBJ_CO, T, X, Y, Z, R, X, Y, Z, D, H};
+	const char	*txt[11] = {OBJ_CO, T, X, Y, Z, R, X, Y, Z, H, D};
 	mlx_color	clr[9];
 	int			i;
 	int			y;
