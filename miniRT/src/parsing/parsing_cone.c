@@ -37,5 +37,6 @@ int	cone_interpreter(t_list **lst_obj, char **tab)
 		free(new_co);
 		return (1);
 	}
+	init_local_coordinates(&new_co->co.dir, &new_co->co.right, &new_co->co.up);
 	return (0);
 }

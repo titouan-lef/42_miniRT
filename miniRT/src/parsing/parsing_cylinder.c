@@ -27,7 +27,6 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 int	cylinder_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cylinder_obj	*new_cy;
-	t_vec3			up_wish;
 
 	if (ft_matrix_get_row((void **)tab) != 6)
 		return (1);
@@ -39,15 +38,6 @@ int	cylinder_interpreter(t_list **lst_obj, char **tab)
 		free(new_cy);
 		return (1);
 	}
-	up_wish = ft_create_vec3(0, 1, 0);
-	if (new_cy->cy.dir.x == 0 && new_cy->cy.dir.z == 0)
-	{
-		if (new_cy->cy.dir.y == 1)
-			up_wish = ft_create_vec3(0, 0, -1);
-		else if (new_cy->cy.dir.y == -1)
-			up_wish = ft_create_vec3(0, 0, 1);
-	}
-	new_cy->cy.right = ft_cross_vec3(&up_wish, &new_cy->cy.dir);
-	new_cy->cy.up = ft_cross_vec3(&new_cy->cy.dir, &new_cy->cy.right);
+	init_local_coordinates(&new_cy->cy.dir, &new_cy->cy.right, &new_cy->cy.up);
 	return (0);
 }

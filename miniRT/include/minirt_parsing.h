@@ -71,6 +71,17 @@ int		cone_interpreter(t_list **lst_obj, char **tab);
 void	exit_error_parsing(t_scene *scene);
 void	print_error_message(char *str);
 
+/***********************************************
+ *  @file lst_parsing.c
+ ***********************************************/
 int		lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse);
+
+/***********************************************
+ *  @file parsing_local__coor.c
+ ***********************************************/
+void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up);
+void	rotation_on_forward(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign);
+void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign);
+void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign);
 
 #endif

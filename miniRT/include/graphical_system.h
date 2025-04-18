@@ -118,10 +118,10 @@ void	data_change(int key, void *param);
 /***********************************************
  * @file edit_obj.c
  ***********************************************/
-void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone);
-void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder);
-void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane);
-void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere);
+void	edit_cone(int *sign, t_menu *menu, t_cone_obj *cone);
+void	edit_cylinder(int *sign, t_menu *menu, t_cylinder_obj *cylinder);
+void	edit_plane(int *sign, t_menu *menu, t_plane_obj *plane);
+void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere);
 
 /***********************************************
  * @file event_menu.c

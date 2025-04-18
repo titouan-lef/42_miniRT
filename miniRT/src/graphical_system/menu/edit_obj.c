@@ -2,34 +2,33 @@
 
 #include "minirt.h"
 
-static void	obj_resize(double *r, int sign)
+static void	obj_resize(double *r, int *sign)
 {
-	if (*r - DIST < 0 && sign < 0)
+	if (*r - DIST < 0 && *sign < 0)
 		*r = 0;
 	else
-		*r += DIST * sign;
+		*r += DIST * *sign;
 }
 
-void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
+void	edit_cone(int *sign, t_menu *menu, t_cone_obj *cone)
 {
-	t_vec3	r_axis;
-
 	if (menu->select_data == 1)
-		cone->co.pos.x += DIST * sign;
+		cone->co.pos.x += DIST * *sign;
 	else if (menu->select_data == 2)
-		cone->co.pos.y += DIST * sign;
+		cone->co.pos.y += DIST * *sign;
 	else if (menu->select_data == 3)
-		cone->co.pos.z += DIST * sign;
+		cone->co.pos.z += DIST * *sign;
 	else if (menu->select_data > 3 && menu->select_data < 7)
 	{
 		if (menu->select_data == 4)
-			r_axis = ft_create_vec3(1, 0, 0);
+			rotation_on_right(&cone->co.right,
+				&cone->co.up, &cone->co.dir, sign);
 		else if (menu->select_data == 5)
-			r_axis = ft_create_vec3(0, 1, 0);
+			rotation_on_up(&cone->co.right, &cone->co.up,
+				&cone->co.dir, sign);
 		else if (menu->select_data == 6)
-			r_axis = ft_create_vec3(0, 0, 1);
-		cone->co.dir = ft_rotation_quat(&cone->co.dir,
-				M_PI / 90 * sign, &r_axis);
+			rotation_on_forward(&cone->co.right,
+				&cone->co.up, &cone->co.dir, sign);
 	}
 	else if (menu->select_data == 7)
 		obj_resize(&cone->co.h, sign);
@@ -37,51 +36,25 @@ void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 		obj_resize(&cone->co.r, sign);
 }
 
-static void	rotation_cylinder(t_menu *menu, t_cylinder_obj *cylinder)
+void	edit_cylinder(int *sign, t_menu *menu, t_cylinder_obj *cylinder)
 {
-	double	angle;
-
-	if (menu->select_data == 4)
-	{
-		angle = M_PI * 0.1;
-		cylinder->cy.dir = ft_rotation_quat(&cylinder->cy.dir, angle, &cylinder->cy.up);
-		cylinder->cy.right = ft_cross_vec3(&cylinder->cy.up, &cylinder->cy.dir);
-	}
-	else if (menu->select_data == 5)
-	{
-		angle = M_PI * 0.1;
-		cylinder->cy.dir = ft_rotation_quat(&cylinder->cy.dir, angle, &cylinder->cy.right);
-		cylinder->cy.up = ft_cross_vec3(&cylinder->cy.dir, &cylinder->cy.right);
-	}
-	else if (menu->select_data == 6)
-	{
-		angle = M_PI * 0.1;
-		cylinder->cy.right = ft_rotation_quat(&cylinder->cy.right, angle, &cylinder->cy.dir);
-		cylinder->cy.up = ft_cross_vec3(&cylinder->cy.dir, &cylinder->cy.right);
-	}
-}
-
-void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
-{
-	//t_vec3	r_axis;
-
 	if (menu->select_data == 1)
-		cylinder->cy.pos.x += DIST * sign;
+		cylinder->cy.pos.x += DIST * *sign;
 	else if (menu->select_data == 2)
-		cylinder->cy.pos.y += DIST * sign;
+		cylinder->cy.pos.y += DIST * *sign;
 	else if (menu->select_data == 3)
-		cylinder->cy.pos.z += DIST * sign;
+		cylinder->cy.pos.z += DIST * *sign;
 	else if (menu->select_data > 3 && menu->select_data < 7)
 	{
-		rotation_cylinder(menu, cylinder);
-		/*if (menu->select_data == 4)
-			r_axis = ft_create_vec3(1, 0, 0);
+		if (menu->select_data == 4)
+			rotation_on_right(&cylinder->cy.right,
+				&cylinder->cy.up, &cylinder->cy.dir, sign);
 		else if (menu->select_data == 5)
-			r_axis = ft_create_vec3(0, 1, 0);
+			rotation_on_up(&cylinder->cy.right,
+				&cylinder->cy.up, &cylinder->cy.dir, sign);
 		else if (menu->select_data == 6)
-			r_axis = ft_create_vec3(0, 0, 1);
-		cylinder->cy.dir = ft_rotation_quat(&cylinder->cy.dir,
-				M_PI / 90 * sign, &r_axis);*/
+			rotation_on_forward(&cylinder->cy.right,
+				&cylinder->cy.up, &cylinder->cy.dir, sign);
 	}
 	else if (menu->select_data == 7)
 		obj_resize(&cylinder->cy.r, sign);
@@ -89,36 +62,32 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 		obj_resize(&cylinder->cy.hh, sign);
 }
 
-void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
+void	edit_plane(int *sign, t_menu *menu, t_plane_obj *plane)
 {
-	t_vec3	r_axis;
-
 	if (menu->select_data == 1)
-		plane->pl.d += DIST * sign;
+		plane->pl.d += DIST * *sign;
 	else
 	{
 		if (menu->select_data == 2)
-			r_axis = ft_create_vec3(1, 0, 0);
+			rotation_on_right(&plane->right, &plane->up, &plane->pl.n, sign);
 		else if (menu->select_data == 3)
-			r_axis = ft_create_vec3(0, 1, 0);
+			rotation_on_up(&plane->right, &plane->up, &plane->pl.n, sign);
 		else if (menu->select_data == 4)
-			r_axis = ft_create_vec3(0, 0, 1);
-		plane->pl.n = ft_rotation_quat(&plane->pl.n,
-				M_PI / 22.5 * sign, &r_axis);
+			rotation_on_forward(&plane->right, &plane->up, &plane->pl.n, sign);
 	}
 }
 
 /**
  * @brief modifi
  */
-void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere)
+void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere)
 {
 	if (menu->select_data == 1)
-		sphere->sp.pos.x += DIST * sign;
+		sphere->sp.pos.x += DIST * *sign;
 	else if (menu->select_data == 2)
-		sphere->sp.pos.y += DIST * sign;
+		sphere->sp.pos.y += DIST * *sign;
 	else if (menu->select_data == 3)
-		sphere->sp.pos.z += DIST * sign;
+		sphere->sp.pos.z += DIST * *sign;
 	else if (menu->select_data == 4)
 		obj_resize(&sphere->sp.r, sign);
 }

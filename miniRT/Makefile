@@ -46,17 +46,20 @@ SRC :=	minirt.c \
 		colors/colors_utils.c \
 		colors/diffuse.c \
 		colors/shadow.c \
+		colors/patterns/uv.c \
+		colors/patterns/checkerboard_pattern.c \
+		parsing/lst_parsing.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \
 		parsing/parsing_cylinder.c \
 		parsing/parsing_error.c \
 		parsing/parsing_light.c \
+		parsing/parsing_local_coor.c \
 		parsing/parsing_plane.c \
-		parsing/parsing_vector.c \
 		parsing/parsing_sphere.c \
-		parsing/lst_parsing.c \
 		parsing/parsing_utils.c \
+		parsing/parsing_vector.c \
 		parsing/parsing.c \
 		graphical_system/image.c \
 		graphical_system/window.c \
@@ -70,8 +73,7 @@ SRC :=	minirt.c \
 		graphical_system/menu/get_obj_data.c \
 		graphical_system/menu/event_menu.c \
 		graphical_system/menu/edit_obj.c \
-		graphical_system/menu/edit_data.c \
-		colors/patterns/checkerboard_pattern.c
+		graphical_system/menu/edit_data.c
 
 #---------- BONUS ----------#
 

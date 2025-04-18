@@ -15,26 +15,44 @@ typedef struct s_vec2
 	double	y;
 }	t_vec2;
 
+/***********************************************
+ *  @file colors_utils.c
+ ***********************************************/
 t_color	ft_sum_colors(t_color c1, t_color c2);
 t_color	ft_dif_colors(t_color c1, t_color c2);
 t_color	ft_scal_color(t_color color, double k);
 t_color	ft_mult_colors(t_color c1, t_color c2);
 
+/***********************************************
+ *  @file lighting.c
+ ***********************************************/
 t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
 			const t_amb *amb);
 
+/***********************************************
+ *  @file diffuse.c
+ ***********************************************/
 t_color	diffuse(const t_light *light, double fact);
-
 t_color	specular(const t_light *light, const t_intersec *inter,
 			const t_vec3 *n, double fact);
-
 double	cos_angle_light(const t_light *light, const t_soluce *soluce);
 
-t_vec3	get_normal(const t_intersec *inter);
-
+/***********************************************
+ *  @file shadow.c
+ ***********************************************/
 int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
 
-t_color	inv_color(t_color c);
+/***********************************************
+ *  @file checkerboard_pattern.c
+ ***********************************************/
 t_color	uv_manager(const t_intersec *inter, t_color c_obj);
+
+/***********************************************
+ *  @file uv.c
+ ***********************************************/
+t_vec2	uv_sp(t_vec3 p, void *arg);
+t_vec2	uv_pl(t_vec3 p, void *arg);
+t_vec2	uv_cy(t_vec3 p, void *arg);
+t_vec2	uv_co(t_vec3 p, void *arg);
 
 #endif

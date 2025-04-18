@@ -7,14 +7,14 @@
  * y when select data = 2
  * z when select data = 3.
  */
-static void	light_translation(t_menu *menu, int sign)
+static void	light_translation(t_menu *menu, int *sign)
 {
 	if (menu->select_data == 1)
-		menu->light->pos.x += DIST * sign;
+		menu->light->pos.x += DIST * *sign;
 	else if (menu->select_data == 2)
-		menu->light->pos.y += DIST * sign;
+		menu->light->pos.y += DIST * *sign;
 	else if (menu->select_data == 3)
-		menu->light->pos.z += DIST * sign;
+		menu->light->pos.z += DIST * *sign;
 }
 
 static void	key_hook_select_change(int key, void *param)
@@ -53,16 +53,16 @@ void	data_change(int key, void *param)
 	if (sign == 0 || menu->enable == 0 || menu->select_type == 0)
 		return ;
 	if (menu->select_type == 2)
-		light_translation(menu, sign);
+		light_translation(menu, &sign);
 	else if (menu->select_type == 1)
 	{
 		if (menu->obj->type == SPHERE)
-			edit_sphere(sign, menu, (t_sphere_obj *)(menu->obj->data));
+			edit_sphere(&sign, menu, (t_sphere_obj *)(menu->obj->data));
 		else if (menu->obj->type == PLANE)
-			edit_plane(sign, menu, (t_plane_obj *)(menu->obj->data));
+			edit_plane(&sign, menu, (t_plane_obj *)(menu->obj->data));
 		else if (menu->obj->type == CYLINDER)
-			edit_cylinder(sign, menu, (t_cylinder_obj *)(menu->obj->data));
+			edit_cylinder(&sign, menu, (t_cylinder_obj *)(menu->obj->data));
 		else
-			edit_cone(sign, menu, (t_cone_obj *)(menu->obj->data));
+			edit_cone(&sign, menu, (t_cone_obj *)(menu->obj->data));
 	}
 }

@@ -37,5 +37,6 @@ int	plan_interpreter(t_list **lst_obj, char **tab)
 		free(new_pl);
 		return (1);
 	}
+	init_local_coordinates(&new_pl->pl.n, &new_pl->right, &new_pl->up);
 	return (0);
 }

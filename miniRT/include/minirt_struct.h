@@ -113,6 +113,8 @@ typedef struct s_plane_obj
 {
 	t_color	color;
 	t_plane	pl;
+	t_vec3	right;
+	t_vec3	up;
 	double	math_os_dot_odir;
 }	t_plane_obj;
 
@@ -155,6 +157,8 @@ typedef struct s_cone
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	t_vec3	right;
+	t_vec3	up;
 	double	h;
 	double	r;
 }	t_cone;
