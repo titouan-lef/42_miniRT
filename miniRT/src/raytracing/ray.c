@@ -95,7 +95,8 @@ int	ray_lauch_test(t_scene *scene)
 		{
 			local_dir.x = x - WIN_HW;
 			inter = get_near_intersec(&local_dir, &scene->cam, scene->tab_obj);
-			inter.soluce.n = bump_map(&scene->g_sys, &inter, &scene->g_sys.bump_map);
+			if (inter.obj != NULL)
+				inter.soluce.n = bump_map(&scene->g_sys, &inter, &scene->g_sys.bump_map);
 			c = lighting(&inter, scene->tab_obj, scene->tab_l, &scene->amb);
 			set_image_pixel(&scene->g_sys, x, y, c);
 			x += scene->g_sys.def_w;

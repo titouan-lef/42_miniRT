@@ -36,6 +36,7 @@ t_vec3	bump_map(t_graph_sys *g_sys, const t_intersec *inter, mlx_image *img)
 		new_normal = uv_bump(&g_sys->mlx, inter->soluce.p, img, &uv_cy, (void *)inter);
 	else
 		new_normal = uv_bump(&g_sys->mlx, inter->soluce.p,  img, &uv_co, (void *)inter);
-	new_normal = ft_cross_vec3(&inter->soluce.n, &new_normal);
+	new_normal = ft_sum_vec3(&inter->soluce.n, &new_normal);
+	new_normal = ft_normalize_vec3(&new_normal);
 	return (new_normal);
 }
