@@ -55,4 +55,6 @@ t_vec2	uv_pl(t_vec3 p, void *arg);
 t_vec2	uv_cy(t_vec3 p, void *arg);
 t_vec2	uv_co(t_vec3 p, void *arg);
 
+t_vec3	bump_map(t_graph_sys *g_sys, const t_intersec *inter, mlx_image *img);
+
 #endif

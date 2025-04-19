@@ -213,6 +213,7 @@ typedef struct s_graph_sys
 	mlx_context		mlx;
 	mlx_window		win;
 	t_double_buffer	buff;
+	mlx_image 		bump_map;
 	t_menu			menu;
 	int				def_w;
 	int				def_h;
@@ -264,6 +265,7 @@ typedef struct s_intersec
 {
 	t_ray		ray;
 	const t_obj	*obj;
+	mlx_image 	*b_map;
 	t_soluce	soluce;
 }	t_intersec;
 

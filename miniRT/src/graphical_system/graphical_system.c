@@ -22,6 +22,11 @@ static int	init_mlx(t_graph_sys *g_sys)
 
 static int	init_graphical_data(t_graph_sys *g_sys)
 {
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
 	if (init_mlx(g_sys))
 		return (1);
 	if (init_double_buffer(g_sys))
@@ -36,6 +41,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
+	g_sys->bump_map = mlx_new_image_from_file(g_sys->mlx, "../bump_files/bump_sand.png", &x, &y);
 	init_menu(&g_sys->menu);
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
