@@ -9,7 +9,7 @@ static t_vec3	change_vector_space(t_vec3 *n, t_vec3 *nl)
 	t_vec3	new;
 
 	t.x = n->y;
-	t.y = -(n->x);
+	t.y = -n->x;
 	t.z = 0;
 	if (!ft_is_zero_vec3(&t))
 		t = ft_normalize_vec3(&t);
@@ -30,8 +30,8 @@ static t_vec3	color_to_normal(mlx_color *c_x1, mlx_color *c_y1, mlx_color *c_xy)
 	x1 = ((double)c_x1->r / 255);
 	y1 = ((double)c_y1->r / 255);
 	xy = ((double)c_xy->r / 255);
-	new_normal.x = -(x1 - xy);
-	new_normal.y = -(y1 - xy);
+	new_normal.x = xy - x1;
+	new_normal.y = xy - y1;
 	new_normal.z = 1;
 	return (new_normal);
 }
