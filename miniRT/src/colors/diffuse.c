@@ -7,39 +7,38 @@ double	cos_angle_light(const t_light *l, const t_soluce *soluce)
 	t_vec3	pl;
 	double	fact;
 
-	pl = ft_diff_vec3(&l->pos, &soluce->p);
-	pl = ft_normalize_vec3(&pl);
+	pl = ft_create_normalized_vec3(&soluce->p, &l->pos);
 	fact = ft_dot_vec3(&pl, &soluce->n);
 	return (fact);
 }
 
-t_color	diffuse(const t_light *light, double fact)
+void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact)
 {
-	t_color	color;
+	t_vec3	color;
 
-	color = ft_scal_color(light->color, fact * light->lbr * KD);
-	return (color);
+	color = ft_color_to_vec3(&light->color);
+	color = ft_scalmult_vec3(&color, fact * light->lbr * KD);
+	*diffuse = ft_sum_vec3(diffuse, &color);
 }
 
-t_color	specular(const t_light *light, const t_intersec *inter,
-	const t_vec3 *n, double fact)
+void	apply_specular(const t_light *light, t_vec3 *specular,
+	const t_intersec *inter, double fact)
 {
-	t_color	color;
-	t_vec3	inv_light_dir;
+	t_vec3	color;
+	t_vec3	lp;
 	t_vec3	reflect_dir;
 	t_vec3	inv_ray_dir;
-	double	result;
+	double	brightness;
 
-	fact = 2 * fact;
-	inv_light_dir = ft_diff_vec3(&inter->soluce.p, &light->pos);
-	inv_light_dir = ft_normalize_vec3(&inv_light_dir);
-	reflect_dir = ft_translation(&inv_light_dir, n, fact);
+	lp = ft_create_normalized_vec3(&light->pos, &inter->soluce.p);
+	reflect_dir = ft_translation_vec3(&lp, &inter->soluce.n, 2 * fact);
 	reflect_dir = ft_normalize_vec3(&reflect_dir);
 	inv_ray_dir = ft_scalmult_vec3(&inter->ray.dir, -1);
-	result = ft_dot_vec3(&reflect_dir, &inv_ray_dir);
-	if (result <= 0)
-		return (ft_color_create(0, 0, 0, 255));
-	result = pow(result, 2);
-	color = ft_scal_color(light->color, result * light->lbr * KD);
-	return (color);
+	brightness = ft_dot_vec3(&reflect_dir, &inv_ray_dir);
+	if (brightness <= 0)
+		return ;
+	brightness = pow(brightness, 2);
+	color = ft_color_to_vec3(&light->color);
+	color = ft_scalmult_vec3(&color, brightness * light->lbr * KD);
+	*specular = ft_sum_vec3(specular, &color);
 }

@@ -9,20 +9,6 @@
 #  define KD 1
 # endif
 
-typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;
-
-/***********************************************
- *  @file colors_utils.c
- ***********************************************/
-t_color	ft_sum_colors(t_color c1, t_color c2);
-t_color	ft_dif_colors(t_color c1, t_color c2);
-t_color	ft_scal_color(t_color color, double k);
-t_color	ft_mult_colors(t_color c1, t_color c2);
-
 /***********************************************
  *  @file lighting.c
  ***********************************************/
@@ -32,9 +18,9 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
 /***********************************************
  *  @file diffuse.c
  ***********************************************/
-t_color	diffuse(const t_light *light, double fact);
-t_color	specular(const t_light *light, const t_intersec *inter,
-			const t_vec3 *n, double fact);
+void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact);
+void	apply_specular(const t_light *light, t_vec3 *specular,
+			const t_intersec *inter, double fact);
 double	cos_angle_light(const t_light *light, const t_soluce *soluce);
 
 /***********************************************
@@ -45,7 +31,7 @@ int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
 /***********************************************
  *  @file checkerboard_pattern.c
  ***********************************************/
-t_color	uv_manager(const t_intersec *inter, t_color c_obj);
+t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj);
 
 /***********************************************
  *  @file uv.c

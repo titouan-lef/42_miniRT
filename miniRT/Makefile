@@ -43,7 +43,6 @@ SRC :=	minirt.c \
 		raytracing/calculation/calculation.c \
 		raytracing/ray.c \
 		colors/lighting.c \
-		colors/colors_utils.c \
 		colors/diffuse.c \
 		colors/shadow.c \
 		colors/patterns/uv.c \

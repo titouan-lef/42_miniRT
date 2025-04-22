@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_color.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 14:44:34 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/03/28 18:44:05 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/04/22 18:00:25 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,34 @@ uint32_t	ft_get_rgba(t_color c)
 	rgb = ft_get_rgb(c);
 	rgb = rgb << 8;
 	return (rgb | c.a);
+}
+
+/**
+ * @brief Convert a color to a vector3.
+ * @return vect3 with values in [0, 1]
+ */
+t_vec3	ft_color_to_vec3(const t_color *c)
+{
+	t_vec3	v;
+
+	v = ft_create_vec3(c->r, c->g, c->b);
+	v = ft_scalmult_vec3(&v, 1.0 / 255.0);
+	return (v);
+}
+
+/**
+ * @brief Convert a vector3 to a color.
+ * @param v rgb value.
+ * @param a alpha value.
+ * @return color with values in [0, 255]
+ * @warning Values in vector must be in [0, 1].
+ */
+t_color	ft_vec3_to_color(const t_vec3 *v, uint8_t a)
+{
+	t_color	c;
+
+	c = ft_color_create(v->x * 255, v->y * 255, v->z * 255, a);
+	return (c);
 }
 
 /**

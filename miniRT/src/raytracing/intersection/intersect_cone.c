@@ -13,7 +13,7 @@ static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 
 	if (t >= inter->soluce.t)
 		return (0);
-	p = ft_translation(&inter->ray.s, &inter->ray.dir, t);
+	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	bp = ft_diff_vec3(&p, &mathco->b);
 	m = ft_dot_vec3(&bp, &co->dir);
 	if (m <= 0 || m > co->h)
@@ -21,7 +21,7 @@ static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 	m_odir = ft_scalmult_vec3(&co->dir, m);
 	inter->soluce.t = t;
 	inter->soluce.p = p;
-	n = ft_translation(&bp, &m_odir, -mathco->angle_factor);
+	n = ft_translation_vec3(&bp, &m_odir, -mathco->angle_factor);
 	n = ft_normalize_vec3(&n);
 	update_n_soluce(&n, &inter->ray.dir, &inter->soluce);
 	return (1);

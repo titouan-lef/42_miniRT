@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 16:03:14 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/04 11:40:29 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:10:27 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_vec3	ft_projection(const t_vec3 *v, const t_plane *pl)
 	numerator += ft_dot_vec3(&pl->n, v);
 	denominator = ft_dot_vec3(&pl->n, &pl->n);
 	t = -numerator / denominator;
-	proj = ft_translation(v, &pl->n, t);
+	proj = ft_translation_vec3(v, &pl->n, t);
 	return (proj);
 }

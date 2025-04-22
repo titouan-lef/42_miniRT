@@ -5,17 +5,17 @@
 static void	camera_translation(t_cam *cam, int key)
 {
 	if (key == SDL_SCANCODE_W)
-		cam->pos = ft_translation(&cam->pos, &cam->dir, 10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->dir, 10);
 	else if (key == SDL_SCANCODE_S)
-		cam->pos = ft_translation(&cam->pos, &cam->dir, -10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->dir, -10);
 	else if (key == SDL_SCANCODE_D)
-		cam->pos = ft_translation(&cam->pos, &cam->right, 10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->right, 10);
 	else if (key == SDL_SCANCODE_A)
-		cam->pos = ft_translation(&cam->pos, &cam->right, -10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->right, -10);
 	else if (key == SDL_SCANCODE_SPACE)
-		cam->pos = ft_translation(&cam->pos, &cam->up, -10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->up, -10);
 	else if (key == SDL_SCANCODE_F)
-		cam->pos = ft_translation(&cam->pos, &cam->up, 10);
+		cam->pos = ft_translation_vec3(&cam->pos, &cam->up, 10);
 }
 
 /**

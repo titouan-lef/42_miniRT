@@ -15,8 +15,7 @@ static int	ft_exp(int n)
 	return (result);
 }
 
-static t_color	uv(t_color c[2], t_vec3 p,
-	t_vec2 (*f)(t_vec3, void *), void *arg)
+static t_vec3	uv(t_vec3 c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *), void *arg)
 {
 	const int	div = 3;
 	int			sq;
@@ -24,10 +23,9 @@ static t_color	uv(t_color c[2], t_vec3 p,
 
 	uv = f(p, arg);
 	sq = ft_exp(div);
-	uv.x = uv.x * sq;
+	uv = ft_scalmult_vec2(&uv, sq);
 	if (uv.x >= sq)
 		uv.x = sq - 1;
-	uv.y = uv.y * sq;
 	if (uv.y >= sq)
 		uv.y = sq - 1;
 	if ((int)uv.x % 2 == (int)uv.y % 2)
@@ -35,18 +33,18 @@ static t_color	uv(t_color c[2], t_vec3 p,
 	return (c[1]);
 }
 
-static t_color	inv_color(t_color c)
+static t_vec3	inv_color(t_vec3 c)
 {
-	t_color	inv_c;
+	t_vec3	inv_c;
 
-	inv_c = ft_color_create(255 - c.r, 255 - c.g, 255 - c.b, c.a);
+	inv_c = ft_create_vec3(1 - c.x, 1 - c.y, 1 - c.z);
 	return (inv_c);
 }
 
-t_color	uv_manager(const t_intersec *inter, t_color c_obj)
+t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj)
 {
-	t_color	c;
-	t_color	tab_c[2];
+	t_vec3	c;
+	t_vec3	tab_c[2];
 
 	tab_c[0] = c_obj;
 	tab_c[1] = inv_color(c_obj);
