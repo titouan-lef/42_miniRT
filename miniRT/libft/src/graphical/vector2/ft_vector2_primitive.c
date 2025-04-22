@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/22 17:37:41 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/22 19:14:20 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ t_vec2	ft_create_vec2(double x, double y)
 
 	v.x = x;
 	v.y = y;
+	return (v);
+}
+
+/**
+ * @brief Create the normalized vector from 2 points.
+ * @param p1 Start point of the vector.
+ * @param p2 End point of the vector.
+ * @return The vector p1p2 normalized.
+ * @warning p1 must be different of p2.
+ */
+t_vec2	ft_create_normalized_vec2(const t_vec2 *p1, const t_vec2 *p2)
+{
+	t_vec2	v;
+
+	v = ft_diff_vec2(p2, p1);
+	v = ft_normalize_vec2(&v);
 	return (v);
 }
 
