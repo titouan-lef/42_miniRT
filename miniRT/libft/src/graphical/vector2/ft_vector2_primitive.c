@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/22 17:10:52 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:37:41 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_vec2	ft_normalize_vec2(const t_vec2 *v)
 	norm = ft_norm_vec2(v);
 	if (norm == 0)
 	{
-		ft_putendl_error("Error : try to normalize a zero vector3");
+		ft_putendl_error("Error : try to normalize a zero vector2");
 		return (*v);
 	}
 	normalize = ft_scalmult_vec2(v, 1.0 / norm);

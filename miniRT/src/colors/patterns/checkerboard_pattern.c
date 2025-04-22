@@ -24,10 +24,9 @@ static t_color	uv(t_color c[2], t_vec3 p,
 
 	uv = f(p, arg);
 	sq = ft_exp(div);
-	uv.x = uv.x * sq;
+	uv = ft_scalmult_vec2(&uv, sq);
 	if (uv.x >= sq)
 		uv.x = sq - 1;
-	uv.y = uv.y * sq;
 	if (uv.y >= sq)
 		uv.y = sq - 1;
 	if ((int)uv.x % 2 == (int)uv.y % 2)
