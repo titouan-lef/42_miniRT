@@ -17,19 +17,18 @@ t_vec2	uv_sp(t_vec3 p, void *arg)
 
 t_vec2	uv_pl(t_vec3 p, void *arg)
 {
-	t_vec2	uv;
+	t_vec2		uv;
+	t_plane_obj	*pl_obj;
+	t_vec3		p_resized;
+	double		dot1;
+	double		dot2;
 
-	(void)arg;
-	if (p.x >= 0)
-		uv.x = p.x;
-	else
-		uv.x = -p.x + 0.5;
-	if (p.z >= 0)
-		uv.y = p.z;
-	else
-		uv.y = -p.z + 0.5;
-	uv.x = fmod(uv.x, 1.0);
-	uv.y = fmod(uv.y, 1.0);
+	pl_obj = (t_plane_obj *)arg;
+	p_resized = ft_scalmult_vec3(&p, 0.01);
+	dot1 = ft_dot_vec3(&p_resized, &pl_obj->right);
+	dot2 = ft_dot_vec3(&p_resized, &pl_obj->up);
+	uv.x = (fmod(dot1, 1) + 1) / 2.0;
+	uv.y = (fmod(dot2, 1) + 1) / 2.0;
 	return (uv);
 }
 
