@@ -4,7 +4,7 @@
 
 static void	clean_graph_sys(t_graph_sys *g_sys)
 {
-	mlx_destroy_image(g_sys->mlx, g_sys->pattern.img);
+	mlx_destroy_image(g_sys->mlx, g_sys->pat.img);
 	mlx_destroy_window(g_sys->mlx, g_sys->win);
 	clean_double_buffer(g_sys);
 	mlx_destroy_context(g_sys->mlx);
@@ -37,7 +37,8 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
-	g_sys->pattern.img = mlx_new_image_from_file(g_sys->mlx, "../bump_files/bump_sand.png", &g_sys->pattern.x, &g_sys->pattern.y);
+	g_sys->pat.img = mlx_new_image_from_file(g_sys->mlx,
+			"../bump_files/bump_sand.png", &g_sys->pat.x, &g_sys->pat.y);
 	init_menu(&g_sys->menu);
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;

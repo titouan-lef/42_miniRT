@@ -23,6 +23,10 @@ static t_cone_obj	*alloc_new_cone(char **tab)
 	return (new_co);
 }
 
+/**
+ * @brief Init Cone_obj data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	cone_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cone_obj	*new_co;

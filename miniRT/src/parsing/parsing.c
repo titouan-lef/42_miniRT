@@ -2,6 +2,12 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Checks the presence of all the elements needed
+ * to create a valid scene.
+ * @return 1 if one of the elements is missing or
+ * there is more than one ambient or camera.
+ */
 static int	check_scene_composition(t_lst_parse *lst_parse,
 	int single_entity[2])
 {
@@ -28,6 +34,10 @@ static int	check_scene_composition(t_lst_parse *lst_parse,
 	return (0);
 }
 
+/**
+ * @brief Selects the right interpreter based on id
+ * @return 1 if the id isn't valid or the data arn't valid.
+ */
 static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
 	char **tab, int id)
 {
@@ -52,6 +62,10 @@ static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
 	return (error);
 }
 
+/**
+ * @brief Split the line on the white space and interprets the tab.
+ * @return 1 if we have a probleme with allocation or file or data are invalid.
+ */
 static int	extrac_data(char *line, t_scene *scene, t_lst_parse *lst_parse,
 	int single_entity[2])
 {
@@ -76,6 +90,11 @@ static int	extrac_data(char *line, t_scene *scene, t_lst_parse *lst_parse,
 	return (0);
 }
 
+/**
+ * @brief Reads the file line by line, passing it as an argument.
+ * @return 1 if we have a probleme with allocation or file 
+ * or data are invalid. And write the error massage depending on the error.
+ */
 static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 {
 	char	*str;
@@ -100,6 +119,15 @@ static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 	return (0);
 }
 
+/**
+ * @brief Init, interprets and check all data in the scene.
+ * the file scene was pass in argument.
+ * @param argv Absolute path for the file.rt .
+ * @param argc	Number of argument.
+ * @param scene	Struct contain all data for execution.
+ * @return 1 if we have a probleme with allocation or file 
+ * or data are invalid. And write the error massage depending on the error.
+ */
 int	parsing(int argc, char **argv, t_scene *scene)
 {
 	t_lst_parse	lst_parse;

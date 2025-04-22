@@ -2,6 +2,12 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Init local coordinates for translation and rotation of entities.
+ * @param dir Forward direction.
+ * @param right Right direction.
+ * @param up Up direction.
+ */
 void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up)
 {
 	t_vec3	up_wish;
@@ -18,6 +24,13 @@ void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up)
 	*up = ft_cross_vec3(dir, right);
 }
 
+/**
+ * @brief Use for rotate on right.
+ * @param dir Forward direction.
+ * @param right Right direction.
+ * @param up Up direction.
+ * @param sign Positiv or negativ.
+ */
 void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
 {
 	double	angle;
@@ -27,6 +40,13 @@ void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
 	*right = ft_cross_vec3(up, dir);
 }
 
+/**
+ * @brief Use for rotate on up.
+ * @param dir Forward direction.
+ * @param right Right direction.
+ * @param up Up direction.
+ * @param sign Positiv or negativ.
+ */
 void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
 {
 	double	angle;
@@ -36,6 +56,13 @@ void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
 	*up = ft_cross_vec3(dir, right);
 }
 
+/**
+ * @brief Use for rotate on forward.
+ * @param dir Forward direction.
+ * @param right Right direction.
+ * @param up Up direction.
+ * @param sign Positiv or negativ.
+ */
 void	rotation_on_forward(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
 {
 	double	angle;

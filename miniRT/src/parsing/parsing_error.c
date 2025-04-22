@@ -28,6 +28,9 @@ void	exit_error_parsing(t_scene *scene)
 		ft_clean_matrix((void ***)&scene->tab_l);
 }
 
+/**
+ * @brief Print error message on std 2
+ */
 void	print_error_message(char *str)
 {
 	write(2, "Error\n", 6);

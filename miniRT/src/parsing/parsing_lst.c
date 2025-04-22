@@ -25,6 +25,11 @@ static void	fill_tab(void **tab, t_list *lst)
 	tab[i] = NULL;
 }
 
+/**
+ * @brief Convert lst_obj and lst_l when the parsing is finish 
+ * for the execution after.
+ * @return Return 1 if an allocation have failed.
+ */
 int	lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse)
 {
 	size_t	nb_obj;

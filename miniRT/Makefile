@@ -48,7 +48,7 @@ SRC :=	minirt.c \
 		colors/shadow.c \
 		colors/patterns/uv.c \
 		colors/patterns/checkerboard_pattern.c \
-		parsing/lst_parsing.c \
+		parsing/parsing_lst.c \
 		parsing/parsing_camera.c \
 		parsing/parsing_colors.c \
 		parsing/parsing_cone.c \

@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Convert a string in intensity in double.
+ * @return 1 if the value is negativ or superior at 1.
+ */
 static int	take_light_intensity(double *intensity, char *str)
 {
 	int	error;
@@ -39,6 +43,10 @@ static t_light	*alloc_new_light(char **tab)
 	return (new_light);
 }
 
+/**
+ * @brief Init Light difuse data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	light_interpreter(t_list **lst_l, char **tab)
 {
 	t_light	*new_l;
@@ -56,6 +64,10 @@ int	light_interpreter(t_list **lst_l, char **tab)
 	return (0);
 }
 
+/**
+ * @brief Init Ambient light data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	ambient_interpreter(t_scene *scene, char **tab)
 {
 	if (ft_matrix_get_row((void **)tab) != 3
