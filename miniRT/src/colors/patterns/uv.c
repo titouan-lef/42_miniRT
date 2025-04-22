@@ -62,7 +62,7 @@ t_vec2	uv_co(t_vec3 p, void *arg)
 	co_obj = (t_cone_obj *)arg;
 	op = ft_diff_vec3(&p, &co_obj->co.pos);
 	dot1 = ft_dot_vec3(&op, &co_obj->co.dir);
-	uv.x = 0.5 + 0.5 * dot1 / co_obj->co.h;
+	uv.x = 0.5 + dot1 / co_obj->co.h;
 	dot1 = ft_dot_vec3(&op, &co_obj->co.right);
 	dot2 = ft_dot_vec3(&op, &co_obj->co.up);
 	uv.y = 0.5 + 0.5 * atan2(dot1, dot2) / M_PI;
