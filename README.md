@@ -180,6 +180,8 @@ git reset --hard HEAD~1
 
 [Realistic Surface Rendering](https://www.research.autodesk.com/app/uploads/2023/03/rendu-realiste-de-surfaces.pdf_reckRMcEDKfhimCkK.pdf)
 
+[Compute Graphics Notes](https://anirudh-s-kumar.github.io/CG-Notes/#my-personal-review-of-the-course)
+
 
 ### Quaternions
 [Quaternion - Wikipedia](https://en.wikipedia.org/wiki/Quaternion)
@@ -204,6 +206,10 @@ git reset --hard HEAD~1
 
 [Change of basis - Wikipedia fr](https://fr.wikipedia.org/wiki/Changement_de_base_(alg%C3%A8bre_lin%C3%A9aire))
 
+[Atan2 - Wikipedia](https://en.wikipedia.org/wiki/Atan2)
+
+[Sphere - Wikipedia](https://en.wikipedia.org/wiki/Sphere)
+
 
 ### Camera
 [Orientation - Game Development](https://gamedev.stackexchange.com/questions/121654/getting-the-right-vector-from-the-forward-vector)
@@ -215,3 +221,11 @@ git reset --hard HEAD~1
 [Dot Product](https://www.geogebra.org/m/Yu6869By)
 
 [Cross Product](https://www.geogebra.org/m/psMTGDgc)
+
+
+### UV
+[UV Coordinates Mapped (with animation) - Stack Overflow](https://gamedev.stackexchange.com/questions/197931/how-can-i-correctly-map-a-texture-onto-a-sphere)
+
+[Spherical coordinate system - Wikipedia](https://en.wikipedia.org/wiki/Spherical_coordinate_system)
+
+[Cylindrical coordinate system - Wikipedia](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system)
