@@ -20,7 +20,8 @@ static t_vec3	change_vector_space(t_vec3 *n, t_vec3 *nl)
 	return (new);
 }
 
-static t_vec3	color_to_normal(mlx_color *c_x1, mlx_color *c_y1, mlx_color *c_xy)
+static t_vec3	color_to_normal(mlx_color *c_x1, mlx_color *c_y1,
+	mlx_color *c_xy)
 {
 	t_vec3	new_normal;
 	double	x1;
@@ -51,33 +52,31 @@ static t_vec3	get_local_normal(mlx_context *mlx, mlx_image *img, t_vec2 *uv)
 }
 
 static t_vec3	uv_bump(mlx_context *mlx, t_intersec *inter,
-	mlx_image *img, t_vec2 (*f)(t_vec3, void *), void *arg)
+	mlx_image *img, t_vec2 (*f)(t_vec3, void *))
 {
 	t_vec3	local_normal;
 	t_vec3	final_normal;
 	t_vec2	uv;
 
-	uv = f(inter->soluce.p, arg);
+	uv = f(inter->soluce.p, (void *)inter->obj->data);
 	local_normal = get_local_normal(mlx, img, &uv);
 	final_normal = change_vector_space(&inter->soluce.n, &local_normal);
 	return (final_normal);
 }
 
-t_vec3	bump_map(t_graph_sys *g_sys, t_intersec *inter, mlx_image *img)
+void	bump_map(t_graph_sys *g_sys, t_intersec *inter, mlx_image *img)
 {
 	t_vec3	new_normal;
 
+	if (inter->obj == NULL)
+		return ;
 	if (inter->obj->type == SPHERE)
-		new_normal = uv_bump(&g_sys->mlx, inter, img,
-				&uv_sp, (void *)inter->obj->data);
+		new_normal = uv_bump(&g_sys->mlx, inter, img, &uv_sp);
 	else if (inter->obj->type == PLANE)
-		new_normal = uv_bump(&g_sys->mlx, inter, img,
-				&uv_pl, (void *)inter->obj->data);
+		new_normal = uv_bump(&g_sys->mlx, inter, img, &uv_pl);
 	else if (inter->obj->type == CYLINDER)
-		new_normal = uv_bump(&g_sys->mlx, inter, img,
-				&uv_cy, (void *)inter);
+		new_normal = uv_bump(&g_sys->mlx, inter, img, &uv_cy);
 	else
-		new_normal = uv_bump(&g_sys->mlx, inter, img,
-				&uv_co, (void *)inter);
-	return (new_normal);
+		new_normal = uv_bump(&g_sys->mlx, inter, img, &uv_co);
+	inter->soluce.n = new_normal;
 }

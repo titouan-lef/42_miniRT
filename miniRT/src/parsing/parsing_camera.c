@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Convert a string in FOV value.
+ * @return Return 1 if is superior at 180 and inferior at 0 are false.
+ */
 static int	take_fov(int *fov, char *str)
 {
 	int	error;
@@ -10,6 +14,10 @@ static int	take_fov(int *fov, char *str)
 	return (error || *fov < 0);
 }
 
+/**
+ * @brief Init camera data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	camera_interpreter(t_scene *scene, char **tab)
 {
 	if (ft_matrix_get_row((void **)tab) != 4)

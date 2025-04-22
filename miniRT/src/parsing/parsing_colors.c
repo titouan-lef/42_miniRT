@@ -26,6 +26,10 @@ static char	*complete_colors(uint8_t *color, char *str)
 	return (str);
 }
 
+/**
+ * @brief Convert a string to a color.
+ * @return Return 1 if the arg isn't valid or value is not between 0 and 255.
+ */
 int	take_color(t_color *colors, char *str)
 {
 	uint8_t	r;

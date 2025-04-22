@@ -21,6 +21,10 @@ static t_sphere_obj	*alloc_new_sphere(char **tab)
 	return (new_sp);
 }
 
+/**
+ * @brief Init Sphere_obj data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	sphere_interpreter(t_list **lst_obj, char **tab)
 {
 	t_sphere_obj	*new_sp;

@@ -24,6 +24,10 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 	return (new_cy);
 }
 
+/**
+ * @brief Init Cylinder_obj data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	cylinder_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cylinder_obj	*new_cy;

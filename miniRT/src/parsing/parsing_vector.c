@@ -41,6 +41,10 @@ static char	*complete_pos(double *pos, char *str)
 	return (str);
 }
 
+/**
+ * @brief converts a string to a director vector.
+ * @return Return 1 if the arg isn't valid or the vector aren't normalize.
+ */
 int	take_dir(t_vec3 *dir, char *str)
 {
 	double	norm;
@@ -58,6 +62,10 @@ int	take_dir(t_vec3 *dir, char *str)
 	return (norm != 1);
 }
 
+/**
+ * @brief Convert a string to a position.
+ * @return Return 1 if the argument isn't valid.
+ */
 int	take_pos(t_vec3 *pos, char *str)
 {
 	str = complete_pos(&pos->x, str);

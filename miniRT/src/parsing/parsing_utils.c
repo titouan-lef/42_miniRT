@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Alloc a new node for obj list.
+ * @return 1 if an alloc failled.
+ */
 int	alloc_new_obj(t_list **head, void *new_obj, t_obj_type type)
 {
 	t_list	*new_node;
@@ -22,6 +26,9 @@ int	alloc_new_obj(t_list **head, void *new_obj, t_obj_type type)
 	return (0);
 }
 
+/**
+ * @brief Init all pointeur of the struct at NULL.
+ */
 void	init_scene(t_scene *scene, t_lst_parse *lst_parse)
 {
 	scene->tab_obj = NULL;
@@ -30,6 +37,10 @@ void	init_scene(t_scene *scene, t_lst_parse *lst_parse)
 	lst_parse->lst_l = NULL;
 }
 
+/**
+ * @brief Convert a string in dimension in double.
+ * @return 1 if the value is negativ or egal 0.
+ */
 int	take_dimension(double *dimension, char *str)
 {
 	int	error;
@@ -38,6 +49,10 @@ int	take_dimension(double *dimension, char *str)
 	return (error || *dimension <= 0);
 }
 
+/**
+ * @brief Check the files types is valid is .rt.
+ * @return 1 if the files types is invalid
+ */
 int	check_files_type(char *str)
 {
 	size_t	size;

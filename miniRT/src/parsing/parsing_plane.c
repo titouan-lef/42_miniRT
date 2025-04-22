@@ -23,6 +23,10 @@ static t_plane_obj	*alloc_new_plan(char **tab)
 	return (new_pl);
 }
 
+/**
+ * @brief Init Plane_obj data and check valid argument and value.
+ * @return Return 1 if a data are false.
+ */
 int	plan_interpreter(t_list **lst_obj, char **tab)
 {
 	t_plane_obj	*new_pl;

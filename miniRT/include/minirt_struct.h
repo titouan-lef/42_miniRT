@@ -224,7 +224,7 @@ typedef struct s_graph_sys
 	mlx_window		win;
 	t_double_buffer	buff;
 	t_menu			menu;
-	t_pattern		pattern;
+	t_pattern		pat;
 	int				def_w;
 	int				def_h;
 }	t_graph_sys;
