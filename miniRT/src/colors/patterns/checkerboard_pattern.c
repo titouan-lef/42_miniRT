@@ -24,7 +24,13 @@ static t_color	uv(t_color c[2], t_vec3 p,
 
 	uv = f(p, arg);
 	sq = ft_exp(div);
-	if ((int)fmod(uv.x * sq, 2) == (int)fmod(uv.y * sq, 2))
+	uv.x = uv.x * sq;
+	if (uv.x >= sq)
+		uv.x = sq - 1;
+	uv.y = uv.y * sq;
+	if (uv.y >= sq)
+		uv.y = sq - 1;
+	if ((int)uv.x % 2 == (int)uv.y % 2)
 		return (c[0]);
 	return (c[1]);
 }
@@ -49,8 +55,8 @@ t_color	uv_manager(const t_intersec *inter, t_color c_obj)
 	else if (inter->obj->type == PLANE)
 		c = uv(tab_c, inter->soluce.p, &uv_pl, (void *)inter->obj->data);
 	else if (inter->obj->type == CYLINDER)
-		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter);
+		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter->obj->data);
 	else
-		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter);
+		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter->obj->data);
 	return (c);
 }
