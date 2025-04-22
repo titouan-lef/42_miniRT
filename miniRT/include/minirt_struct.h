@@ -206,6 +206,16 @@ typedef struct s_menu
 }	t_menu;
 
 /***********************************************
+ * @struct Texture
+ ***********************************************/
+typedef struct s_pattern
+{
+	mlx_image 		img;
+	int				x;
+	int				y;
+}	t_pattern;
+
+/***********************************************
  * @struct Graphical System
  ***********************************************/
 typedef struct s_graph_sys
@@ -214,6 +224,7 @@ typedef struct s_graph_sys
 	mlx_window		win;
 	t_double_buffer	buff;
 	t_menu			menu;
+	t_pattern		pattern;
 	int				def_w;
 	int				def_h;
 }	t_graph_sys;
@@ -264,6 +275,7 @@ typedef struct s_intersec
 {
 	t_ray		ray;
 	const t_obj	*obj;
+	mlx_image 	*b_map;
 	t_soluce	soluce;
 }	t_intersec;
 

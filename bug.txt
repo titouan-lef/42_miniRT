@@ -7,4 +7,3 @@ gestion de l impressision ? (ajouter l impressision uiniquement avec l objet tou
 quand 2 cylindre se croise a l interrieur de l intersection il y a quelque pixel eclairé
 KD la gestion diffuse speculare (actuellement definie dans le header color)
 verif allocation et malloc a null
-

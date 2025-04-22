@@ -33,7 +33,7 @@ static t_color	mix_color_and_lights(const t_intersec *inter,
 	t_color	c;
 
 	c = get_color(inter->obj);
-	c = uv_manager(inter, c);
+	//c = uv_manager(inter, c);
 	c = ft_mult_colors(c, *total_light);
 	c = ft_sum_colors(c, *spec_effect);
 	return (c);
