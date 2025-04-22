@@ -2,18 +2,20 @@
 
 #include "minirt.h"
 
-static t_color	ambient(const t_amb *amb)
+static t_vec3	ambient(const t_amb *amb)
 {
-	t_color	color;
+	t_vec3	color;
 
-	color = ft_scal_color(amb->color, KD * amb->lr);
+	color = ft_color_to_vec3(&amb->color);
+	color = ft_scalmult_vec3(&color, KD * amb->lr);
 	return (color);
 }
 
-static t_color	get_color(const t_obj *obj)
+static t_vec3	get_vec3_color_obj(const t_obj *obj)
 {
 	int		type;
 	t_color	color;
+	t_vec3	vec3;
 
 	type = obj->type;
 	if (type == SPHERE)
@@ -24,34 +26,45 @@ static t_color	get_color(const t_obj *obj)
 		color = ((t_cylinder_obj *)(obj->data))->color;
 	else
 		color = ((t_cone_obj *)(obj->data))->color;
-	return (color);
+	vec3 = ft_color_to_vec3(&color);
+	return (vec3);
 }
 
 static t_color	mix_color_and_lights(const t_intersec *inter,
-	t_color *total_light, t_color *spec_effect)
+	t_vec3 *total_light, t_vec3 *spec_effect)
 {
-	t_color	c;
+	t_vec3	v;
+	t_color	color;
 
-	c = get_color(inter->obj);
-	c = uv_manager(inter, c);
-	c = ft_mult_colors(c, *total_light);
-	c = ft_sum_colors(c, *spec_effect);
-	return (c);
+	v = get_vec3_color_obj(inter->obj);
+	v = uv_manager(inter, v);
+	v.x = v.x * total_light->x;
+	v.y = v.y * total_light->y;
+	v.z = v.z * total_light->z;
+	v = ft_sum_vec3(&v, spec_effect);
+	if (v.x > 1)
+		v.x = 1;
+	if (v.y > 1)
+		v.y = 1;
+	if (v.z > 1)
+		v.z = 1;
+	color = ft_vec3_to_color(&v, 255);
+	return (color);
 }
 
-t_color	lighting(const t_intersec *inter, t_obj **tab_obj,
-	t_light **tab_l, const t_amb *amb)
+t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
+	const t_amb *amb)
 {
-	t_color	spec_effect;
-	t_color	total_light;
 	t_color	c;
+	t_vec3	spec_effect;
+	t_vec3	total_light;
 	double	cos_angle;
 
 	c = ft_color_create(0, 0, 0, 255);
 	if (inter->obj == NULL)
 		return (c);
-	spec_effect = c;
 	total_light = ambient(amb);
+	spec_effect = ft_create_vec3(0, 0, 0);
 	while (*tab_l != NULL)
 	{
 		cos_angle = cos_angle_light(*tab_l, &inter->soluce);
@@ -60,9 +73,8 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj,
 			++tab_l;
 			continue ;
 		}
-		total_light = ft_sum_colors(total_light, diffuse(*tab_l, cos_angle));
-		spec_effect = ft_sum_colors(spec_effect, specular(*tab_l, inter,
-					&inter->soluce.n, cos_angle));
+		apply_diffuse(*tab_l, &total_light, cos_angle);
+		apply_specular(*tab_l, &spec_effect, inter, cos_angle);
 		++tab_l;
 	}
 	c = mix_color_and_lights(inter, &total_light, &spec_effect);
