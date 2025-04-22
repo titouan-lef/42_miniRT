@@ -9,12 +9,6 @@
 #  define KD 1
 # endif
 
-typedef struct s_vec2
-{
-	double	x;
-	double	y;
-}	t_vec2;
-
 /***********************************************
  *  @file colors_utils.c
  ***********************************************/

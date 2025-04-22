@@ -33,7 +33,7 @@ t_color	specular(const t_light *light, const t_intersec *inter,
 	fact = 2 * fact;
 	inv_light_dir = ft_diff_vec3(&inter->soluce.p, &light->pos);
 	inv_light_dir = ft_normalize_vec3(&inv_light_dir);
-	reflect_dir = ft_translation(&inv_light_dir, n, fact);
+	reflect_dir = ft_translation_vec3(&inv_light_dir, n, fact);
 	reflect_dir = ft_normalize_vec3(&reflect_dir);
 	inv_ray_dir = ft_scalmult_vec3(&inter->ray.dir, -1);
 	result = ft_dot_vec3(&reflect_dir, &inv_ray_dir);

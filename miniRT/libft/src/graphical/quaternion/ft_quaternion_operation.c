@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 11:39:02 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/04 11:38:26 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:10:27 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_quat	ft_product_quat(const t_quat *q1, const t_quat *q2)
 
 	q.scalar = q1->scalar * q2->scalar - ft_dot_vec3(&q1->vec, &q2->vec);
 	q.vec = ft_cross_vec3(&q1->vec, &q2->vec);
-	q.vec = ft_translation(&q.vec, &q1->vec, q2->scalar);
-	q.vec = ft_translation(&q.vec, &q2->vec, q1->scalar);
+	q.vec = ft_translation_vec3(&q.vec, &q1->vec, q2->scalar);
+	q.vec = ft_translation_vec3(&q.vec, &q2->vec, q1->scalar);
 	return (q);
 }

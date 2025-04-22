@@ -6,13 +6,13 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:38:45 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/03 13:55:55 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:03:11 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUATERNION_H
 # define QUATERNION_H
-# include "vector3.h"
+# include "vector.h"
 
 typedef struct s_quat
 {
