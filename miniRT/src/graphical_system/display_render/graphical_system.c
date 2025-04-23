@@ -38,7 +38,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		return (1);
 	}
 	g_sys->pat.img = mlx_new_image_from_file(g_sys->mlx,
-			"../bump_files/bump_sand.png", &g_sys->pat.x, &g_sys->pat.y);
+			"../bump_files/NormalMap.png", &g_sys->pat.x, &g_sys->pat.y);
 	init_menu(&g_sys->menu);
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
