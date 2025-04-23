@@ -30,37 +30,37 @@ CYAN :=		\e[36m
 SRC_DIR :=	src/
 
 SRC :=	minirt.c \
+		raytracing/ray.c \
 		raytracing/equation/equation_cone.c \
-		raytracing/equation/equation_cylinder.c \
 		raytracing/equation/equation_plane.c \
 		raytracing/equation/equation_sphere.c \
+		raytracing/equation/equation_cylinder.c \
 		raytracing/intersection/intersect.c \
 		raytracing/intersection/intersect_cone.c \
 		raytracing/intersection/intersect_plane.c \
 		raytracing/intersection/intersect_sphere.c \
 		raytracing/intersection/intersect_cylinder.c \
-		raytracing/calculation/init_calculation.c \
 		raytracing/calculation/calculation.c \
-		raytracing/ray.c \
-		colors/lighting.c \
+		raytracing/calculation/init_calculation.c \
 		colors/phong.c \
 		colors/shadow.c \
+		colors/lighting.c \
 		colors/patterns/uv.c \
 		colors/patterns/bump_map.c \
 		colors/patterns/checkerboard_pattern.c \
-		parsing/parsing_lst.c \
-		parsing/parsing_camera.c \
-		parsing/parsing_colors.c \
-		parsing/parsing_cone.c \
-		parsing/parsing_cylinder.c \
-		parsing/parsing_error.c \
-		parsing/parsing_light.c \
-		parsing/parsing_local_coor.c \
-		parsing/parsing_plane.c \
-		parsing/parsing_sphere.c \
-		parsing/parsing_utils.c \
-		parsing/parsing_vector.c \
 		parsing/parsing.c \
+		parsing/parsing_data/parsing_lst.c \
+		parsing/parsing_data/parsing_utils.c \
+		parsing/parsing_data/parsing_error.c \
+		parsing/parsing_data/parsing_colors.c \
+		parsing/parsing_data/parsing_vector.c \
+		parsing/parsing_data/parsing_local_coor.c \
+		parsing/parsing_element/parsing_cone.c \
+		parsing/parsing_element/parsing_light.c \
+		parsing/parsing_element/parsing_plane.c \
+		parsing/parsing_element/parsing_sphere.c \
+		parsing/parsing_element/parsing_camera.c \
+		parsing/parsing_element/parsing_cylinder.c \
 		graphical_system/image.c \
 		graphical_system/window.c \
 		graphical_system/double_buffer.c \

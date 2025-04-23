@@ -85,57 +85,45 @@ int		init_window(t_graph_sys *g_sys);
 int		manage_graphical_system(t_scene	*scene);
 
 /***********************************************
- * @file event.c
+ *  @details EVENT
  ***********************************************/
+/** @file event.c */
 void	on_event(t_scene *scene);
 
-/***********************************************
- * @file camera_moov.c
- ***********************************************/
+/** @file camera_moov.c */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
 /***********************************************
- * @file menu_utils.c
+ *  @details MENU
  ***********************************************/
+/** @file menu_utils.c */
 void	defile(int *position, int start, int end, int moov);
 void	init_menu(t_menu *menu);
 
-/***********************************************
- * @file get_obj_data.c
- ***********************************************/
+/** @file get_obj_data.c */
 t_vec3	*get_vec_pos(t_obj *obj);
 t_vec3	*get_vec_dir(t_obj *obj);
 double	*get_obj_height(t_obj *obj);
 double	*get_obj_diam(t_obj *obj);
 int		get_range(t_obj *obj);
 
-/***********************************************
- * @file edit_data.c
- ***********************************************/
+/** @file edit_data.c */
 void	data_change(int key, void *param);
 
-/***********************************************
- * @file edit_obj.c
- ***********************************************/
+/** @file edit_obj.c */
 void	edit_cone(int *sign, t_menu *menu, t_cone_obj *cone);
 void	edit_cylinder(int *sign, t_menu *menu, t_cylinder_obj *cylinder);
 void	edit_plane(int *sign, t_menu *menu, t_plane_obj *plane);
 void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere);
 
-/***********************************************
- * @file event_menu.c
- ***********************************************/
+/** @file event_menu.c */
 void	menu_event(t_scene *scene);
 
-/***********************************************
- * @file put_menu.c
- ***********************************************/
+/** @file put_menu_obj.c */
 void	menu_obj_display(t_graph_sys *g_sys);
 
-/***********************************************
- * @file menu.c
- ***********************************************/
+/** @file put_menu.c */
 void	menu_management(t_graph_sys *g_sys);
 
 #endif
