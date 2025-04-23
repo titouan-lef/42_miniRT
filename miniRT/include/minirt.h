@@ -15,12 +15,20 @@
 # include "minirt_colors.h"
 # include "menu_text.h"
 
+/***********************************************
+ * @file ray.c
+ ***********************************************/
 int		ray_lauch_test(t_scene *scene);
 
+/***********************************************
+ * @details CALCULATION
+ ***********************************************/
+/** @file calculation.c */
 double	length_screen(double fov);
 void	quadratic_equation(double result[2], double a, double b, double c);
 double	min_quadratic_equation(double a, double b, double c);
 
+/** @file init_calculation.c */
 void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
 
 /***********************************************

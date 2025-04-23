@@ -2,14 +2,6 @@
 
 #include "minirt.h"
 
-static t_vec3	ambient(const t_amb *amb)
-{
-	t_vec3	color;
-
-	color = ft_scalmult_vec3(&amb->color, KD * amb->lr);
-	return (color);
-}
-
 static t_vec3	get_vec3_color_obj(const t_obj *obj)
 {
 	int		type;
@@ -60,7 +52,7 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
 	c = ft_color_create(0, 0, 0, 255);
 	if (inter->obj == NULL)
 		return (c);
-	total_light = ambient(amb);
+	total_light = apply_ambient(amb);
 	spec_effect = ft_create_vec3(0, 0, 0);
 	while (*tab_l != NULL)
 	{

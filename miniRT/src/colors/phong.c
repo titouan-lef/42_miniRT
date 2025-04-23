@@ -12,6 +12,14 @@ double	cos_angle_light(const t_light *l, const t_soluce *soluce)
 	return (fact);
 }
 
+t_vec3	apply_ambient(const t_amb *amb)
+{
+	t_vec3	color;
+
+	color = ft_scalmult_vec3(&amb->color, KD * amb->lr);
+	return (color);
+}
+
 void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact)
 {
 	t_vec3	color;

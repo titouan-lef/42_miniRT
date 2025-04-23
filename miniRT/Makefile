@@ -43,9 +43,10 @@ SRC :=	minirt.c \
 		raytracing/calculation/calculation.c \
 		raytracing/ray.c \
 		colors/lighting.c \
-		colors/diffuse.c \
+		colors/phong.c \
 		colors/shadow.c \
 		colors/patterns/uv.c \
+		colors/patterns/bump_map.c \
 		colors/patterns/checkerboard_pattern.c \
 		parsing/parsing_lst.c \
 		parsing/parsing_camera.c \
@@ -66,14 +67,13 @@ SRC :=	minirt.c \
 		graphical_system/graphical_system.c \
 		graphical_system/event/event.c \
 		graphical_system/event/camera_moov.c \
-		graphical_system/menu/menu.c \
-		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/put_menu.c \
+		graphical_system/menu/menu_utils.c \
+		graphical_system/menu/put_menu_obj.c \
 		graphical_system/menu/get_obj_data.c \
 		graphical_system/menu/event_menu.c \
 		graphical_system/menu/edit_obj.c \
-		graphical_system/menu/edit_data.c \
-		colors/patterns/bump_map.c
+		graphical_system/menu/edit_data.c
 
 #---------- BONUS ----------#
 
