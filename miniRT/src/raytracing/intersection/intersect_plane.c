@@ -20,7 +20,7 @@ void	intersect_ray_pl(const t_obj *obj, t_intersec *inter)
 
 	pl_obj = (t_plane_obj *)obj->data;
 	t = intersect_pl(&pl_obj->pl, pl_obj->math_os_dot_odir, &inter->ray.dir);
-	if (t >= inter->soluce.t)
+	if (t >= inter->soluce.t + EPSILON)
 		return ;
 	inter->soluce.t = t;
 	inter->obj = obj;

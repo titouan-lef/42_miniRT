@@ -11,7 +11,7 @@ static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 	t_vec3	m_odir;
 	t_vec3	n;
 
-	if (t >= inter->soluce.t)
+	if (t >= inter->soluce.t - EPSILON)
 		return (0);
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	bp = ft_diff_vec3(&p, &mathco->b);

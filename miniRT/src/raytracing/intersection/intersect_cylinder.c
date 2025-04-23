@@ -10,7 +10,7 @@ static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 	t_vec3	m_odir;
 	t_vec3	n;
 
-	if (t >= inter->soluce.t)
+	if (t >= inter->soluce.t - EPSILON)
 		return (0);
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	op = ft_diff_vec3(&p, &cy->pos);

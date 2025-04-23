@@ -15,6 +15,10 @@
 # include "minirt_colors.h"
 # include "menu_text.h"
 
+# ifndef EPSILON
+#  define EPSILON 0.000001
+# endif
+
 /***********************************************
  * @file ray.c
  ***********************************************/
