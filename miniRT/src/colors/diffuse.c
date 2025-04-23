@@ -16,8 +16,7 @@ void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact)
 {
 	t_vec3	color;
 
-	color = ft_color_to_vec3(&light->color);
-	color = ft_scalmult_vec3(&color, fact * light->lbr * KD);
+	color = ft_scalmult_vec3(&light->color, fact * light->lbr * KD);
 	*diffuse = ft_sum_vec3(diffuse, &color);
 }
 
@@ -38,7 +37,6 @@ void	apply_specular(const t_light *light, t_vec3 *specular,
 	if (brightness <= 0)
 		return ;
 	brightness = pow(brightness, 2);
-	color = ft_color_to_vec3(&light->color);
-	color = ft_scalmult_vec3(&color, brightness * light->lbr * KD);
+	color = ft_scalmult_vec3(&light->color, brightness * light->lbr * KD);
 	*specular = ft_sum_vec3(specular, &color);
 }

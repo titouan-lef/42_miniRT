@@ -54,7 +54,7 @@ typedef struct s_obj
  ***********************************************/
 typedef struct s_amb
 {
-	t_color	color;
+	t_vec3	color;
 	double	lr;
 }	t_amb;
 
@@ -66,9 +66,9 @@ typedef struct s_amb
  ***********************************************/
 typedef struct s_light
 {
-	t_color	color;
-	double	lbr;
+	t_vec3	color;
 	t_vec3	pos;
+	double	lbr;
 }	t_light;
 
 /***********************************************
@@ -101,9 +101,9 @@ typedef struct s_math_sp
 
 typedef struct s_sphere_obj
 {
-	t_color		color;
 	t_sphere	sp;
 	t_math_sp	mathsp;
+	t_vec3		color;
 }	t_sphere_obj;
 
 /***********************************************
@@ -111,8 +111,8 @@ typedef struct s_sphere_obj
  ***********************************************/
 typedef struct s_plane_obj
 {
-	t_color	color;
 	t_plane	pl;
+	t_vec3	color;
 	t_vec3	right;
 	t_vec3	up;
 	double	math_os_dot_odir;
@@ -145,7 +145,7 @@ typedef struct s_math_cy
 
 typedef struct s_cylinder_obj
 {
-	t_color		color;
+	t_vec3		color;
 	t_cylinder	cy;
 	t_math_cy	mathcy;
 }	t_cylinder_obj;
@@ -177,7 +177,7 @@ typedef struct s_math_co
 
 typedef struct s_cone_obj
 {
-	t_color		color;
+	t_vec3		color;
 	t_cone		co;
 	t_math_co	mathco;
 }	t_cone_obj;
@@ -210,9 +210,9 @@ typedef struct s_menu
  ***********************************************/
 typedef struct s_pattern
 {
-	mlx_image 		img;
-	int				x;
-	int				y;
+	mlx_image	img;
+	int			x;
+	int			y;
 }	t_pattern;
 
 /***********************************************
@@ -275,7 +275,7 @@ typedef struct s_intersec
 {
 	t_ray		ray;
 	const t_obj	*obj;
-	mlx_image 	*b_map;
+	mlx_image	*b_map;
 	t_soluce	soluce;
 }	t_intersec;
 

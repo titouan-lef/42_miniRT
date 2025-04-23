@@ -32,8 +32,7 @@ int		camera_interpreter(t_scene *scene, char **tab);
 /***********************************************
  *  @file parsing_colors.c
  ***********************************************/
-int		take_color(t_color *colors, char *str);
-
+int		take_color(t_vec3 *colors, char *str);
 /***********************************************
  *  @file parsing_vecteur.c
  ***********************************************/

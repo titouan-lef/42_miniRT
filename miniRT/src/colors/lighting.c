@@ -6,16 +6,14 @@ static t_vec3	ambient(const t_amb *amb)
 {
 	t_vec3	color;
 
-	color = ft_color_to_vec3(&amb->color);
-	color = ft_scalmult_vec3(&color, KD * amb->lr);
+	color = ft_scalmult_vec3(&amb->color, KD * amb->lr);
 	return (color);
 }
 
 static t_vec3	get_vec3_color_obj(const t_obj *obj)
 {
 	int		type;
-	t_color	color;
-	t_vec3	vec3;
+	t_vec3	color;
 
 	type = obj->type;
 	if (type == SPHERE)
@@ -26,8 +24,7 @@ static t_vec3	get_vec3_color_obj(const t_obj *obj)
 		color = ((t_cylinder_obj *)(obj->data))->color;
 	else
 		color = ((t_cone_obj *)(obj->data))->color;
-	vec3 = ft_color_to_vec3(&color);
-	return (vec3);
+	return (color);
 }
 
 static t_color	mix_color_and_lights(const t_intersec *inter,
@@ -37,7 +34,7 @@ static t_color	mix_color_and_lights(const t_intersec *inter,
 	t_color	color;
 
 	v = get_vec3_color_obj(inter->obj);
-	//v = uv_manager(inter, v);
+	v = uv_manager(inter, v);
 	v.x = v.x * total_light->x;
 	v.y = v.y * total_light->y;
 	v.z = v.z * total_light->z;

@@ -15,7 +15,8 @@ static int	ft_exp(int n)
 	return (result);
 }
 
-static t_vec3	uv(t_vec3 c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *), void *arg)
+static t_vec3	uv(t_vec3 c[2], t_vec3 p, t_vec2 (*f)(t_vec3, void *),
+	void *arg)
 {
 	const int	div = 3;
 	int			sq;
