@@ -62,30 +62,25 @@
 # endif
 
 /***********************************************
- * @file double_buffer.c
+ *  @details DISPLAY_RENDER
  ***********************************************/
+/** @file double_buffer.c */
 void	swap_buffer(t_double_buffer *buff);
 void	clean_double_buffer(t_graph_sys *g_sys);
 int		init_double_buffer(t_graph_sys *g_sys);
 
-/***********************************************
- * @file image.c
- ***********************************************/
+/** @file image.c */
 void	put_image_to_win(t_graph_sys *g_sys);
 void	set_image_pixel(t_graph_sys *g_sys, int x, int y, t_color c);
 
-/***********************************************
- * @file window.c
- ***********************************************/
+/** @file window.c */
 int		init_window(t_graph_sys *g_sys);
 
-/***********************************************
- * @file graphical_system.c
- ***********************************************/
+/** @file graphical_system.c */
 int		manage_graphical_system(t_scene	*scene);
 
 /***********************************************
- *  @details EVENT
+ *  @details MOVEMENT
  ***********************************************/
 /** @file event.c */
 void	on_event(t_scene *scene);
@@ -93,13 +88,6 @@ void	on_event(t_scene *scene);
 /** @file camera_moov.c */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
-
-/***********************************************
- *  @details MENU
- ***********************************************/
-/** @file menu_utils.c */
-void	defile(int *position, int start, int end, int moov);
-void	init_menu(t_menu *menu);
 
 /** @file get_obj_data.c */
 t_vec3	*get_vec_pos(t_obj *obj);
@@ -116,6 +104,13 @@ void	edit_cone(int *sign, t_menu *menu, t_cone_obj *cone);
 void	edit_cylinder(int *sign, t_menu *menu, t_cylinder_obj *cylinder);
 void	edit_plane(int *sign, t_menu *menu, t_plane_obj *plane);
 void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere);
+
+/***********************************************
+ *  @details MENU
+ ***********************************************/
+/** @file menu_utils.c */
+void	defile(int *position, int start, int end, int moov);
+void	init_menu(t_menu *menu);
 
 /** @file event_menu.c */
 void	menu_event(t_scene *scene);
