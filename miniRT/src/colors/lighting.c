@@ -37,7 +37,7 @@ static t_color	mix_color_and_lights(const t_intersec *inter,
 	t_color	color;
 
 	v = get_vec3_color_obj(inter->obj);
-	v = uv_manager(inter, v);
+	//v = uv_manager(inter, v);
 	v.x = v.x * total_light->x;
 	v.y = v.y * total_light->y;
 	v.z = v.z * total_light->z;
