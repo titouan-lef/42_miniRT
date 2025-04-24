@@ -27,18 +27,18 @@ static void	color_to_normal(mlx_color *c, t_vec3 *normal)
 	normal->z = c->b / 255.0;
 }
 
-static t_vec3	get_local_normal(mlx_context *mlx, mlx_image *img, t_vec2 *uv)
+static t_vec3	get_local_normal(mlx_context *mlx, t_pattern *img, t_vec2 *uv)
 {
 	mlx_color	c;
 	t_vec3		local_normal;
 
-	c = mlx_get_image_pixel(*mlx, *img, uv->x * 512, uv->y * 512);
+	c = mlx_get_image_pixel(*mlx, img->img, uv->x * img->x, uv->y * img->y);
 	color_to_normal(&c, &local_normal);
 	return (local_normal);
 }
 
 static t_vec3	uv_bump(mlx_context *mlx, t_intersec *inter,
-	mlx_image *img, t_vec2 (*f)(t_vec3, void *))
+	t_pattern *img, t_vec2 (*f)(t_vec3, void *))
 {
 	t_vec3	local_normal;
 	t_vec3	final_normal;
@@ -54,7 +54,7 @@ static t_vec3	uv_bump(mlx_context *mlx, t_intersec *inter,
 	return (final_normal);
 }
 
-void	bump_map(t_graph_sys *g_sys, t_intersec *inter, mlx_image *img)
+void	bump_map(t_graph_sys *g_sys, t_intersec *inter, t_pattern *img)
 {
 	t_vec3	new_normal;
 
