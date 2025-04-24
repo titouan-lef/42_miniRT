@@ -5,8 +5,16 @@
 
 # include "minirt.h"
 
+# ifndef KA
+#  define KA 0.5
+# endif
+
 # ifndef KD
-#  define KD 1
+#  define KD 0.5
+# endif
+
+# ifndef KS
+#  define KS 0.5
 # endif
 
 /***********************************************

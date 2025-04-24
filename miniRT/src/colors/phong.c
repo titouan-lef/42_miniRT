@@ -16,7 +16,7 @@ t_vec3	apply_ambient(const t_amb *amb)
 {
 	t_vec3	color;
 
-	color = ft_scalmult_vec3(&amb->color, KD * amb->lr);
+	color = ft_scalmult_vec3(&amb->color, KA * amb->lr);
 	return (color);
 }
 
@@ -45,6 +45,6 @@ void	apply_specular(const t_light *light, t_vec3 *specular,
 	if (brightness <= 0)
 		return ;
 	brightness = pow(brightness, 2);
-	color = ft_scalmult_vec3(&light->color, brightness * light->lbr * KD);
+	color = ft_scalmult_vec3(&light->color, brightness * light->lbr * KS);
 	*specular = ft_sum_vec3(specular, &color);
 }

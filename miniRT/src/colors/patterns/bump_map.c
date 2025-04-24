@@ -2,6 +2,26 @@
 
 #include "minirt.h"
 
+/*
+static t_vec3	change_vector_space(t_vec3 *n, t_vec3 *nl)
+{
+	t_vec3	t;
+	t_vec3	b;
+	t_vec3	new;
+	
+	t.x = n->y;
+	t.y = -n->x;
+	t.z = 0;
+	if (!ft_is_zero_vec3(&t))
+		t = ft_normalize_vec3(&t);
+	b = ft_cross_vec3(n, &t);
+	new.x = t.x * nl->x + b.x * nl->y + n->x * nl->z;
+	new.y = t.y * nl->x + b.y * nl->y + n->y * nl->z;
+	new.z = t.z * nl->x + b.z * nl->y + n->z * nl->z;
+	return (new);
+}
+*/
+
 static t_vec3	change_vector_space(t_vec3 *n, t_vec3 *nl)
 {
 	t_vec3	t;
@@ -22,9 +42,9 @@ static t_vec3	change_vector_space(t_vec3 *n, t_vec3 *nl)
 
 static void	color_to_normal(mlx_color *c, t_vec3 *normal)
 {
-	normal->x = c->r / 255.0;
-	normal->y = c->g / 255.0;
-	normal->z = c->b / 255.0;
+	normal->x = c->r / 255.0 * 2 - 1;
+	normal->y = c->g / 255.0 * 2 - 1;
+	normal->z = c->b / 255.0 * 2 - 1;
 }
 
 static t_vec3	get_local_normal(mlx_context *mlx, t_pattern *img, t_vec2 *uv)
