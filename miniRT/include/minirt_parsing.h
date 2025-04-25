@@ -14,13 +14,14 @@ int		parsing(int argc, char **argv, t_scene *scene);
  *  @details PARSING_DATA
  ***********************************************/
 /** @file parsing_utils.c */
-int		alloc_new_obj(t_list **head, void *new_sp, t_obj_type type);
+int		alloc_new_obj(t_list **head,
+			void *new_obj, char **tab, t_obj_type type);
 int		take_dimension(double *dimension, char *str);
 void	init_scene(t_scene *scene, t_lst_parse *lst_parse);
-int		check_files_type(char *str);
+int		check_files_type(char *str, char *type);
 int		check_valid_id(char *str, int single_entity[2]);
 
-/** @file parsing_colors.c */
+/** @file parsing_pattern.c */
 int		take_color(t_vec3 *colors, char *str);
 
 /** @file parsing_vecteur.c */
@@ -31,7 +32,8 @@ int		take_dir(t_vec3 *pos, char *str);
 void	exit_error_parsing(t_scene *scene);
 void	print_error_message(char *str);
 
-/** @file lst_parsing.c */
+/** @file parsing_lst.c */
+void	clear_lst_parse(t_lst_parse **lst_parse, void (*del)(void *));
 int		lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse);
 
 /** @file parsing_local__coor.c */
@@ -63,5 +65,9 @@ int		cylinder_interpreter(t_list **lst_obj, char **tab);
 
 /** @file parsing_cone.c */
 int		cone_interpreter(t_list **lst_obj, char **tab);
+
+/** @file parsing_obj.c */
+void	clear_obj(void *obj);
+int		take_pattern(t_pattern *pattern, char **tab);
 
 #endif

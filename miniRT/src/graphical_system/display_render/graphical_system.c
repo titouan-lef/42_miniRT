@@ -2,9 +2,9 @@
 
 #include "minirt.h"
 
-static void	clean_graph_sys(t_graph_sys *g_sys)
+static void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
 {
-	mlx_destroy_image(g_sys->mlx, g_sys->pat.img);
+	destroy_texture(scene->tab_obj, g_sys->mlx);
 	mlx_destroy_window(g_sys->mlx, g_sys->win);
 	clean_double_buffer(g_sys);
 	mlx_destroy_context(g_sys->mlx);
@@ -37,8 +37,6 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
-	g_sys->pat.img = mlx_new_image_from_file(g_sys->mlx,
-			"../bump_files/briks.png", &g_sys->pat.x, &g_sys->pat.y);
 	init_menu(&g_sys->menu);
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
@@ -71,10 +69,11 @@ int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->g_sys))
 		return (1);
+	init_texture(scene->tab_obj, scene->g_sys.mlx);
 	mlx_mouse_move(scene->g_sys.mlx, scene->g_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
 	mlx_add_loop_hook(scene->g_sys.mlx, update, scene);
 	mlx_loop(scene->g_sys.mlx);
-	clean_graph_sys(&scene->g_sys);
+	clean_graph_sys(scene, &scene->g_sys);
 	return (0);
 }

@@ -12,7 +12,7 @@ R, G, B colors in the range [0-255]: 255, 255, 255"
 # endif
 
 # ifndef ERR_LIGHT
-#  define ERR_LIGHT "An AMBIENT are wrong.\n\
+#  define ERR_LIGHT "An LIGHT are wrong.\n\
 Try like this \"L -40.0,50.0,0.0 0.6 10,0,255\"\n\
 Identifier: L\n\
 x, y, z coordinates of the light point: -40.0,50.0,0.0\n\

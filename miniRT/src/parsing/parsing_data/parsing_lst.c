@@ -2,9 +2,12 @@
 
 #include "minirt.h"
 
-static void	clear_lst_parse(t_lst_parse **lst_parse, void (*del)(void *))
+void	clear_lst_parse(t_lst_parse **lst_parse, void (*del)(void *))
 {
-	ft_lstclear(&(*lst_parse)->lst_obj, del);
+	if (del != NULL)
+		ft_lstclear(&(*lst_parse)->lst_obj, clear_obj);
+	else
+		ft_lstclear(&(*lst_parse)->lst_obj, del);
 	(*lst_parse)->lst_obj = NULL;
 	ft_lstclear(&(*lst_parse)->lst_l, del);
 	(*lst_parse)->lst_l = NULL;

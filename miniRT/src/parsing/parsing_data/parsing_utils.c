@@ -3,30 +3,6 @@
 #include "minirt.h"
 
 /**
- * @brief Alloc a new node for obj list.
- * @return 1 if an alloc failled.
- */
-int	alloc_new_obj(t_list **head, void *new_obj, t_obj_type type)
-{
-	t_list	*new_node;
-	t_obj	*obj;
-
-	obj = malloc (sizeof(t_obj));
-	if (!obj)
-		return (1);
-	obj->data = new_obj;
-	obj->type = type;
-	new_node = ft_lstnew(obj);
-	if (!new_node)
-	{
-		free(obj);
-		return (1);
-	}
-	ft_lstadd_front(head, new_node);
-	return (0);
-}
-
-/**
  * @brief Init all pointeur of the struct at NULL.
  */
 void	init_scene(t_scene *scene, t_lst_parse *lst_parse)
@@ -53,19 +29,23 @@ int	take_dimension(double *dimension, char *str)
  * @brief Check the files types is valid is .rt.
  * @return 1 if the files types is invalid
  */
-int	check_files_type(char *str)
+int	check_files_type(char *str, char *type)
 {
 	size_t	size;
+	size_t	size_type;
+	size_t	i;
 
 	size = ft_strlen(str);
-	if (size < 4)
+	size_type = ft_strlen(type);
+	i = 1;
+	if (size <= size_type)
 		return (1);
-	if (str[size - 1] != 't')
-		return (1);
-	if (str[size - 2] != 'r')
-		return (1);
-	if (str[size - 3] != '.')
-		return (1);
+	while (i < size_type)
+	{
+		if (str[size - i] != type[size_type - i])
+			return (1);
+		i++;
+	}
 	return (0);
 }
 

@@ -39,12 +39,33 @@ typedef enum e_win_event
 }	t_win_event;
 
 /***********************************************
+ * @struct TEXTURE
+ ***********************************************/
+
+typedef struct s_img
+{
+	char		*name;
+	mlx_image	img;
+	int			width;
+	int			heigth;
+}	t_img;
+
+typedef struct s_pattern
+{
+	t_img		bump;
+	t_img		texture;
+	t_vec3		colors;
+	int			checkerboard;
+}	t_pattern;
+
+/***********************************************
  * @struct OBJ
  ***********************************************/
 typedef struct s_obj
 {
-	int		type;
-	void	*data;
+	t_pattern	pattern;
+	int			type;
+	void		*data;
 }	t_obj;
 
 /***********************************************
@@ -103,7 +124,6 @@ typedef struct s_sphere_obj
 {
 	t_sphere	sp;
 	t_math_sp	mathsp;
-	t_vec3		color;
 }	t_sphere_obj;
 
 /***********************************************
@@ -111,11 +131,10 @@ typedef struct s_sphere_obj
  ***********************************************/
 typedef struct s_plane_obj
 {
-	t_plane	pl;
-	t_vec3	color;
-	t_vec3	right;
-	t_vec3	up;
-	double	math_os_dot_odir;
+	t_plane		pl;
+	t_vec3		right;
+	t_vec3		up;
+	double		math_os_dot_odir;
 }	t_plane_obj;
 
 /***********************************************
@@ -145,7 +164,6 @@ typedef struct s_math_cy
 
 typedef struct s_cylinder_obj
 {
-	t_vec3		color;
 	t_cylinder	cy;
 	t_math_cy	mathcy;
 }	t_cylinder_obj;
@@ -177,7 +195,6 @@ typedef struct s_math_co
 
 typedef struct s_cone_obj
 {
-	t_vec3		color;
 	t_cone		co;
 	t_math_co	mathco;
 }	t_cone_obj;
@@ -202,18 +219,7 @@ typedef struct s_menu
 	int		select_data;
 	t_obj	*obj;
 	t_light	*light;
-	t_vec3	*cam_dir;//debug
 }	t_menu;
-
-/***********************************************
- * @struct Texture
- ***********************************************/
-typedef struct s_pattern
-{
-	mlx_image	img;
-	int			x;
-	int			y;
-}	t_pattern;
 
 /***********************************************
  * @struct Graphical System
@@ -224,7 +230,6 @@ typedef struct s_graph_sys
 	mlx_window		win;
 	t_double_buffer	buff;
 	t_menu			menu;
-	t_pattern		pat;
 	int				def_w;
 	int				def_h;
 }	t_graph_sys;
@@ -275,7 +280,6 @@ typedef struct s_intersec
 {
 	t_ray		ray;
 	const t_obj	*obj;
-	mlx_image	*b_map;
 	t_soluce	soluce;
 }	t_intersec;
 
