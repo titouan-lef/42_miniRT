@@ -26,9 +26,13 @@ t_vec2	uv_pl(t_vec3 p, void *arg)
 	pl_obj = (t_plane_obj *)arg;
 	p_resized = ft_scalmult_vec3(&p, 0.01);
 	dot1 = ft_dot_vec3(&p_resized, &pl_obj->right);
+	uv.x = fmod(dot1, 1.0);
+	if (uv.x < 0)
+		uv.x = 1 + uv.x;
 	dot2 = ft_dot_vec3(&p_resized, &pl_obj->up);
-	uv.x = (fmod(dot1, 1) + 1) / 2.0;
-	uv.y = (fmod(dot2, 1) + 1) / 2.0;
+	uv.y = fmod(dot2, 1.0);
+	if (uv.y < 0)
+		uv.y = 1 + uv.y;
 	return (uv);
 }
 
