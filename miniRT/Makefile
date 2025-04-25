@@ -47,6 +47,7 @@ SRC :=	minirt.c \
 		colors/lighting.c \
 		colors/patterns/uv.c \
 		colors/patterns/bump_map.c \
+		colors/patterns/normal_map.c \
 		colors/patterns/checkerboard_pattern.c \
 		parsing/parsing.c \
 		parsing/parsing_data/parsing_lst.c \
@@ -75,7 +76,7 @@ SRC :=	minirt.c \
 		graphical_system/menu/put_menu.c \
 		graphical_system/menu/event_menu.c \
 		graphical_system/menu/menu_utils.c \
-		graphical_system/menu/put_menu_obj.c 
+		graphical_system/menu/put_menu_obj.c
 
 #---------- BONUS ----------#
 

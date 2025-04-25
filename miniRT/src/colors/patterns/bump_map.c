@@ -66,11 +66,14 @@ void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 		return ;
 	bump = &inter->obj->pattern.bump;
 	if (inter->obj->type == SPHERE)
-		new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_sp);
+		//new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_sp);
+		new_normal = update_normal_sp(&g_sys->mlx, inter, bump);
 	else if (inter->obj->type == PLANE)
-		new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_pl);
+		//new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_pl);
+		new_normal = update_normal_pl(&g_sys->mlx, inter, bump);
 	else if (inter->obj->type == CYLINDER)
-		new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_cy);
+		//new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_cy);
+		new_normal = update_normal_cy(&g_sys->mlx, inter, bump);
 	else
 		new_normal = uv_bump(&g_sys->mlx, inter, bump, &uv_co);
 	inter->soluce.n = new_normal;

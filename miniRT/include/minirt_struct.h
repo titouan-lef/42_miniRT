@@ -59,6 +59,19 @@ typedef struct s_pattern
 }	t_pattern;
 
 /***********************************************
+ * @struct Normal Map
+ * @param n Normal.
+ * @param t Tangent.
+ * @param b Bitangent.
+ ***********************************************/
+typedef struct s_normal_map
+{
+	t_vec3	n;
+	t_vec3	t;
+	t_vec3	b;
+}	t_normal_map;
+
+/***********************************************
  * @struct OBJ
  ***********************************************/
 typedef struct s_obj

@@ -86,4 +86,8 @@ void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
 			double result[2]);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
 
+t_vec3	update_normal_sp(mlx_context *mlx, t_intersec *inter, const t_img *img);
+t_vec3	update_normal_pl(mlx_context *mlx, t_intersec *inter, const t_img *img);
+t_vec3	update_normal_cy(mlx_context *mlx, t_intersec *inter, const t_img *img);
+
 #endif

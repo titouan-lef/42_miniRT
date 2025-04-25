@@ -2,20 +2,7 @@
 
 #include "minirt.h"
 
-/***********************************************
- * @struct Normal Map
- * @param n Normal.
- * @param t Tangent.
- * @param b Bitangent.
- ***********************************************/
-typedef struct s_normal_map
-{
-	t_vec3	n;
-	t_vec3	t;
-	t_vec3	b;
-}	t_normal_map;
-
-static t_vec3	get_normal(mlx_context *mlx, t_pattern *img, t_intersec *inter, t_vec2 (*f)(t_vec3, void *))
+static t_vec3	get_normal(mlx_context *mlx, const t_img *img, t_intersec *inter, t_vec2 (*f)(t_vec3, void *))
 {
 	t_vec2		uv;
 	mlx_color	c;
@@ -26,7 +13,7 @@ static t_vec3	get_normal(mlx_context *mlx, t_pattern *img, t_intersec *inter, t_
 		uv.x = 0;
 	if (uv.y >= 1)
 		uv.y = 0;
-	c = mlx_get_image_pixel(*mlx, img->img, uv.x * img->x, uv.y * img->y);
+	c = mlx_get_image_pixel(*mlx, img->img, uv.x * img->width, uv.y * img->heigth);
 	normal.x = c.r / 255.0 * 2 - 1;
 	normal.y = c.g / 255.0 * 2 - 1;
 	normal.z = c.b / 255.0 * 2 - 1;
@@ -39,13 +26,13 @@ static t_vec3	get_bitangent_sp(const t_intersec *inter)
 	t_sphere_obj	*sp_obj;
 
 	sp_obj = (t_sphere_obj *)inter->obj->data;
-	bitangent.x = (sp_obj->sp.pos.y - inter->soluce.p.y) * 2 * M_PI;// n_y * 2 * pi ?
-	bitangent.y = (inter->soluce.p.x - sp_obj->sp.pos.x) * 2 * M_PI;// n_x * 2 * pi ?
+	bitangent.x = inter->soluce.n.y * 2 * M_PI;//(sp_obj->sp.pos.y - inter->soluce.p.y) * 2 * M_PI; ?
+	bitangent.y = inter->soluce.n.x * 2 * M_PI;//(inter->soluce.p.x - sp_obj->sp.pos.x) * 2 * M_PI; ?
 	bitangent.z = 0;
 	return (bitangent);
 }
 
-t_normal_map	normal_map_sp(mlx_context *mlx, t_intersec *inter, t_pattern *img)
+t_normal_map	normal_map_sp(mlx_context *mlx, t_intersec *inter, const t_img *img)
 {
 	t_normal_map	map;
 
@@ -63,17 +50,25 @@ t_normal_map	normal_map_sp(mlx_context *mlx, t_intersec *inter, t_pattern *img)
 
 static t_vec3	get_bitangent_cy(const t_intersec *inter)
 {
-	t_plane_obj	*cy_obj;
+	t_cylinder_obj	*cy_obj;
+	double			dot;
 
-	cy_obj = (t_plane_obj *)inter->obj->data;
-	return (cy_obj->right);
+	cy_obj = (t_cylinder_obj *)inter->obj->data;
+	dot = ft_dot_vec3(&inter->soluce.n, &cy_obj->cy.dir);
+	dot = fabs(dot);
+	if (dot < 0.9)
+		return (cy_obj->cy.dir);
+	else
+		return (cy_obj->cy.right);
 }
 
-t_normal_map	normal_map_cy(mlx_context *mlx, t_intersec *inter, t_pattern *img)
+t_normal_map	normal_map_cy(mlx_context *mlx, t_intersec *inter, const t_img *img)
 {
 	t_normal_map	map;
 
-	map.n = get_normal(mlx, img, inter, uv_cy);
+	(void) mlx;
+	(void) img;
+	map.n = inter->soluce.n;//map.n = get_normal(mlx, img, inter, uv_cy);
 	map.b = get_bitangent_cy(inter);
 	if (ft_is_zero_vec3(&map.b))
 		return (map);
@@ -91,7 +86,7 @@ static t_vec3	get_bitangent_pl(const t_intersec *inter)
 	return (pl_obj->right);
 }
 
-t_normal_map	normal_map_pl(mlx_context *mlx, t_intersec *inter, t_pattern *img)
+t_normal_map	normal_map_pl(mlx_context *mlx, t_intersec *inter, const t_img *img)
 {
 	t_normal_map	map;
 
@@ -120,7 +115,7 @@ t_vec3	new_vec_normal(const t_normal_map *map, const t_vec3 *n)
 	return (new);
 }
 
-t_vec3	update_normal_sp(mlx_context *mlx, t_intersec *inter, t_pattern *img)
+t_vec3	update_normal_sp(mlx_context *mlx, t_intersec *inter, const t_img *img)
 {
 	t_normal_map	map;
 	t_vec3			new;
@@ -131,13 +126,24 @@ t_vec3	update_normal_sp(mlx_context *mlx, t_intersec *inter, t_pattern *img)
 	return (new);
 }
 
-t_vec3	update_normal_pl(mlx_context *mlx, t_intersec *inter, t_pattern *img)
+t_vec3	update_normal_pl(mlx_context *mlx, t_intersec *inter, const t_img *img)
 {
 	t_normal_map	map;
 	t_vec3			new;
 
 	map = normal_map_pl(mlx, inter, img);
 	t_vec3 n = get_normal(mlx, img, inter, uv_pl);
+	new = new_vec_normal(&map, &n);
+	return (new);
+}
+
+t_vec3	update_normal_cy(mlx_context *mlx, t_intersec *inter, const t_img *img)
+{
+	t_normal_map	map;
+	t_vec3			new;
+
+	map = normal_map_cy(mlx, inter, img);
+	t_vec3 n = get_normal(mlx, img, inter, uv_cy);
 	new = new_vec_normal(&map, &n);
 	return (new);
 }
