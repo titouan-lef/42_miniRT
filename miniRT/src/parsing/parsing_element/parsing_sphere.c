@@ -10,8 +10,7 @@ static t_sphere_obj	*alloc_new_sphere(char **tab)
 	if (!new_sp)
 		return (NULL);
 	if (take_pos(&new_sp->sp.pos, tab[1])
-		|| take_dimension(&new_sp->sp.r, tab[2])
-		|| take_color(&new_sp->color, tab[3]))
+		|| take_dimension(&new_sp->sp.r, tab[2]))
 	{
 		print_error_message(ERR_SPHERE);
 		free(new_sp);
@@ -29,12 +28,12 @@ int	sphere_interpreter(t_list **lst_obj, char **tab)
 {
 	t_sphere_obj	*new_sp;
 
-	if (ft_matrix_get_row((void **)tab) != 4)
+	if (ft_matrix_get_row((void **)tab) != 7)
 		return (1);
 	new_sp = alloc_new_sphere(tab);
 	if (!new_sp)
 		return (1);
-	if (alloc_new_obj(lst_obj, new_sp, SPHERE))
+	if (alloc_new_obj(lst_obj, new_sp, tab + 3, SPHERE))
 	{
 		free(new_sp);
 		return (1);

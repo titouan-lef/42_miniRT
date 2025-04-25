@@ -2,31 +2,17 @@
 
 #include "minirt.h"
 
-static t_vec3	get_vec3_color_obj(const t_obj *obj)
-{
-	int		type;
-	t_vec3	color;
-
-	type = obj->type;
-	if (type == SPHERE)
-		color = ((t_sphere_obj *)(obj->data))->color;
-	else if (type == PLANE)
-		color = ((t_plane_obj *)(obj->data))->color;
-	else if (type == CYLINDER)
-		color = ((t_cylinder_obj *)(obj->data))->color;
-	else
-		color = ((t_cone_obj *)(obj->data))->color;
-	return (color);
-}
-
 static t_color	mix_color_and_lights(const t_intersec *inter,
 	t_vec3 *total_light, t_vec3 *spec_effect)
 {
 	t_vec3	v;
 	t_color	color;
 
-	v = get_vec3_color_obj(inter->obj);
-	//v = uv_manager(inter, v);
+	v = inter->obj->pattern.colors;
+	if (inter->obj->pattern.texture.name != NULL)
+		v = inter->obj->pattern.colors;
+	if (inter->obj->pattern.checkerboard == 1)
+		v = uv_manager(inter, v);
 	v.x = v.x * total_light->x;
 	v.y = v.y * total_light->y;
 	v.z = v.z * total_light->z;

@@ -12,8 +12,7 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 	if (take_pos(&new_cy->cy.pos, tab[1])
 		|| take_dir(&new_cy->cy.dir, tab[2])
 		|| take_dimension(&new_cy->cy.r, tab[3])
-		|| take_dimension(&new_cy->cy.hh, tab[4])
-		|| take_color(&new_cy->color, tab[5]))
+		|| take_dimension(&new_cy->cy.hh, tab[4]))
 	{
 		print_error_message(ERR_CYLINDER);
 		free(new_cy);
@@ -32,12 +31,12 @@ int	cylinder_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cylinder_obj	*new_cy;
 
-	if (ft_matrix_get_row((void **)tab) != 6)
+	if (ft_matrix_get_row((void **)tab) != 9)
 		return (1);
 	new_cy = alloc_new_cylinder(tab);
 	if (!new_cy)
 		return (1);
-	if (alloc_new_obj(lst_obj, new_cy, CYLINDER))
+	if (alloc_new_obj(lst_obj, new_cy, tab + 5, CYLINDER))
 	{
 		free(new_cy);
 		return (1);

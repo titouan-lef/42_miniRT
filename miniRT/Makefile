@@ -52,9 +52,10 @@ SRC :=	minirt.c \
 		parsing/parsing_data/parsing_lst.c \
 		parsing/parsing_data/parsing_utils.c \
 		parsing/parsing_data/parsing_error.c \
-		parsing/parsing_data/parsing_colors.c \
 		parsing/parsing_data/parsing_vector.c \
+		parsing/parsing_data/parsing_pattern.c \
 		parsing/parsing_data/parsing_local_coor.c \
+		parsing/parsing_element/parsing_obj.c \
 		parsing/parsing_element/parsing_cone.c \
 		parsing/parsing_element/parsing_light.c \
 		parsing/parsing_element/parsing_plane.c \
@@ -63,6 +64,7 @@ SRC :=	minirt.c \
 		parsing/parsing_element/parsing_cylinder.c \
 		graphical_system/display_render/image.c \
 		graphical_system/display_render/window.c \
+		graphical_system/display_render/g_sys_texture.c \
 		graphical_system/display_render/double_buffer.c \
 		graphical_system/display_render/graphical_system.c \
 		graphical_system/movement/event.c \

@@ -83,6 +83,7 @@ static int	extrac_data(char *line, t_scene *scene, t_lst_parse *lst_parse,
 	id = check_valid_id(tab[0], single_entity);
 	if (id == OBJ_ERR || data_interpreter(scene, lst_parse, tab, id))
 	{
+		clear_lst_parse(&lst_parse, free);
 		ft_clean_matrix((void *)&tab);
 		return (1);
 	}
@@ -114,7 +115,10 @@ static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 		str = get_next_line_one_file(fd);
 	}
 	if (check_scene_composition(lst_parse, single_entity))
+	{
+		clear_lst_parse(&lst_parse, free);
 		return (1);
+	}
 	lst_parse_to_tab(scene, lst_parse);
 	return (0);
 }
@@ -134,7 +138,7 @@ int	parsing(int argc, char **argv, t_scene *scene)
 	int			fd;
 
 	init_scene(scene, &lst_parse);
-	if (argc != 2 || check_files_type(argv[1]))
+	if (argc != 2 || check_files_type(argv[1], ".rt"))
 	{
 		print_error_message(ERR_ARG);
 		return (1);
