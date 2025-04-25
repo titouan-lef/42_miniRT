@@ -21,6 +21,7 @@ void	clear_obj(void *data)
 	}
 	free(obj->data);
 	obj->data = NULL;
+	free(obj);
 }
 
 t_obj	*init_obj(void)
@@ -30,6 +31,7 @@ t_obj	*init_obj(void)
 	obj = malloc (sizeof(t_obj));
 	if (!obj)
 		return (NULL);
+	obj->data = NULL;
 	obj->pattern.bump.name = NULL;
 	obj->pattern.texture.name = NULL;
 	return (obj);
@@ -50,7 +52,6 @@ int	alloc_new_obj(t_list **head, void *new_obj, char **tab, t_obj_type type)
 	if (take_pattern(&obj->pattern, tab))
 	{
 		clear_obj(obj);
-		free(obj);
 		return (1);
 	}
 	obj->data = new_obj;
@@ -59,7 +60,6 @@ int	alloc_new_obj(t_list **head, void *new_obj, char **tab, t_obj_type type)
 	if (!new_node)
 	{
 		clear_obj(obj);
-		free(obj);
 		return (1);
 	}
 	ft_lstadd_front(head, new_node);

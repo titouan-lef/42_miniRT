@@ -8,7 +8,6 @@ static void	free_content_obj(t_obj **tab_obj)
 	while (tab_obj[i] != NULL)
 	{
 		clear_obj(tab_obj[i]);
-		free(tab_obj[i]);
 		tab_obj[i] = NULL;
 		++i;
 	}
