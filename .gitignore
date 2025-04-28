@@ -13,3 +13,7 @@ miniRT/libft/libft.a
 # MiniRT
 miniRT/.build/
 miniRT/miniRT
+
+# MiniRT bonus
+miniRT/.build_bonus/
+miniRT/miniRT_bonus

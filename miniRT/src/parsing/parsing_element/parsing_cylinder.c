@@ -31,7 +31,7 @@ int	cylinder_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cylinder_obj	*new_cy;
 
-	if (ft_matrix_get_row((void **)tab) != 9)
+	if (ft_matrix_get_row((void **)tab) != NB_PARAM_CY)
 		return (1);
 	new_cy = alloc_new_cylinder(tab);
 	if (!new_cy)

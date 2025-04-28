@@ -21,7 +21,7 @@ static int	check_scene_composition(t_lst_parse *lst_parse,
 		print_error_message(ERR_NB_AMB);
 		return (1);
 	}
-	if (lst_parse->lst_l == NULL)
+	if (lst_parse->lst_l == NULL || ft_lstsize(lst_parse->lst_l) > MAX_LIGHT)
 	{
 		print_error_message(ERR_NO_LIGHT);
 		return (1);
@@ -55,7 +55,7 @@ static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
 		error = plan_interpreter(&lst_parse->lst_obj, tab);
 	else if (id == CYLINDER)
 		error = cylinder_interpreter(&lst_parse->lst_obj, tab);
-	else if (id == CONE)
+	else if (id == CONE && CONE_ACTIVE == 1)
 		error = cone_interpreter(&lst_parse->lst_obj, tab);
 	else
 		error = 1;

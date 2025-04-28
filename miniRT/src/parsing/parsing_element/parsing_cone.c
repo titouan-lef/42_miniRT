@@ -30,7 +30,7 @@ int	cone_interpreter(t_list **lst_obj, char **tab)
 {
 	t_cone_obj	*new_co;
 
-	if (ft_matrix_get_row((void **)tab) != 9)
+	if (ft_matrix_get_row((void **)tab) != NB_PARAM_CO)
 		return (1);
 	new_co = alloc_new_cone(tab);
 	if (!new_co)

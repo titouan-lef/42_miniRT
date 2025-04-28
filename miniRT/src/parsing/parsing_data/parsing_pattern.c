@@ -74,12 +74,18 @@ static int	take_texture_files(char **name, char *str)
 
 int	take_pattern(t_pattern *pattern, char **tab)
 {
-	if (take_color(&pattern->colors, tab[0])
-		|| active_checkboard(&pattern->checkerboard, tab[1])
-		|| take_texture_files(&pattern->texture.name, tab[2])
-		|| take_texture_files(&pattern->bump.name, tab[3]))
+	if (take_color(&pattern->colors, tab[0]))
 	{
 		return (1);
+	}
+	if (PATTERN_ACTIVE == 1)
+	{
+		if (active_checkboard(&pattern->checkerboard, tab[1])
+		|| take_texture_files(&pattern->texture.name, tab[2])
+		|| take_texture_files(&pattern->bump.name, tab[3]))
+		{
+			return (1);
+		}
 	}
 	return (0);
 }

@@ -14,7 +14,7 @@
 # include "graphical_system.h"
 # include "minirt_colors.h"
 # include "menu_text.h"
-# include "minirt_mandatory.h"
+# include "minirt_bonus.h"
 
 # ifndef EPSILON
 #  define EPSILON 0.000001

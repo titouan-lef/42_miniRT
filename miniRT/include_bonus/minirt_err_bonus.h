@@ -36,7 +36,11 @@ Try like this \"sp 0.0,0.0,20.6 12.6 10,0,255\"\n\
 Identifier: sp\n\
 x, y, z coordinates of the sphere center: 0.0,0.0,20.6\n\
 The sphere diameter: 12.6\n\
-R,G,B colors in the range [0-255]: 10, 0, 255"
+R,G,B colors in the range [0-255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\\
+Path of bump file in .png or NULL for deactivated\n"
+
 # endif
 
 # ifndef ERR_PLANE
@@ -46,7 +50,10 @@ identifier: pl\n\
 x, y, z coordinates of a point in the plane: 0.0,0.0,-10.0\n\
 3D normalized normal vector, in the range [-1,1]\
 for each x, y, z axis: 0.0,1.0,0.0\n\
-R,G,B colors in the range [0-255]: 0,0,225"
+R,G,B colors in the range [0-255]: 0,0,225\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\\
+Path of bump file in .png or NULL for deactivated\n"
 # endif
 
 # ifndef ERR_CYLINDER
@@ -58,7 +65,10 @@ x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cylinder diameter: 14.2\n\
 The cylinder height: 21.42\n\
-R, G, B colors in the range [0,255]: 10, 0, 255"
+R, G, B colors in the range [0,255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\\
+Path of bump file in .png or NULL for deactivated\n"
 # endif
 
 # ifndef ERR_CONE
@@ -70,11 +80,14 @@ x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cone diameter: 14.2\n\
 The cone height: 21.42\n\
-R, G, B colors in the range [0,255]: 10, 0, 255"
+R, G, B colors in the range [0,255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\\
+Path of bump file in .png or NULL for deactivated\n"
 # endif
 
 # ifndef ERR_ARG
-#  define ERR_ARG "Please try ./miniRT \"files_name.rt\""
+#  define ERR_ARG "Please try ./miniRT_bonus \"files_name.rt\""
 # endif
 
 # ifndef ERR_NB_AMB
@@ -86,7 +99,7 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_NO_LIGHT
-#  define ERR_NO_LIGHT "The SCENE need one LIGHT"
+#  define ERR_NO_LIGHT "The SCENE need minimum one LIGHT"
 # endif
 
 # ifndef ERR_NO_OBJ

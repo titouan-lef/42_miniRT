@@ -30,7 +30,7 @@ int	plan_interpreter(t_list **lst_obj, char **tab)
 {
 	t_plane_obj	*new_pl;
 
-	if (ft_matrix_get_row((void **)tab) != 7)
+	if (ft_matrix_get_row((void **)tab) != NB_PARAM_PL)
 		return (1);
 	new_pl = alloc_new_plan(tab);
 	if (!new_pl)
