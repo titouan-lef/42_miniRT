@@ -27,7 +27,7 @@ Identifier: C\n\
 x, y, z coordinates of the viewpoint: -50.0,0,20\n\
 3D normalized orientation vector, in the range [-1,1]\
 for each x, y, z axis: 0.0,0.0,1.0\n\
-FOV: Horizontal field of view in degrees in the range [0,180]: 70\n"
+FOV: Horizontal field of view in degrees in the range [0,180]: 70"
 # endif
 
 # ifndef ERR_SPHERE
@@ -39,7 +39,7 @@ The sphere diameter: 12.6\n\
 R,G,B colors in the range [0-255]: 10, 0, 255\n\
 ON to activate or OFF to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\\
-Path of bump file in .png or NULL for deactivated\n"
+Path of bump file in .png or NULL for deactivated"
 
 # endif
 
@@ -53,7 +53,7 @@ for each x, y, z axis: 0.0,1.0,0.0\n\
 R,G,B colors in the range [0-255]: 0,0,225\n\
 ON to activate or OFF to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\\
-Path of bump file in .png or NULL for deactivated\n"
+Path of bump file in .png or NULL for deactivated"
 # endif
 
 # ifndef ERR_CYLINDER
@@ -68,7 +68,7 @@ The cylinder height: 21.42\n\
 R, G, B colors in the range [0,255]: 10, 0, 255\n\
 ON to activate or OFF to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\\
-Path of bump file in .png or NULL for deactivated\n"
+Path of bump file in .png or NULL for deactivated"
 # endif
 
 # ifndef ERR_CONE
@@ -83,7 +83,7 @@ The cone height: 21.42\n\
 R, G, B colors in the range [0,255]: 10, 0, 255\n\
 ON to activate or OFF to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\\
-Path of bump file in .png or NULL for deactivated\n"
+Path of bump file in .png or NULL for deactivated"
 # endif
 
 # ifndef ERR_ARG
@@ -107,7 +107,8 @@ Path of bump file in .png or NULL for deactivated\n"
 # endif
 
 # ifndef ERR_ID
-#  define ERR_ID "Please try with a valid object"
+#  define ERR_ID "The SCENE have an invalid identifier \n\
+Valid identifier are A, C, L, SP, PL, CY and CO"
 # endif
 
 # ifndef ERR_OPEN_FAILED

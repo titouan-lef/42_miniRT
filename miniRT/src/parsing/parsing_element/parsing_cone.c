@@ -31,13 +31,17 @@ int	cone_interpreter(t_list **lst_obj, char **tab)
 	t_cone_obj	*new_co;
 
 	if (ft_matrix_get_row((void **)tab) != NB_PARAM_CO)
+	{
+		print_error_message(ERR_CONE);
 		return (1);
+	}
 	new_co = alloc_new_cone(tab);
 	if (!new_co)
 		return (1);
 	if (alloc_new_obj(lst_obj, new_co, tab + 5, CONE))
 	{
 		free(new_co);
+		print_error_message(ERR_CONE);
 		return (1);
 	}
 	init_local_coordinates(&new_co->co.dir, &new_co->co.right, &new_co->co.up);

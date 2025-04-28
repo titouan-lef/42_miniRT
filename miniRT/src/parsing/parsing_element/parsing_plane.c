@@ -31,13 +31,17 @@ int	plan_interpreter(t_list **lst_obj, char **tab)
 	t_plane_obj	*new_pl;
 
 	if (ft_matrix_get_row((void **)tab) != NB_PARAM_PL)
+	{
+		print_error_message(ERR_PLANE);
 		return (1);
+	}
 	new_pl = alloc_new_plan(tab);
 	if (!new_pl)
 		return (1);
 	if (alloc_new_obj(lst_obj, new_pl, tab + 3, PLANE))
 	{
 		free(new_pl);
+		print_error_message(ERR_PLANE);
 		return (1);
 	}
 	init_local_coordinates(&new_pl->pl.n, &new_pl->right, &new_pl->up);

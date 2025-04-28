@@ -55,7 +55,7 @@ static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
 		error = plan_interpreter(&lst_parse->lst_obj, tab);
 	else if (id == CYLINDER)
 		error = cylinder_interpreter(&lst_parse->lst_obj, tab);
-	else if (id == CONE && CONE_ACTIVE == 1)
+	else if (id == CONE)
 		error = cone_interpreter(&lst_parse->lst_obj, tab);
 	else
 		error = 1;

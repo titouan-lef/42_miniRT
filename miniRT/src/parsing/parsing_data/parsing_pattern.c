@@ -50,7 +50,10 @@ static int	active_checkboard(int *status, char *str)
 	else if (!ft_strcmp(str, "OFF"))
 		*status = 0;
 	else
+	{
+		
 		return (1);
+	}
 	return (0);
 }
 

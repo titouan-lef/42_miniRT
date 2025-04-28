@@ -27,7 +27,7 @@ Identifier: C\n\
 x, y, z coordinates of the viewpoint: -50.0,0,20\n\
 3D normalized orientation vector, in the range [-1,1]\
 for each x, y, z axis: 0.0,0.0,1.0\n\
-FOV: Horizontal field of view in degrees in the range [0,180]: 70\n"
+FOV: Horizontal field of view in degrees in the range [0,180]: 70"
 # endif
 
 # ifndef ERR_SPHERE
@@ -94,7 +94,8 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_ID
-#  define ERR_ID "Please try with a valid object"
+#  define ERR_ID "The SCENE have an invalid identifier \n\
+Valid identifier are A, C, L, SP, PL and CY"
 # endif
 
 # ifndef ERR_OPEN_FAILED
