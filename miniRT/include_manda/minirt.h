@@ -1,7 +1,55 @@
 /// @todo header
 
-#ifndef MINIRT_ERR_H
-# define MINIRT_ERR_H
+#ifndef MINIRT_H
+# define MINIRT_H
+
+# include <math.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include "libft.h"
+# include "minirt_struct.h"
+# include "minirt_parsing.h"
+# include "minirt_raytrace.h"
+# include "graphical_system.h"
+# include "minirt_colors.h"
+# include "menu_text.h"
+
+# ifndef COLOR_LIGHT_ACTIVE
+#  define COLOR_LIGHT_ACTIVE 0
+# endif
+
+# ifndef MAX_LIGHT
+#  define MAX_LIGHT INFINITY
+# endif
+
+# ifndef CONE_ACTIVE
+#  define CONE_ACTIVE 0
+# endif
+
+# ifndef SPECULAR_ACTIVE
+#  define SPECULAR_ACTIVE 0
+# endif
+
+# ifndef PATTERN_ACTIVE
+#  define PATTERN_ACTIVE 0
+# endif
+
+# ifndef NB_PARAM_SP
+#  define NB_PARAM_SP 4
+# endif
+
+# ifndef NB_PARAM_PL
+#  define NB_PARAM_PL 4
+# endif
+
+# ifndef NB_PARAM_CY
+#  define NB_PARAM_CY 6
+# endif
+
+# ifndef NB_PARAM_CO
+#  define NB_PARAM_CO 9
+# endif
 
 # ifndef ERR_AMBIENT
 #  define ERR_AMBIENT "An AMBIENT are wrong.\n\
@@ -36,11 +84,7 @@ Try like this \"sp 0.0,0.0,20.6 12.6 10,0,255\"\n\
 Identifier: sp\n\
 x, y, z coordinates of the sphere center: 0.0,0.0,20.6\n\
 The sphere diameter: 12.6\n\
-R,G,B colors in the range [0-255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
-Path of pattern file in .png or NULL for deactivated\n\
-Path of bump file in .png or NULL for deactivated"
-
+R,G,B colors in the range [0-255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_PLANE
@@ -50,10 +94,7 @@ identifier: pl\n\
 x, y, z coordinates of a point in the plane: 0.0,0.0,-10.0\n\
 3D normalized normal vector, in the range [-1,1]\
 for each x, y, z axis: 0.0,1.0,0.0\n\
-R,G,B colors in the range [0-255]: 0,0,225\n\
-ON to activate or OFF to deactivate the checkerboard\n\
-Path of pattern file in .png or NULL for deactivated\n\
-Path of bump file in .png or NULL for deactivated"
+R,G,B colors in the range [0-255]: 0,0,225"
 # endif
 
 # ifndef ERR_CYLINDER
@@ -65,10 +106,7 @@ x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cylinder diameter: 14.2\n\
 The cylinder height: 21.42\n\
-R, G, B colors in the range [0,255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
-Path of pattern file in .png or NULL for deactivated\n\
-Path of bump file in .png or NULL for deactivated"
+R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_CONE
@@ -80,14 +118,11 @@ x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cone diameter: 14.2\n\
 The cone height: 21.42\n\
-R, G, B colors in the range [0,255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
-Path of pattern file in .png or NULL for deactivated\n\
-Path of bump file in .png or NULL for deactivated"
+R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_ARG
-#  define ERR_ARG "Please try ./miniRT_bonus \"files_name.rt\""
+#  define ERR_ARG "Please try ./miniRT \"files_name.rt\""
 # endif
 
 # ifndef ERR_NB_AMB
@@ -99,7 +134,7 @@ Path of bump file in .png or NULL for deactivated"
 # endif
 
 # ifndef ERR_NO_LIGHT
-#  define ERR_NO_LIGHT "The SCENE need minimum one LIGHT"
+#  define ERR_NO_LIGHT "The SCENE need one LIGHT"
 # endif
 
 # ifndef ERR_NO_OBJ
@@ -108,7 +143,7 @@ Path of bump file in .png or NULL for deactivated"
 
 # ifndef ERR_ID
 #  define ERR_ID "The SCENE have an invalid identifier \n\
-Valid identifier are A, C, L, SP, PL, CY and CO"
+Valid identifier are A, C, L, SP, PL and CY"
 # endif
 
 # ifndef ERR_OPEN_FAILED

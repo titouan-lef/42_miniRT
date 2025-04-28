@@ -14,7 +14,7 @@
 # endif
 
 # ifndef KS
-#  define KS 0.0
+#  define KS 0.5
 # endif
 
 /***********************************************

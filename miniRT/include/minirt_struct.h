@@ -232,6 +232,7 @@ typedef struct s_graph_sys
 	t_menu			menu;
 	int				def_w;
 	int				def_h;
+	int				menu_enable;
 }	t_graph_sys;
 
 /***********************************************

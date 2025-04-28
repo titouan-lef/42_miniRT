@@ -110,6 +110,8 @@ DEP_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.d)
 #==================== HEADER ====================#
 
 HEADERS =	include/
+			
+HEADERS_MANDA = include_manda/
 
 #---------- BONUS ----------#
 
@@ -145,7 +147,7 @@ $(NAME): $(OBJ) $(LIBFT) $(MACROLIBX)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
-	@$(CC) $(CFLAGS) -I$(HEADERS) -I$(LIBFT_HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_HEADER) -I$(HEADERS_MANDA) -I$(HEADERS) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
@@ -169,7 +171,7 @@ $(NAME_BONUS): $(OBJ_BONUS) $(LIBFT) $(MACROLIBX)
 
 $(BUILD_DIR_BONUS)%.o: $(SRC_DIR)%.c | $(OBJ_DIR_BONUS)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
-	@$(CC) $(CFLAGS) -I$(HEADERS_BONUS) -I$(LIBFT_HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS)  -I$(LIBFT_HEADER) -I$(HEADERS_BONUS) -I$(HEADERS) -c $< -o $@
 
 $(OBJ_DIR_BONUS):
 	@mkdir -p $@
