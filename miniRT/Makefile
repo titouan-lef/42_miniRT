@@ -47,7 +47,10 @@ SRC :=	minirt.c \
 		colors/lighting.c \
 		colors/patterns/uv.c \
 		colors/patterns/bump_map.c \
-		colors/patterns/normal_map.c \
+		colors/patterns/normal_map/normal_map_sphere.c \
+		colors/patterns/normal_map/normal_map_plane.c \
+		colors/patterns/normal_map/normal_map_cylinder.c \
+		colors/patterns/normal_map/normal_map_cone.c \
 		colors/patterns/checkerboard_pattern.c \
 		parsing/parsing.c \
 		parsing/parsing_data/parsing_lst.c \

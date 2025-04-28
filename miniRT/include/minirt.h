@@ -86,8 +86,10 @@ void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
 			double result[2]);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
 
-t_vec3	update_normal_sp(mlx_context *mlx, t_intersec *inter, const t_img *img);
-t_vec3	update_normal_pl(mlx_context *mlx, t_intersec *inter, const t_img *img);
-t_vec3	update_normal_cy(mlx_context *mlx, t_intersec *inter, const t_img *img);
+t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_vec2 (*f)(t_vec3, void *));
+void	fill_normal_map_pl(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
+void	fill_normal_map_sp(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
+void	fill_normal_map_cy(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
+void	fill_normal_map_co(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
 
 #endif

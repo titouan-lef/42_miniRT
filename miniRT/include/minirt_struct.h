@@ -58,17 +58,22 @@ typedef struct s_pattern
 	int			checkerboard;
 }	t_pattern;
 
+typedef struct s_base
+{
+	t_vec3	e1;
+	t_vec3	e2;
+	t_vec3	e3;
+}	t_base;
+
 /***********************************************
  * @struct Normal Map
- * @param n Normal.
- * @param t Tangent.
- * @param b Bitangent.
+ * @param base Base (tangent, bitangent, normal).
+ * @param n Normal get with an image.
  ***********************************************/
 typedef struct s_normal_map
 {
+	t_base	base;
 	t_vec3	n;
-	t_vec3	t;
-	t_vec3	b;
 }	t_normal_map;
 
 /***********************************************
