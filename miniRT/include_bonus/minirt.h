@@ -10,7 +10,7 @@
 # include "libft.h"
 # include "minirt_struct.h"
 # include "minirt_parsing.h"
-# include "minirt_err.h"
+# include "minirt_err_bonus.h"
 # include "graphical_system.h"
 # include "minirt_colors.h"
 # include "menu_text.h"
