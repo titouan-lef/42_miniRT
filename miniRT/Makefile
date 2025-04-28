@@ -2,17 +2,23 @@
 
 #===================== BASE =====================#
 
-CC =			cc
+CC =				cc
 
-CFLAGS +=		-Wall -Wextra -Werror -MP -MMD -g
+CFLAGS +=			-Wall -Wextra -Werror -MP -MMD -g
 
-MATH_FLAG :=	-lm
+MATH_FLAG :=		-lm
 
-MAKEFLAGS +=	--no-print-directory
+MAKEFLAGS +=		--no-print-directory
 
-BUILD_DIR :=	.build/
+BUILD_DIR :=		.build/
 
-NAME :=			miniRT
+NAME :=				miniRT
+
+#---------- BONUS ----------#
+
+BUILD_DIR_BONUS :=	.build_bonus/
+
+NAME_BONUS :=		miniRT_bonus
 
 #==================== COLOR =====================#
 
@@ -81,21 +87,21 @@ SRC :=	minirt.c \
 		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/put_menu_obj.c
 
-#---------- BONUS ----------#
-
-# SRC_BONUS :=	bonus/fdf_bonus.c
-
 #==================== OBJECT ====================#
 
 OBJ :=	$(SRC:%.c=$(BUILD_DIR)%.o)
 
 #---------- BONUS ----------#
 
-# OBJ_BONUS :=	$(SRC_BONUS:%.c=$(BUILD_DIR)%.o)
+OBJ_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.o)
 
 #---------------------------#
 
 OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))# $(shell dirname $(OBJ_BONUS)))
+
+#---------- BONUS ----------#
+
+OBJ_DIR_BONUS :=	$(sort $(shell dirname $(OBJ_BONUS)))# $(shell dirname $(OBJ_BONUS)))
 
 #================== DEPENDENCY ==================#
 
@@ -103,11 +109,15 @@ DEP :=	$(SRC:%.c=$(BUILD_DIR)%.d)
 
 #---------- BONUS ----------#
 
-# DEP_BONUS :=	$(SRC_BONUS:%.c=$(BUILD_DIR)%.d)
+DEP_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.d)
 
 #==================== HEADER ====================#
 
 HEADERS =	include/
+
+#---------- BONUS ----------#
+
+HEADERS_BONUS =	include_bonus/
 
 #==================== LIBFT =====================#
 
@@ -155,11 +165,18 @@ $(MACROLIBX):
 	@$(MAKE_MACROLIBX)
 	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
 
-# bonus: $(NAME_BONUS)
+bonus :  $(NAME_BONUS)
 
-# $(NAME_BONUS): $(OBJ_BONUS) $(LIBFT) $(MACROLIBX)
-#	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
-#	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+$(NAME_BONUS): $(OBJ_BONUS) $(LIBFT) $(MACROLIBX)
+	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
+	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+
+$(BUILD_DIR_BONUS)%.o: $(SRC_DIR)%.c | $(OBJ_DIR_BONUS)
+	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
+	@$(CC) $(CFLAGS) -I$(HEADERS_BONUS) -I$(LIBFT_HEADER) -c $< -o $@
+
+$(OBJ_DIR_BONUS):
+	@mkdir -p $@
 
 clean:
 #clean libft
@@ -173,15 +190,16 @@ clean:
 	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
 #clean build directory
 	@if [ -d $(BUILD_DIR) ]; then echo "$(RED)Removing directory : $(BLUE)$(BUILD_DIR)$(INIT)"; rm -rf $(BUILD_DIR); fi;
+	@if [ -d $(BUILD_DIR_BONUS) ]; then echo "$(RED)Removing directory : $(BLUE)$(BUILD_DIR_BONUS)$(INIT)"; rm -rf $(BUILD_DIR_BONUS); fi;
 
 fclean: clean
 	@if [ -f $(LIBFT) ]; then echo "$(RED)Removing : $(MAGENTA)$(LIBFT)$(INIT)"; rm -f $(LIBFT); fi;
 	@if [ -f $(MACROLIBX) ]; then echo "$(RED)Removing : $(MAGENTA)$(MACROLIBX)$(INIT)"; rm -f $(MACROLIBX); fi;
 	@if [ -f $(NAME) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME)$(INIT)"; rm -f $(NAME); fi;
-#	@if [ -f $(NAME_BONUS) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME_BONUS)$(INIT)"; rm -f $(NAME_BONUS); fi;
+	@if [ -f $(NAME_BONUS) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME_BONUS)$(INIT)"; rm -f $(NAME_BONUS); fi;
 
 re:	fclean all
 
-.PHONY: all clean fclean re #bonus
+.PHONY: all clean fclean re bonus
 
--include $(DEP) #s$(DEP_BONUS)
+-include $(DEP) $(DEP_BONUS)

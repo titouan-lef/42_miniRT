@@ -77,5 +77,7 @@ int	ambient_interpreter(t_scene *scene, char **tab)
 		print_error_message(ERR_AMBIENT);
 		return (1);
 	}
+	if (COLOR_LIGHT_ACTIVE == 0)
+		scene->amb.color = ft_create_vec3(1.0 , 1.0 , 1.0);
 	return (0);
 }

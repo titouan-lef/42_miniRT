@@ -28,14 +28,18 @@ int	sphere_interpreter(t_list **lst_obj, char **tab)
 {
 	t_sphere_obj	*new_sp;
 
-	if (ft_matrix_get_row((void **)tab) != 7)
+	if (ft_matrix_get_row((void **)tab) != NB_PARAM_SP)
+	{
+		print_error_message(ERR_SPHERE);
 		return (1);
+	}
 	new_sp = alloc_new_sphere(tab);
 	if (!new_sp)
 		return (1);
 	if (alloc_new_obj(lst_obj, new_sp, tab + 3, SPHERE))
 	{
 		free(new_sp);
+		print_error_message(ERR_SPHERE);
 		return (1);
 	}
 	return (0);

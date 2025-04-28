@@ -75,7 +75,7 @@ int	check_valid_id(char *str, int single_entity[2])
 		return (PLANE);
 	if (!ft_strcmp(str, "cy"))
 		return (CYLINDER);
-	if (!ft_strcmp(str, "co"))
+	if (!ft_strcmp(str, "co") && CONE_ACTIVE == 1)
 		return (CONE);
 	print_error_message(ERR_ID);
 	return (OBJ_ERR);

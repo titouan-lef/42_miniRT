@@ -21,7 +21,7 @@ static int	check_scene_composition(t_lst_parse *lst_parse,
 		print_error_message(ERR_NB_AMB);
 		return (1);
 	}
-	if (lst_parse->lst_l == NULL)
+	if (lst_parse->lst_l == NULL || ft_lstsize(lst_parse->lst_l) > MAX_LIGHT)
 	{
 		print_error_message(ERR_NO_LIGHT);
 		return (1);

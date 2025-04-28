@@ -49,7 +49,8 @@ t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
 			continue ;
 		}
 		apply_diffuse(*tab_l, &total_light, cos_angle);
-		apply_specular(*tab_l, &spec_effect, inter, cos_angle);
+		if (SPECULAR_ACTIVE == 1)
+			apply_specular(*tab_l, &spec_effect, inter, cos_angle);
 		++tab_l;
 	}
 	c = mix_color_and_lights(inter, &total_light, &spec_effect);
