@@ -95,6 +95,6 @@ void	menu_event(t_scene *scene)
 		key_hook_select_obj, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_light, scene);
-	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
+	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYDOWN,
 		data_change, &scene->g_sys.menu);
 }

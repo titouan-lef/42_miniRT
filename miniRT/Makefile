@@ -52,6 +52,7 @@ SRC :=	minirt.c \
 		colors/shadow.c \
 		colors/lighting.c \
 		colors/patterns/uv.c \
+		colors/patterns/texture.c \
 		colors/patterns/bump_map.c \
 		colors/patterns/normal_map/normal_map_sphere.c \
 		colors/patterns/normal_map/normal_map_plane.c \

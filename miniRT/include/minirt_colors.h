@@ -51,4 +51,7 @@ t_vec2	uv_co(t_vec3 p, void *arg);
 /** @file bump_map.c */
 void	bump_map(t_graph_sys *g_sys, t_intersec *inter);
 
+/**	@file texture.c */
+t_vec3	color_from_img(const t_graph_sys *g_sys, const t_intersec *inter);
+
 #endif
