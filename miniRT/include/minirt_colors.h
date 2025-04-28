@@ -20,8 +20,7 @@
 /***********************************************
  *  @file lighting.c
  ***********************************************/
-t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
-			const t_amb *amb);
+t_color	lighting(t_scene *scene, t_intersec *inter);
 
 /***********************************************
  *  @file phong.c

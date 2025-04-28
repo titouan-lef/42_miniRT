@@ -39,18 +39,29 @@ t_vec2	uv_pl(t_vec3 p, void *arg)
 t_vec2	uv_cy(t_vec3 p, void *arg)
 {
 	t_vec2			uv;
+	t_intersec		*inter;
 	t_cylinder_obj	*cy_obj;
 	t_vec3			op;
-	double			dot1;
-	double			dot2;
+	double			dot[2];
 
-	cy_obj = (t_cylinder_obj *)arg;
+	inter = (t_intersec *)arg;
+	cy_obj = (t_cylinder_obj *)inter->obj->data;
 	op = ft_diff_vec3(&p, &cy_obj->cy.pos);
-	dot1 = ft_dot_vec3(&op, &cy_obj->cy.dir);
-	uv.x = 0.5 + 0.5 * dot1 / cy_obj->cy.hh;
-	dot1 = ft_dot_vec3(&op, &cy_obj->cy.right);
-	dot2 = ft_dot_vec3(&op, &cy_obj->cy.up);
-	uv.y = 0.5 + 0.5 * atan2(dot1, dot2) / M_PI;
+	dot[0] = ft_dot_vec3(&op, &cy_obj->cy.right);
+	dot[1] = ft_dot_vec3(&op, &cy_obj->cy.up);
+	uv.y = 0.5 + 0.5 * atan2(dot[0], dot[1]) / M_PI;
+	dot[0] = ft_dot_vec3(&op, &cy_obj->cy.dir);
+	dot[1] = ft_dot_vec3(&inter->soluce.n, &cy_obj->cy.dir);
+	dot[1] = fabs(dot[1]);
+	if (dot[1] > 0.9)
+	{
+		op = ft_scalmult_vec3(&cy_obj->cy.dir, -dot[0]);
+		op = ft_sum_vec3(&p, &op);
+		uv.x = ft_distance_vec3(&op, &cy_obj->cy.pos);
+		uv.x = uv.x / cy_obj->cy.r;
+		return (uv);
+	}
+	uv.x = 0.5 + 0.5 * dot[0] / cy_obj->cy.hh;
 	return (uv);
 }
 

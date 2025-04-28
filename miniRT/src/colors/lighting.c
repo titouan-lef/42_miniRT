@@ -2,57 +2,78 @@
 
 #include "minirt.h"
 
-static t_color	mix_color_and_lights(const t_intersec *inter,
-	t_vec3 *total_light, t_vec3 *spec_effect)
+static t_vec3	get_obj_color(const t_intersec *inter)
 {
-	t_vec3	v;
-	t_color	color;
+	t_vec3			color;
+	const t_pattern	*pattern;
 
-	v = inter->obj->pattern.colors;
-	if (inter->obj->pattern.texture.name != NULL)
-		v = inter->obj->pattern.colors;
-	if (inter->obj->pattern.checkerboard == 1)
-		v = uv_manager(inter, v);
-	v.x = v.x * total_light->x;
-	v.y = v.y * total_light->y;
-	v.z = v.z * total_light->z;
-	v = ft_sum_vec3(&v, spec_effect);
-	if (v.x > 1)
-		v.x = 1;
-	if (v.y > 1)
-		v.y = 1;
-	if (v.z > 1)
-		v.z = 1;
-	color = ft_vec3_to_color(&v, 255);
+	pattern = &inter->obj->pattern;
+	if (pattern->texture.name == NULL)
+		color = pattern->colors;
+	else
+		color = pattern->colors;//color texture
+	if (pattern->checkerboard == 1)
+		color = uv_manager(inter, color);
 	return (color);
 }
 
-t_color	lighting(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l,
-	const t_amb *amb)
+static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 {
-	t_color	c;
-	t_vec3	spec_effect;
 	t_vec3	total_light;
-	double	cos_angle;
+	t_color	color;
 
-	c = ft_color_create(0, 0, 0, 255);
-	if (inter->obj == NULL)
-		return (c);
-	total_light = apply_ambient(amb);
-	spec_effect = ft_create_vec3(0, 0, 0);
+	total_light = ft_sum_vec3(&phong->ambient, &phong->diffuse);
+	c_obj->x = c_obj->x * total_light.x;
+	c_obj->y = c_obj->y * total_light.y;
+	c_obj->z = c_obj->z * total_light.z;
+	*c_obj = ft_sum_vec3(c_obj, &phong->specular);
+	if (c_obj->x > 1)
+		c_obj->x = 1;
+	if (c_obj->y > 1)
+		c_obj->y = 1;
+	if (c_obj->z > 1)
+		c_obj->z = 1;
+	color = ft_vec3_to_color(c_obj, 255);
+	return (color);
+}
+
+static void	apply_light_point(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, t_phong *phong)
+{
+	double	cos_angle;
+	int		is_lighted;
+
+	phong->diffuse = ft_create_vec3(0, 0, 0);
+	phong->specular = ft_create_vec3(0, 0, 0);
+	is_lighted = 0;
 	while (*tab_l != NULL)
 	{
 		cos_angle = cos_angle_light(*tab_l, &inter->soluce);
-		if (cos_angle <= EPSILON || shadow(tab_obj, *tab_l, &inter->soluce.p))
+		if (cos_angle > EPSILON && !shadow(tab_obj, *tab_l, &inter->soluce.p))
 		{
-			++tab_l;
-			continue ;
+			apply_diffuse(*tab_l, &phong->diffuse, cos_angle);
+			if (SPECULAR_ACTIVE == 1)
+				apply_specular(*tab_l, &phong->specular, inter, cos_angle);
 		}
-		apply_diffuse(*tab_l, &total_light, cos_angle);
-		if (SPECULAR_ACTIVE == 1)
-			apply_specular(*tab_l, &spec_effect, inter, cos_angle);
 		++tab_l;
 	}
-	c = mix_color_and_lights(inter, &total_light, &spec_effect);
+}
+
+t_color	lighting(t_scene *scene, t_intersec *inter)
+{
+	t_color	c;
+	t_vec3	c_obj;
+	t_phong	phong;
+
+	if (inter->obj == NULL)
+	{
+		c = ft_color_create(0, 0, 0, 255);
+		return (c);
+	}
+	c_obj = get_obj_color(inter);
+	if (PATTERN_ACTIVE == 1)
+		bump_map(&scene->g_sys, inter);
+	phong.ambient = apply_ambient(&scene->amb);
+	apply_light_point(inter, scene->tab_obj, scene->tab_l, &phong);
+	c = mix_color_and_lights(&phong, &c_obj);
 	return (c);
 }

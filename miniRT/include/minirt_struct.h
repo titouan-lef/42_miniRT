@@ -110,6 +110,13 @@ typedef struct s_light
 	double	lbr;
 }	t_light;
 
+typedef struct s_phong
+{
+	t_vec3	ambient;
+	t_vec3	diffuse;
+	t_vec3	specular;
+}	t_phong;
+
 /***********************************************
  * @struct CAMERA
  ***********************************************/

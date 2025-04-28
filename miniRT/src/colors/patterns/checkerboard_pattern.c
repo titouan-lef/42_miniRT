@@ -54,7 +54,7 @@ t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj)
 	else if (inter->obj->type == PLANE)
 		c = uv(tab_c, inter->soluce.p, &uv_pl, (void *)inter->obj->data);
 	else if (inter->obj->type == CYLINDER)
-		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter->obj->data);
+		c = uv(tab_c, inter->soluce.p, &uv_cy, (void *)inter);
 	else
 		c = uv(tab_c, inter->soluce.p, &uv_co, (void *)inter->obj->data);
 	return (c);
