@@ -1,20 +1,9 @@
 /// @todo header
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_RAYTRACE_H
+# define MINIRT_RAYTRACE_H
 
-# include <math.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include "libft.h"
-# include "minirt_struct.h"
-# include "minirt_parsing.h"
-# include "minirt_err.h"
-# include "graphical_system.h"
-# include "minirt_colors.h"
-# include "menu_text.h"
-# include "minirt_mandatory.h"
+# include "minirt.h"
 
 # ifndef EPSILON
 #  define EPSILON 0.000001

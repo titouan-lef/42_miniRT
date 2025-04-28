@@ -51,7 +51,6 @@ static int	active_checkboard(int *status, char *str)
 		*status = 0;
 	else
 	{
-
 		return (1);
 	}
 	return (0);
@@ -82,8 +81,8 @@ int	take_pattern(t_pattern *pattern, char **tab)
 	if (PATTERN_ACTIVE == 1)
 	{
 		if (active_checkboard(&pattern->checkerboard, tab[1])
-		|| take_texture_files(&pattern->texture.name, tab[2])
-		|| take_texture_files(&pattern->bump.name, tab[3]))
+			|| take_texture_files(&pattern->texture.name, tab[2])
+			|| take_texture_files(&pattern->bump.name, tab[3]))
 		{
 			return (1);
 		}

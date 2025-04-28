@@ -10,81 +10,158 @@
 # include "libft.h"
 # include "minirt_struct.h"
 # include "minirt_parsing.h"
-# include "minirt_err_bonus.h"
+# include "minirt_raytrace.h"
 # include "graphical_system.h"
 # include "minirt_colors.h"
 # include "menu_text.h"
-# include "minirt_bonus.h"
 
-# ifndef EPSILON
-#  define EPSILON 0.000001
+# ifndef COLOR_LIGHT_ACTIVE
+#  define COLOR_LIGHT_ACTIVE 1
 # endif
 
-/***********************************************
- * @file ray.c
- ***********************************************/
-int		ray_lauch_test(t_scene *scene);
+# ifndef MAX_LIGHT
+#  define MAX_LIGHT INFINITY
+# endif
 
-/***********************************************
- * @details CALCULATION
- ***********************************************/
-/** @file calculation.c */
-double	length_screen(double fov);
-void	quadratic_equation(double result[2], double a, double b, double c);
-double	min_quadratic_equation(double a, double b, double c);
+# ifndef CONE_ACTIVE
+#  define CONE_ACTIVE 1
+# endif
 
-/** @file init_calculation.c */
-void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj);
+# ifndef SPECULAR_ACTIVE
+#  define SPECULAR_ACTIVE 1
+# endif
 
-/***********************************************
- * @details INTERSECTION
- ***********************************************/
-/** @file intersect.c */
-int		intersect_base(const t_vec3 *base_center, double r, double t,
-			t_intersec *inter);
-void	update_soluce_sp(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
-void	update_n_soluce_lite(const t_vec3 *n, double raydir_dot_odir,
-			t_soluce *soluce);
-void	update_n_soluce(const t_vec3 *n, const t_vec3 *ray_dir,
-			t_soluce *soluce);
-void	update_soluce_pl(const t_obj *obj, const t_ray *ray, t_soluce *soluce);
+# ifndef PATTERN_ACTIVE
+#  define PATTERN_ACTIVE 1
+# endif
 
-/** @file intersect_plane.c */
-void	intersect_ray_pl(const t_obj *obj, t_intersec *inter);
-double	intersect_light_pl(const t_obj *obj, const t_ray *ray);
+# ifndef NB_PARAM_SP
+#  define NB_PARAM_SP 7
+# endif
 
-/** @file intersect_sphere.c */
-void	intersect_ray_sp(const t_obj *obj, t_intersec *inter);
-double	intersect_light_sp(const t_obj *obj, const t_ray *ray);
+# ifndef NB_PARAM_PL
+#  define NB_PARAM_PL 7
+# endif
 
-/** @file intersect_cylinder.c */
-void	intersect_ray_cy(const t_obj *obj, t_intersec *inter);
-double	intersect_light_cy(const t_obj *obj, const t_ray *ray);
+# ifndef NB_PARAM_CY
+#  define NB_PARAM_CY 9
+# endif
 
-/** @file intersect_cone.c */
-void	intersect_ray_co(const t_obj *obj, t_intersec *inter);
-double	intersect_light_co(const t_obj *obj, const t_ray *ray);
+# ifndef NB_PARAM_CO
+#  define NB_PARAM_CO 9
+# endif
 
-/***********************************************
- * @details EQUATION
- ***********************************************/
-/** @file equation_plane.c */
-double	solve_eq_pl(double os_dot_odir, double raydir_dot_odir);
-void	init_math_pl(const t_vec3 *ray_s, const t_plane *pl, double *mathpl);
+# ifndef ERR_AMBIENT
+#  define ERR_AMBIENT "An AMBIENT are wrong.\n\
+Try like this \"A 0.2 255,255,255\"\n\
+Identifier: A\n\
+Ambient lighting ratio in the range [0.0,1.0]\n\
+R, G, B colors in the range [0-255]: 255, 255, 255"
+# endif
 
-/** @file equation_sphere.c */
-double	solve_eq_sp(const t_math_sp *mathsp, const t_vec3 *ray_dir);
-void	init_math_sp(const t_vec3 *ray_s, const t_sphere *sp,
-			t_math_sp *mathsp);
+# ifndef ERR_LIGHT
+#  define ERR_LIGHT "An LIGHT are wrong.\n\
+Try like this \"L -40.0,50.0,0.0 0.6 10,0,255\"\n\
+Identifier: L\n\
+x, y, z coordinates of the light point: -40.0,50.0,0.0\n\
+The light brightness ratio in the range [0.0,1.0]: 0.6\n\
+R, G, B colors in the range [0-255]: 10, 0, 255"
+# endif
 
-/** @file equation_cylinder.c */
-double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray);
-void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
-			t_math_cy *mathcy);
+# ifndef ERR_CAMERA
+#  define ERR_CAMERA "Your CAMERA is wrong.\n\
+Try like this \"C -50.0,0,20 0,0,1 70\"\n\
+Identifier: C\n\
+x, y, z coordinates of the viewpoint: -50.0,0,20\n\
+3D normalized orientation vector, in the range [-1,1]\
+for each x, y, z axis: 0.0,0.0,1.0\n\
+FOV: Horizontal field of view in degrees in the range [0,180]: 70"
+# endif
 
-/** @file equation_cone.c */
-void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
-			double result[2]);
-void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
+# ifndef ERR_SPHERE
+#  define ERR_SPHERE "A SPHERE are wrong.\n\
+Try like this \"sp 0.0,0.0,20.6 12.6 10,0,255\"\n\
+Identifier: sp\n\
+x, y, z coordinates of the sphere center: 0.0,0.0,20.6\n\
+The sphere diameter: 12.6\n\
+R,G,B colors in the range [0-255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\
+Path of bump file in .png or NULL for deactivated"
+
+# endif
+
+# ifndef ERR_PLANE
+#  define ERR_PLANE "A PLANE are wrong.\n\
+Try like this \"pl 0.0,0.0,-10.0 0.0,1.0,0.0 0,0,225\"\n\
+identifier: pl\n\
+x, y, z coordinates of a point in the plane: 0.0,0.0,-10.0\n\
+3D normalized normal vector, in the range [-1,1]\
+for each x, y, z axis: 0.0,1.0,0.0\n\
+R,G,B colors in the range [0-255]: 0,0,225\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\
+Path of bump file in .png or NULL for deactivated"
+# endif
+
+# ifndef ERR_CYLINDER
+#  define ERR_CYLINDER "A CYLINDER are wrong.\n\
+Try like this \"cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
+Identifier: cy\n\
+x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
+3D normalized vector of axis of cylinder, in the range [-1,1]\
+for each x, y, z axis: 0.0,0.0,1.0\n\
+The cylinder diameter: 14.2\n\
+The cylinder height: 21.42\n\
+R, G, B colors in the range [0,255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\
+Path of bump file in .png or NULL for deactivated"
+# endif
+
+# ifndef ERR_CONE
+#  define ERR_CONE "A CONE are wrong.\n\
+Try like this \"co 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
+Identifier: co\n\
+x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
+3D normalized vector of axis of cylinder, in the range [-1,1]\
+for each x, y, z axis: 0.0,0.0,1.0\n\
+The cone diameter: 14.2\n\
+The cone height: 21.42\n\
+R, G, B colors in the range [0,255]: 10, 0, 255\n\
+ON to activate or OFF to deactivate the checkerboard\n\
+Path of pattern file in .png or NULL for deactivated\n\
+Path of bump file in .png or NULL for deactivated"
+# endif
+
+# ifndef ERR_ARG
+#  define ERR_ARG "Please try ./miniRT_bonus \"files_name.rt\""
+# endif
+
+# ifndef ERR_NB_AMB
+#  define ERR_NB_AMB "The SCENE need one ambient AMBIENT"
+# endif
+
+# ifndef ERR_NB_CAM
+#  define ERR_NB_CAM "The SCENE need one CAM"
+# endif
+
+# ifndef ERR_NO_LIGHT
+#  define ERR_NO_LIGHT "The SCENE need minimum one LIGHT"
+# endif
+
+# ifndef ERR_NO_OBJ
+#  define ERR_NO_OBJ "The SCENE need minimum one OBJ"
+# endif
+
+# ifndef ERR_ID
+#  define ERR_ID "The SCENE have an invalid identifier \n\
+Valid identifier are A, C, L, SP, PL, CY and CO"
+# endif
+
+# ifndef ERR_OPEN_FAILED
+#  define ERR_OPEN_FAILED "Open at xxx.c at line xx failed please\
+check the presence, permission and reload"
+# endif
 
 #endif

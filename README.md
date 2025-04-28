@@ -212,7 +212,11 @@ git reset --hard HEAD~1
 
 
 ### Camera
-[Orientation - Game Development](https://gamedev.stackexchange.com/questions/121654/getting-the-right-vector-from-the-forward-vector)
+[Orientation - Stack Exchange](https://gamedev.stackexchange.com/questions/121654/getting-the-right-vector-from-the-forward-vector)
+
+[3D Camera Rotation (Unwanted Roll) - Space/Flight Cam - Stack Exchange](https://gamedev.stackexchange.com/questions/183748/3d-camera-rotation-unwanted-roll-space-flight-cam)
+
+[Why rotate an object on two axes, twist around the third? - Stack Exchange](https://gamedev.stackexchange.com/questions/136174/im-rotating-an-object-on-two-axes-so-why-does-it-keep-twisting-around-the-thir)
 
 
 ### GeoGebra
@@ -229,3 +233,15 @@ git reset --hard HEAD~1
 [Spherical coordinate system - Wikipedia](https://en.wikipedia.org/wiki/Spherical_coordinate_system)
 
 [Cylindrical coordinate system - Wikipedia](https://en.wikipedia.org/wiki/Cylindrical_coordinate_system)
+
+
+### Normal mapping
+[Advanced Ray Tracer - Medium](https://medium.com/@Ksatese/advanced-ray-tracer-part-4-87d1c98eecff)
+
+[Compute sphere tangent for normal mapping - Stack Exchange](https://computergraphics.stackexchange.com/questions/5498/compute-sphere-tangent-for-normal-mapping)
+
+[](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
+
+[Normal Mapping - Learn OpenGL](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
+
+[Normal Mapping - Wikipedia](https://en.wikipedia.org/wiki/Normal_mapping)
