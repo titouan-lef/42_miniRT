@@ -12,7 +12,7 @@ static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 		color = pattern->colors;
 	else
 		color = color_from_img(g_sys, inter);
-	if (pattern->checkerboard == 1)
+	if (pattern->checkerboard != 0)
 		color = uv_manager(inter, color);
 	return (color);
 }
