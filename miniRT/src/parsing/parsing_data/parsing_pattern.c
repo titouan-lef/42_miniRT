@@ -45,14 +45,11 @@ int	take_color(t_vec3 *colors, char *str)
 
 static int	active_checkboard(int *status, char *str)
 {
-	if (!ft_strcmp(str, "ON"))
-		*status = 1;
-	else if (!ft_strcmp(str, "OFF"))
-		*status = 0;
-	else
-	{
+	int		error;
+	
+	*status = ft_to_number(str, &error, 6);
+	if (error != 0 || *status < 0)
 		return (1);
-	}
 	return (0);
 }
 
