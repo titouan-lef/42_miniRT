@@ -3,14 +3,14 @@
 #include "minirt.h"
 
 static t_vec3	get_color_from_img(const mlx_context *mlx, const t_img *img,
-		const t_intersec *inter, t_vec2 (*f)(t_vec3, void *))
+	const t_vec2 *uv_bm)
 {
 	t_vec2		uv;
 	mlx_color	c;
 	t_vec3		color;
 	t_color		extract;
 
-	uv = f(inter->soluce.p, inter->obj->data);
+	uv = *uv_bm;
 	if (uv.x >= 1)
 		uv.x = 0;
 	if (uv.y >= 1)
@@ -28,13 +28,6 @@ t_vec3	color_from_img(const t_graph_sys *g_sys, const t_intersec *inter)
 	t_vec3		color;
 
 	texture = &inter->obj->pattern.texture;
-	if (inter->obj->type == SPHERE)
-		color = get_color_from_img(&g_sys->mlx, texture, inter, uv_sp);
-	else if (inter->obj->type == PLANE)
-		color = get_color_from_img(&g_sys->mlx, texture, inter, uv_pl);
-	else if (inter->obj->type == CYLINDER)
-		color = get_color_from_img(&g_sys->mlx, texture, inter, uv_cy);
-	else
-		color = get_color_from_img(&g_sys->mlx, texture, inter, uv_co);
+	color = get_color_from_img(&g_sys->mlx, texture, &inter->uv_bm);
 	return (color);
 }

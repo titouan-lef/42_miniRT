@@ -2,6 +2,18 @@
 
 #include "minirt.h"
 
+static void	fill_uv_obj(t_intersec *inter)
+{
+	if (inter->obj->type == SPHERE)
+		fill_uv_sp(inter);
+	else if (inter->obj->type == PLANE)
+		fill_uv_pl(inter);
+	else if (inter->obj->type == CYLINDER)
+		fill_uv_cy(inter);
+	else
+		fill_uv_co(inter);
+}
+
 static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 {
 	t_vec3			color;
@@ -38,7 +50,7 @@ static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 }
 
 static void	apply_light_point(const t_intersec *inter, t_obj **tab_obj,
-			t_light **tab_l, t_phong *phong)
+	t_light **tab_l, t_phong *phong)
 {
 	double	cos_angle;
 	int		is_lighted;
@@ -70,6 +82,7 @@ t_color	lighting(t_scene *scene, t_intersec *inter)
 		c = ft_color_create(0, 0, 0, 255);
 		return (c);
 	}
+	fill_uv_obj(inter);
 	c_obj = get_obj_color(&scene->g_sys, inter);
 	if (PATTERN_ACTIVE == 1)
 		bump_map(&scene->g_sys, inter);

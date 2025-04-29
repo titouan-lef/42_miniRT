@@ -15,20 +15,18 @@ static int	ft_exp(int n)
 	return (result);
 }
 
-static t_vec3	uv(t_vec3 c[2], const t_intersec *inter,
-	t_vec2 (*f)(t_vec3, void *), void *arg)
+static t_vec3	get_uv_color(t_vec3 c[2], const t_vec2 *uv, int div)
 {
 	int			sq;
-	t_vec2		uv;
+	t_vec2		uv_scaled;
 
-	uv = f(inter->soluce.p, arg);
-	sq = ft_exp(inter->obj->pattern.checkerboard);
-	uv = ft_scalmult_vec2(&uv, sq);
-	if (uv.x >= sq)
-		uv.x = sq - 1;
-	if (uv.y >= sq)
-		uv.y = sq - 1;
-	if ((int)uv.x % 2 == (int)uv.y % 2)
+	sq = ft_exp(div);
+	uv_scaled = ft_scalmult_vec2(uv, sq);
+	if (uv_scaled.x >= sq)
+		uv_scaled.x = sq - 1;
+	if (uv_scaled.y >= sq)
+		uv_scaled.y = sq - 1;
+	if ((int)uv_scaled.x % 2 == (int)uv_scaled.y % 2)
 		return (c[0]);
 	return (c[1]);
 }
@@ -48,13 +46,6 @@ t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj)
 
 	tab_c[0] = c_obj;
 	tab_c[1] = inv_color(c_obj);
-	if (inter->obj->type == SPHERE)
-		c = uv(tab_c, inter, &uv_sp, (void *)inter->obj->data);
-	else if (inter->obj->type == PLANE)
-		c = uv(tab_c, inter, &uv_pl, (void *)inter->obj->data);
-	else if (inter->obj->type == CYLINDER)
-		c = uv(tab_c, inter, &uv_cy, (void *)inter);
-	else
-		c = uv(tab_c, inter, &uv_co, (void *)inter->obj->data);
+	c = get_uv_color(tab_c, &inter->uv_cb, inter->obj->pattern.checkerboard);
 	return (c);
 }

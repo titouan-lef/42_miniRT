@@ -12,18 +12,20 @@ t_vec3	change_base(const t_base *base, const t_vec3 *v)
 	return (new);
 }
 
-t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_vec2 (*f)(t_vec3, void *))
+static t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img,
+	const t_vec2 *uv_bm)
 {
 	t_vec2		uv;
 	mlx_color	c;
 	t_vec3		normal;
 
-	uv = f(inter->soluce.p, inter->obj->data);
+	uv = *uv_bm;
 	if (uv.x >= 1)
 		uv.x = 0;
 	if (uv.y >= 1)
 		uv.y = 0;
-	c = mlx_get_image_pixel(*mlx, img->img, uv.x * img->width, uv.y * img->heigth);
+	c = mlx_get_image_pixel(*mlx, img->img, uv.x * img->width,
+			uv.y * img->heigth);
 	normal.x = c.r / 255.0 * 2 - 1;
 	normal.y = c.g / 255.0 * 2 - 1;
 	normal.z = c.b / 255.0 * 2 - 1;
@@ -40,12 +42,13 @@ void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 	map.base.e3 = inter->soluce.n;
 	bump = &inter->obj->pattern.bump;
 	if (inter->obj->type == SPHERE)
-		fill_normal_map_sp(&g_sys->mlx, bump, inter, &map);
+		fill_normal_map_sp(inter, &map);
 	else if (inter->obj->type == PLANE)
-		fill_normal_map_pl(&g_sys->mlx, bump, inter, &map);
+		fill_normal_map_pl(inter, &map);
 	else if (inter->obj->type == CYLINDER)
-		fill_normal_map_cy(&g_sys->mlx, bump, inter, &map);
+		fill_normal_map_cy(inter, &map);
 	else
-		fill_normal_map_co(&g_sys->mlx, bump, inter, &map);
+		fill_normal_map_co(inter, &map);
+	map.n = get_normal_from_img(&g_sys->mlx, bump, &inter->uv_bm);
 	inter->soluce.n = change_base(&map.base, &map.n);
 }
