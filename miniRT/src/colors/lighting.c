@@ -11,7 +11,7 @@ static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 	if (pattern->texture.name == NULL)
 		color = pattern->colors;
 	else
-		color = color_from_img(g_sys, inter);//color texture
+		color = color_from_img(g_sys, inter);
 	if (pattern->checkerboard == 1)
 		color = uv_manager(inter, color);
 	return (color);
@@ -37,7 +37,8 @@ static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 	return (color);
 }
 
-static void	apply_light_point(const t_intersec *inter, t_obj **tab_obj, t_light **tab_l, t_phong *phong)
+static void	apply_light_point(const t_intersec *inter, t_obj **tab_obj,
+			t_light **tab_l, t_phong *phong)
 {
 	double	cos_angle;
 	int		is_lighted;

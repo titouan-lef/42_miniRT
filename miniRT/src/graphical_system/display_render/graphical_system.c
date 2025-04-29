@@ -38,6 +38,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		return (1);
 	}
 	init_menu(&g_sys->menu);
+	g_sys->menu.mouse_is_hide = 0;
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
 	return (0);
@@ -51,7 +52,8 @@ static void	update(void *param)
 
 	scene = (t_scene *) param;
 	g_sys = &scene->g_sys;
-	mouse_event(scene, g_sys);
+	if (g_sys->menu.mouse_is_hide == 1)
+		mouse_event(scene, g_sys);
 	init_calculation(&scene->cam.pos, scene->tab_obj);
 	result = ray_lauch_test(scene);
 	put_image_to_win(&scene->g_sys);

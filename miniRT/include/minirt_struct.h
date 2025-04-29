@@ -242,6 +242,7 @@ typedef struct s_menu
 	int		enable;
 	int		select_type;
 	int		select_data;
+	int		mouse_is_hide;
 	t_obj	*obj;
 	t_light	*light;
 }	t_menu;

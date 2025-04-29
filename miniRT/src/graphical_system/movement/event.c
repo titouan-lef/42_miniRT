@@ -17,6 +17,21 @@ static void	window_hook(int event, void *param)
 		mlx_loop_end((mlx_context)param);
 }
 
+static void	change_resol(t_graph_sys	*mlx, int *resol)
+{
+	*resol = 1 - *resol;
+	if (*resol == 1)
+	{
+		mlx->def_h = 9;
+		mlx->def_w = 16;
+	}
+	else
+	{
+		mlx->def_h = 1;
+		mlx->def_w = 1;
+	}
+}
+
 /**
  * @brief Manage full screen with F11
  * @details When you press F11 the window pass in full mode 
@@ -35,35 +50,15 @@ static void	key_hook_fwin(int key, void *param)
 		mlx_set_window_fullscreen(mlx->mlx, mlx->win, fullscreen);
 	}
 	if (key == SDL_SCANCODE_F10)
+		change_resol(mlx, &resol);
+	if (key == SDL_SCANCODE_F9)
 	{
-		resol = 1 - resol;
-		if (resol == 1)
-		{
-			mlx->def_h = 9;
-			mlx->def_w = 16;
-		}
+		mlx->menu.mouse_is_hide = 1 - mlx->menu.mouse_is_hide;
+		if (mlx->menu.mouse_is_hide == 1)
+			mlx_mouse_hide(mlx->mlx);
 		else
-		{
-			mlx->def_h = 1;
-			mlx->def_w = 1;
-		}
+			mlx_mouse_show(mlx->mlx);
 	}
-}
-
-/**
- * @brief Manage all enevnt with KEYDOWN
- * @details key_hook is for close window with escape
- * key_hook_cam is for translation camera
- */
-static void	keydown_event(t_scene *scene)
-{
-	t_graph_sys	*g_sys;
-
-	g_sys = &scene->g_sys;
-	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook,
-		g_sys->mlx);
-	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook_cam,
-		scene);
 }
 
 void	on_event(t_scene *scene)
@@ -75,6 +70,9 @@ void	on_event(t_scene *scene)
 		g_sys->mlx);
 	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYUP, key_hook_fwin,
 		&scene->g_sys);
-	keydown_event(scene);
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook,
+		g_sys->mlx);
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook_cam,
+		scene);
 	menu_event(scene);
 }
