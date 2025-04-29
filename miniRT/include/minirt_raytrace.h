@@ -76,10 +76,34 @@ void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
 			double result[2]);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
 
-t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_vec2 (*f)(t_vec3, void *));
-void	fill_normal_map_pl(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
-void	fill_normal_map_sp(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
-void	fill_normal_map_cy(const mlx_context *mlx, const t_img *img, t_intersec *inter, t_normal_map *map);
-void	fill_normal_map_co(const mlx_context *mlx, const t_img *img, const t_intersec *inter, t_normal_map *map);
+/***********************************************
+ * @details UV
+ ***********************************************/
+/** @file uv_sp.c */
+void	fill_uv_sp(t_intersec *inter);
+
+/** @file uv_pl.c */
+void	fill_uv_pl(t_intersec *inter);
+
+/** @file uv_cy.c */
+void	fill_uv_cy(t_intersec *inter);
+
+/** @file uv_co.c */
+void	fill_uv_co(t_intersec *inter);
+
+/***********************************************
+ * @details NORMAL
+ ***********************************************/
+/** @file normal_map_sp.c */
+void	fill_normal_map_pl(const t_intersec *inter, t_normal_map *map);
+
+/** @file normal_map_pl.c */
+void	fill_normal_map_sp(const t_intersec *inter, t_normal_map *map);
+
+/** @file normal_map_cy.c */
+void	fill_normal_map_cy(const t_intersec *inter, t_normal_map *map);
+
+/** @file normal_map_co.c */
+void	fill_normal_map_co(const t_intersec *inter, t_normal_map *map);
 
 #endif

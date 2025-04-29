@@ -51,7 +51,10 @@ SRC :=	minirt.c \
 		colors/phong.c \
 		colors/shadow.c \
 		colors/lighting.c \
-		colors/patterns/uv.c \
+		colors/patterns/uv/uv_cone.c \
+		colors/patterns/uv/uv_cylinder.c \
+		colors/patterns/uv/uv_plane.c \
+		colors/patterns/uv/uv_sphere.c \
 		colors/patterns/bump_map.c \
 		colors/patterns/normal_map/normal_map_sphere.c \
 		colors/patterns/normal_map/normal_map_plane.c \
@@ -114,7 +117,7 @@ DEP_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.d)
 #==================== HEADER ====================#
 
 HEADERS =	include/
-			
+
 HEADERS_MANDA = include_manda/
 
 #---------- BONUS ----------#

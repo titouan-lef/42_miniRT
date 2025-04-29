@@ -307,6 +307,8 @@ typedef struct s_intersec
 	t_ray		ray;
 	const t_obj	*obj;
 	t_soluce	soluce;
+	t_vec2		uv_cb;
+	t_vec2		uv_bm;
 }	t_intersec;
 
 #endif
