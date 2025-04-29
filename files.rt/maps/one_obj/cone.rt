@@ -6,9 +6,9 @@ C 0,0,-1920 0,0,1 73
 L 100,100,100 1 255,255,255
 L 100,100,100 1 255,255,240
 
-co 0,0.0,0 0,0,1.0 100 200 0,0,255  OFF  NULL  ../bump_files/briks.png
-co 0,0.0,0 0,0,1.0 100 200 0,0,255  OFF  NULL  ../bump_files/briks.png
-co 0,0.0,0 0,0,1.0 100 200 0,0,2 OFF  NULL  ../bump_files/briks.png
-co 0,0.0,0 0,0,1.0 100 200 0,0,255  OFF  NULL  ../bump_files/briks.png
+co 0,0.0,0 0,0,1.0 100 200 0,0,255  0 NULL  ../bump_files/briks.png
+co 0,0.0,0 0,0,1.0 100 200 0,0,255  0 NULL  ../bump_files/briks.png
+co 0,0.0,0 0,0,1.0 100 200 0,0,240 0  NULL  ../bump_files/briks.png
+co 0,0.0,0 0,0,1.0 100 200 0,0,255  0  NULL  ../bump_files/briks.png
 
 L 100,100,100 1 255,255,240

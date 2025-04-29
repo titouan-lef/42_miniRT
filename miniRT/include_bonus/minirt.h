@@ -85,7 +85,7 @@ Identifier: sp\n\
 x, y, z coordinates of the sphere center: 0.0,0.0,20.6\n\
 The sphere diameter: 12.6\n\
 R,G,B colors in the range [0-255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
+1 to 5 for activate and 0 to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\
 Path of bump file in .png or NULL for deactivated"
 
@@ -99,7 +99,7 @@ x, y, z coordinates of a point in the plane: 0.0,0.0,-10.0\n\
 3D normalized normal vector, in the range [-1,1]\
 for each x, y, z axis: 0.0,1.0,0.0\n\
 R,G,B colors in the range [0-255]: 0,0,225\n\
-ON to activate or OFF to deactivate the checkerboard\n\
+1 to 5 for activate and 0 to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\
 Path of bump file in .png or NULL for deactivated"
 # endif
@@ -114,7 +114,7 @@ for each x, y, z axis: 0.0,0.0,1.0\n\
 The cylinder diameter: 14.2\n\
 The cylinder height: 21.42\n\
 R, G, B colors in the range [0,255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
+1 to 5 for activate and 0 to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\
 Path of bump file in .png or NULL for deactivated"
 # endif
@@ -129,7 +129,7 @@ for each x, y, z axis: 0.0,0.0,1.0\n\
 The cone diameter: 14.2\n\
 The cone height: 21.42\n\
 R, G, B colors in the range [0,255]: 10, 0, 255\n\
-ON to activate or OFF to deactivate the checkerboard\n\
+1 to 5 for activate and 0 to deactivate the checkerboard\n\
 Path of pattern file in .png or NULL for deactivated\n\
 Path of bump file in .png or NULL for deactivated"
 # endif
