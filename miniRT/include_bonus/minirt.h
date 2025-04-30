@@ -109,7 +109,7 @@ Path of bump file in .png or NULL for deactivated"
 Try like this \"cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
 Identifier: cy\n\
 x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
-3D normalized vector of axis of cylinder, in the range [-1,1]\
+3D normalized vector of axis of the cylinder, in the range [-1,1]\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cylinder diameter: 14.2\n\
 The cylinder height: 21.42\n\
@@ -123,8 +123,8 @@ Path of bump file in .png or NULL for deactivated"
 #  define ERR_CONE "A CONE are wrong.\n\
 Try like this \"co 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
 Identifier: co\n\
-x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
-3D normalized vector of axis of cylinder, in the range [-1,1]\
+x, y, z coordinates of the center of the cone: 50.0,0.0,20.6\n\
+3D normalized vector of axis of the cone, in the range [-1,1]\
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cone diameter: 14.2\n\
 The cone height: 21.42\n\
