@@ -9,8 +9,8 @@ static void	fill_uv(t_vec3 p, void *arg, t_vec2 *uv)
 
 	sp_obj = (t_sphere_obj *)arg;
 	op = ft_diff_vec3(&p, &sp_obj->sp.pos);
-	uv->x = acos(op.z / sp_obj->sp.r) / M_PI;
-	uv->y = 0.5 + 0.5 * atan2(op.y, op.x) / M_PI;
+	uv->x = 0.5 + 0.5 * atan2(op.y, op.x) / M_PI;
+	uv->y = acos(op.z / sp_obj->sp.r) / M_PI;
 }
 
 void	fill_uv_sp(t_intersec *inter)
