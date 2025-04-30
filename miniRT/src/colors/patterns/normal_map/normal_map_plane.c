@@ -12,7 +12,7 @@ static void	fill_tangent(const t_plane_obj *pl_obj, t_vec3 *tangent)
 	*tangent = pl_obj->up;
 }
 
-void	fill_normal_map_pl(const t_intersec *inter, t_normal_map *map)
+void	fill_tangent_space_pl(const t_intersec *inter, t_normal_map *map)
 {
 	t_plane_obj	*pl_obj;
 

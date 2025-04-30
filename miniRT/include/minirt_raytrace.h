@@ -95,15 +95,15 @@ void	fill_uv_co(t_intersec *inter);
  * @details NORMAL
  ***********************************************/
 /** @file normal_map_sp.c */
-void	fill_normal_map_pl(const t_intersec *inter, t_normal_map *map);
+void	fill_tangent_space_pl(const t_intersec *inter, t_normal_map *map);
 
 /** @file normal_map_pl.c */
-void	fill_normal_map_sp(const t_intersec *inter, t_normal_map *map);
+void	fill_tangent_space_sp(const t_intersec *inter, t_normal_map *map);
 
 /** @file normal_map_cy.c */
-void	fill_normal_map_cy(const t_intersec *inter, t_normal_map *map);
+void	fill_tangent_space_cy(const t_intersec *inter, t_normal_map *map);
 
 /** @file normal_map_co.c */
-void	fill_normal_map_co(const t_intersec *inter, t_normal_map *map);
+void	fill_tangent_space_co(const t_intersec *inter, t_normal_map *map);
 
 #endif

@@ -45,8 +45,8 @@ int	take_color(t_vec3 *colors, char *str)
 
 static int	active_checkboard(int *status, char *str)
 {
-	int		error;
-	
+	int	error;
+
 	*status = ft_to_number(str, &error, 6);
 	if (error != 0 || *status < 0)
 		return (1);

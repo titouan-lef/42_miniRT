@@ -49,23 +49,27 @@ static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 	return (color);
 }
 
-static void	apply_light_point(const t_intersec *inter, t_obj **tab_obj,
-	t_light **tab_l, t_phong *phong)
+static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
 {
-	double	cos_angle;
-	int		is_lighted;
+	double	cos_angle[2];
+	t_light	**tab_l;
+	t_vec3	old_n;
 
+	tab_l = scene->tab_l;
 	phong->diffuse = ft_create_vec3(0, 0, 0);
 	phong->specular = ft_create_vec3(0, 0, 0);
-	is_lighted = 0;
+	old_n = inter->soluce.n;
+	if (PATTERN_ACTIVE == 1)
+		bump_map(&scene->g_sys, inter);
 	while (*tab_l != NULL)
 	{
-		cos_angle = cos_angle_light(*tab_l, &inter->soluce);
-		if (cos_angle > EPSILON && !shadow(tab_obj, *tab_l, &inter->soluce.p))
+		cos_angle_light(*tab_l, &inter->soluce, &old_n, cos_angle);
+		if (cos_angle[0] > EPSILON && cos_angle[1] > EPSILON
+			&& !shadow(scene->tab_obj, *tab_l, &inter->soluce.p))
 		{
-			apply_diffuse(*tab_l, &phong->diffuse, cos_angle);
+			apply_diffuse(*tab_l, &phong->diffuse, cos_angle[1]);
 			if (SPECULAR_ACTIVE == 1)
-				apply_specular(*tab_l, &phong->specular, inter, cos_angle);
+				apply_specular(*tab_l, &phong->specular, inter, cos_angle[1]);
 		}
 		++tab_l;
 	}
@@ -84,10 +88,8 @@ t_color	lighting(t_scene *scene, t_intersec *inter)
 	}
 	fill_uv_obj(inter);
 	c_obj = get_obj_color(&scene->g_sys, inter);
-	if (PATTERN_ACTIVE == 1)
-		bump_map(&scene->g_sys, inter);
 	phong.ambient = apply_ambient(&scene->amb);
-	apply_light_point(inter, scene->tab_obj, scene->tab_l, &phong);
+	apply_light_point(scene, inter, &phong);
 	c = mix_color_and_lights(&phong, &c_obj);
 	return (c);
 }

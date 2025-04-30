@@ -29,7 +29,8 @@ t_vec3	apply_ambient(const t_amb *amb);
 void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact);
 void	apply_specular(const t_light *light, t_vec3 *specular,
 			const t_intersec *inter, double fact);
-double	cos_angle_light(const t_light *light, const t_soluce *soluce);
+void	cos_angle_light(const t_light *l, const t_soluce *soluce,
+			const t_vec3 *old_n, double fact[2]);
 
 /***********************************************
  *  @file shadow.c
