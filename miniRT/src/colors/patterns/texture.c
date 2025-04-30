@@ -10,7 +10,8 @@ static t_vec3	get_color_from_img(const mlx_context *mlx, const t_img *img,
 	t_vec3		color;
 	t_color		extract;
 
-	uv = *uv_bm;
+	uv.x = uv_bm->x;
+	uv.y = uv_bm->y;
 	if (uv.x >= 1)
 		uv.x = 0;
 	if (uv.y >= 1)

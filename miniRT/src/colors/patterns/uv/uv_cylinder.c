@@ -71,7 +71,7 @@ void	fill_uv_cy(t_intersec *inter)
 	int	is_bm;
 
 	is_cb = inter->obj->pattern.checkerboard;
-	is_bm = inter->obj->pattern.bump.name != NULL;
+	is_bm = inter->obj->pattern.bump.name || inter->obj->pattern.texture.name;
 	if (is_cb || is_bm)
 		manage_fill(inter, is_cb, is_bm);
 }

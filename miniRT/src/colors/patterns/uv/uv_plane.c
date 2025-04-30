@@ -23,12 +23,17 @@ static void	fill_uv(t_vec3 p, void *arg, t_vec2 *uv)
 
 void	fill_uv_pl(t_intersec *inter)
 {
-	if (inter->obj->pattern.checkerboard)
+	int	is_cb;
+	int	is_bm;
+
+	is_cb = inter->obj->pattern.checkerboard;
+	is_bm = inter->obj->pattern.bump.name || inter->obj->pattern.texture.name;
+	if (is_cb)
 	{
 		fill_uv(inter->soluce.p, (void *)inter->obj->data, &inter->uv_cb);
-		if (inter->obj->pattern.bump.name != NULL)
+		if (is_bm)
 			inter->uv_bm = inter->uv_cb;
 	}
-	else if (inter->obj->pattern.bump.name != NULL)
+	else if (is_bm)
 		fill_uv(inter->soluce.p, (void *)inter->obj->data, &inter->uv_bm);
 }
