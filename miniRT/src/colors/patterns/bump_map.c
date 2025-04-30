@@ -42,13 +42,13 @@ void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 	map.base.e3 = inter->soluce.n;
 	bump = &inter->obj->pattern.bump;
 	if (inter->obj->type == SPHERE)
-		fill_normal_map_sp(inter, &map);
+		fill_tangent_space_sp(inter, &map);
 	else if (inter->obj->type == PLANE)
-		fill_normal_map_pl(inter, &map);
+		fill_tangent_space_pl(inter, &map);
 	else if (inter->obj->type == CYLINDER)
-		fill_normal_map_cy(inter, &map);
+		fill_tangent_space_cy(inter, &map);
 	else
-		fill_normal_map_co(inter, &map);
+		fill_tangent_space_co(inter, &map);
 	map.n = get_normal_from_img(&g_sys->mlx, bump, &inter->uv_bm);
 	inter->soluce.n = change_base(&map.base, &map.n);
 }
