@@ -36,7 +36,7 @@ static int	check_scene_composition(t_lst_parse *lst_parse,
 
 /**
  * @brief Selects the right interpreter based on id
- * @return 1 if the id isn't valid or the data arn't valid.
+ * @return 1 if the ID isn't valid or the data arn't valid.
  */
 static int	data_interpreter(t_scene *scene, t_lst_parse *lst_parse,
 	char **tab, int id)
