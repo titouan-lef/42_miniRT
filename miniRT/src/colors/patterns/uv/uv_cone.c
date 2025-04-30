@@ -20,7 +20,7 @@ static void	fill_uv_bm_caps(t_vec3 p, t_cone_obj *co_obj, t_vec2 *uv)
 
 	op = ft_diff_vec3(&p, &co_obj->co.pos);
 	uv->x = ft_dot_vec3(&op, &co_obj->co.right);
-	uv->x = 0.5 + 0.5 * uv->x / co_obj->co.r;
+	uv->x = 0.5 - 0.5 * uv->x / co_obj->co.r;
 	uv->y = ft_dot_vec3(&op, &co_obj->co.up);
 	uv->y = 0.5 + 0.5 * uv->y / co_obj->co.r;
 }
@@ -33,7 +33,7 @@ static void	fill_uv_lateral(t_vec3 p, t_cone_obj *co_obj, t_vec2 *uv)
 
 	op = ft_diff_vec3(&p, &co_obj->co.pos);
 	dot1 = ft_dot_vec3(&op, &co_obj->co.dir);
-	uv->x = 0.5 + dot1 / co_obj->co.h;
+	uv->x = 0.5 - dot1 / co_obj->co.h;
 	dot1 = ft_dot_vec3(&op, &co_obj->co.right);
 	dot2 = ft_dot_vec3(&op, &co_obj->co.up);
 	uv->y = 0.5 + 0.5 * atan2(dot1, dot2) / M_PI;
