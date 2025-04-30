@@ -159,9 +159,18 @@ Path of bump file in .png or NULL for deactivated"
 Valid identifier are A, C, L, SP, PL, CY and CO"
 # endif
 
-# ifndef ERR_OPEN_FAILED
-#  define ERR_OPEN_FAILED "Open at xxx.c at line xx failed please\
+# ifndef ERR_MALLOC
+#  define ERR_MALLOC "Malloc have failed please\
 check the presence, permission and reload"
+# endif
+
+# ifndef ERR_OPEN
+#  define ERR_OPEN "Open have failed please\
+check the presence, permission and reload"
+# endif
+
+# ifndef ERR_TYPE_FILE
+#  define ERR_TYPE_FILE "The texture or bump file is not in .png format"
 # endif
 
 #endif

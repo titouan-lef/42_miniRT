@@ -48,7 +48,10 @@ int	alloc_new_obj(t_list **head, void *new_obj, char **tab, t_obj_type type)
 
 	obj = init_obj();
 	if (!obj)
+	{
+		print_error_message(ERR_MALLOC);
 		return (1);
+	}
 	if (take_pattern(&obj->pattern, tab))
 	{
 		clear_obj(obj);
@@ -59,6 +62,7 @@ int	alloc_new_obj(t_list **head, void *new_obj, char **tab, t_obj_type type)
 	new_node = ft_lstnew(obj);
 	if (!new_node)
 	{
+		print_error_message(ERR_MALLOC);
 		clear_obj(obj);
 		return (1);
 	}
