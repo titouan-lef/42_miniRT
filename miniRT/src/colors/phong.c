@@ -2,14 +2,14 @@
 
 #include "minirt.h"
 
-double	cos_angle_light(const t_light *l, const t_soluce *soluce)
+void	cos_angle_light(const t_light *l, const t_soluce *soluce,
+	const t_vec3 *old_n, double fact[2])
 {
 	t_vec3	pl;
-	double	fact;
 
 	pl = ft_create_normalized_vec3(&soluce->p, &l->pos);
-	fact = ft_dot_vec3(&pl, &soluce->n);
-	return (fact);
+	fact[0] = ft_dot_vec3(&pl, old_n);
+	fact[1] = ft_dot_vec3(&pl, &soluce->n);
 }
 
 t_vec3	apply_ambient(const t_amb *amb)
