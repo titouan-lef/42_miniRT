@@ -4,8 +4,8 @@
 
 static void	obj_resize(double *r, int *sign)
 {
-	if (*r - DIST < 0 && *sign < 0)
-		*r = 0;
+	if (*r - DIST <= 0.0 && *sign < 0)
+		*r = 0.1;
 	else
 		*r += DIST * *sign;
 }
