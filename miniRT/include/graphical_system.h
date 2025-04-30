@@ -61,6 +61,10 @@
 #  define DIST 10
 # endif
 
+# ifndef ANGLE_ROTATION
+#  define ANGLE_ROTATION 0.05
+# endif
+
 /***********************************************
  *  @details DISPLAY_RENDER
  ***********************************************/
