@@ -25,7 +25,7 @@ void	reset_menu(t_menu *menu)
  */
 int	init_menu(t_graph_sys *g_sys)
 {
-	const mlx_color	color = {.rgba = 0x00000099};
+	const mlx_color	color = {.rgba = MENU_COLOR};
 	int				x;
 	int				y;
 

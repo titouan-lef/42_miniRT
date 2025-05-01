@@ -15,8 +15,8 @@ void	menu_light_display(t_graph_sys *g_sys)
 	i = 0;
 	y = 15;
 	while (i < 4)
-		clr[i++].rgba = 0xFFFFFFFF;
-	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[i++].rgba = WHITE;
+	clr[g_sys->menu.select_data].rgba = TEXT_COLOR;
 	i = 0;
 	while (i < 4)
 	{
@@ -38,7 +38,7 @@ void	menu_selec_display(t_graph_sys *g_sys)
 
 	i = 0;
 	y = 15;
-	clr.rgba = 0xFFFFFFFF;
+	clr.rgba = WHITE;
 	while (i < 3)
 	{
 		mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr, (char *)text[i]);

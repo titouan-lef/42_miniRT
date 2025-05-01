@@ -9,7 +9,7 @@
  */
 void	put_image_to_win(t_graph_sys *g_sys)
 {
-	const mlx_color	mlx_black = {.rgba = 0x000000FF};
+	const mlx_color	mlx_black = {.rgba = BLACK};
 
 	swap_buffer(&g_sys->buff);
 	mlx_clear_window(g_sys->mlx, g_sys->win, mlx_black);

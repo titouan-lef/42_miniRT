@@ -12,8 +12,8 @@ static void	put_menu_sphere(t_graph_sys *g_sys)
 	i = 0;
 	y = 15;
 	while (i < 5)
-		clr[i++].rgba = 0xFFFFFFFF;
-	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[i++].rgba = WHITE;
+	clr[g_sys->menu.select_data].rgba = TEXT_COLOR;
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[0], (char *)txt[0]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[0], (char *)txt[1]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[1], (char *)txt[2]);
@@ -32,8 +32,8 @@ static void	put_menu_plane(t_graph_sys *g_sys)
 	i = 0;
 	y = 15;
 	while (i < 5)
-		clr[i++].rgba = 0xFFFFFFFF;
-	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[i++].rgba = WHITE;
+	clr[g_sys->menu.select_data].rgba = TEXT_COLOR;
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[0], (char *)txt[0]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[1], (char *)txt[1]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[0], (char *)txt[2]);
@@ -52,8 +52,8 @@ static void	put_menu_cylinder(t_graph_sys *g_sys)
 	i = 0;
 	y = 15;
 	while (i < 9)
-		clr[i++].rgba = 0xFFFFFFFF;
-	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[i++].rgba = WHITE;
+	clr[g_sys->menu.select_data].rgba = TEXT_COLOR;
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[0], (char *)txt[0]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[0], (char *)txt[1]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[1], (char *)txt[2]);
@@ -77,8 +77,8 @@ static void	put_menu_cone(t_graph_sys *g_sys)
 	i = 0;
 	y = 15;
 	while (i < 9)
-		clr[i++].rgba = 0xFFFFFFFF;
-	clr[g_sys->menu.select_data].rgba = 0x0000FFFF;
+		clr[i++].rgba = WHITE;
+	clr[g_sys->menu.select_data].rgba = TEXT_COLOR;
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y, clr[0], (char *)txt[0]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 15, clr[0], (char *)txt[1]);
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, y + 30, clr[1], (char *)txt[2]);

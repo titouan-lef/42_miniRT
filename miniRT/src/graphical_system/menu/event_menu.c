@@ -64,7 +64,7 @@ static void	key_hook_select_obj(int key, void *param)
  */
 static void	key_hook_select_light(int key, void *param)
 {
-	static size_t	i;
+	static size_t	i;/** @todo not initialized ? */
 	t_scene			*scene;
 
 	scene = (t_scene *)param;

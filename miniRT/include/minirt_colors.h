@@ -17,6 +17,22 @@
 #  define KS 0.5
 # endif
 
+# ifndef WHITE
+#  define WHITE 0xFFFFFFFF
+# endif
+
+# ifndef BLACK
+#  define BLACK 0x000000FF
+# endif
+
+# ifndef TEXT_COLOR
+#  define TEXT_COLOR 0x00A1FFFF
+# endif
+
+# ifndef MENU_COLOR
+#  define MENU_COLOR 0x00000099
+# endif
+
 /***********************************************
  *  @file lighting.c
  ***********************************************/
@@ -42,12 +58,6 @@ int		shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p);
  ***********************************************/
 /** @file checkerboard_pattern.c */
 t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj);
-
-/** @file uv.c */
-t_vec2	uv_sp(t_vec3 p, void *arg);
-t_vec2	uv_pl(t_vec3 p, void *arg);
-t_vec2	uv_cy(t_vec3 p, void *arg);
-t_vec2	uv_co(t_vec3 p, void *arg);
 
 /** @file bump_map.c */
 void	bump_map(t_graph_sys *g_sys, t_intersec *inter);
