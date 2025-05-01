@@ -2,77 +2,79 @@
 
 #include "minirt.h"
 
-static void	fill_uv_cb_caps(t_vec3 p, t_cone_obj *co_obj, t_vec2 *uv)
+static void	fill_uv_cb_caps(const t_vec3 *op, const t_cone *co, t_vec2 *uv)
 {
-	t_vec3	op;
-	double	dot[2];
+	double	right_ratio;
+	double	up_ratio;
 
-	op = ft_diff_vec3(&p, &co_obj->co.pos);
 	uv->x = 1;
-	dot[0] = ft_dot_vec3(&op, &co_obj->co.right);
-	dot[1] = ft_dot_vec3(&op, &co_obj->co.up);
-	uv->y = 0.5 + 0.5 * atan2(dot[0], dot[1]) / M_PI;
+	right_ratio = ft_dot_vec3(op, &co->right);
+	up_ratio = ft_dot_vec3(op, &co->up);
+	uv->y = 0.5 + 0.5 * atan2(right_ratio, up_ratio) / M_PI;
 }
 
-static void	fill_uv_bm_caps(t_vec3 p, t_cone_obj *co_obj, t_vec2 *uv)
+static void	fill_uv_bm_caps(const t_vec3 *op, const t_cone *co, t_vec2 *uv)
 {
-	t_vec3	op;
+	double	right_ratio;
+	double	up_ratio;
 
-	op = ft_diff_vec3(&p, &co_obj->co.pos);
-	uv->x = ft_dot_vec3(&op, &co_obj->co.right);
-	uv->x = 0.5 - 0.5 * uv->x / co_obj->co.r;
-	uv->y = ft_dot_vec3(&op, &co_obj->co.up);
-	uv->y = 0.5 + 0.5 * uv->y / co_obj->co.r;
+	right_ratio = ft_dot_vec3(op, &co->right);
+	uv->x = 0.5 - 0.5 * right_ratio / co->r;
+	up_ratio = ft_dot_vec3(op, &co->up);
+	uv->y = 0.5 + 0.5 * up_ratio / co->r;
 }
 
-static void	fill_uv_lateral(t_vec3 p, t_cone_obj *co_obj, t_vec2 *uv)
+static void	fill_uv_lateral(const t_vec3 *op, const t_cone *co, t_vec2 *uv)
 {
-	t_vec3	op;
-	double	dot1;
-	double	dot2;
+	double	first_ratio;
+	double	up_ratio;
 
-	op = ft_diff_vec3(&p, &co_obj->co.pos);
-	dot1 = ft_dot_vec3(&op, &co_obj->co.dir);
-	uv->x = 0.5 - dot1 / co_obj->co.h;
-	dot1 = ft_dot_vec3(&op, &co_obj->co.right);
-	dot2 = ft_dot_vec3(&op, &co_obj->co.up);
-	uv->y = 0.5 + 0.5 * atan2(dot1, dot2) / M_PI;
+	first_ratio = ft_dot_vec3(op, &co->dir);
+	uv->x = 0.5 - first_ratio / co->h;
+	first_ratio = ft_dot_vec3(op, &co->right);
+	up_ratio = ft_dot_vec3(op, &co->up);
+	uv->y = 0.5 + 0.5 * atan2(first_ratio, up_ratio) / M_PI;
 }
 
-static void	manage_fill(t_intersec *inter, int is_cb, int is_bm)
+static void	manage_fill(const t_cone *co, t_intersec *inter, int is_cb,
+	int is_bm)
 {
-	t_cone_obj	*co_obj;
 	double		dot;
+	t_vec3		op;
 
-	co_obj = (t_cone_obj *)inter->obj->data;
-	dot = ft_dot_vec3(&inter->soluce.n, &co_obj->co.dir);
-	if (fabs(dot) < 0.9)
+	dot = ft_dot_vec3(&inter->soluce.n, &co->dir);
+	op = ft_diff_vec3(&inter->soluce.p, &co->pos);
+	if (-0.9 < dot && dot < 0.9)
 	{
 		if (is_cb)
 		{
-			fill_uv_lateral(inter->soluce.p, co_obj, &inter->uv_cb);
+			fill_uv_lateral(&op, co, &inter->uv_cb);
 			if (is_bm)
 				inter->uv_bm = inter->uv_cb;
 		}
-		else if (is_bm)
-			fill_uv_lateral(inter->soluce.p, co_obj, &inter->uv_bm);
+		else
+			fill_uv_lateral(&op, co, &inter->uv_bm);
 	}
 	else
 	{
 		if (is_cb)
-			fill_uv_cb_caps(inter->soluce.p, co_obj, &inter->uv_cb);
+			fill_uv_cb_caps(&op, co, &inter->uv_cb);
 		if (is_bm)
-			fill_uv_bm_caps(inter->soluce.p, co_obj, &inter->uv_bm);
+			fill_uv_bm_caps(&op, co, &inter->uv_bm);
 	}
 }
 
 void	fill_uv_co(t_intersec *inter)
 {
-	int	is_cb;
-	int	is_bm;
+	t_cone_obj	*co_obj;
+	int			is_cb;
+	int			is_bm;
 
 	is_cb = inter->obj->pattern.checkerboard;
 	is_bm = inter->obj->pattern.bump.name || inter->obj->pattern.texture.name;
 	if (is_cb || is_bm)
-		manage_fill(inter, is_cb, is_bm);
+	{
+		co_obj = (t_cone_obj *)inter->obj->data;
+		manage_fill(&co_obj->co, inter, is_cb, is_bm);
+	}
 }
