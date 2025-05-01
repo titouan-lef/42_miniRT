@@ -43,9 +43,6 @@ git commit -m 'KEY_WORD: commit title' -m 'commit description'
 - Press ↑ or ↓ to select the data you will modify
 - Press ← or → to decrement or increment the data was selected
 
-
-
-
 ## Git Organisation
 ### Work in your branch
 See all branches in local (and what is the current branch)
