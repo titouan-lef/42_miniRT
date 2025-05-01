@@ -5,20 +5,14 @@
 static t_vec3	get_color_from_img(const mlx_context *mlx, const t_img *img,
 	const t_vec2 *uv_bm)
 {
-	t_vec2		uv;
 	mlx_color	c;
 	t_vec3		color;
-	t_color		extract;
 
-	uv = *uv_bm;
-	if (uv.x >= 1)
-		uv.x = 0;
-	if (uv.y >= 1)
-		uv.y = 0;
-	c = mlx_get_image_pixel(*mlx, img->img,
-			uv.x * img->width, uv.y * img->heigth);
-	extract = ft_color_create(c.r, c.g, c.b, c.a);
-	color = ft_color_to_vec3(&extract);
+	c = mlx_get_image_pixel(*mlx, img->img, uv_bm->x * img->width,
+			uv_bm->y * img->heigth);
+	color.x = c.r / 255.0;
+	color.y = c.g / 255.0;
+	color.z = c.b / 255.0;
 	return (color);
 }
 

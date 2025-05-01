@@ -12,6 +12,10 @@ static void	fill_uv_obj(t_intersec *inter)
 		fill_uv_cy(inter);
 	else
 		fill_uv_co(inter);
+	if (inter->uv_bm.x >= 1)
+		inter->uv_bm.x = 0;
+	if (inter->uv_bm.y >= 1)
+		inter->uv_bm.y = 0;
 }
 
 static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)

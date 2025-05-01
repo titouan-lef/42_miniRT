@@ -15,17 +15,11 @@ t_vec3	change_base(const t_base *base, const t_vec3 *v)
 static t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img,
 	const t_vec2 *uv_bm)
 {
-	t_vec2		uv;
 	mlx_color	c;
 	t_vec3		normal;
 
-	uv = *uv_bm;
-	if (uv.x >= 1)
-		uv.x = 0;
-	if (uv.y >= 1)
-		uv.y = 0;
-	c = mlx_get_image_pixel(*mlx, img->img, uv.x * img->width,
-			uv.y * img->heigth);
+	c = mlx_get_image_pixel(*mlx, img->img, uv_bm->x * img->width,
+			uv_bm->y * img->heigth);
 	normal.x = c.r / 255.0 * 2 - 1;
 	normal.y = c.g / 255.0 * 2 - 1;
 	normal.z = c.b / 255.0 * 2 - 1;
