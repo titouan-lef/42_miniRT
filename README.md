@@ -36,12 +36,17 @@ int	ft_strlcpy(char *dst, const char *src, int size){}
 git commit -m 'KEY_WORD: commit title' -m 'commit description'
 ```
 ### Menu management ☰
-Press M for open the menu selection
-Press O for open the obj menu
-Press L for open the light menu
-Press N for switch to the next element
-Press ↑ or ↓ for select the data you will modify
-Press ← or → for decrement or increment the data was selected
+- Press M for open the menu selection
+
+- Press O for open the obj menu
+
+- Press L for open the light menu
+
+- Press N for switch to the next element
+
+- Press ↑ or ↓ for select the data you will modify
+
+- Press ← or → for decrement or increment the data was selected
 
 
 
