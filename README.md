@@ -35,6 +35,15 @@ int	ft_strlcpy(char *dst, const char *src, int size){}
 ```bash
 git commit -m 'KEY_WORD: commit title' -m 'commit description'
 ```
+### Menu management ☰
+Press M for open the menu selection
+Press O for open the obj menu
+Press L for open the light menu
+Press N for switch to the next element
+Press ↑ or ↓ for select the data you will modify
+Press ← or → for decrement or increment the data was selected
+
+
 
 
 ## Git Organisation
@@ -245,13 +254,3 @@ git reset --hard HEAD~1
 [Normal Mapping - Learn OpenGL](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
 
 [Normal Mapping - Wikipedia](https://en.wikipedia.org/wiki/Normal_mapping)
-
-
-### Menu management ☰
-Press M for open the menu selection
-
-Press O for open the obj menu
-Press L for open the light menu
-Press N for pass to the next element
-
-
