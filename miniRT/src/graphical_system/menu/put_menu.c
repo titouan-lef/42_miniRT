@@ -3,7 +3,7 @@
 #include "minirt.h"
 
 /**
- * @brief Manage display of menu light
+ * @brief Manage display of menu light.
  */
 void	menu_light_display(t_graph_sys *g_sys)
 {
@@ -27,7 +27,7 @@ void	menu_light_display(t_graph_sys *g_sys)
 }
 
 /**
- * @brief Manage display of menu general
+ * @brief Manage display of menu general.
  */
 void	menu_selec_display(t_graph_sys *g_sys)
 {
@@ -48,13 +48,13 @@ void	menu_selec_display(t_graph_sys *g_sys)
 }
 
 /**
- * @brief Manage select display menu
+ * @brief Manage select display menu.
  */
 void	menu_management(t_graph_sys *g_sys)
 {
 	if (g_sys->menu.select_type == 0)
 		menu_selec_display(g_sys);
-	if (g_sys->menu.select_type == 1)
+	else if (g_sys->menu.select_type == 1)
 		menu_obj_display(g_sys);
 	else if (g_sys->menu.select_type == 2)
 		menu_light_display(g_sys);

@@ -4,8 +4,8 @@
 
 /**
  * @brief When you press M menu open if you press again M menu close.
- * if menu is open you can press O for open menu obj and L for open menu liight.
- * if you press again on O or L the menu obj or menu light close
+ * If menu is open you can press O for open menu obj and L for open menu light.
+ * If you press again on O or L the menu obj or menu light close.
  */
 static void	key_hook_menu_handle(int key, void *param)
 {
@@ -36,7 +36,7 @@ static void	key_hook_menu_handle(int key, void *param)
 }
 
 /**
- * @brief when the menu obj you can press N for select the next obj
+ * @brief When the menu obj you can press N for select the next obj.
  */
 static void	key_hook_select_obj(int key, void *param)
 {
@@ -60,7 +60,7 @@ static void	key_hook_select_obj(int key, void *param)
 }
 
 /**
- * @brief when the menu light you can press N for select the next light
+ * @brief When the menu light you can press N for select the next light.
  */
 static void	key_hook_select_light(int key, void *param)
 {
@@ -84,8 +84,8 @@ static void	key_hook_select_light(int key, void *param)
 }
 
 /**
- * @brief when the menu obj or menu light is open you can press up arrow or
-
+ * @brief When the menu obj or menu light is open you can press up or down
+ * arrow to navigate in menu or press left or right arrow to change value.
  */
 void	menu_event(t_scene *scene)
 {

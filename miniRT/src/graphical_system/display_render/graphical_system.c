@@ -48,7 +48,7 @@ static void	update(void *param)
 {
 	t_scene		*scene;
 	t_graph_sys	*g_sys;
-	int			result;
+	int			result;/** @todo useless ? */
 
 	scene = (t_scene *) param;
 	g_sys = &scene->g_sys;
@@ -60,10 +60,10 @@ static void	update(void *param)
 	if (g_sys->menu.enable == 0)
 	{
 		init_menu(&g_sys->menu);
-		g_sys->menu.light = *scene->tab_l;
-		g_sys->menu.obj = *scene->tab_obj;
+		g_sys->menu.light = *scene->tab_l;/** @todo why reafect every loop ? */
+		g_sys->menu.obj = *scene->tab_obj;/** @todo why reafect every loop ? */
 	}
-	if (g_sys->menu.enable != 0)
+	else
 		menu_management(g_sys);
 }
 

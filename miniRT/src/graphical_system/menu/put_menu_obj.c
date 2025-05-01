@@ -93,7 +93,7 @@ static void	put_menu_cone(t_graph_sys *g_sys)
 }
 
 /**
- * @brief Manage display of menu obj
+ * @brief Manage display of menu obj.
  */
 void	menu_obj_display(t_graph_sys *g_sys)
 {

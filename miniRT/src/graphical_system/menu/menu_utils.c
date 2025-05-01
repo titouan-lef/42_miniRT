@@ -3,7 +3,7 @@
 #include "minirt.h"
 
 /**
- * @brief defile the value with a start , end and increment
+ * @brief Defile the value with a start, end and increment.
  */
 void	defile(int *position, int start, int end, int moov)
 {
@@ -15,7 +15,7 @@ void	defile(int *position, int start, int end, int moov)
 }
 
 /**
- * @brief Init all value of sttruct menu 
+ * @brief Init all value of struct menu.
  */
 void	init_menu(t_menu *menu)
 {
