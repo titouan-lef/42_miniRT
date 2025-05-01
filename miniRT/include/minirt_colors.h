@@ -25,7 +25,7 @@ t_color	lighting(t_scene *scene, t_intersec *inter);
 /***********************************************
  *  @file phong.c
  ***********************************************/
-t_vec3	apply_ambient(const t_amb *amb);
+void	apply_ambient(const t_amb *amb, t_vec3 *phong_amb);
 void	apply_diffuse(const t_light *light, t_vec3 *diffuse, double fact);
 void	apply_specular(const t_light *light, t_vec3 *specular,
 			const t_intersec *inter, double fact);

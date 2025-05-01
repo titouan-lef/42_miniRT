@@ -92,7 +92,7 @@ t_color	lighting(t_scene *scene, t_intersec *inter)
 	}
 	fill_uv_obj(inter);
 	c_obj = get_obj_color(&scene->g_sys, inter);
-	phong.ambient = apply_ambient(&scene->amb);
+	apply_ambient(&scene->amb, &phong.ambient);
 	apply_light_point(scene, inter, &phong);
 	c = mix_color_and_lights(&phong, &c_obj);
 	return (c);
