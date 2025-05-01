@@ -46,10 +46,13 @@ int	take_color(t_vec3 *colors, char *str)
 static int	active_checkboard(int *status, char *str)
 {
 	int		error;
-	
+
 	*status = ft_to_number(str, &error, 6);
 	if (error != 0 || *status < 0)
+	{
+		print_error_message(ERR_CHECKERBOARD);
 		return (1);
+	}
 	return (0);
 }
 
@@ -84,7 +87,7 @@ int	take_pattern(t_pattern *pattern, char **tab)
 {
 	if (take_color(&pattern->colors, tab[0]))
 	{
-
+		print_error_message(ERR_COLOR);
 		return (1);
 	}
 	if (PATTERN_ACTIVE == 1)
