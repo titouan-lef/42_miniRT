@@ -161,8 +161,11 @@ check the presence, permission and reload"
 # endif
 
 # ifndef ERR_CHECKERBOARD
-#  define ERR_CHECKERBOARD "Open have failed please\
-check the presence, permission and reload"
+#  define ERR_CHECKERBOARD "A Checkerboard argument are wrong"
+# endif
+
+# ifndef ERR_COLOR
+#  define ERR_COLOR "A Color argument are wrong"
 # endif
 
 #endif

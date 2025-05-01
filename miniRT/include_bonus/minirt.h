@@ -173,4 +173,12 @@ check the presence, permission and reload"
 #  define ERR_TYPE_FILE "The texture or bump file is not in .png format"
 # endif
 
+# ifndef ERR_CHECKERBOARD
+#  define ERR_CHECKERBOARD "A Checkerboard argument are wrong"
+# endif
+
+# ifndef ERR_COLOR
+#  define ERR_COLOR "A Color argument are wrong"
+# endif
+
 #endif
