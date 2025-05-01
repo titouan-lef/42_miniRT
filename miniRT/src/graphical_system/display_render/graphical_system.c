@@ -55,7 +55,7 @@ static void	update(void *param)
 	if (g_sys->menu.mouse_is_hide == 1)
 		mouse_event(scene, g_sys);
 	init_calculation(&scene->cam.pos, scene->tab_obj);
-	result = ray_lauch_test(scene);
+	result = ray_lauch(scene);
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.enable == 0)
 	{

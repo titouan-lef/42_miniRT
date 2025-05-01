@@ -76,7 +76,7 @@ static t_intersec	get_near_intersec(const t_vec3 *local_dir,
  * ). The real position and direction are manage with get_ray_dir() and
  * raytracers().
  */
-int	ray_lauch_test(t_scene *scene)
+int	ray_lauch(t_scene *scene)
 {
 	t_intersec	inter;
 	t_vec3		local_dir;
