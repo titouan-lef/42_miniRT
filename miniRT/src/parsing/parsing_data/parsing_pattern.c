@@ -49,7 +49,10 @@ static int	active_checkboard(int *status, char *str)
 
 	*status = ft_to_number(str, &error, 6);
 	if (error != 0 || *status < 0)
+	{
+		print_error_message(ERR_CHECKERBOARD);
 		return (1);
+	}
 	return (0);
 }
 
@@ -60,21 +63,33 @@ static int	take_texture_files(char **name, char *str)
 	if (!ft_strcmp(str, "NULL"))
 		return (0);
 	if (check_files_type(str, ".png"))
+	{
+		print_error_message(ERR_TYPE_FILE);
 		return (1);
+	}
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
+	{
+		print_error_message(ERR_OPEN);
 		return (1);
+	}
 	close (fd);
 	*name = ft_strdup(str);
 	if (!name)
+	{
+		print_error_message(ERR_MALLOC);
 		return (1);
+	}
 	return (0);
 }
 
 int	take_pattern(t_pattern *pattern, char **tab)
 {
 	if (take_color(&pattern->colors, tab[0]))
+	{
+		print_error_message(ERR_COLOR);
 		return (1);
+	}
 	if (PATTERN_ACTIVE == 1)
 	{
 		if (active_checkboard(&pattern->checkerboard, tab[1])

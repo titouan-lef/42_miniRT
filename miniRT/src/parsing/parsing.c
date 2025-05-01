@@ -146,7 +146,7 @@ int	parsing(int argc, char **argv, t_scene *scene)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		print_error_message(ERR_OPEN_FAILED);
+		print_error_message(ERR_OPEN);
 		return (1);
 	}
 	if (read_scene(fd, scene, &lst_parse))
