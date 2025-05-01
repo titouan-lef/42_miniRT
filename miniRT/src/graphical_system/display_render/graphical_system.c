@@ -4,6 +4,7 @@
 
 static void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
 {
+	mlx_destroy_image(g_sys->mlx, g_sys->menu.background);
 	destroy_texture(scene->tab_obj, g_sys->mlx);
 	mlx_destroy_window(g_sys->mlx, g_sys->win);
 	clean_double_buffer(g_sys);
@@ -37,7 +38,13 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		mlx_destroy_context(g_sys->mlx);
 		return (1);
 	}
-	init_menu(&g_sys->menu);
+	if (init_menu(g_sys))
+	{
+		mlx_destroy_window(g_sys->mlx, g_sys->win);
+		clean_double_buffer(g_sys);
+		mlx_destroy_context(g_sys->mlx);
+		return (1);
+	}
 	g_sys->menu.mouse_is_hide = 0;
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
@@ -59,7 +66,7 @@ static void	update(void *param)
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.enable == 0)
 	{
-		init_menu(&g_sys->menu);
+		reset_menu(&g_sys->menu);
 		g_sys->menu.light = *scene->tab_l;/** @todo why reafect every loop ? */
 		g_sys->menu.obj = *scene->tab_obj;/** @todo why reafect every loop ? */
 	}
@@ -71,7 +78,7 @@ int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->g_sys))
 		return (1);
-	init_texture(scene->tab_obj, scene->g_sys.mlx);
+	init_texture(scene->tab_obj, scene->g_sys.mlx);/** @todo must be protected */
 	mlx_mouse_move(scene->g_sys.mlx, scene->g_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
 	mlx_add_loop_hook(scene->g_sys.mlx, update, scene);

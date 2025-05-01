@@ -16,7 +16,7 @@ static void	key_hook_menu_handle(int key, void *param)
 		menu->enable = 1 - menu->enable;
 	if (menu->enable == 0)
 	{
-		init_menu(menu);
+		reset_menu(menu);/** @todo useless because define in update() ? */
 		return ;
 	}
 	if (key == SDL_SCANCODE_O)

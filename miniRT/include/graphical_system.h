@@ -26,6 +26,10 @@
 #  define ERR_WIN_INIT "Error initialization window"
 # endif
 
+# ifndef ERR_MENU_INIT
+#  define ERR_MENU_INIT "Error initialization menu"
+# endif
+
 /***********************************************
  * @brief Window Info
  ***********************************************/
@@ -63,6 +67,14 @@
 
 # ifndef ANGLE_ROTATION
 #  define ANGLE_ROTATION 0.05
+# endif
+
+# ifndef MENU_W
+#  define MENU_W 300
+# endif
+
+# ifndef MENU_H
+#  define MENU_H 500
 # endif
 
 /***********************************************
@@ -118,7 +130,8 @@ void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere);
  ***********************************************/
 /** @file menu_utils.c */
 void	defile(int *position, int start, int end, int moov);
-void	init_menu(t_menu *menu);
+void	reset_menu(t_menu *menu);
+int		init_menu(t_graph_sys *g_sys);
 
 /** @file event_menu.c */
 void	menu_event(t_scene *scene);

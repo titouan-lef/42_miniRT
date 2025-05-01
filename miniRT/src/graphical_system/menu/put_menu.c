@@ -52,6 +52,8 @@ void	menu_selec_display(t_graph_sys *g_sys)
  */
 void	menu_management(t_graph_sys *g_sys)
 {
+	mlx_put_image_to_window(g_sys->mlx, g_sys->win, g_sys->menu.background,
+		0, 0);
 	if (g_sys->menu.select_type == 0)
 		menu_selec_display(g_sys);
 	else if (g_sys->menu.select_type == 1)
