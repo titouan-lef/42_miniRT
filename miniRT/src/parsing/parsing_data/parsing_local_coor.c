@@ -31,11 +31,11 @@ void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up)
  * @param up Up direction.
  * @param sign Positiv or negativ.
  */
-void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
+void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign)
 {
 	double	angle;
 
-	angle = M_PI * ANGLE_ROTATION * *sign;
+	angle = M_PI * ANGLE_ROTATION * sign;
 	*dir = ft_rotation_quat(dir, angle, up);
 	*right = ft_cross_vec3(up, dir);
 }
@@ -47,11 +47,11 @@ void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
  * @param up Up direction.
  * @param sign Positiv or negativ.
  */
-void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
+void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign)
 {
 	double	angle;
 
-	angle = M_PI * ANGLE_ROTATION * *sign;
+	angle = M_PI * ANGLE_ROTATION * sign;
 	*dir = ft_rotation_quat(dir, angle, right);
 	*up = ft_cross_vec3(dir, right);
 }
@@ -63,11 +63,11 @@ void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
  * @param up Up direction.
  * @param sign Positiv or negativ.
  */
-void	rotation_on_forward(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int *sign)
+void	rotation_on_forward(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign)
 {
 	double	angle;
 
-	angle = M_PI * ANGLE_ROTATION * *sign;
+	angle = M_PI * ANGLE_ROTATION * sign;
 	*right = ft_rotation_quat(right, angle, dir);
 	*up = ft_cross_vec3(dir, right);
 }

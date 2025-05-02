@@ -48,7 +48,7 @@ double	*get_obj_height(t_obj *obj)
 int	get_range(t_obj *obj)
 {
 	if (obj->type == SPHERE || obj->type == PLANE)
-		return (4);
+		return (3);
 	else
-		return (8);
+		return (7);
 }

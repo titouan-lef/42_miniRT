@@ -250,12 +250,11 @@ typedef struct s_double_buffer
  ***********************************************/
 typedef struct s_menu
 {
-	int			select_type;
-	int			select_data;
-	int			mouse_is_hide;
-	t_obj		*obj;
-	t_light		*light;
-	mlx_image	background;
+	t_menu_option	option;
+	size_t			i_submenu;
+	size_t			i_subsubmenu;
+	int				mouse_is_hide;
+	mlx_image		background;
 }	t_menu;
 
 /***********************************************

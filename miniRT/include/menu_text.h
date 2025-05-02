@@ -29,6 +29,10 @@
 #  define T "Translation :"
 # endif
 
+# ifndef T_PL
+#  define T_PL "Translation"
+# endif
+
 # ifndef R
 #  define R "Rotation :"
 # endif

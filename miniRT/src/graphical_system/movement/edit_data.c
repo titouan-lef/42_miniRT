@@ -2,37 +2,46 @@
 
 #include "minirt.h"
 
-/**
- * @brief translation of light on x when select data = 1,
- * y when select data = 2
- * z when select data = 3.
- */
-static void	light_translation(t_menu *menu, int *sign)
+static void	obj_data_change(t_obj *obj, t_menu *menu, int sign)
 {
-	if (menu->select_data == 1)
-		menu->light->pos.x += DIST * *sign;
-	else if (menu->select_data == 2)
-		menu->light->pos.y += DIST * *sign;
-	else if (menu->select_data == 3)
-		menu->light->pos.z += DIST * *sign;
+	if (obj->type == SPHERE)
+		edit_sphere(sign, menu, (t_sphere_obj *)(obj->data));
+	else if (obj->type == PLANE)
+		edit_plane(sign, menu, (t_plane_obj *)(obj->data));
+	else if (obj->type == CYLINDER)
+		edit_cylinder(sign, menu, (t_cylinder_obj *)(obj->data));
+	else
+		edit_cone(sign, menu, (t_cone_obj *)(obj->data));
 }
 
-static void	key_hook_select_change(int key, void *param)
+void	data_change_translation(t_vec3 *pos, int coord, int sign)
 {
+	if (coord == 0)
+		pos->x += DIST * sign;
+	else if (coord == 1)
+		pos->y += DIST * sign;
+	else if (coord == 2)
+		pos->z += DIST * sign;
+}
+
+void	key_hook_select_change(int key, void *param)
+{
+	t_scene	*scene;
 	t_menu	*menu;
 	int		range;
 
-	menu = (t_menu *)param;
-	if (menu->select_type == MENU_DISABLE)
-		return ;
-	if (menu->select_type == MENU_LIGHT)
-		range = 3;
+	scene = (t_scene *)param;
+	menu = &scene->g_sys.menu;
+	if (menu->option == MENU_LIGHT)
+		range = 2;
+	else if (menu->option == MENU_OBJ)
+		range = get_range(scene->tab_obj[menu->i_submenu]);
 	else
-		range = get_range(menu->obj);
+		return ;
 	if (key == SDL_SCANCODE_UP)
-		defile(&menu->select_data, 1, range, -1);
-	if (key == SDL_SCANCODE_DOWN)
-		defile(&menu->select_data, 1, range, 1);
+		defile(&menu->i_subsubmenu, range, -1);
+	else if (key == SDL_SCANCODE_DOWN)
+		defile(&menu->i_subsubmenu, range, 1);
 }
 
 /**
@@ -40,29 +49,22 @@ static void	key_hook_select_change(int key, void *param)
  */
 void	data_change(int key, void *param)
 {
+	t_scene	*scene;
 	t_menu	*menu;
 	int		sign;
 
-	menu = (t_menu *)param;
 	sign = 0;
-	key_hook_select_change(key, param);
 	if (key == SDL_SCANCODE_RIGHT)
 		sign = 1;
 	else if (key == SDL_SCANCODE_LEFT)
 		sign = -1;
-	if (sign == 0 || menu->select_type == MENU_DISABLE || menu->select_type == MENU_HANDLE)
+	scene = (t_scene *)param;
+	menu = &scene->g_sys.menu;
+	if (sign == 0 || menu->option <= MENU_HANDLE)
 		return ;
-	if (menu->select_type == MENU_LIGHT)
-		light_translation(menu, &sign);
-	else if (menu->select_type == MENU_OBJ)
-	{
-		if (menu->obj->type == SPHERE)
-			edit_sphere(&sign, menu, (t_sphere_obj *)(menu->obj->data));
-		else if (menu->obj->type == PLANE)
-			edit_plane(&sign, menu, (t_plane_obj *)(menu->obj->data));
-		else if (menu->obj->type == CYLINDER)
-			edit_cylinder(&sign, menu, (t_cylinder_obj *)(menu->obj->data));
-		else
-			edit_cone(&sign, menu, (t_cone_obj *)(menu->obj->data));
-	}
+	if (menu->option == MENU_LIGHT)
+		data_change_translation(&scene->tab_l[menu->i_submenu]->pos,
+			menu->i_subsubmenu, sign);
+	else
+		obj_data_change(scene->tab_obj[menu->i_submenu], menu, sign);
 }

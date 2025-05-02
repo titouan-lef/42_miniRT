@@ -5,19 +5,23 @@
 /**
  * @brief Defile the value with a start, end and increment.
  */
-void	defile(int *position, int start, int end, int moov)
+void	defile(size_t *position, int end, int moov)
 {
-	*position += moov;
-	if (*position > end)
-		*position = start;
-	if (*position < start)
+	int	new;
+
+	new = *position + moov;
+	if (new < 0)
 		*position = end;
+	else if (new > end)
+		*position = 0;
+	else
+		*position = new;
 }
 
 void	reset_menu(t_menu *menu)
 {
-	menu->select_type = MENU_HANDLE;
-	menu->select_data = 1;
+	menu->i_submenu = 0;
+	menu->i_subsubmenu = 0;
 }
 
 /**
@@ -29,8 +33,6 @@ int	init_menu(t_graph_sys *g_sys)
 	int				x;
 	int				y;
 
-	g_sys->menu.select_type = MENU_DISABLE;
-	reset_menu(&g_sys->menu);
 	g_sys->menu.background = mlx_new_image(g_sys->mlx, MENU_W, MENU_H);
 	if (g_sys->menu.background == MLX_NULL_HANDLE)
 	{
@@ -49,5 +51,7 @@ int	init_menu(t_graph_sys *g_sys)
 		}
 		++x;
 	}
+	g_sys->menu.option = MENU_DISABLE;
+	reset_menu(&g_sys->menu);
 	return (0);
 }

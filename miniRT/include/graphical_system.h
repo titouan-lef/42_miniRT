@@ -117,19 +117,21 @@ double	*get_obj_diam(t_obj *obj);
 int		get_range(t_obj *obj);
 
 /** @file edit_data.c */
+void	data_change_translation(t_vec3 *pos, int coord, int sign);
+void	key_hook_select_change(int key, void *param);
 void	data_change(int key, void *param);
 
 /** @file edit_obj.c */
-void	edit_cone(int *sign, t_menu *menu, t_cone_obj *cone);
-void	edit_cylinder(int *sign, t_menu *menu, t_cylinder_obj *cylinder);
-void	edit_plane(int *sign, t_menu *menu, t_plane_obj *plane);
-void	edit_sphere(int *sign, t_menu *menu, t_sphere_obj *sphere);
+void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone);
+void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder);
+void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane);
+void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere);
 
 /***********************************************
  *  @details MENU
  ***********************************************/
 /** @file menu_utils.c */
-void	defile(int *position, int start, int end, int moov);
+void	defile(size_t *position, int end, int moov);
 void	reset_menu(t_menu *menu);
 int		init_menu(t_graph_sys *g_sys);
 
@@ -137,9 +139,13 @@ int		init_menu(t_graph_sys *g_sys);
 void	menu_event(t_scene *scene);
 
 /** @file put_menu_obj.c */
-void	menu_obj_display(t_graph_sys *g_sys);
+void	menu_obj_display(t_scene *scene);
 
 /** @file put_menu.c */
-void	menu_management(t_graph_sys *g_sys);
+void	put_menu_title(t_graph_sys *g_sys, const int *tab_y,
+			char **tab_txt, size_t nb_elem);
+void	put_menu_selection(t_graph_sys *g_sys, const int *tab_y,
+			char **tab_txt, size_t nb_elem);
+void	menu_management(t_scene *scene);
 
 #endif

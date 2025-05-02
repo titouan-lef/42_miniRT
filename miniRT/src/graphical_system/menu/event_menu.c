@@ -9,34 +9,37 @@
  */
 static void	key_hook_menu_handle(int key, void *param)
 {
-	t_menu	*menu;
+	t_menu			*menu;
+	t_menu_option	option;
 
-	menu = (t_menu *)param;
 	if (key == SDL_SCANCODE_M)
-	{
-		if (menu->select_type == MENU_DISABLE)
-			menu->select_type = MENU_HANDLE;
-		else
-		{
-			menu->select_type = MENU_DISABLE;
-			reset_menu(menu);/** @todo useless because define in update() ? */
-			return ;
-		}
-	}
-	if (key == SDL_SCANCODE_O)
-	{
-		if (menu->select_type == MENU_OBJ)
-			menu->select_type = MENU_HANDLE;
-		else
-			menu->select_type = MENU_OBJ;
-	}
+		option = MENU_DISABLE;
+	else if (key == SDL_SCANCODE_O)
+		option = MENU_OBJ;
 	else if (key == SDL_SCANCODE_L)
+		option = MENU_LIGHT;
+	else
+		return ;
+	menu = (t_menu *)param;
+	if (menu->option == option)
 	{
-		if (menu->select_type == MENU_LIGHT)
-			menu->select_type = MENU_HANDLE;
-		else
-			menu->select_type = MENU_LIGHT;
+		menu->option = MENU_HANDLE;
+		return ;
 	}
+	if (option != MENU_DISABLE)
+		reset_menu(menu);
+	menu->option = option;
+}
+
+static void	key_hook_select(int key, t_menu	*menu, void **tab)
+{
+	if (key != SDL_SCANCODE_N)
+		return ;
+	menu->i_subsubmenu = 0;
+	if (tab[menu->i_submenu + 1] == NULL)
+		menu->i_submenu = 0;
+	else
+		++menu->i_submenu;
 }
 
 /**
@@ -44,23 +47,11 @@ static void	key_hook_menu_handle(int key, void *param)
  */
 static void	key_hook_select_obj(int key, void *param)
 {
-	static size_t	i;
-	t_scene			*scene;
+	t_scene	*scene;
 
 	scene = (t_scene *)param;
-	if (scene->g_sys.menu.select_type == MENU_HANDLE)
-	{
-		i = 0;
-		return ;
-	}
-	scene->g_sys.menu.obj = scene->tab_obj[i];
-	if (key == SDL_SCANCODE_N)
-	{
-		if (scene->g_sys.menu.select_type == MENU_OBJ)
-			++i;
-		if (scene->tab_obj[i] == NULL)
-			i = 0;
-	}
+	if (scene->g_sys.menu.option == MENU_OBJ)
+		key_hook_select(key, &scene->g_sys.menu, (void **)scene->tab_obj);
 }
 
 /**
@@ -68,23 +59,11 @@ static void	key_hook_select_obj(int key, void *param)
  */
 static void	key_hook_select_light(int key, void *param)
 {
-	static size_t	i;/** @todo not initialized ? */
-	t_scene			*scene;
+	t_scene	*scene;
 
 	scene = (t_scene *)param;
-	if (scene->g_sys.menu.select_type != MENU_LIGHT)
-	{
-		i = 0;
-		return ;
-	}
-	scene->g_sys.menu.light = scene->tab_l[i];
-	if (key == SDL_SCANCODE_N)
-	{
-		if (scene->g_sys.menu.select_type == MENU_LIGHT)
-			++i;
-		if (scene->tab_l[i] == NULL)
-			i = 0;
-	}
+	if (scene->g_sys.menu.option == MENU_LIGHT)
+		key_hook_select(key, &scene->g_sys.menu, (void **)scene->tab_l);
 }
 
 /**
@@ -93,12 +72,17 @@ static void	key_hook_select_light(int key, void *param)
  */
 void	menu_event(t_scene *scene)
 {
+	t_menu	*menu;
+
+	menu = &scene->g_sys.menu;
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
-		key_hook_menu_handle, &scene->g_sys.menu);
+		key_hook_menu_handle, menu);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_obj, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYUP,
 		key_hook_select_light, scene);
 	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYDOWN,
-		data_change, &scene->g_sys.menu);
+		key_hook_select_change, scene);
+	mlx_on_event(scene->g_sys.mlx, scene->g_sys.win, MLX_KEYDOWN,
+		data_change, scene);
 }
