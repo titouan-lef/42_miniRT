@@ -39,6 +39,17 @@ typedef enum e_win_event
 }	t_win_event;
 
 /***********************************************
+ * @enum Menu Option
+ ***********************************************/
+typedef enum e_menu_option
+{
+	MENU_DISABLE,
+	MENU_HANDLE,
+	MENU_OBJ,
+	MENU_LIGHT,
+}	t_menu_option;
+
+/***********************************************
  * @struct TEXTURE
  ***********************************************/
 
@@ -239,7 +250,6 @@ typedef struct s_double_buffer
  ***********************************************/
 typedef struct s_menu
 {
-	int			enable;
 	int			select_type;
 	int			select_data;
 	int			mouse_is_hide;
@@ -259,7 +269,6 @@ typedef struct s_graph_sys
 	t_menu			menu;
 	int				def_w;
 	int				def_h;
-	int				menu_enable;
 }	t_graph_sys;
 
 /***********************************************

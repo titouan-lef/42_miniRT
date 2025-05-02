@@ -13,25 +13,29 @@ static void	key_hook_menu_handle(int key, void *param)
 
 	menu = (t_menu *)param;
 	if (key == SDL_SCANCODE_M)
-		menu->enable = 1 - menu->enable;
-	if (menu->enable == 0)
 	{
-		reset_menu(menu);/** @todo useless because define in update() ? */
-		return ;
+		if (menu->select_type == MENU_DISABLE)
+			menu->select_type = MENU_HANDLE;
+		else
+		{
+			menu->select_type = MENU_DISABLE;
+			reset_menu(menu);/** @todo useless because define in update() ? */
+			return ;
+		}
 	}
 	if (key == SDL_SCANCODE_O)
 	{
-		if (menu->select_type == 1)
-			menu->select_type = 0;
+		if (menu->select_type == MENU_OBJ)
+			menu->select_type = MENU_HANDLE;
 		else
-			menu->select_type = 1;
+			menu->select_type = MENU_OBJ;
 	}
 	else if (key == SDL_SCANCODE_L)
 	{
-		if (menu->select_type == 2)
-			menu->select_type = 0;
+		if (menu->select_type == MENU_LIGHT)
+			menu->select_type = MENU_HANDLE;
 		else
-			menu->select_type = 2;
+			menu->select_type = MENU_LIGHT;
 	}
 }
 
@@ -44,7 +48,7 @@ static void	key_hook_select_obj(int key, void *param)
 	t_scene			*scene;
 
 	scene = (t_scene *)param;
-	if (scene->g_sys.menu.select_type == 0)
+	if (scene->g_sys.menu.select_type == MENU_HANDLE)
 	{
 		i = 0;
 		return ;
@@ -52,7 +56,7 @@ static void	key_hook_select_obj(int key, void *param)
 	scene->g_sys.menu.obj = scene->tab_obj[i];
 	if (key == SDL_SCANCODE_N)
 	{
-		if (scene->g_sys.menu.select_type == 1)
+		if (scene->g_sys.menu.select_type == MENU_OBJ)
 			++i;
 		if (scene->tab_obj[i] == NULL)
 			i = 0;
@@ -68,7 +72,7 @@ static void	key_hook_select_light(int key, void *param)
 	t_scene			*scene;
 
 	scene = (t_scene *)param;
-	if (scene->g_sys.menu.select_type != 2)
+	if (scene->g_sys.menu.select_type != MENU_LIGHT)
 	{
 		i = 0;
 		return ;
@@ -76,7 +80,7 @@ static void	key_hook_select_light(int key, void *param)
 	scene->g_sys.menu.light = scene->tab_l[i];
 	if (key == SDL_SCANCODE_N)
 	{
-		if (scene->g_sys.menu.select_type == 2)
+		if (scene->g_sys.menu.select_type == MENU_LIGHT)
 			++i;
 		if (scene->tab_l[i] == NULL)
 			i = 0;

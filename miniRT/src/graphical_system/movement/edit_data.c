@@ -23,9 +23,9 @@ static void	key_hook_select_change(int key, void *param)
 	int		range;
 
 	menu = (t_menu *)param;
-	if (menu->enable == 0)
+	if (menu->select_type == MENU_DISABLE)
 		return ;
-	if (menu->select_type == 2 && menu->enable != 0)
+	if (menu->select_type == MENU_LIGHT)
 		range = 3;
 	else
 		range = get_range(menu->obj);
@@ -50,11 +50,11 @@ void	data_change(int key, void *param)
 		sign = 1;
 	else if (key == SDL_SCANCODE_LEFT)
 		sign = -1;
-	if (sign == 0 || menu->enable == 0 || menu->select_type == 0)
+	if (sign == 0 || menu->select_type == MENU_DISABLE || menu->select_type == MENU_HANDLE)
 		return ;
-	if (menu->select_type == 2)
+	if (menu->select_type == MENU_LIGHT)
 		light_translation(menu, &sign);
-	else if (menu->select_type == 1)
+	else if (menu->select_type == MENU_OBJ)
 	{
 		if (menu->obj->type == SPHERE)
 			edit_sphere(&sign, menu, (t_sphere_obj *)(menu->obj->data));

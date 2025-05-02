@@ -54,10 +54,10 @@ void	menu_management(t_graph_sys *g_sys)
 {
 	mlx_put_image_to_window(g_sys->mlx, g_sys->win, g_sys->menu.background,
 		0, 0);
-	if (g_sys->menu.select_type == 0)
+	if (g_sys->menu.select_type == MENU_HANDLE)
 		menu_selec_display(g_sys);
-	else if (g_sys->menu.select_type == 1)
+	else if (g_sys->menu.select_type == MENU_OBJ)
 		menu_obj_display(g_sys);
-	else if (g_sys->menu.select_type == 2)
+	else if (g_sys->menu.select_type == MENU_LIGHT)
 		menu_light_display(g_sys);
 }

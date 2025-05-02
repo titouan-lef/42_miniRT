@@ -16,7 +16,7 @@ void	defile(int *position, int start, int end, int moov)
 
 void	reset_menu(t_menu *menu)
 {
-	menu->select_type = 0;
+	menu->select_type = MENU_HANDLE;
 	menu->select_data = 1;
 }
 
@@ -29,7 +29,7 @@ int	init_menu(t_graph_sys *g_sys)
 	int				x;
 	int				y;
 
-	g_sys->menu.enable = 0;
+	g_sys->menu.select_type = MENU_DISABLE;
 	reset_menu(&g_sys->menu);
 	g_sys->menu.background = mlx_new_image(g_sys->mlx, MENU_W, MENU_H);
 	if (g_sys->menu.background == MLX_NULL_HANDLE)
