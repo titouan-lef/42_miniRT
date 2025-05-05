@@ -2,6 +2,17 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Update the soluce structure of inter if the point of intersection is
+ * closer than the current one and on the latheral part of the cylinder.
+ * If there is no intersection, nothing is updated.
+ * @details EPSILON allows to avoid nose when same objects are in the same
+ * place.
+ * @param cy The cylinder.
+ * @param t The closest potential factors t of the infinite cylinder.
+ * @param inter The intersection structure.
+ * @return 1 if the soluce structure is updated, 0 else.
+ */
 static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 {
 	t_vec3	p;
@@ -27,8 +38,13 @@ static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 }
 
 /**
- * @brief Get the smallest factor of intersection greater than or equal to 1.
- * @details
+ * @brief Update the soluce structure of inter if the point of intersection is
+ * closer than the current one. If there is no intersection, nothing is
+ * updated.
+ * @param cy The cylinder.
+ * @param mathcy The pre-calculated mathematics.
+ * @param inter The intersection structure.
+ * @return An integer different of 0 if the soluce structure is updated.
  */
 static int	intersect_cy(const t_cylinder *cy, t_math_cy *mathcy,
 	t_intersec *inter)
@@ -49,6 +65,13 @@ static int	intersect_cy(const t_cylinder *cy, t_math_cy *mathcy,
 	return (has_inter_base || has_inter_lateral);
 }
 
+/**
+ * @brief Update the intersect structure if the point of intersection is closer
+ * than the current one. If there is no intersection, nothing is updated.
+ * @param obj The cylinder object.
+ * @param inter The intersection structure.
+ * @warning obj must be a cylinder object.
+ */
 void	intersect_ray_cy(const t_obj *obj, t_intersec *inter)
 {
 	t_cylinder_obj	*cy_obj;
@@ -60,6 +83,17 @@ void	intersect_ray_cy(const t_obj *obj, t_intersec *inter)
 		inter->obj = obj;
 }
 
+/**
+ * @brief Get the factor t of the equation : p = s + t * dir.
+ * p is the intersect point between the object and the ray.
+ * s is the start of the ray.
+ * dir is the direction of the ray.
+ * t is a positive factor.
+ * @param obj The cylinder object.
+ * @param ray The ray.
+ * @return A positive double or INFINITY if there is no solution.
+ * @warning obj must be a cylinder object.
+ */
 double	intersect_light_cy(const t_obj *obj, const t_ray *ray)
 {
 	t_intersec		inter;

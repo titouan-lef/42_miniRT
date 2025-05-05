@@ -2,6 +2,13 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Update the intersect structure if the point of intersection is closer
+ * than the current one. If there is no intersection, nothing is updated.
+ * @param obj The cylinder object.
+ * @param inter The intersection structure.
+ * @warning obj must be a cylinder object.
+ */
 void	intersect_ray_sp(const t_obj *obj, t_intersec *inter)
 {
 	t_sphere_obj	*sp_obj;
@@ -15,6 +22,17 @@ void	intersect_ray_sp(const t_obj *obj, t_intersec *inter)
 	inter->obj = obj;
 }
 
+/**
+ * @brief Get the factor t of the equation : p = s + t * dir.
+ * p is the intersect point between the object and the ray.
+ * s is the start of the ray.
+ * dir is the direction of the ray.
+ * t is a positive factor.
+ * @param obj The sphere object.
+ * @param ray The ray.
+ * @return A positive double or INFINITY if there is no solution.
+ * @warning obj must be a sphere object.
+ */
 double	intersect_light_sp(const t_obj *obj, const t_ray *ray)
 {
 	t_sphere_obj	*sp_obj;

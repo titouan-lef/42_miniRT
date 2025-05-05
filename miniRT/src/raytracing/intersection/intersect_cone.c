@@ -2,6 +2,19 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Update the soluce structure of inter if the point of intersection is
+ * closer than the current one and on the latheral part of the cone.
+ * If there is no intersection, nothing is updated.
+ * @details EPSILON allows to avoid nose when same objects are in the same
+ * place. It's in this function that is defined if the intersection is on the
+ * visible part of the infinite cone.
+ * @param co The cone.
+ * @param mathco The pre-calculated mathematics.
+ * @param t One of the two potential factors t of the infinite cone.
+ * @param inter The intersection structure.
+ * @return 1 if the soluce structure is updated, 0 else.
+ */
 static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 	double t, t_intersec *inter)
 {
@@ -28,8 +41,16 @@ static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 }
 
 /**
- * @brief Get the smallest factor of intersection greater than or equal to 1.
- * @details
+ * @brief Update the soluce structure of inter if the point of intersection is
+ * closer than the current one. If there is no intersection, nothing is
+ * updated.
+ * @details The two potential factors are calculated and not the closest
+ * because quadratic equation don't allow to know if the intersection is on the
+ * visible part of the infinite cone.
+ * @param co The cone.
+ * @param mathco The pre-calculated mathematics.
+ * @param inter The intersection structure.
+ * @return An integer different of 0 if the soluce structure is updated.
  */
 static int	intersect_co(const t_cone *co, t_math_co *mathco, t_intersec *inter)
 {
@@ -48,6 +69,13 @@ static int	intersect_co(const t_cone *co, t_math_co *mathco, t_intersec *inter)
 	return (has_inter_base || has_inter_lateral);
 }
 
+/**
+ * @brief Update the intersect structure if the point of intersection is closer
+ * than the current one. If there is no intersection, nothing is updated.
+ * @param obj The cone object.
+ * @param inter The intersection structure.
+ * @warning obj must be a cone object.
+ */
 void	intersect_ray_co(const t_obj *obj, t_intersec *inter)
 {
 	t_cone_obj	*co_obj;
@@ -59,6 +87,17 @@ void	intersect_ray_co(const t_obj *obj, t_intersec *inter)
 		inter->obj = obj;
 }
 
+/**
+ * @brief Get the factor t of the equation : p = s + t * dir.
+ * p is the intersect point between the object and the ray.
+ * s is the start of the ray.
+ * dir is the direction of the ray.
+ * t is a positive factor.
+ * @param obj The cone object.
+ * @param ray The ray.
+ * @return A positive double or INFINITY if there is no solution.
+ * @warning obj must be a cone object.
+ */
 double	intersect_light_co(const t_obj *obj, const t_ray *ray)
 {
 	t_intersec	inter;
