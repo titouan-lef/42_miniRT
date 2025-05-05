@@ -7,16 +7,16 @@ static int	init_texture(t_pattern *pat, mlx_context *mlx)
 	if (pat->bump.name != NULL)
 	{
 		pat->bump.img = mlx_new_image_from_file(*mlx, pat->bump.name,
-			&pat->bump.width, &pat->bump.heigth);
+				&pat->bump.width, &pat->bump.heigth);
 		if (pat->bump.img == NULL)
-				return (1);		
+			return (1);
 	}
 	if (pat->texture.name != NULL)
 	{
 		pat->texture.img = mlx_new_image_from_file(*mlx, pat->texture.name,
-			&pat->texture.width, &pat->texture.heigth);
+				&pat->texture.width, &pat->texture.heigth);
 		if (pat->texture.img == NULL)
-			return (1);	
+			return (1);
 	}
 	return (0);
 }
@@ -34,8 +34,8 @@ int	init_all_texture(t_obj **tab_obj, mlx_context mlx)
 		pat = &tab_obj[i]->pattern;
 		if (init_texture(pat, &mlx))
 		{
-				clean_texture(tab_obj, mlx);
-				return (1);
+			clean_texture(tab_obj, mlx);
+			return (1);
 		}
 		i++;
 	}

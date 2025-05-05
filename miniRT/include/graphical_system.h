@@ -101,7 +101,7 @@ int		init_all_texture(t_obj **tab_obj, mlx_context mlx);
 /** @file graphical_system_clear.c */
 void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys);
 void	clean_texture(t_obj **tab_obj, mlx_context mlx);
-void    clean_mlx_sys(t_graph_sys *g_sys);
+void	clean_mlx_sys(t_graph_sys *g_sys);
 
 /***********************************************
  *  @details MOVEMENT

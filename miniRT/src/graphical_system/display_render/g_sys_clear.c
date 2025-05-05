@@ -2,9 +2,9 @@
 
 #include "minirt.h"
 
-void    clean_mlx_sys(t_graph_sys *g_sys)
+void	clean_mlx_sys(t_graph_sys *g_sys)
 {
-    mlx_destroy_window(g_sys->mlx, g_sys->win);
+	mlx_destroy_window(g_sys->mlx, g_sys->win);
 	clean_double_buffer(g_sys);
 	mlx_destroy_context(g_sys->mlx);
 }
@@ -28,17 +28,17 @@ void	clean_texture(t_obj **tab_obj, mlx_context mlx)
 	{
 		pat = &tab_obj[i]->pattern;
 		if (pat->bump.name != NULL)
-        {
-            if (pat->bump.img == NULL)
-                break;
+		{
+			if (pat->bump.img == NULL)
+				break ;
 			mlx_destroy_image(mlx, pat->bump.img);
-        }
+		}
 		if (pat->texture.name != NULL)
-        {
-            if (pat->texture.img == NULL)
-                break;
+		{
+			if (pat->texture.img == NULL)
+				break ;
 			mlx_destroy_image(mlx, pat->texture.img);
-        }
+		}
 		i++;
 	}
 }
