@@ -2,15 +2,6 @@
 
 #include "minirt.h"
 
-static void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
-{
-	mlx_destroy_image(g_sys->mlx, g_sys->menu.background);
-	destroy_texture(scene->tab_obj, g_sys->mlx);
-	mlx_destroy_window(g_sys->mlx, g_sys->win);
-	clean_double_buffer(g_sys);
-	mlx_destroy_context(g_sys->mlx);
-}
-
 static int	init_mlx(t_graph_sys *g_sys)
 {
 	g_sys->mlx = mlx_init();
@@ -40,9 +31,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 	}
 	if (init_menu(g_sys))
 	{
-		mlx_destroy_window(g_sys->mlx, g_sys->win);
-		clean_double_buffer(g_sys);
-		mlx_destroy_context(g_sys->mlx);
+		clean_mlx_sys(g_sys);
 		return (1);
 	}
 	g_sys->menu.mouse_is_hide = 0;
@@ -71,7 +60,11 @@ int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->g_sys))
 		return (1);
-	init_texture(scene->tab_obj, scene->g_sys.mlx);/** @todo must be protected */
+	if (init_all_texture(scene->tab_obj, scene->g_sys.mlx))
+	{
+		clean_mlx_sys(&scene->g_sys);
+		return (1);
+	}
 	mlx_mouse_move(scene->g_sys.mlx, scene->g_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
 	mlx_add_loop_hook(scene->g_sys.mlx, update, scene);

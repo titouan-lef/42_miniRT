@@ -20,7 +20,7 @@
 # endif
 
 # ifndef MAX_LIGHT
-#  define MAX_LIGHT INFINITY
+#  define MAX_LIGHT 1
 # endif
 
 # ifndef CONE_ACTIVE

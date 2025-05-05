@@ -10,7 +10,7 @@
 # endif
 
 # ifndef KD
-#  define KD 0.5
+#  define KD 1
 # endif
 
 # ifndef KS

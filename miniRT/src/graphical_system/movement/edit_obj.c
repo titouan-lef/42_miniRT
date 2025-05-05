@@ -33,7 +33,7 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 		obj_resize(&cylinder->cy.r, sign);
 	else if (menu->i_subsubmenu == 1)
 		obj_resize(&cylinder->cy.hh, sign);
-	else if (menu->i_subsubmenu <= 4) /** @todo operator is right */
+	else if (menu->i_subsubmenu <= 4)
 		data_change_translation(&cylinder->cy.pos, menu->i_subsubmenu - 2,
 			sign);
 	else if (menu->i_subsubmenu == 5)
