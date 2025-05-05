@@ -55,14 +55,13 @@ static void	update(void *param)
 {
 	t_scene		*scene;
 	t_graph_sys	*g_sys;
-	int			result;/** @todo useless ? */
 
 	scene = (t_scene *) param;
 	g_sys = &scene->g_sys;
 	if (g_sys->menu.mouse_is_hide == 1)
 		mouse_event(scene, g_sys);
 	init_calculation(&scene->cam.pos, scene->tab_obj);
-	result = ray_lauch(scene);
+	ray_lauch(scene);
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.option != MENU_DISABLE)
 		menu_management(scene);
