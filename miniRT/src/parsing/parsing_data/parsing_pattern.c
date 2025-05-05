@@ -26,7 +26,7 @@ static char	*complete_colors(double *color, char *str)
 }
 
 /**
- * @brief Convert a string to a color.
+ * @brief Convert a string to a color RGB.
  * @return Return 1 if the arg isn't valid or value is not between 0 and 255.
  */
 int	take_color(t_vec3 *colors, char *str)
@@ -43,6 +43,11 @@ int	take_color(t_vec3 *colors, char *str)
 	return (0);
 }
 
+/**
+ * @brief Enables the checkerboard option based on the number of separations
+ * @return Return 1 if the arg isn't valid or 
+ * the split checkerboard are to hight.
+ */
 static int	active_checkboard(int *status, char *str)
 {
 	int	error;
@@ -56,6 +61,13 @@ static int	active_checkboard(int *status, char *str)
 	return (0);
 }
 
+
+/**
+ * @brief Enables the  option based on the number of separations
+ * @return Return 1 if the file type are not a .png,
+ * the file is missing or does not have permissions,
+ * the allocation failed
+ */
 static int	take_texture_files(char **name, char *str)
 {
 	int	fd;
@@ -83,6 +95,11 @@ static int	take_texture_files(char **name, char *str)
 	return (0);
 }
 
+/**
+ * @brief Allows you to initialize the entire pattern of the object 
+ * (color, texture, bump map and checkerboard).
+ * @return Return 1 if an argument was wrong or an allocation failed
+ */
 int	take_pattern(t_pattern *pattern, char **tab)
 {
 	if (take_color(&pattern->colors, tab[0]))

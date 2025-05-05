@@ -1,5 +1,8 @@
 #include "minirt.h"
 
+/**
+ * @brief Frees all allocations from the object array
+ */
 static void	free_content_obj(t_obj **tab_obj)
 {
 	size_t	i;
@@ -15,6 +18,9 @@ static void	free_content_obj(t_obj **tab_obj)
 	tab_obj = NULL;
 }
 
+/**
+ * @brief Cleanly frees memory when the program exits
+ */
 void	exit_error_parsing(t_scene *scene)
 {
 	if (scene->tab_obj)
