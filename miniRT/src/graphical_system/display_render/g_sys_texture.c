@@ -18,7 +18,7 @@ static int	init_texture(t_pattern *pat, mlx_context *mlx)
 		if (pat->texture.img == NULL)
 		{
 			if (pat->bump.name != NULL)
-				mlx_destroy_image(mlx, pat->bump.img);
+				mlx_destroy_image(*mlx, pat->bump.img);
 			return (1);
 		}
 	}
