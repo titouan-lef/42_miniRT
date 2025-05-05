@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Allows you to clear all the contents of the object.
+ */
 void	clear_obj(void *data)
 {
 	t_obj	*obj;
@@ -24,6 +27,10 @@ void	clear_obj(void *data)
 	free(obj);
 }
 
+/**
+ * @brief Allocates an object with everything initialized to NULL.
+ * @return t_obj init value at NULL.
+ */
 t_obj	*init_obj(void)
 {
 	t_obj	*obj;

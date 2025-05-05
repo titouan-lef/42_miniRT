@@ -2,6 +2,11 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Alloc t_cone_obj and initialise pos, dir,
+ * rayon and dimension height.
+ * @return Return NULL if a data are false or an allocation have failed.
+ */
 static t_cone_obj	*alloc_new_cone(char **tab)
 {
 	t_cone_obj	*new_co;

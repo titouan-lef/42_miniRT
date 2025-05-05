@@ -25,6 +25,10 @@ static int	alloc_new_node(t_list **head, t_light *new_light)
 	return (0);
 }
 
+/**
+ * @brief Alloc Light difuse data and check valid argument and value.
+ * @return Return NULL if a data are false or allocation failed.
+ */
 static t_light	*alloc_new_light(char **tab)
 {
 	t_light	*new_light;

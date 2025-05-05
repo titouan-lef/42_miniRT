@@ -44,7 +44,7 @@ int	take_color(t_vec3 *colors, char *str)
 }
 
 /**
- * @brief Enables the checkerboard option based on the number of separations
+ * @brief Enables the checkerboard option based on the number of separations.
  * @return Return 1 if the arg isn't valid or 
  * the split checkerboard are to hight.
  */
@@ -61,12 +61,11 @@ static int	active_checkboard(int *status, char *str)
 	return (0);
 }
 
-
 /**
- * @brief Enables the  option based on the number of separations
+ * @brief Enables the  option based on the number of separations.
  * @return Return 1 if the file type are not a .png,
  * the file is missing or does not have permissions,
- * the allocation failed
+ * the allocation failed.
  */
 static int	take_texture_files(char **name, char *str)
 {
@@ -96,9 +95,9 @@ static int	take_texture_files(char **name, char *str)
 }
 
 /**
- * @brief Allows you to initialize the entire pattern of the object 
+ * @brief Allows you to initialize the entire pattern of the object. 
  * (color, texture, bump map and checkerboard).
- * @return Return 1 if an argument was wrong or an allocation failed
+ * @return Return 1 if an argument was wrong or an allocation failed.
  */
 int	take_pattern(t_pattern *pattern, char **tab)
 {

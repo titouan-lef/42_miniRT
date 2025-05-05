@@ -1,7 +1,7 @@
 #include "minirt.h"
 
 /**
- * @brief Frees all allocations from the object array
+ * @brief Frees all allocations from the object array.
  */
 static void	free_content_obj(t_obj **tab_obj)
 {
@@ -19,7 +19,7 @@ static void	free_content_obj(t_obj **tab_obj)
 }
 
 /**
- * @brief Cleanly frees memory when the program exits
+ * @brief Cleanly frees memory when the program exits.
  */
 void	exit_error_parsing(t_scene *scene)
 {
@@ -33,7 +33,7 @@ void	exit_error_parsing(t_scene *scene)
 }
 
 /**
- * @brief Print error message on std 2
+ * @brief Print error message on std 2.
  */
 void	print_error_message(char *str)
 {

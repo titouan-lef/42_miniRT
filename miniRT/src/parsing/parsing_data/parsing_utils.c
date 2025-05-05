@@ -51,8 +51,8 @@ int	check_files_type(char *str, char *type)
 
 /**
  * @brief Check the first line of tab for look identifer
- * @param str id of string.
- * @return nb in fonction of id detected.
+ * @param str Id of string.
+ * @return Nb in fonction of id detected.
  * @warning 7 is for a cone for bonus.
  */
 int	check_valid_id(char *str, int single_entity[2])
