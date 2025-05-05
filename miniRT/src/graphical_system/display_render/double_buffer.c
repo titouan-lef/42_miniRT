@@ -17,6 +17,7 @@ void	clean_double_buffer(t_graph_sys *g_sys)
 	mlx_destroy_image(g_sys->mlx, *g_sys->buff.front);
 }
 
+
 int	init_double_buffer(t_graph_sys *g_sys)
 {
 	mlx_image	*buffers;

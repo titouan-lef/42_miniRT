@@ -1,7 +1,10 @@
 /// @todo header
 
 #include "minirt.h"
-
+/**
+ * @brief Destroys the environment of the entire 
+ * macrolibx display system (wimdow, double buffer and context)
+ */
 void	clean_mlx_sys(t_graph_sys *g_sys)
 {
 	mlx_destroy_window(g_sys->mlx, g_sys->win);
@@ -9,6 +12,9 @@ void	clean_mlx_sys(t_graph_sys *g_sys)
 	mlx_destroy_context(g_sys->mlx);
 }
 
+/**
+ * @brief Destroys all program displays (image, textture, environement)
+ */
 void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
 {
 	size_t	tab_size;
@@ -19,6 +25,10 @@ void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
 	clean_mlx_sys(g_sys);
 }
 
+
+/**
+ * @brief Destroys all texture (texture and bump)
+ */
 void	clean_texture(t_obj **tab_obj, mlx_context mlx, size_t tab_size)
 {
 	size_t		i;

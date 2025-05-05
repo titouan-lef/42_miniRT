@@ -17,6 +17,14 @@ void	put_image_to_win(t_graph_sys *g_sys)
 		*g_sys->buff.front, 0, 0);
 }
 
+/**
+ * @brief Put pixel on the frame.
+ * @param g_sys Struct of graphical systeme.
+ * @param x X coordinate.
+ * @param y Y coordinate.
+ * @param c Color of pixel.
+ * @details Color the desired number of pixels according to the definition.
+ */
 void	set_image_pixel(t_graph_sys *g_sys, int x, int y, t_color c)
 {
 	mlx_color	color;

@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Init texture or/and bump if a file path is present.
+ * @return 1 if mlx_new_image_from_file failed.
+ */
 static int	init_texture(t_pattern *pat, mlx_context *mlx)
 {
 	if (pat->bump.name != NULL)
@@ -25,6 +29,11 @@ static int	init_texture(t_pattern *pat, mlx_context *mlx)
 	return (0);
 }
 
+/**
+ * @brief Scans entire object array and initializes texture and bump.
+ * if passed in param.
+ * @return 1 if init_texture failed.
+ */
 int	init_all_texture(t_obj **tab_obj, mlx_context mlx)
 {
 	size_t		tab_size;

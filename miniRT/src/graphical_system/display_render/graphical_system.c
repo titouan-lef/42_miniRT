@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Init mlx_context 
+ * @return 1 if mlx_init failed.
+ */
 static int	init_mlx(t_graph_sys *g_sys)
 {
 	g_sys->mlx = mlx_init();
@@ -13,6 +17,10 @@ static int	init_mlx(t_graph_sys *g_sys)
 	return (0);
 }
 
+/**
+ * @brief Init all display environemnt 
+ * @return 1 if init_mlx or init_double_buffer init_window or init_menu failed.
+ */
 static int	init_graphical_data(t_graph_sys *g_sys)
 {
 	if (init_mlx(g_sys))
