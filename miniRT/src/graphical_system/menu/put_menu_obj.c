@@ -65,7 +65,7 @@ static void	put_menu_cone(t_graph_sys *g_sys)
 	char		*title[3];
 	char		*selection[8];
 
-	title[0] = OBJ_CY;
+	title[0] = OBJ_CO;
 	title[1] = T;
 	title[2] = R;
 	selection[0] = D;
