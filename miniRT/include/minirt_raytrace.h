@@ -18,6 +18,7 @@ void	ray_lauch(t_scene *scene);
  * @details CALCULATION
  ***********************************************/
 /** @file calculation.c */
+t_vec3	change_base(const t_base *base, const t_vec3 *v);
 double	length_screen(int fov);
 void	quadratic_equation(double result[2], double a, double b, double c);
 double	min_quadratic_equation(double a, double b, double c);
