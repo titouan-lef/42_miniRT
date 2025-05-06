@@ -12,12 +12,12 @@ void	put_menu_title(t_graph_sys *g_sys, const int *tab_y, char **tab_txt,
 	num[0] = ft_tochar(g_sys->menu.i_submenu % 10);
 	num[1] = ')';
 	num[2] = '\0';
-	mlx_string_put(g_sys->mlx, g_sys->win, 1, tab_y[0], c, num);
-	mlx_string_put(g_sys->mlx, g_sys->win, 20, tab_y[0], c, tab_txt[0]);
+	mlx_string_put(g_sys->mlx, g_sys->win, 10, tab_y[0], c, num);
+	mlx_string_put(g_sys->mlx, g_sys->win, 30, tab_y[0], c, tab_txt[0]);
 	i = 1;
 	while (i < nb_elem)
 	{
-		mlx_string_put(g_sys->mlx, g_sys->win, 1, tab_y[i], c, tab_txt[i]);
+		mlx_string_put(g_sys->mlx, g_sys->win, 10, tab_y[i], c, tab_txt[i]);
 		++i;
 	}
 }
@@ -33,10 +33,10 @@ void	put_menu_selection(t_graph_sys *g_sys, const int *tab_y,
 	while (i < nb_elem)
 	{
 		if (i == g_sys->menu.i_subsubmenu)
-			mlx_string_put(g_sys->mlx, g_sys->win, 10, tab_y[i], c2,
+			mlx_string_put(g_sys->mlx, g_sys->win, 20, tab_y[i], c2,
 				tab_txt[i]);
 		else
-			mlx_string_put(g_sys->mlx, g_sys->win, 10, tab_y[i], c1,
+			mlx_string_put(g_sys->mlx, g_sys->win, 20, tab_y[i], c1,
 				tab_txt[i]);
 		++i;
 	}
@@ -75,7 +75,7 @@ static void	menu_selec_display(t_graph_sys *g_sys)
 	i = 0;
 	while (i < 3)
 	{
-		mlx_string_put(g_sys->mlx, g_sys->win, 1, (i + 1) * 15, c, title[i]);
+		mlx_string_put(g_sys->mlx, g_sys->win, 10, (i + 1) * 15, c, title[i]);
 		i++;
 	}
 }

@@ -70,11 +70,11 @@
 # endif
 
 # ifndef MENU_W
-#  define MENU_W 300
+#  define MENU_W 220
 # endif
 
 # ifndef MENU_H
-#  define MENU_H 500
+#  define MENU_H 180
 # endif
 
 /***********************************************
