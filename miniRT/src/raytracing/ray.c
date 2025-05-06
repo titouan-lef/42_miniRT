@@ -51,7 +51,7 @@ static t_ray	create_ray(const t_vec3 *local_dir, const t_cam *cam)
 	base.e1 = cam->right;
 	base.e2 = cam->up;
 	base.e3 = cam->dir;
-	ray.dir = change_base(&base, &local_dir);
+	ray.dir = change_base(&base, local_dir);
 	ray.dir = ft_normalize_vec3(&ray.dir);
 	return (ray);
 }
