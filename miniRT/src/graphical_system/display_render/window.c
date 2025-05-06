@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Init all param of the window struct before open it.
+ * @return mlx_window_create_info.
+ */
 static mlx_window_create_info	get_win_info(void)
 {
 	mlx_window_create_info	win_info;
@@ -15,6 +19,10 @@ static mlx_window_create_info	get_win_info(void)
 	return (win_info);
 }
 
+/**
+ * @brief Init and open the window on the screen.
+ * @return 1 if mlx_new_window failed.
+ */
 int	init_window(t_graph_sys *g_sys)
 {
 	mlx_window_create_info	win_info;

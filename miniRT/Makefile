@@ -78,6 +78,7 @@ SRC :=	minirt.c \
 		parsing/parsing_element/parsing_cylinder.c \
 		graphical_system/display_render/image.c \
 		graphical_system/display_render/window.c \
+		graphical_system/display_render/g_sys_clear.c \
 		graphical_system/display_render/g_sys_texture.c \
 		graphical_system/display_render/double_buffer.c \
 		graphical_system/display_render/graphical_system.c \

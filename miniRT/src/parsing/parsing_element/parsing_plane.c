@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Alloc t_plane_obj and initialise pos, dir.
+ * @return Return NULL if a data are false or an allocation have failed.
+ */
 static t_plane_obj	*alloc_new_plan(char **tab)
 {
 	t_plane_obj	*new_pl;

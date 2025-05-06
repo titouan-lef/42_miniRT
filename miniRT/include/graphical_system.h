@@ -96,8 +96,12 @@ int		init_window(t_graph_sys *g_sys);
 int		manage_graphical_system(t_scene	*scene);
 
 /** @file g_sys_texture.c */
-void	init_texture(t_obj **tab_obj, mlx_context mlx);
-void	destroy_texture(t_obj **tab_obj, mlx_context mlx);
+int		init_all_texture(t_obj **tab_obj, mlx_context mlx);
+
+/** @file graphical_system_clear.c */
+void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys);
+void	clean_texture(t_obj **tab_obj, mlx_context mlx, size_t tab_size);
+void	clean_mlx_sys(t_graph_sys *g_sys);
 
 /***********************************************
  *  @details MOVEMENT

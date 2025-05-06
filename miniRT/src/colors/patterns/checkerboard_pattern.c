@@ -15,6 +15,9 @@ static int	ft_exp(int n)
 	return (result);
 }
 
+/**
+ * @brief Calculate the spliting of the checkerboard.
+*/
 static t_vec3	get_uv_color(t_vec3 c[2], const t_vec2 *uv, int div)
 {
 	int			sq;
@@ -31,6 +34,9 @@ static t_vec3	get_uv_color(t_vec3 c[2], const t_vec2 *uv, int div)
 	return (c[1]);
 }
 
+/**
+ * @brief reverses the color of origin
+*/
 static t_vec3	inv_color(t_vec3 c)
 {
 	t_vec3	inv_c;
@@ -39,6 +45,11 @@ static t_vec3	inv_color(t_vec3 c)
 	return (inv_c);
 }
 
+/**
+ * @brief Manages checker board trimming according 
+ * to the number of trimmings entered in parameters.
+ * @return the colors object.
+*/
 t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj)
 {
 	t_vec3	c;

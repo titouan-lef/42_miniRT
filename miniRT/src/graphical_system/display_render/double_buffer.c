@@ -11,12 +11,20 @@ void	swap_buffer(t_double_buffer *buff)
 	buff->front = ptr_img;
 }
 
+/**
+ * @brief Destroys both double buffer images
+ */
 void	clean_double_buffer(t_graph_sys *g_sys)
 {
 	mlx_destroy_image(g_sys->mlx, *g_sys->buff.back);
 	mlx_destroy_image(g_sys->mlx, *g_sys->buff.front);
 }
 
+/**
+ * @brief Initialize the 2 images of the double buffer
+ * by creating them in an array.
+ * @return 1 if image creation fails.
+ */
 int	init_double_buffer(t_graph_sys *g_sys)
 {
 	mlx_image	*buffers;

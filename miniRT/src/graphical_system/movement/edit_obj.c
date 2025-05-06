@@ -11,6 +11,11 @@ static void	obj_resize(double *r, int sign)
 		*r = new;
 }
 
+/**
+ * @brief Edit the cone settings selected in the menu.
+ * @details Modifiable data include position, orientation,
+ * radius size and height size.
+ */
 void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 {
 	if (menu->i_subsubmenu == 0)
@@ -27,13 +32,18 @@ void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 		rotation_on_forward(&cone->co.right, &cone->co.up, &cone->co.dir, sign);
 }
 
+/**
+ * @brief Edit the cylinder settings selected in the menu.
+ * @details Modifiable data include position, orientation,
+ * radius size and height size.
+ */
 void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 {
 	if (menu->i_subsubmenu == 0)
 		obj_resize(&cylinder->cy.r, sign);
 	else if (menu->i_subsubmenu == 1)
 		obj_resize(&cylinder->cy.hh, sign);
-	else if (menu->i_subsubmenu <= 4) /** @todo operator is right */
+	else if (menu->i_subsubmenu <= 4)
 		data_change_translation(&cylinder->cy.pos, menu->i_subsubmenu - 2,
 			sign);
 	else if (menu->i_subsubmenu == 5)
@@ -47,6 +57,10 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 			&cylinder->cy.dir, sign);
 }
 
+/**
+ * @brief Edit the plane settings selected in the menu.
+ * @details Modifiable data include orientation and position plane.
+ */
 void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 {
 	if (menu->i_subsubmenu == 0)
@@ -60,7 +74,8 @@ void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 }
 
 /**
- * @brief modifi
+ * @brief Edit the sphere settings selected in the menu.
+ * @details Modifiable data include radius size and sphere position.
  */
 void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere)
 {

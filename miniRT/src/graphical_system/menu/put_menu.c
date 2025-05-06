@@ -9,7 +9,7 @@ void	put_menu_title(t_graph_sys *g_sys, const int *tab_y, char **tab_txt,
 	char			num[3];
 	size_t			i;
 
-	num[0] = ft_tochar(g_sys->menu.i_submenu % 10); /** @todo a probleme when they have more than 10 element */
+	num[0] = ft_tochar(g_sys->menu.i_submenu % 10);
 	num[1] = ')';
 	num[2] = '\0';
 	mlx_string_put(g_sys->mlx, g_sys->win, 1, tab_y[0], c, num);

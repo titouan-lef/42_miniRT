@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Alloc t_sphere_obj and initialise pos, rayon.
+ * @return Return NULL if a data are false or an allocation have failed.
+ */
 static t_sphere_obj	*alloc_new_sphere(char **tab)
 {
 	t_sphere_obj	*new_sp;

@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Frees all nodes in the list after tranformation to array.
+ */
 void	clear_lst_parse(t_lst_parse **lst_parse, void (*del)(void *))
 {
 	if (del != NULL)
@@ -14,6 +17,9 @@ void	clear_lst_parse(t_lst_parse **lst_parse, void (*del)(void *))
 	*lst_parse = NULL;
 }
 
+/**
+ * @brief Convert a linked list to an array.
+ */
 static void	fill_tab(void **tab, t_list *lst)
 {
 	size_t	i;
@@ -29,7 +35,7 @@ static void	fill_tab(void **tab, t_list *lst)
 }
 
 /**
- * @brief Convert lst_obj and lst_l when the parsing is finish 
+ * @brief Convert lst_obj and lst_l when the parsing is finish.
  * for the execution after.
  * @return Return 1 if an allocation have failed.
  */

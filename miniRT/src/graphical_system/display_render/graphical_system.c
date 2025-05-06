@@ -2,15 +2,10 @@
 
 #include "minirt.h"
 
-static void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
-{
-	mlx_destroy_image(g_sys->mlx, g_sys->menu.background);
-	destroy_texture(scene->tab_obj, g_sys->mlx);
-	mlx_destroy_window(g_sys->mlx, g_sys->win);
-	clean_double_buffer(g_sys);
-	mlx_destroy_context(g_sys->mlx);
-}
-
+/**
+ * @brief Init mlx_context 
+ * @return 1 if mlx_init failed.
+ */
 static int	init_mlx(t_graph_sys *g_sys)
 {
 	g_sys->mlx = mlx_init();
@@ -22,6 +17,10 @@ static int	init_mlx(t_graph_sys *g_sys)
 	return (0);
 }
 
+/**
+ * @brief Init all display environemnt 
+ * @return 1 if init_mlx or init_double_buffer init_window or init_menu failed.
+ */
 static int	init_graphical_data(t_graph_sys *g_sys)
 {
 	if (init_mlx(g_sys))
@@ -40,9 +39,7 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 	}
 	if (init_menu(g_sys))
 	{
-		mlx_destroy_window(g_sys->mlx, g_sys->win);
-		clean_double_buffer(g_sys);
-		mlx_destroy_context(g_sys->mlx);
+		clean_mlx_sys(g_sys);
 		return (1);
 	}
 	g_sys->menu.mouse_is_hide = 0;
@@ -67,11 +64,20 @@ static void	update(void *param)
 		menu_management(scene);
 }
 
+/**
+ * @brief Manages program display, graphics rendering,
+ * keyboard and mouse management.
+ * @return 1 if init_grraphical_data or init_all_texture failed.
+ */
 int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->g_sys))
 		return (1);
-	init_texture(scene->tab_obj, scene->g_sys.mlx);/** @todo must be protected */
+	if (init_all_texture(scene->tab_obj, scene->g_sys.mlx))
+	{
+		clean_mlx_sys(&scene->g_sys);
+		return (1);
+	}
 	mlx_mouse_move(scene->g_sys.mlx, scene->g_sys.win, WIN_HW, WIN_HH);
 	on_event(scene);
 	mlx_add_loop_hook(scene->g_sys.mlx, update, scene);

@@ -2,6 +2,11 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Alloc t_cylinder_obj and initialise pos, dir,
+ * rayon and dimension height.
+ * @return Return NULL if a data are false or an allocation have failed.
+ */
 static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 {
 	t_cylinder_obj	*new_cy;

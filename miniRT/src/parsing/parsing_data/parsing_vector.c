@@ -42,7 +42,7 @@ static char	*complete_pos(double *pos, char *str)
 }
 
 /**
- * @brief converts a string to a director vector.
+ * @brief Converts a string to a director vector.
  * @return Return 1 if the arg isn't valid or the vector aren't normalize.
  */
 int	take_dir(t_vec3 *dir, char *str)
