@@ -7,7 +7,7 @@ int	intersect_base(const t_vec3 *base_center, double r, double t,
 {
 	t_vec3	p;
 
-	if (t >= inter->soluce.t)
+	if (t >= inter->soluce.t - EPSILON)
 		return (0);
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	if (ft_distance_vec3(&p, base_center) > r)
