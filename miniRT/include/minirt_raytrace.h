@@ -18,7 +18,7 @@ void	ray_lauch(t_scene *scene);
  * @details CALCULATION
  ***********************************************/
 /** @file calculation.c */
-double	length_screen(double fov);
+double	length_screen(int fov);
 void	quadratic_equation(double result[2], double a, double b, double c);
 double	min_quadratic_equation(double a, double b, double c);
 

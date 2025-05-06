@@ -34,6 +34,11 @@ static void	init_calculation_co(const t_vec3 *ray_s, const t_obj *obj)
 	init_math_co(ray_s, &co_obj->co, &co_obj->mathco);
 }
 
+/**
+ * @brief Initialize the pre-calculated mathematics structure of all objects.
+ * @param ray_s The start of the ray.
+ * @param tab_obj The array of objects.
+ */
 void	init_calculation(const t_vec3 *ray_s, t_obj **tab_obj)
 {
 	size_t	i;
