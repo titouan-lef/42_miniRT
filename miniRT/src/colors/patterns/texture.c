@@ -16,7 +16,6 @@ static void	get_color_from_img(const mlx_context *mlx, const t_img *img,
 	color->x = c.r / 255.0;
 	color->y = c.g / 255.0;
 	color->z = c.b / 255.0;
-	return (color);
 }
 
 /**

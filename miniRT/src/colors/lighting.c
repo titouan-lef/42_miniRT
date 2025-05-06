@@ -18,6 +18,11 @@ static void	fill_uv_obj(t_intersec *inter)
 		inter->uv_bm.y = 0;
 }
 
+/**
+ * @brief Allows you to have the color of object
+ * depending on the option (color, texture or checkerboard).
+ * @return color of object
+ */
 static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 {
 	t_vec3			color;
@@ -33,6 +38,10 @@ static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 	return (color);
 }
 
+/**
+ * @brief Assemble the 3 colors present in the t_phong 
+ * to obtain the final pixel color.
+ */
 static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 {
 	t_vec3	total_light;
@@ -53,6 +62,9 @@ static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 	return (color);
 }
 
+/**
+ * @brief Applies diffused and speculative light to the point.
+ */
 static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
 {
 	double	cos_angle[2];
@@ -79,6 +91,15 @@ static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
 	}
 }
 
+/**
+ * @brief Manages all the object's colors and lighting.
+ * @details If there is no intersecting object,
+ * the color returned will be black.
+ * else calculate object UV to apply texture and bump map
+ * followed by the application of ambient, difused and specular lighting
+ * and shwadow.
+ * @return t_color The final pixel color.
+ */
 t_color	lighting(t_scene *scene, t_intersec *inter)
 {
 	t_color	c;
