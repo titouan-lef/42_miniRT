@@ -21,8 +21,8 @@ static t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img,
 }
 
 /**
- * @brief Modifies the normal vector found intersecting
- * with the normal vector to the contact contained in the bump map.
+ * @brief Modifies the normal vector found intersecting with the normal vector
+ * to the contact contained in the bump map.
  */
 void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 {

@@ -35,7 +35,7 @@ static t_vec3	get_uv_color(t_vec3 c[2], const t_vec2 *uv, int div)
 }
 
 /**
- * @brief reverses the color of origin
+ * @brief Reverses the color of origin.
 */
 static t_vec3	inv_color(t_vec3 c)
 {
@@ -46,9 +46,9 @@ static t_vec3	inv_color(t_vec3 c)
 }
 
 /**
- * @brief Manages checker board trimming according 
- * to the number of trimmings entered in parameters.
- * @return the colors object.
+ * @brief Manages checker board trimming according to the number of trimmings
+ * entered in parameters.
+ * @return The colors object.
 */
 t_vec3	uv_manager(const t_intersec *inter, t_vec3 c_obj)
 {

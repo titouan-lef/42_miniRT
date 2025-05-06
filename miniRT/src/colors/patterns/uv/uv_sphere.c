@@ -13,6 +13,9 @@ static void	fill_uv(const t_vec3 *p, void *arg, t_vec2 *uv)
 	uv->y = acos(op.z / sp_obj->sp.r) / M_PI;
 }
 
+/**
+ * @brief Fill uv for checkerboard and bump map.
+ */
 void	fill_uv_sp(t_intersec *inter)
 {
 	int	is_cb;

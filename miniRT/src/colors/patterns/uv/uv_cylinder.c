@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Fill uv for checkerboard if intersection is on caps.
+ */
 static void	fill_uv_cb_caps(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv)
 {
 	double	right_ratio;
@@ -13,6 +16,9 @@ static void	fill_uv_cb_caps(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv)
 	uv->y = 0.5 + 0.5 * atan2(right_ratio, up_ratio) / M_PI;
 }
 
+/**
+ * @brief Fill uv for bump map if intersection is on caps part.
+ */
 static void	fill_uv_bm_caps(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv,
 	double dot)
 {
@@ -30,6 +36,9 @@ static void	fill_uv_bm_caps(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv,
 	uv->y = 0.5 + 0.5 * up_ratio / cy->r;
 }
 
+/**
+ * @brief Fill uv if intersection is on lateral part.
+ */
 static void	fill_uv_lateral(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv)
 {
 	double	first_ratio;
@@ -42,6 +51,9 @@ static void	fill_uv_lateral(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv)
 	uv->y = 0.5 + 0.5 * atan2(first_ratio, up_ratio) / M_PI;
 }
 
+/**
+ * @brief Manage what uv must be filled.
+ */
 static void	manage_fill(const t_cylinder *cy, t_intersec *inter, int is_cb,
 	int is_bm)
 {
@@ -70,6 +82,9 @@ static void	manage_fill(const t_cylinder *cy, t_intersec *inter, int is_cb,
 	}
 }
 
+/**
+ * @brief Fill uv for checkerboard and bump map.
+ */
 void	fill_uv_cy(t_intersec *inter)
 {
 	t_cylinder_obj	*cy_obj;

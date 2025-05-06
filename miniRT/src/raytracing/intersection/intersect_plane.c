@@ -12,7 +12,7 @@
  * @param os_dot_odir The dot product between the vecor (object-start ray) and
  * the object direction.
  * @param ray_dir The ray direction.
- * @return A positive double or INFINITY if there is no solution are an
+ * @return A positive double or INFINITY if there is no solution, or an
  * infinity.
  */
 static double	intersect_pl(const t_plane *pl, double os_dot_odir,

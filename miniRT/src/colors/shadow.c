@@ -3,9 +3,11 @@
 #include "minirt.h"
 
 /**
- * @brief Determine whether the object is in the shade or not
- * in order to know whether it is illuminated or not.
- * @return 1 if the object is in the shadow.
+ * @brief Determine the smallest t factor of the intersection between an object
+ * and the light ray (from light to intersection point).
+ * @details Allow to know if light cross another object before reach the
+ * current intersection point.
+ * @return A positive double or INFINITY if there is no solution.
  */
 static double	intersect_light(t_obj *obj, t_ray *ray)
 {
@@ -26,8 +28,8 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 
 /**
  * @brief Determine whether the object is in the shade or not
- * in order to know whether it is illuminated or not.
- * @return 1 if the object is in the shadow.
+ * in order to know whether it's lighted or not.
+ * @return 1 if the object is in the shadow, 0 else.
  */
 int	shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p)
 {

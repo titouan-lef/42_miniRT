@@ -2,6 +2,14 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Calculates cosinus between old and new normal and
+ * vector(intersection, light) to determine if pixel is lighted.
+ * @param l The light.
+ * @param soluce The soluce structure of intersection.
+ * @param old_n The normal before apply bump mapping.
+ * @param fact The array where results are set.
+ */
 void	cos_angle_light(const t_light *l, const t_soluce *soluce,
 	const t_vec3 *old_n, double fact[2])
 {

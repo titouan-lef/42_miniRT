@@ -21,6 +21,9 @@ static void	fill_uv(const t_vec3 *p, void *arg, t_vec2 *uv)
 		uv->y = 1 + uv->y;
 }
 
+/**
+ * @brief Fill uv for checkerboard and bump map.
+ */
 void	fill_uv_pl(t_intersec *inter)
 {
 	int	is_cb;

@@ -22,14 +22,14 @@ static void	fill_uv_obj(t_intersec *inter)
 }
 
 /**
- * @brief Allows you to have the color of object
- * depending on the option (color, texture or checkerboard).
- * @return color of object
+ * @brief Allows you to have the color of object depending on the
+ * option (color, texture or checkerboard).
+ * @return Color of object.
  */
 static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 {
-	t_vec3			color;
 	const t_pattern	*pattern;
+	t_vec3			color;
 
 	pattern = &inter->obj->pattern;
 	if (pattern->texture.name == NULL)
@@ -42,8 +42,8 @@ static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 }
 
 /**
- * @brief Assemble the 3 colors present in the t_phong 
- * to obtain the final pixel color.
+ * @brief Assemble the 3 colors present in the t_phong to obtain the final
+ * pixel color.
  */
 static t_color	mix_color_and_lights(const t_phong *phong, t_vec3 *c_obj)
 {
@@ -101,7 +101,7 @@ static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
  * else calculate object UV to apply texture and bump map
  * followed by the application of ambient, difused and specular lighting
  * and shwadow.
- * @return t_color The final pixel color.
+ * @return The final pixel color.
  */
 t_color	lighting(t_scene *scene, t_intersec *inter)
 {
