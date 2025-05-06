@@ -1,26 +1,26 @@
 Lumière faible
-0.5		9,4,25
+L 0,0,0 0.5		9,4,25
 
 Lumière normale
-1.0 	19,9,50	
+L 0,0,0 1.0 	19,9,50	
 
 Lumière forte
-1.5 	28,14,75
+L 0,0,0 1.0     42,21,113
 
 Lumière intense
-2.0 	38,19,100
+L 0,0,0 1.0 	7638,200
 
 Soleil	Jaune-Blanc Lumière chaude et naturelle
-1.0		255,250,220
+L 0,0,0 1.0		255,250,220
 
 Lampe LED	Blanc pur Éclairage direct et neutre
-1.0		255,255, 255
+L 0,0,0 1.0		255,255, 255
 
 Lune Bleu clair Éclairage froid et doux
-1.0		100,100,255
+L 0,0,0 1.0		100,100,255
 
 Feu Orange-Rouge Lumière chaleureuse et dynamique
-1.0		255,120,60
+L 0,0,0 1.0		255,120,60
 
 Lumière d intérieur	Jaune doux 
-1.0		255,230,180
+L 0,0,0 1.0		255,230,180
