@@ -17,7 +17,7 @@ static void	window_hook(int event, void *param)
 		mlx_loop_end((mlx_context)param);
 }
 
-static void	change_resol(t_graph_sys	*mlx, int *resol)
+static void	change_resol(t_graph_sys *mlx, int *resol)
 {
 	*resol = 1 - *resol;
 	if (*resol == 1)
@@ -49,9 +49,9 @@ static void	key_hook_fwin(int key, void *param)
 		fullscreen = 1 - fullscreen;
 		mlx_set_window_fullscreen(mlx->mlx, mlx->win, fullscreen);
 	}
-	if (key == SDL_SCANCODE_F10)
+	else if (key == SDL_SCANCODE_F10)
 		change_resol(mlx, &resol);
-	if (key == SDL_SCANCODE_F9)
+	else if (key == SDL_SCANCODE_F9)
 	{
 		mlx->menu.mouse_is_hide = 1 - mlx->menu.mouse_is_hide;
 		if (mlx->menu.mouse_is_hide == 1)
