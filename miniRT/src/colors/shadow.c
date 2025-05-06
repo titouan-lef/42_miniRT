@@ -36,9 +36,11 @@ int	shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p)
 	double	dist_min;
 
 	ray.s = light->pos;
+	if (ft_is_equal_vec3(p, &light->pos))
+		return (1);
 	ray.dir = ft_diff_vec3(p, &light->pos);
 	dist_min = ft_norm_vec3(&ray.dir);
-	ray.dir = ft_normalize_vec3(&ray.dir);
+	ray.dir = ft_scalmult_vec3(&ray.dir, 1.0 / dist_min);
 	while (*tab_obj != NULL)
 	{
 		dist = intersect_light(*tab_obj, &ray);

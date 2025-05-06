@@ -7,6 +7,12 @@ void	cos_angle_light(const t_light *l, const t_soluce *soluce,
 {
 	t_vec3	pl;
 
+	if (ft_is_equal_vec3(&soluce->p, &l->pos))
+	{
+		fact[0] = 0;
+		fact[1] = 0;
+		return ;
+	}
 	pl = ft_create_normalized_vec3(&soluce->p, &l->pos);
 	fact[0] = ft_dot_vec3(&pl, old_n);
 	fact[1] = ft_dot_vec3(&pl, &soluce->n);

@@ -3,7 +3,10 @@
 #include "minirt.h"
 
 /**
- * @brief Get the object color of the first object intersect by the ray.
+ * @brief Update the intersect structure with the closest intersection.
+ * If there is no intersection, inter->obj will be NULL.
+ * @param tab_obj The array of objects.
+ * @param inter The intersection structure.
  */
 static void	raytracers(t_obj **tab_obj, t_intersec *inter)
 {
@@ -32,49 +35,53 @@ static void	raytracers(t_obj **tab_obj, t_intersec *inter)
 }
 
 /**
- * @brief Get the ray direction as a function of camera direction.
- * @details Angle is define by dot product because the 2 vector are normalized.
- * Camera is considerate at the position (0,0,0).
- * @param basic_dir Ray direction if camera has (0,0,1) direction.
- * @param cam_dir Camera direction.
- * @warning Pixel and camera direction must be nonzero vector and camera
- * direction must be normalized.
+ * @brief Create the ray.
+ * @details The ray direction is the local direction after base change defined
+ * by camera coordinate system. local_dir->z > 0, so normalize function can't
+ * fail.
+ * @param local_dir The ray direction if camera has (0,0,1) direction.
+ * @param cam The camera.
  */
-static t_ray	get_ray(const t_vec3 *local_dir, const t_cam *cam)
+static t_ray	create_ray(const t_vec3 *local_dir, const t_cam *cam)
 {
 	t_ray	ray;
+	t_base	base;
 
 	ray.s = cam->pos;
-	ray.dir.x = cam->right.x * local_dir->x + cam->up.x * local_dir->y
-		+ cam->dir.x * local_dir->z;
-	ray.dir.y = cam->right.y * local_dir->x + cam->up.y * local_dir->y
-		+ cam->dir.y * local_dir->z;
-	ray.dir.z = cam->right.z * local_dir->x + cam->up.z * local_dir->y
-		+ cam->dir.z * local_dir->z;
+	base.e1 = cam->right;
+	base.e2 = cam->up;
+	base.e3 = cam->dir;
+	ray.dir = change_base(&base, local_dir);
 	ray.dir = ft_normalize_vec3(&ray.dir);
 	return (ray);
 }
 
+/**
+ * @brief Get the intersection structure define by the nearest intersection
+ * between a ray and all objects.
+ * @param local_dir The ray direction if camera has (0,0,1) direction.
+ * @param cam The camera.
+ * @param tab_obj The array of objects.
+ */
 static t_intersec	get_near_intersec(const t_vec3 *local_dir,
 	const t_cam *cam, t_obj **tab_obj)
 {
 	t_intersec	inter;
 
 	inter.obj = NULL;
-	inter.ray = get_ray(local_dir, cam);
+	inter.ray = create_ray(local_dir, cam);
 	inter.soluce.t = INFINITY;
 	raytracers(tab_obj, &inter);
 	return (inter);
 }
 
 /**
- * @details To optimize calculations, camera has a position (0,0,0) and a
- * direction (0,0,1), pixel has a position(
- * 	[-width screen / 2, width screen / 2],
- * 	[-height screen / 2, height screen / 2],
- * 	screen distance
- * ). The real position and direction are manage with get_ray_dir() and
- * raytracers().
+ * @brief Put all pixels  on an image. The color of a pixel is defined by the
+ * object's color intersected and the light algorithm.
+ * @details To define rays, a camera has a position (0,0,0) and a
+ * direction (0,0,1). The real position and direction are managed with
+ * create_ray().
+ * @param scene The scene structure.
  */
 void	ray_lauch(t_scene *scene)
 {

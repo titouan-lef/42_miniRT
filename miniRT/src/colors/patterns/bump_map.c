@@ -3,20 +3,6 @@
 #include "minirt.h"
 
 /**
- * @brief Resets the contact normal vector in the world base.
- * @return new vector normal to intersecting.
- */
-t_vec3	change_base(const t_base *base, const t_vec3 *v)
-{
-	t_vec3	new;
-
-	new.x = base->e1.x * v->x + base->e2.x * v->y + base->e3.x * v->z;
-	new.y = base->e1.y * v->x + base->e2.y * v->y + base->e3.y * v->z;
-	new.z = base->e1.z * v->x + base->e2.z * v->y + base->e3.z * v->z;
-	return (new);
-}
-
-/**
  * @brief Takes the vector normal to the contact store in color in the file.
  * @return Vector normal to the contact.
  */

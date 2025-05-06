@@ -24,6 +24,13 @@ static double	c_calculation(const t_vec3 *os, double os_dot_odir, double r)
 	return (dot - os_dot_odir * os_dot_odir - r * r);
 }
 
+/**
+ * @brief Get the smallest factor of intersection greater than or equal to 1.
+ * @param mathcy The pre-calculated mathematics.
+ * @param ray The ray.
+ * @return The smallest t factor define on [1, INFINITY[. If INFINITY is
+ * returned, no intersections found.
+ */
 double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray)
 {
 	double	result;
@@ -37,6 +44,12 @@ double	solve_eq_cy(const t_math_cy *mathcy, const t_ray *ray)
 	return (result);
 }
 
+/**
+ * @brief Initialize the pre-calculated mathematics.
+ * @param ray_s The start of the ray.
+ * @param cy The cylinder.
+ * @param mathcy The pre-calculated mathematics.
+ */
 void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 	t_math_cy *mathcy)
 {

@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 16:09:54 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/04/22 19:14:20 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:46:39 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,6 @@ t_vec2	ft_create_normalized_vec2(const t_vec2 *p1, const t_vec2 *p2)
 	v = ft_diff_vec2(p2, p1);
 	v = ft_normalize_vec2(&v);
 	return (v);
-}
-
-/**
- * @brief Check if vector is a zero vector, that is a vector(0, 0).
- */
-int	ft_is_zero_vec2(const t_vec2 *v)
-{
-	return (v->x == 0 && v->y == 0);
 }
 
 /**
