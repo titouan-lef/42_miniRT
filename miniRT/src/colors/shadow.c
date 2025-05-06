@@ -2,6 +2,11 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Determine whether the object is in the shade or not
+ * in order to know whether it is illuminated or not.
+ * @return 1 if the object is in the shadow.
+ */
 static double	intersect_light(t_obj *obj, t_ray *ray)
 {
 	double	dist;
@@ -19,6 +24,11 @@ static double	intersect_light(t_obj *obj, t_ray *ray)
 	return (dist);
 }
 
+/**
+ * @brief Determine whether the object is in the shade or not
+ * in order to know whether it is illuminated or not.
+ * @return 1 if the object is in the shadow.
+ */
 int	shadow(t_obj **tab_obj, const t_light *light, const t_vec3 *p)
 {
 	t_ray	ray;

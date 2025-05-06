@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Calculates uv as a function of shape.
+ */
 static void	fill_uv_obj(t_intersec *inter)
 {
 	if (inter->obj->type == SPHERE)
