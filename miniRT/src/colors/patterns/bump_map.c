@@ -2,6 +2,10 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Resets the contact normal vector in the world base.
+ * @return new vector normal to intersecting.
+ */
 t_vec3	change_base(const t_base *base, const t_vec3 *v)
 {
 	t_vec3	new;
@@ -12,6 +16,10 @@ t_vec3	change_base(const t_base *base, const t_vec3 *v)
 	return (new);
 }
 
+/**
+ * @brief Takes the vector normal to the contact store in color in the file.
+ * @return Vector normal to the contact.
+ */
 static t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img,
 	const t_vec2 *uv_bm)
 {
@@ -26,6 +34,10 @@ static t_vec3	get_normal_from_img(const mlx_context *mlx, const t_img *img,
 	return (normal);
 }
 
+/**
+ * @brief Modifies the normal vector found intersecting
+ * with the normal vector to the contact contained in the bump map.
+ */
 void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 {
 	const t_img		*bump;
