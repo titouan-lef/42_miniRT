@@ -26,13 +26,12 @@ static int	inter_lateral_cy(const t_cylinder *cy, double t, t_intersec *inter)
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	op = ft_diff_vec3(&p, &cy->pos);
 	m = ft_dot_vec3(&op, &cy->dir);
-	if (fabs(m) > cy->hh)
+	if (m < -cy->hh || m > cy->hh)
 		return (0);
 	m_odir = ft_scalmult_vec3(&cy->dir, m);
 	inter->soluce.t = t;
 	inter->soluce.p = p;
-	n = ft_diff_vec3(&op, &m_odir);
-	n = ft_normalize_vec3(&n);
+	n = ft_create_normalized_vec3(&m_odir, &op);
 	update_n_soluce(&n, &inter->ray.dir, &inter->soluce);
 	return (1);
 }

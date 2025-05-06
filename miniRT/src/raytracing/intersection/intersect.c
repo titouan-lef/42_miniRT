@@ -18,11 +18,15 @@ int	intersect_base(const t_vec3 *base_center, double r, double t,
 	t_intersec *inter)
 {
 	t_vec3	p;
+	t_vec3	pbase;
+	double	sq_dist;
 
 	if (t >= inter->soluce.t - EPSILON)
 		return (0);
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
-	if (ft_distance_vec3(&p, base_center) > r)
+	pbase = ft_diff_vec3(base_center, &p);
+	sq_dist = ft_dot_vec3(&pbase, &pbase);
+	if (sq_dist > r * r)
 		return (0);
 	inter->soluce.t = t;
 	inter->soluce.p = p;
@@ -64,8 +68,7 @@ void	update_soluce_sp(const t_obj *obj, const t_ray *ray, t_soluce *soluce)
 
 	sp_obj = (t_sphere_obj *)obj->data;
 	soluce->p = ft_translation_vec3(&ray->s, &ray->dir, soluce->t);
-	n = ft_diff_vec3(&soluce->p, &sp_obj->sp.pos);
-	n = ft_normalize_vec3(&n);
+	n = ft_create_normalized_vec3(&sp_obj->sp.pos, &soluce->p);
 	update_n_soluce(&n, &ray->dir, soluce);
 }
 
