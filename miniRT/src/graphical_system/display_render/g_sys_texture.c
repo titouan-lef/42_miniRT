@@ -4,6 +4,7 @@
 
 /**
  * @brief Init texture or/and bump if a file path is present.
+ * @param pat Is a pattern of the obj.
  * @return 1 if mlx_new_image_from_file failed.
  */
 static int	init_texture(t_pattern *pat, mlx_context *mlx)

@@ -25,7 +25,6 @@ void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys)
 	clean_mlx_sys(g_sys);
 }
 
-
 /**
  * @brief Destroys all texture (texture and bump)
  */

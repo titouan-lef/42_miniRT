@@ -64,6 +64,11 @@ static void	update(void *param)
 		menu_management(scene);
 }
 
+/**
+ * @brief Manages program display, graphics rendering,
+ * keyboard and mouse management.
+ * @return 1 if init_grraphical_data or init_all_texture failed.
+ */
 int	manage_graphical_system(t_scene	*scene)
 {
 	if (init_graphical_data(&scene->g_sys))

@@ -2,6 +2,12 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Manages camera translation according to keyboard key.
+ * @details W and S moov to forward.
+ * A and D moov to left and right.
+ * SPACE and F moov toup and down.
+ */
 static void	camera_translation(t_cam *cam, int key)
 {
 	if (key == SDL_SCANCODE_W)
@@ -19,8 +25,8 @@ static void	camera_translation(t_cam *cam, int key)
 }
 
 /**
- * @brief rotation on x and y
- * @details make a ratio of mouse moove for create a director vector
+ * @brief Rotation on x and y.
+ * @details Make a ratio of mouse moove for create a director vector.
  */
 static void	camera_rotation(t_cam *cam, double x, double y)
 {
@@ -43,8 +49,8 @@ static void	camera_rotation(t_cam *cam, double x, double y)
 }
 
 /**
- * @brief handle a mouse mmove
- * @details when you moove the mouse the camera rotate
+ * @brief Handle a mouse mmove
+ * @details When you moove the mouse the camera rotate
  */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys)
 {
@@ -74,6 +80,9 @@ void	camera_rotation_key(t_cam *cam, int key)
 	}
 }
 
+/**
+ * @brief Manages camera movement.
+ */
 void	key_hook_cam(int key, void *param)
 {
 	t_scene	*scene;
