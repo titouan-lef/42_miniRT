@@ -4,9 +4,9 @@
 
 /**
  * @brief Manages camera translation according to keyboard key.
- * @details W and S moov to forward.
- * A and D moov to left and right.
- * SPACE and F moov toup and down.
+ * @details W and S move to forward.
+ * A and D move to left and right.
+ * SPACE and F move toup and down.
  */
 static void	camera_translation(t_cam *cam, int key)
 {
@@ -26,7 +26,7 @@ static void	camera_translation(t_cam *cam, int key)
 
 /**
  * @brief Rotation on x and y.
- * @details Make a ratio of mouse moove for create a director vector.
+ * @details Make a ratio of mouse move for create a director vector.
  */
 static void	camera_rotation(t_cam *cam, double x, double y)
 {
@@ -49,8 +49,8 @@ static void	camera_rotation(t_cam *cam, double x, double y)
 }
 
 /**
- * @brief Handle a mouse mmove
- * @details When you moove the mouse the camera rotate
+ * @brief Handle a mouse move.
+ * @details When you move the mouse the camera rotate.
  */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys)
 {

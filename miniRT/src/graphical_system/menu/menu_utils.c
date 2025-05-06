@@ -5,11 +5,11 @@
 /**
  * @brief Defile the value with a start, end and increment.
  */
-void	defile(size_t *position, int end, int moov)
+void	defile(size_t *position, int end, int move)
 {
 	int	new;
 
-	new = *position + moov;
+	new = *position + move;
 	if (new < 0)
 		*position = end;
 	else if (new > end)

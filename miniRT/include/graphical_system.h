@@ -109,7 +109,7 @@ void	clean_mlx_sys(t_graph_sys *g_sys);
 /** @file event.c */
 void	on_event(t_scene *scene);
 
-/** @file camera_moov.c */
+/** @file camera_move.c */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
 
@@ -135,7 +135,7 @@ void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere);
  *  @details MENU
  ***********************************************/
 /** @file menu_utils.c */
-void	defile(size_t *position, int end, int moov);
+void	defile(size_t *position, int end, int move);
 void	reset_menu(t_menu *menu);
 int		init_menu(t_graph_sys *g_sys);
 

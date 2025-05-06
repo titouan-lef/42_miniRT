@@ -45,7 +45,7 @@ void	key_hook_select_change(int key, void *param)
 }
 
 /**
- * @brief Manageme key for modification data obj select
+ * @brief Management key for modification data obj select.
  */
 void	data_change(int key, void *param)
 {
