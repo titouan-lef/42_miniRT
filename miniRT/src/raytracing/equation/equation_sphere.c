@@ -2,9 +2,6 @@
 
 #include "minirt.h"
 
-/**
- * @brief Get a factor define by ray_dir.x^2 + ray_dir.y^2 + ray_dir.z^2.
- */
 static double	a_calculation(const t_vec3 *ray_dir)
 {
 	double	result;
@@ -13,10 +10,6 @@ static double	a_calculation(const t_vec3 *ray_dir)
 	return (result);
 }
 
-/**
- * @brief Get a factor define by :
- * 2*((p.x-s.x) * ray_dir.x + (p.y-s.y) * ray_dir.y + (p.z-s.z) * ray_dir.z).
- */
 static double	b_calculation(const t_vec3 *os, const t_vec3 *ray_dir)
 {
 	double	result;
@@ -43,11 +36,10 @@ static double	c_calculation(const t_vec3 *os, double r)
  * y : p.y + ray_dir.y * t
  * z : p.z + ray_dir.z * t
  * After development equation become : a * t^2 + b * t + c = 0
- * @param sphere Sphere object.
- * @param ray_dir Direction vector of the ray (vector from camera to pixel).
- * @param p A start point of the ray (camera position).
- * @return A factor define on [1, INFINITY[. If INFINITY is return,
- * no intersections found.
+ * @param mathsp The pre-calculated mathematics.
+ * @param ray_dir Ray direction.
+ * @return The smallest t factor define on [1, INFINITY[. If INFINITY is
+ * returned, no intersections found.
  */
 double	solve_eq_sp(const t_math_sp *mathsp, const t_vec3 *ray_dir)
 {
@@ -61,6 +53,12 @@ double	solve_eq_sp(const t_math_sp *mathsp, const t_vec3 *ray_dir)
 	return (result);
 }
 
+/**
+ * @brief Initialize the pre-calculated mathematics.
+ * @param ray_s The start of the ray.
+ * @param sp The sphere.
+ * @param mathsp The pre-calculated mathematics.
+ */
 void	init_math_sp(const t_vec3 *ray_s, const t_sphere *sp, t_math_sp *mathsp)
 {
 	t_vec3	os;

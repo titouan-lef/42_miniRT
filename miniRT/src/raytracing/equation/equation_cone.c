@@ -27,6 +27,14 @@ static double	c_calculation(const t_vec3 *bs, double bs_dot_odir,
 	return (dot - angle_factor * bs_dot_odir * bs_dot_odir);
 }
 
+/**
+ * @brief Get 2 factors of intersection greater than or equal to 1.
+ * @param mathco The pre-calculated mathematics.
+ * @param ray The ray.
+ * @param result The array that will store the 2 potential solutions.
+ * @return The factors are defined on [1, INFINITY[. If INFINITY is
+ * returned, no intersections found.
+ */
 void	solve_eq_co(const t_math_co *mathco, const t_ray *ray, double result[2])
 {
 	double	a;
@@ -37,6 +45,12 @@ void	solve_eq_co(const t_math_co *mathco, const t_ray *ray, double result[2])
 	quadratic_equation(result, a, b, mathco->c_factor);
 }
 
+/**
+ * @brief Initialize the pre-calculated mathematics.
+ * @param ray_s The start of the ray.
+ * @param co The cone.
+ * @param mathco The pre-calculated mathematics.
+ */
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco)
 {
 	t_vec3	b;
