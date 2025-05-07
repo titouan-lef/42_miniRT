@@ -33,7 +33,7 @@ static t_vec3	get_obj_color(t_graph_sys *g_sys, const t_intersec *inter)
 
 	pattern = &inter->obj->pattern;
 	if (pattern->texture.name == NULL)
-		color = pattern->colors;
+		color = pattern->color;
 	else
 		color = color_from_img(g_sys, inter);
 	if (pattern->checkerboard != 0)

@@ -101,7 +101,7 @@ static int	take_texture_files(char **name, char *str)
  */
 int	take_pattern(t_pattern *pattern, char **tab)
 {
-	if (take_color(&pattern->colors, tab[0]))
+	if (take_color(&pattern->color, tab[0]))
 	{
 		print_error_message(ERR_COLOR);
 		return (1);

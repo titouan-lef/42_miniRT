@@ -68,6 +68,12 @@ typedef struct s_double_buffer
 
 /***********************************************
  * @struct Graphical System
+ * @param mlx Mlx context
+ * @param win Mlx window
+ * @param buff Double buffer
+ * @param menu Menu
+ * @param def_w Width definition
+ * @param def_h Height definition
  ***********************************************/
 typedef struct s_graph_sys
 {
@@ -91,6 +97,10 @@ typedef struct s_base
 
 /***********************************************
  * @struct Image
+ * @param name Image name
+ * @param img Mlx image
+ * @param width Width
+ * @param heigth Heigth
  ***********************************************/
 typedef struct s_img
 {
@@ -102,19 +112,23 @@ typedef struct s_img
 
 /***********************************************
  * @struct Pattern
+ * @param bump Bump map image
+ * @param texture Texture image
+ * @param color Object color
+ * @param checkerboard Number of split for checkerboard
  ***********************************************/
 typedef struct s_pattern
 {
 	t_img		bump;
 	t_img		texture;
-	t_vec3		colors;
+	t_vec3		color;
 	int			checkerboard;
 }	t_pattern;
 
 /***********************************************
  * @struct Normal Map
- * @param base Base (tangent, bitangent, normal).
- * @param n Normal get with an image.
+ * @param base Base (tangent, bitangent, normal)
+ * @param n Normal get with an image
  ***********************************************/
 typedef struct s_normal_map
 {
@@ -124,8 +138,8 @@ typedef struct s_normal_map
 
 /***********************************************
  * @struct Ambient Light
- * @param color Light color.
- * @param lr Light ratio.
+ * @param color Light color
+ * @param lr Light ratio
  ***********************************************/
 typedef struct s_amb
 {
@@ -135,9 +149,9 @@ typedef struct s_amb
 
 /***********************************************
  * @struct Point Light
- * @param color Light color.
- * @param lbr Light brightness.
- * @param pos Light position.
+ * @param color Light color
+ * @param lbr Light brightness
+ * @param pos Light position
  ***********************************************/
 typedef struct s_light
 {
@@ -148,6 +162,9 @@ typedef struct s_light
 
 /***********************************************
  * @struct Phong Shading
+ * @param ambient Ambient light color
+ * @param diffuse Diffuse light color
+ * @param specular Specular light color
  ***********************************************/
 typedef struct s_phong
 {
@@ -158,16 +175,24 @@ typedef struct s_phong
 
 /***********************************************
  * @struct Object
+ * @param pattern Object pattern
+ * @param type Object type
+ * @param data Object data
  ***********************************************/
 typedef struct s_obj
 {
 	t_pattern	pattern;
-	int			type;
+	t_obj_type	type;
 	void		*data;
 }	t_obj;
 
 /***********************************************
  * @struct Camera
+ * @param pos Position
+ * @param dir Orientation vector
+ * @param right Right vector
+ * @param up Up vector
+ * @param fov Field of view
  ***********************************************/
 typedef struct s_cam
 {
@@ -180,7 +205,8 @@ typedef struct s_cam
 
 /***********************************************
  * @struct Sphere
- * @param
+ * @param pos Position
+ * @param r Radius
  ***********************************************/
 typedef struct s_sphere
 {
@@ -190,6 +216,8 @@ typedef struct s_sphere
 
 /***********************************************
  * @struct Mathematics Sphere
+ * @param os Vector(object, start ray)
+ * @param c_factor C factor of quadratic equation
  ***********************************************/
 typedef struct s_math_sp
 {
@@ -207,7 +235,11 @@ typedef struct s_sphere_obj
 }	t_sphere_obj;
 
 /***********************************************
- * @struct Plane
+ * @struct Plane Object
+ * @param pl Plane
+ * @param right Right vector
+ * @param up Up vector
+ * @param math_os_dot_odir Vector(object, start ray) . Vector(object direction)
  ***********************************************/
 typedef struct s_plane_obj
 {
@@ -219,6 +251,12 @@ typedef struct s_plane_obj
 
 /***********************************************
  * @struct Cylinder
+ * @param pos Position
+ * @param dir Orientation vector
+ * @param right Right vector
+ * @param up Up vector
+ * @param hh Half height
+ * @param r Radius
  ***********************************************/
 typedef struct s_cylinder
 {
@@ -232,6 +270,14 @@ typedef struct s_cylinder
 
 /***********************************************
  * @struct Mathematics Cylinder
+ * @param os Vector(object, start ray)
+ * @param os_dot_odir Vector(object, start ray) . Vector(object direction)
+ * @param c_factor C factor of quadratic equation
+ * @param b Center of bottom cap
+ * @param t Center of top cap
+ * @param bs_dot_odir Vector(b, start ray) . Vector(object direction)
+ * @param ts_dot_odir Vector(t, start ray) . Vector(object direction)
+ * @param raydir_dot_odir Vector(ray direction) . Vector(object direction)
  ***********************************************/
 typedef struct s_math_cy
 {
@@ -256,6 +302,12 @@ typedef struct s_cylinder_obj
 
 /***********************************************
  * @struct Cone
+ * @param pos Position
+ * @param dir Orientation vector
+ * @param right Right vector
+ * @param up Up vector
+ * @param h Height
+ * @param r Radius
  ***********************************************/
 typedef struct s_cone
 {
@@ -269,6 +321,14 @@ typedef struct s_cone
 
 /***********************************************
  * @struct Mathematics Cone
+ * @param b Center of bottom cap
+ * @param bs Vector(b, start ray)
+ * @param angle_factor Factor angle
+ * @param bs_dot_odir Vector(b, start ray) . Vector(object direction)
+ * @param c_factor C factor of quadratic equation
+ * @param t Center of top cap
+ * @param ts_dot_odir Vector(t, start ray) . Vector(object direction)
+ * @param raydir_dot_odir Vector(ray direction) . Vector(object direction)
  ***********************************************/
 typedef struct s_math_co
 {
@@ -293,6 +353,11 @@ typedef struct s_cone_obj
 
 /***********************************************
  * @struct Scene
+ * @param tab_obj Object table
+ * @param tab_l Light table
+ * @param amb Ambiant light
+ * @param cam Camera
+ * @param g_sys Graphical system
  ***********************************************/
 typedef struct s_scene
 {
@@ -305,8 +370,8 @@ typedef struct s_scene
 
 /***********************************************
  * @struct Ray
- * @param s Ray start.
- * @param dir Ray direction.
+ * @param s Ray start
+ * @param dir Ray direction
  ***********************************************/
 typedef struct s_ray
 {
@@ -316,6 +381,9 @@ typedef struct s_ray
 
 /***********************************************
  * @struct Solution Equation
+ * @param t Scalar of equation to determine the point of intersection
+ * @param p Intersection point
+ * @param n Normal of intersection point
  ***********************************************/
 typedef struct s_soluce
 {
@@ -326,6 +394,11 @@ typedef struct s_soluce
 
 /***********************************************
  * @struct Intersection
+ * @param ray Ray
+ * @param obj Object
+ * @param soluce Solution of intersection
+ * @param uv_cb Checkboard uv at the intersection
+ * @param uv_bm Bump map uv at the intersection
  ***********************************************/
 typedef struct s_intersec
 {
@@ -338,6 +411,8 @@ typedef struct s_intersec
 
 /***********************************************
  * @struct Parsing List
+ * @param lst_obj Object list
+ * @param lst_l Light list
  ***********************************************/
 typedef struct s_lst_parse
 {
