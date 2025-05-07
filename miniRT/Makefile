@@ -85,7 +85,7 @@ SRC :=	minirt.c \
 		graphical_system/movement/event.c \
 		graphical_system/movement/edit_obj.c \
 		graphical_system/movement/edit_data.c \
-		graphical_system/movement/camera_moov.c \
+		graphical_system/movement/camera_move.c \
 		graphical_system/movement/get_obj_data.c \
 		graphical_system/menu/put_menu.c \
 		graphical_system/menu/event_menu.c \
