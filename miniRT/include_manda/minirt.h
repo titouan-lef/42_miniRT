@@ -7,14 +7,27 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <SDL2/SDL_scancode.h>
+# include "../MacroLibX/includes/mlx.h"
 # include "libft.h"
+# include "macro.h"
 # include "minirt_struct.h"
-# include "minirt_parsing.h"
-# include "minirt_raytrace.h"
+# include "parsing.h"
+# include "raytracing.h"
 # include "graphical_system.h"
-# include "minirt_colors.h"
-# include "menu_text.h"
+# include "lighting.h"
+# include "texturing.h"
 
+/***********************************************
+ * @brief MANDATORY WINDOW NAME
+ ***********************************************/
+# ifndef WIN_NAME
+#  define WIN_NAME "miniRT"
+# endif
+
+/***********************************************
+ * @brief MANDATORY PARAMETER
+ ***********************************************/
 # ifndef COLOR_LIGHT_ACTIVE
 #  define COLOR_LIGHT_ACTIVE 0
 # endif
@@ -51,33 +64,9 @@
 #  define NB_PARAM_CO 9
 # endif
 
-# ifndef ERR_AMBIENT
-#  define ERR_AMBIENT "An AMBIENT are wrong.\n\
-Try like this \"A 0.2 255,255,255\"\n\
-Identifier: A\n\
-Ambient lighting ratio in the range [0.0,1.0]\n\
-R, G, B colors in the range [0-255]: 255, 255, 255"
-# endif
-
-# ifndef ERR_LIGHT
-#  define ERR_LIGHT "An LIGHT are wrong.\n\
-Try like this \"L -40.0,50.0,0.0 0.6 10,0,255\"\n\
-Identifier: L\n\
-x, y, z coordinates of the light point: -40.0,50.0,0.0\n\
-The light brightness ratio in the range [0.0,1.0]: 0.6\n\
-R, G, B colors in the range [0-255]: 10, 0, 255"
-# endif
-
-# ifndef ERR_CAMERA
-#  define ERR_CAMERA "Your CAMERA is wrong.\n\
-Try like this \"C -50.0,0,20 0,0,1 70\"\n\
-Identifier: C\n\
-x, y, z coordinates of the viewpoint: -50.0,0,20\n\
-3D normalized orientation vector, in the range [-1,1]\
-for each x, y, z axis: 0.0,0.0,1.0\n\
-FOV: Horizontal field of view in degrees in the range [0,180]: 70"
-# endif
-
+/***********************************************
+ * @brief MANDATORY ERROR
+ ***********************************************/
 # ifndef ERR_SPHERE
 #  define ERR_SPHERE "A SPHERE are wrong.\n\
 Try like this \"sp 0.0,0.0,20.6 12.6 10,0,255\"\n\
@@ -110,35 +99,15 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 # endif
 
 # ifndef ERR_CONE
-#  define ERR_CONE "A CONE are wrong.\n\
-Try like this \"co 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
-Identifier: co\n\
-x, y, z coordinates of the center of the cone: 50.0,0.0,20.6\n\
-3D normalized vector of axis of the cone, in the range [-1,1]\
-for each x, y, z axis: 0.0,0.0,1.0\n\
-The cone diameter: 14.2\n\
-The cone height: 21.42\n\
-R, G, B colors in the range [0,255]: 10, 0, 255"
+#  define ERR_CONE "Undefined"
 # endif
 
 # ifndef ERR_ARG
 #  define ERR_ARG "Please try ./miniRT \"files_name.rt\""
 # endif
 
-# ifndef ERR_NB_AMB
-#  define ERR_NB_AMB "The SCENE need one ambient AMBIENT"
-# endif
-
-# ifndef ERR_NB_CAM
-#  define ERR_NB_CAM "The SCENE need one CAM"
-# endif
-
 # ifndef ERR_NO_LIGHT
 #  define ERR_NO_LIGHT "The SCENE need one LIGHT"
-# endif
-
-# ifndef ERR_NO_OBJ
-#  define ERR_NO_OBJ "The SCENE need minimum one OBJ"
 # endif
 
 # ifndef ERR_ID
@@ -146,26 +115,12 @@ R, G, B colors in the range [0,255]: 10, 0, 255"
 Valid identifier are A, C, L, SP, PL and CY"
 # endif
 
-# ifndef ERR_MALLOC
-#  define ERR_MALLOC "Malloc have failed please\
-check the presence, permission and reload"
-# endif
-
-# ifndef ERR_OPEN
-#  define ERR_OPEN "Open have failed please\
-check the presence, permission and reload"
-# endif
-
 # ifndef ERR_TYPE_FILE
-#  define ERR_TYPE_FILE "The texture or bump file is not in .png format"
+#  define ERR_TYPE_FILE "Undefined"
 # endif
 
 # ifndef ERR_CHECKERBOARD
-#  define ERR_CHECKERBOARD "A Checkerboard argument are wrong"
-# endif
-
-# ifndef ERR_COLOR
-#  define ERR_COLOR "A Color argument are wrong"
+#  define ERR_CHECKERBOARD "Undefined"
 # endif
 
 #endif

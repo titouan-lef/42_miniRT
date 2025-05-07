@@ -1,17 +1,11 @@
 /// @todo header
 
-#ifndef MINIRT_RAYTRACE_H
-# define MINIRT_RAYTRACE_H
+#ifndef RAYTRACING_H
+# define RAYTRACING_H
 
 # include "minirt.h"
 
-# ifndef EPSILON
-#  define EPSILON 0.000001
-# endif
-
-/***********************************************
- * @file ray.c
- ***********************************************/
+/** @file ray.c */
 void	ray_lauch(t_scene *scene);
 
 /***********************************************
@@ -76,35 +70,5 @@ void	init_math_cy(const t_vec3 *ray_s, const t_cylinder *cy,
 void	solve_eq_co(const t_math_co *mathco, const t_ray *ray,
 			double result[2]);
 void	init_math_co(const t_vec3 *ray_s, const t_cone *co, t_math_co *mathco);
-
-/***********************************************
- * @details UV
- ***********************************************/
-/** @file uv_sp.c */
-void	fill_uv_sp(t_intersec *inter);
-
-/** @file uv_pl.c */
-void	fill_uv_pl(t_intersec *inter);
-
-/** @file uv_cy.c */
-void	fill_uv_cy(t_intersec *inter);
-
-/** @file uv_co.c */
-void	fill_uv_co(t_intersec *inter);
-
-/***********************************************
- * @details NORMAL
- ***********************************************/
-/** @file normal_map_sp.c */
-void	fill_tangent_space_pl(const t_intersec *inter, t_normal_map *map);
-
-/** @file normal_map_pl.c */
-void	fill_tangent_space_sp(const t_intersec *inter, t_normal_map *map);
-
-/** @file normal_map_cy.c */
-void	fill_tangent_space_cy(const t_intersec *inter, t_normal_map *map);
-
-/** @file normal_map_co.c */
-void	fill_tangent_space_co(const t_intersec *inter, t_normal_map *map);
 
 #endif

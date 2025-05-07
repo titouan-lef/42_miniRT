@@ -4,82 +4,18 @@
 # define GRAPHICAL_SYSTEM_H
 
 # include "minirt.h"
-# include <SDL2/SDL_scancode.h>
-# include "../MacroLibX/includes/mlx.h"
+
+/** @file event.c */
+void	on_event(t_scene *scene);
 
 /***********************************************
- * @brief Error Code
+ *  @details DISPLAY RENDER
  ***********************************************/
-# ifndef ERR_MLX_INIT
-#  define ERR_MLX_INIT "Error initialization mlx"
-# endif
+/** @file clean_graphical_system.c */
+void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys);
+void	clean_texture(t_obj **tab_obj, mlx_context mlx, size_t tab_size);
+void	clean_mlx_sys(t_graph_sys *g_sys);
 
-# ifndef ERR_BACK_BUFFER_INIT
-#  define ERR_BACK_BUFFER_INIT "Error initialization back buffer"
-# endif
-
-# ifndef ERR_FRONT_BUFFER_INIT
-#  define ERR_FRONT_BUFFER_INIT "Error initialization front buffer"
-# endif
-
-# ifndef ERR_WIN_INIT
-#  define ERR_WIN_INIT "Error initialization window"
-# endif
-
-# ifndef ERR_MENU_INIT
-#  define ERR_MENU_INIT "Error initialization menu"
-# endif
-
-/***********************************************
- * @brief Window Info
- ***********************************************/
-# ifndef WIN_W
-#  define WIN_W 1920.0
-# endif
-
-# ifndef WIN_H
-#  define WIN_H 1080.0
-# endif
-
-# ifndef WIN_HW
-#  define WIN_HW 960.0
-# endif
-
-# ifndef WIN_HH
-#  define WIN_HH 540.0
-# endif
-
-# ifndef WIN_NAME
-#  define WIN_NAME "miniRT"
-# endif
-
-# ifndef FPS
-#  define FPS 24
-# endif
-
-# ifndef SENSITIVITY
-#  define SENSITIVITY 0.1
-# endif
-
-# ifndef DIST
-#  define DIST 10
-# endif
-
-# ifndef ANGLE_ROTATION
-#  define ANGLE_ROTATION 0.05
-# endif
-
-# ifndef MENU_W
-#  define MENU_W 220
-# endif
-
-# ifndef MENU_H
-#  define MENU_H 180
-# endif
-
-/***********************************************
- *  @details DISPLAY_RENDER
- ***********************************************/
 /** @file double_buffer.c */
 void	swap_buffer(t_double_buffer *buff);
 void	clean_double_buffer(t_graph_sys *g_sys);
@@ -95,23 +31,20 @@ int		init_window(t_graph_sys *g_sys);
 /** @file graphical_system.c */
 int		manage_graphical_system(t_scene	*scene);
 
-/** @file g_sys_texture.c */
+/** @file image_to_texture.c */
 int		init_all_texture(t_obj **tab_obj, mlx_context mlx);
 
-/** @file graphical_system_clear.c */
-void	clean_graph_sys(t_scene	*scene, t_graph_sys *g_sys);
-void	clean_texture(t_obj **tab_obj, mlx_context mlx, size_t tab_size);
-void	clean_mlx_sys(t_graph_sys *g_sys);
-
 /***********************************************
- *  @details MOVEMENT
+ *  @details EDIT PROPERTY
  ***********************************************/
-/** @file event.c */
-void	on_event(t_scene *scene);
-
-/** @file camera_move.c */
+/** @file edit_camera.c */
 void	mouse_event(t_scene *scene, t_graph_sys *g_sys);
 void	key_hook_cam(int key, void *param);
+
+/** @file edit_element.c */
+void	data_change_translation(t_vec3 *pos, int coord, int sign);
+void	key_hook_select_change(int key, void *param);
+void	data_change(int key, void *param);
 
 /** @file get_obj_data.c */
 t_vec3	*get_vec_pos(t_obj *obj);
@@ -119,11 +52,6 @@ t_vec3	*get_vec_dir(t_obj *obj);
 double	*get_obj_height(t_obj *obj);
 double	*get_obj_diam(t_obj *obj);
 int		get_range(t_obj *obj);
-
-/** @file edit_data.c */
-void	data_change_translation(t_vec3 *pos, int coord, int sign);
-void	key_hook_select_change(int key, void *param);
-void	data_change(int key, void *param);
 
 /** @file edit_obj.c */
 void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone);
@@ -139,13 +67,13 @@ void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign);
 /***********************************************
  *  @details MENU
  ***********************************************/
+/** @file menu_manager.c */
+void	menu_event(t_scene *scene);
+
 /** @file menu_utils.c */
 void	defile(size_t *position, int end, int move);
 void	reset_menu(t_menu *menu);
 int		init_menu(t_graph_sys *g_sys);
-
-/** @file event_menu.c */
-void	menu_event(t_scene *scene);
 
 /** @file put_menu_obj.c */
 void	menu_obj_display(t_scene *scene);
