@@ -24,6 +24,11 @@ void	data_change_translation(t_vec3 *pos, int coord, int sign)
 		pos->z += DIST * sign;
 }
 
+/**
+ * @brief Manageme select data you want modifie
+ * @details Use the up arrow to move up in the menu
+ * and the down arrow to move down.
+ */
 void	key_hook_select_change(int key, void *param)
 {
 	t_scene	*scene;
@@ -46,6 +51,7 @@ void	key_hook_select_change(int key, void *param)
 
 /**
  * @brief Manageme key for modification data obj select
+ * @details With right_arrow for increase and left_arrow for decrease
  */
 void	data_change(int key, void *param)
 {
