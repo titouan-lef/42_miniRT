@@ -1,0 +1,46 @@
+Plane normal :
+- red :
+pl 0,0,0 0,0,1 255,0,0
+
+- green :
+pl 0,0,0 0,0,1 0,255,0
+
+- blue :
+pl 0,0,0 0,0,1 0,0,255
+
+- yellow :
+pl 0,0,0 0,0,1 255,255,0
+
+- cyan :
+pl 0,0,0 0,0,1 0,255,255
+
+- magenta :
+pl 0,0,0 0,0,1 255,0,255
+
+Plane Bonus :
+- red :
+pl 0,0,0 0,0,1 255,0,0 0 NULL NULL
+
+- green :
+pl 0,0,0 0,0,1 0,255,0 0 NULL NULL
+
+- blue :
+pl 0,0,0 0,0,1 0,0,255 0 NULL NULL
+
+- yellow :
+pl 0,0,0 0,0,1 255,255,0 0 NULL NULL
+
+- cyan :
+pl 0,0,0 0,0,1 0,255,255 0 NULL NULL
+
+- magenta :
+pl 0,0,0 0,0,1 255,0,255 0 NULL NULL
+
+- chekerboard :
+pl 0,0,0 0,0,1 0,0,0 2 NULL NULL
+
+- chekerboard :
+pl 0,0,0 0,0,1 255,0,255 2 NULL NULL
+
+- wall :
+pl 0,0,0 0,0,1 0,0,0 0 ../bump_files/Brick_texture.png ../bump_files/Brick_Bump.png

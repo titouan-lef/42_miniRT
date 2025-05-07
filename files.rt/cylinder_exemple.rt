@@ -1,0 +1,46 @@
+Cylinder normal :
+- red :
+cy 0,0,0 0,0,1 100 2000 255,0,0
+
+- green :
+cy 0,0,0 0,0,1 100 2000 0,255,0
+
+- blue :
+cy 0,0,0 0,0,1 100 2000 0,0,255
+
+- yellow :
+cy 0,0,0 0,0,1 100 2000 255,255,0
+
+- cyan :
+cy 0,0,0 0,0,1 100 2000 0,255,255
+
+- magenta :
+cy 0,0,0 0,0,1 100 2000 255,0,255
+
+Cylinder Bonus :
+- red :
+cy 0,0,0 0,0,1 100 2000 255,0,0 0 NULL NULL
+
+- green :
+cy 0,0,0 0,0,1 100 2000 0,255,0 0 NULL NULL
+
+- blue :
+cy 0,0,0 0,0,1 100 2000 0,0,255 0 NULL NULL
+
+- yellow :
+cy 0,0,0 0,0,1 100 2000 255,255,0 0 NULL NULL
+
+- cyan :
+cy 0,0,0 0,0,1 100 2000 0,255,255 0 NULL NULL
+
+- magenta :
+cy 0,0,0 0,0,1 100 2000 255,0,255 0 NULL NULL
+
+- chekerboard :
+cy 0,0,0 0,0,1 100 2000 0,0,0 2 NULL NULL
+
+- chekerboard :
+cy 0,0,0 0,0,1 100 2000 255,0,255 2 NULL NULL
+
+- wall :
+cy 0,0,0 0,0,1 100 2000 0,0,0 0 ../bump_files/Brick_texture.png ../bump_files/Brick_Bump.png

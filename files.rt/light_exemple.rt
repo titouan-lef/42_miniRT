@@ -1,26 +1,26 @@
-Lumière faible
-0.5		9,4,25
+Low light7
+L 0,0,0 0.5		9,4,25
 
-Lumière normale
-1.0 	19,9,50	
+Normal light
+L 0,0,0 1.0 	19,9,50	
 
-Lumière forte
-1.5 	28,14,75
+Bright light
+L 0,0,0 1.0     42,21,113
 
-Lumière intense
-2.0 	38,19,100
+Intense light
+L 0,0,0 1.0 	76,38,200
 
-Soleil	Jaune-Blanc Lumière chaude et naturelle
-1.0		255,250,220
+Sunshine Yellow-White Warm, natural light
+L 0,0,0 1.0		255,250,220
 
-Lampe LED	Blanc pur Éclairage direct et neutre
-1.0		255,255, 255
+Pure white LED lamp Neutral direct lighting
+L 0,0,0 1.0		255,255, 255
 
-Lune Bleu clair Éclairage froid et doux
-1.0		100,100,255
+Light blue moon Cool, soft lighting
+L 0,0,0 1.0		100,100,255
 
-Feu Orange-Rouge Lumière chaleureuse et dynamique
-1.0		255,120,60
+Orange-Red light Warm, dynamic light
+L 0,0,0 1.0		255,120,60
 
-Lumière d intérieur	Jaune doux 
-1.0		255,230,180
+Interior light Soft yellow 
+L 0,0,0 1.0		255,230,180

@@ -1,0 +1,46 @@
+Cone normal :
+- red :
+co 0,0,0 0,0,1 100 2000 255,0,0
+
+- green :
+co 0,0,0 0,0,1 100 2000 0,255,0
+
+- blue :
+co 0,0,0 0,0,1 100 2000 0,0,255
+
+- yellow :
+co 0,0,0 0,0,1 100 2000 255,255,0
+
+- coan :
+co 0,0,0 0,0,1 100 2000 0,255,255
+
+- magenta :
+co 0,0,0 0,0,1 100 2000 255,0,255
+
+Cone Bonus :
+- red :
+co 0,0,0 0,0,1 100 2000 255,0,0 0 NULL NULL
+
+- green :
+co 0,0,0 0,0,1 100 2000 0,255,0 0 NULL NULL
+
+- blue :
+co 0,0,0 0,0,1 100 2000 0,0,255 0 NULL NULL
+
+- yellow :
+co 0,0,0 0,0,1 100 2000 255,255,0 0 NULL NULL
+
+- coan :
+co 0,0,0 0,0,1 100 2000 0,255,255 0 NULL NULL
+
+- magenta :
+co 0,0,0 0,0,1 100 2000 255,0,255 0 NULL NULL
+
+- chekerboard :
+co 0,0,0 0,0,1 100 2000 0,0,0 2 NULL NULL
+
+- chekerboard :
+co 0,0,0 0,0,1 100 2000 255,0,255 2 NULL NULL
+
+- wall :
+co 0,0,0 0,0,1 100 2000 0,0,0 0 ../bump_files/Brick_texture.png ../bump_files/Brick_Bump.png

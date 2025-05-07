@@ -1,0 +1,49 @@
+Sphere normal ;
+- red :
+sp 0,0,0 200 255,0,0
+
+- green :
+sp 0,0,0 200 0,255,0
+
+- blue :
+sp 0,0,0 200 0,0,255
+
+- yelllow :
+sp 0,0,0 200 255,255,0
+
+- cyan :
+sp 0,0,0 200 0,255,255
+
+- mangeta :
+sp 0,0,0 200 255,0,255
+
+Sphere bonus ;
+- red :
+sp 0,0,0 200 255,0,0 0 NULL NULL
+
+- green :
+sp 0,0,0 200 0,255,0 0 NULL NULL
+
+- blue :
+sp 0,0,0 200 0,0,255 0 NULL NULL
+
+- yelllow :
+sp 0,0,0 200 255,255,0 0 NULL NULL
+
+- cyan :
+sp 0,0,0 200 0,255,255 0 NULL NULL
+
+- mangeta :
+sp 0,0,0 200 255,0,255 0 NULL NULL
+
+- chekerboard :
+sp 0,0,0 200 0,0,0 3 NULL NULL
+
+- planet :
+sp 0,0,0 1000 255,0,0 0 ../bump_files/earth_daymap.png ../bump_files/earth_normal_map.png
+
+
+
+
+
+
