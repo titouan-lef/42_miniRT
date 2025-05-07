@@ -8,3 +8,6 @@ Quand 2 cylindre se croise a l interrieur de l intersection il y a quelque pixel
 KD la gestion diffuse speculare (actuellement definie dans le header color)
 Verif allocation et malloc a null;
 Faire image noire de base au lieu de put les pixel noir un par un.
+
+Verifier pleine ecran
+Verifier message erreur (ex: a la fois open et err cone)
