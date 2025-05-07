@@ -33,9 +33,12 @@ static void	change_resol(t_graph_sys	*mlx, int *resol)
 }
 
 /**
- * @brief Manage full screen with F11
+ * @brief Manage full screen with F11, change resol with F10
+ * and catch the mouse with F9
  * @details When you press F11 the window pass in full mode 
- * if you repress window repasse in normal mode
+ * When you press F10 the resolution goes from 1920 x 1080 to 120x120
+ * When you press F9 the mouse is catched and used to rotate the camera
+ * if you repress F11, F10 and F9 in normal mode
  */
 static void	key_hook_fwin(int key, void *param)
 {

@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Change the size of object.
+ */
 static void	obj_resize(double *r, int sign)
 {
 	double	new;
