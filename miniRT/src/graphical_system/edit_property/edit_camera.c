@@ -66,13 +66,13 @@ void	camera_rotation_key(t_cam *cam, int key)
 {
 	double	angle;
 
-	if (key == SDL_SCANCODE_Q)
+	if (key == SDL_SCANCODE_E)
 	{
 		angle = M_PI * 0.1 * SENSITIVITY;
 		cam->right = ft_rotation_quat(&cam->right, angle, &cam->dir);
 		cam->up = ft_cross_vec3(&cam->dir, &cam->right);
 	}
-	if (key == SDL_SCANCODE_E)
+	else if (key == SDL_SCANCODE_Q)
 	{
 		angle = -M_PI * 0.1 * SENSITIVITY;
 		cam->right = ft_rotation_quat(&cam->right, angle, &cam->dir);

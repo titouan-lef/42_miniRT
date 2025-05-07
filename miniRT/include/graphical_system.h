@@ -131,6 +131,11 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder);
 void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane);
 void	edit_sphere(int sign, t_menu *menu, t_sphere_obj *sphere);
 
+/** @file edit_utils.c */
+void	rotation_on_forward(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign);
+void	rotation_on_up(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign);
+void	rotation_on_right(t_vec3 *dir, t_vec3 *right, t_vec3 *up, int sign);
+
 /***********************************************
  *  @details MENU
  ***********************************************/
