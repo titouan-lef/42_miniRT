@@ -2,6 +2,9 @@
 
 #include "minirt.h"
 
+/**
+ * @brief Close window when you press ESCAPE
+ */
 static void	key_hook(int key, void *param)
 {
 	mlx_context	mlx;
@@ -11,6 +14,9 @@ static void	key_hook(int key, void *param)
 		mlx_loop_end(mlx);
 }
 
+/**
+ * @brief Close window when you click on cross
+ */
 static void	window_hook(int event, void *param)
 {
 	if (event == WIN_CLOSE)
