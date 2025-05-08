@@ -180,6 +180,10 @@
 #  define ERR_MENU_INIT "Error initialization menu"
 # endif
 
+# ifndef ERR_TEXTURE_INIT
+#  define ERR_TEXTURE_INIT "Error initialization texture"
+# endif
+
 # ifndef ERR_AMBIENT
 #  define ERR_AMBIENT "An AMBIENT are wrong.\n\
 Try like this \"A 0.2 255,255,255\"\n\
@@ -231,6 +235,22 @@ check the presence, permission and reload"
 
 # ifndef ERR_COLOR
 #  define ERR_COLOR "A Color argument are wrong"
+# endif
+
+# ifndef ERR_OBJ_SPHERE
+#  define ERR_OBJ_SPHERE "Object error : Sphere"
+# endif
+
+# ifndef ERR_OBJ_PLANE
+#  define ERR_OBJ_PLANE "Object error : Plane"
+# endif
+
+# ifndef ERR_OBJ_CYLINDER
+#  define ERR_OBJ_CYLINDER "Object error : Cylinder"
+# endif
+
+# ifndef ERR_OBJ_CONE
+#  define ERR_OBJ_CONE "Object error : Cone"
 # endif
 
 #endif

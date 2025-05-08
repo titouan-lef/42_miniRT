@@ -35,8 +35,7 @@ static void	fill_tab(void **tab, t_list *lst)
 }
 
 /**
- * @brief Convert lst_obj and lst_l when the parsing is finish.
- * for the execution after.
+ * @brief Convert lst_obj and lst_l to table.
  * @return Return 1 if an allocation have failed.
  */
 int	lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse)
@@ -49,6 +48,7 @@ int	lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse)
 	if (!scene->tab_obj)
 	{
 		clear_lst_parse(&lst_parse, free);
+		print_error_message(ERR_MALLOC);
 		return (1);
 	}
 	nb_l = ft_lstsize(lst_parse->lst_l);
@@ -57,6 +57,8 @@ int	lst_parse_to_tab(t_scene *scene, t_lst_parse *lst_parse)
 	{
 		clear_lst_parse(&lst_parse, free);
 		free(scene->tab_obj);
+		scene->tab_obj = NULL;
+		print_error_message(ERR_MALLOC);
 		return (1);
 	}
 	fill_tab((void **)scene->tab_obj, lst_parse->lst_obj);

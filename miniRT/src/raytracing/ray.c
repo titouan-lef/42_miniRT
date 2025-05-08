@@ -69,6 +69,8 @@ static t_intersec	get_near_intersec(const t_vec3 *local_dir,
 	t_intersec	inter;
 
 	inter.obj = NULL;
+	inter.uv_bm = ft_create_vec2(0, 0);
+	inter.uv_cb = ft_create_vec2(0, 0);
 	inter.ray = create_ray(local_dir, cam);
 	inter.soluce.t = INFINITY;
 	raytracers(tab_obj, &inter);

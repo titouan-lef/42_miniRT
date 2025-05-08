@@ -26,8 +26,8 @@ int	take_dimension(double *dimension, char *str)
 }
 
 /**
- * @brief Check the files types is valid is .rt.
- * @return 1 if the files types is invalid
+ * @brief Check if the files types is valid.
+ * @return 1 if the files types is invalid, 0 else.
  */
 int	check_files_type(char *str, char *type)
 {
@@ -37,9 +37,9 @@ int	check_files_type(char *str, char *type)
 
 	size = ft_strlen(str);
 	size_type = ft_strlen(type);
-	i = 1;
 	if (size <= size_type)
 		return (1);
+	i = 1;
 	while (i < size_type)
 	{
 		if (str[size - i] != type[size_type - i])
@@ -75,7 +75,7 @@ int	check_valid_id(char *str, int single_entity[2])
 		return (PLANE);
 	if (!ft_strcmp(str, "cy"))
 		return (CYLINDER);
-	if (!ft_strcmp(str, "co") && CONE_ACTIVE == 1)
+	if (CONE_ACTIVE == 1 && !ft_strcmp(str, "co"))
 		return (CONE);
 	print_error_message(ERR_ID);
 	return (OBJ_ERR);
@@ -87,7 +87,7 @@ int	check_valid_id(char *str, int single_entity[2])
  * @param right Right direction.
  * @param up Up direction.
  */
-void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up)
+void	init_local_coordinates(const t_vec3 *dir, t_vec3 *right, t_vec3 *up)
 {
 	t_vec3	up_wish;
 

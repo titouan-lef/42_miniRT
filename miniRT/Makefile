@@ -1,4 +1,14 @@
-#/// @todo header
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
+#    Updated: 2025/05/08 15:44:49 by pchalmin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #===================== BASE =====================#
 
@@ -47,7 +57,6 @@ SRC :=	minirt.c \
 		graphical_system/edit_property/edit_element.c \
 		graphical_system/edit_property/edit_obj.c \
 		graphical_system/edit_property/edit_utils.c \
-		graphical_system/edit_property/get_obj_data.c \
 		graphical_system/menu/menu_manager.c \
 		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/put_menu_obj.c \
@@ -96,17 +105,13 @@ SRC :=	minirt.c \
 
 OBJ :=	$(SRC:%.c=$(BUILD_DIR)%.o)
 
+OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))
+
 #---------- BONUS ----------#
 
 OBJ_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.o)
 
-#---------------------------#
-
-OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))# $(shell dirname $(OBJ_BONUS)))
-
-#---------- BONUS ----------#
-
-OBJ_DIR_BONUS :=	$(sort $(shell dirname $(OBJ_BONUS)))# $(shell dirname $(OBJ_BONUS)))
+OBJ_DIR_BONUS :=	$(sort $(shell dirname $(OBJ_BONUS)))
 
 #================== DEPENDENCY ==================#
 

@@ -42,7 +42,6 @@ static int	init_graphical_data(t_graph_sys *g_sys)
 		clean_mlx_sys(g_sys);
 		return (1);
 	}
-	g_sys->menu.mouse_is_hide = 0;
 	g_sys->def_h = 1;
 	g_sys->def_w = 1;
 	return (0);
@@ -75,6 +74,7 @@ int	manage_graphical_system(t_scene	*scene)
 		return (1);
 	if (init_all_texture(scene->tab_obj, scene->g_sys.mlx))
 	{
+		mlx_destroy_image(scene->g_sys.mlx, scene->g_sys.menu.background);
 		clean_mlx_sys(&scene->g_sys);
 		return (1);
 	}

@@ -16,7 +16,7 @@ int		take_dimension(double *dimension, char *str);
 void	init_scene(t_scene *scene, t_lst_parse *lst_parse);
 int		check_files_type(char *str, char *type);
 int		check_valid_id(char *str, int single_entity[2]);
-void	init_local_coordinates(t_vec3 *dir, t_vec3 *right, t_vec3 *up);
+void	init_local_coordinates(const t_vec3 *dir, t_vec3 *right, t_vec3 *up);
 
 /** @file parsing_pattern.c */
 int		take_color(t_vec3 *colors, char *str);

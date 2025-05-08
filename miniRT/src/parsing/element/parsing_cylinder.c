@@ -13,7 +13,10 @@ static t_cylinder_obj	*alloc_new_cylinder(char **tab)
 
 	new_cy = malloc(sizeof(t_cylinder_obj));
 	if (!new_cy)
+	{
+		print_error_message(ERR_MALLOC);
 		return (NULL);
+	}
 	if (take_pos(&new_cy->cy.pos, tab[1])
 		|| take_dir(&new_cy->cy.dir, tab[2])
 		|| take_dimension(&new_cy->cy.r, tab[3])
@@ -47,7 +50,7 @@ int	cylinder_interpreter(t_list **lst_obj, char **tab)
 	if (alloc_new_obj(lst_obj, new_cy, tab + 5, CYLINDER))
 	{
 		free(new_cy);
-		print_error_message(ERR_CYLINDER);
+		ft_putendl_error(ERR_OBJ_CYLINDER);
 		return (1);
 	}
 	init_local_coordinates(&new_cy->cy.dir, &new_cy->cy.right, &new_cy->cy.up);

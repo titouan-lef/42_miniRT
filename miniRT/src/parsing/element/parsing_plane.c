@@ -14,12 +14,14 @@ static t_plane_obj	*alloc_new_plan(char **tab)
 
 	new_pl = malloc(sizeof(t_plane_obj));
 	if (!new_pl)
+	{
+		print_error_message(ERR_MALLOC);
 		return (NULL);
-	if (take_pos(&p, tab[1])
-		|| take_dir(&n, tab[2]))
+	}
+	if (take_pos(&p, tab[1]) || take_dir(&n, tab[2]))
 	{
 		print_error_message(ERR_PLANE);
-		free (new_pl);
+		free(new_pl);
 		return (NULL);
 	}
 	new_pl->pl = ft_create_plane(&n, &p);
@@ -45,7 +47,7 @@ int	plan_interpreter(t_list **lst_obj, char **tab)
 	if (alloc_new_obj(lst_obj, new_pl, tab + 3, PLANE))
 	{
 		free(new_pl);
-		print_error_message(ERR_PLANE);
+		ft_putendl_error(ERR_OBJ_PLANE);
 		return (1);
 	}
 	init_local_coordinates(&new_pl->pl.n, &new_pl->right, &new_pl->up);

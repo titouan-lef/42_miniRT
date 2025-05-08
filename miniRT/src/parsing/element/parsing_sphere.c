@@ -12,7 +12,10 @@ static t_sphere_obj	*alloc_new_sphere(char **tab)
 
 	new_sp = malloc(sizeof(t_sphere_obj));
 	if (!new_sp)
+	{
+		print_error_message(ERR_MALLOC);
 		return (NULL);
+	}
 	if (take_pos(&new_sp->sp.pos, tab[1])
 		|| take_dimension(&new_sp->sp.r, tab[2]))
 	{
@@ -43,7 +46,7 @@ int	sphere_interpreter(t_list **lst_obj, char **tab)
 	if (alloc_new_obj(lst_obj, new_sp, tab + 3, SPHERE))
 	{
 		free(new_sp);
-		print_error_message(ERR_SPHERE);
+		ft_putendl_error(ERR_OBJ_SPHERE);
 		return (1);
 	}
 	return (0);

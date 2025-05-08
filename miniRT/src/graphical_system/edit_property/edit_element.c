@@ -2,6 +2,14 @@
 
 #include "minirt.h"
 
+static int	get_range(t_obj *obj)
+{
+	if (obj->type == SPHERE || obj->type == PLANE)
+		return (3);
+	else
+		return (7);
+}
+
 static void	obj_data_change(t_obj *obj, t_menu *menu, int sign)
 {
 	if (obj->type == SPHERE)

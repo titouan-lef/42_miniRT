@@ -108,7 +108,7 @@ static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 	{
 		if (extrac_data(str, scene, lst_parse, single_entity))
 		{
-			free (str);
+			free(str);
 			return (1);
 		}
 		free(str);
@@ -119,7 +119,8 @@ static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
 		clear_lst_parse(&lst_parse, free);
 		return (1);
 	}
-	lst_parse_to_tab(scene, lst_parse);
+	if (lst_parse_to_tab(scene, lst_parse))
+		return (1);
 	return (0);
 }
 

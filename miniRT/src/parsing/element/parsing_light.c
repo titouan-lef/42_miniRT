@@ -20,7 +20,10 @@ static int	alloc_new_node(t_list **head, t_light *new_light)
 
 	new_node = ft_lstnew(new_light);
 	if (!new_node)
+	{
+		print_error_message(ERR_MALLOC);
 		return (1);
+	}
 	ft_lstadd_front(head, new_node);
 	return (0);
 }
@@ -35,7 +38,10 @@ static t_light	*alloc_new_light(char **tab)
 
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
+	{
+		print_error_message(ERR_MALLOC);
 		return (NULL);
+	}
 	if (take_pos(&new_light->pos, tab[1])
 		|| take_light_intensity(&new_light->lbr, tab[2])
 		|| take_color(&new_light->color, tab[3]))
@@ -44,6 +50,8 @@ static t_light	*alloc_new_light(char **tab)
 		free(new_light);
 		return (NULL);
 	}
+	if (COLOR_LIGHT_ACTIVE == 0)
+		new_light->color = ft_create_vec3(1.0, 1.0, 1.0);
 	return (new_light);
 }
 
@@ -56,13 +64,16 @@ int	light_interpreter(t_list **lst_l, char **tab)
 	t_light	*new_l;
 
 	if (ft_matrix_get_row((void **)tab) != 4)
+	{
+		print_error_message(ERR_LIGHT);
 		return (1);
+	}
 	new_l = alloc_new_light(tab);
 	if (!new_l)
 		return (1);
 	if (alloc_new_node(lst_l, new_l))
 	{
-		free (new_l);
+		free(new_l);
 		return (1);
 	}
 	return (0);
@@ -81,7 +92,5 @@ int	ambient_interpreter(t_scene *scene, char **tab)
 		print_error_message(ERR_AMBIENT);
 		return (1);
 	}
-	if (COLOR_LIGHT_ACTIVE == 0)
-		scene->amb.color = ft_create_vec3(1.0, 1.0, 1.0);
 	return (0);
 }
