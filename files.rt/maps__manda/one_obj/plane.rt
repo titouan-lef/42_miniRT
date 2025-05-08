@@ -4,4 +4,4 @@ C 0,0,-100 0,0,1 73
 
 L 0,0,-100 1 255,255,255
 
-pl 0,0,0 0,0,1.0 220,85,57 OFF ../bump_files/Brick_texture.png ../bump_files/Brick_Bump.png
+pl 0,0,0 0,0,1.0 220,85,57
