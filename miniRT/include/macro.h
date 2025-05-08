@@ -233,4 +233,20 @@ check the presence, permission and reload"
 #  define ERR_COLOR "A Color argument are wrong"
 # endif
 
+# ifndef ERR_OBJ_SPHERE
+#  define ERR_OBJ_SPHERE "Object error : Sphere"
+# endif
+
+# ifndef ERR_OBJ_PLANE
+#  define ERR_OBJ_PLANE "Object error : Plane"
+# endif
+
+# ifndef ERR_OBJ_CYLINDER
+#  define ERR_OBJ_CYLINDER "Object error : Cylinder"
+# endif
+
+# ifndef ERR_OBJ_CONE
+#  define ERR_OBJ_CONE "Object error : Cone"
+# endif
+
 #endif

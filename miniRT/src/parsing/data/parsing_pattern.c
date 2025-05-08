@@ -79,7 +79,7 @@ static int	take_texture_files(char **name, char *str)
 		return (1);
 	}
 	fd = open(str, O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 	{
 		print_error_message(ERR_OPEN);
 		return (1);
