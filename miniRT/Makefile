@@ -1,4 +1,14 @@
-#/// @todo header
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
+#    Updated: 2025/05/08 11:36:08 by pchalmin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 #===================== BASE =====================#
 
@@ -96,17 +106,13 @@ SRC :=	minirt.c \
 
 OBJ :=	$(SRC:%.c=$(BUILD_DIR)%.o)
 
+OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))
+
 #---------- BONUS ----------#
 
 OBJ_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.o)
 
-#---------------------------#
-
-OBJ_DIR :=	$(sort $(shell dirname $(OBJ)))# $(shell dirname $(OBJ_BONUS)))
-
-#---------- BONUS ----------#
-
-OBJ_DIR_BONUS :=	$(sort $(shell dirname $(OBJ_BONUS)))# $(shell dirname $(OBJ_BONUS)))
+OBJ_DIR_BONUS :=	$(sort $(shell dirname $(OBJ_BONUS)))
 
 #================== DEPENDENCY ==================#
 
