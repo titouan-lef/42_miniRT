@@ -1,13 +1,14 @@
 Rotation camera
-Bruit quand la light est inclut dans le plan
 Optimisation des ordre des objets
-Underflow parsing(uni8_t)
 Vector normaliser parsing;
-Gestion de l impressision ? (ajouter l impressision uiniquement avec l objet touche par le rayon)
-Quand 2 cylindre se croise a l interrieur de l intersection il y a quelque pixel eclairé
 KD la gestion diffuse speculare (actuellement definie dans le header color)
-Verif allocation et malloc a null;
-Faire image noire de base au lieu de put les pixel noir un par un.
+
+Verif allocation et malloc a null
+verif retour mlx function
 
 Verifier pleine ecran
-Verifier message erreur (ex: a la fois open et err cone)
+Supprimer -g Makefile
+cross product imprecision
+enlever message erreur normalize
+Ajouter lien source dans github
+data race event mlx ?
