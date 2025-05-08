@@ -3,6 +3,30 @@
 #include "minirt.h"
 
 /**
+ * @brief Fill background image for menu display with pixel's color defined
+ * in MENU_COLOR.
+ */
+static void	fill_background(t_graph_sys *g_sys)
+{
+	const mlx_color	color = {.rgba = MENU_COLOR};
+	int				x;
+	int				y;
+
+	x = 0;
+	while (x < MENU_W)
+	{
+		y = 0;
+		while (y < MENU_H)
+		{
+			mlx_set_image_pixel(g_sys->mlx, g_sys->menu.background,
+				x, y, color);
+			++y;
+		}
+		++x;
+	}
+}
+
+/**
  * @brief Defile the value with a start, end and increment.
  */
 void	defile(size_t *position, int end, int move)
@@ -29,29 +53,15 @@ void	reset_menu(t_menu *menu)
  */
 int	init_menu(t_graph_sys *g_sys)
 {
-	const mlx_color	color = {.rgba = MENU_COLOR};
-	int				x;
-	int				y;
-
 	g_sys->menu.background = mlx_new_image(g_sys->mlx, MENU_W, MENU_H);
 	if (g_sys->menu.background == MLX_NULL_HANDLE)
 	{
 		ft_putendl_error(ERR_MENU_INIT);
 		return (1);
 	}
-	x = 0;
-	while (x < MENU_W)
-	{
-		y = 0;
-		while (y < MENU_H)
-		{
-			mlx_set_image_pixel(g_sys->mlx, g_sys->menu.background,
-				x, y, color);
-			++y;
-		}
-		++x;
-	}
-	g_sys->menu.option = MENU_DISABLE;
+	fill_background(g_sys);
 	reset_menu(&g_sys->menu);
+	g_sys->menu.option = MENU_DISABLE;
+	g_sys->menu.mouse_is_hide = 0;
 	return (0);
 }

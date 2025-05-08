@@ -3,7 +3,7 @@
 #include "minirt.h"
 
 /**
- * @brief Close window when you press ESCAPE
+ * @brief Close window when you press ESCAPE.
  */
 static void	key_hook(int key, void *param)
 {
@@ -15,7 +15,7 @@ static void	key_hook(int key, void *param)
 }
 
 /**
- * @brief Close window when you click on cross
+ * @brief Close window when you click on cross.
  */
 static void	window_hook(int event, void *param)
 {
@@ -39,14 +39,14 @@ static void	change_resol(t_graph_sys *mlx, int *resol)
 }
 
 /**
- * @brief Manage full screen with F11, change resol with F10
- * and catch the mouse with F9
- * @details When you press F11 the window pass in full mode 
- * When you press F10 the resolution goes from 1920 x 1080 to 120x120
- * When you press F9 the mouse is catched and used to rotate the camera
- * if you repress F11, F10 and F9 in normal mode
+ * @brief Manage full screen with F11, change resolution with F10
+ * and catch the mouse with F9.
+ * @details When you press F11 the window pass in full mode.
+ * When you press F10 the resolution goes from 1920x1080 to 120x120.
+ * When you press F9 the mouse is catched and used to rotate the camera.
+ * If you repress F11, F10 and F9 in normal mode.
  */
-static void	key_hook_fwin(int key, void *param)
+static void	key_hook_win(int key, void *param)
 {
 	static int	fullscreen = 0;
 	static int	resol = 0;
@@ -77,7 +77,7 @@ void	on_event(t_scene *scene)
 	g_sys = &scene->g_sys;
 	mlx_on_event(g_sys->mlx, g_sys->win, MLX_WINDOW_EVENT, window_hook,
 		g_sys->mlx);
-	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYUP, key_hook_fwin,
+	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYUP, key_hook_win,
 		&scene->g_sys);
 	mlx_on_event(g_sys->mlx, g_sys->win, MLX_KEYDOWN, key_hook,
 		g_sys->mlx);

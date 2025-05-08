@@ -41,6 +41,8 @@ int	init_all_texture(t_obj **tab_obj, mlx_context mlx)
 	size_t		i;
 	t_pattern	*pat;
 
+	if (PATTERN_ACTIVE == 0)
+		return (0);
 	tab_size = ft_matrix_get_row((void **)tab_obj);
 	i = 0;
 	while (i < tab_size)
@@ -49,6 +51,7 @@ int	init_all_texture(t_obj **tab_obj, mlx_context mlx)
 		if (init_texture(pat, &mlx))
 		{
 			clean_texture(tab_obj, mlx, i);
+			ft_putendl_error(ERR_TEXTURE_INIT);
 			return (1);
 		}
 		i++;

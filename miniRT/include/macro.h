@@ -180,6 +180,10 @@
 #  define ERR_MENU_INIT "Error initialization menu"
 # endif
 
+# ifndef ERR_TEXTURE_INIT
+#  define ERR_TEXTURE_INIT "Error initialization texture"
+# endif
+
 # ifndef ERR_AMBIENT
 #  define ERR_AMBIENT "An AMBIENT are wrong.\n\
 Try like this \"A 0.2 255,255,255\"\n\

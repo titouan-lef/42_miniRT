@@ -6,7 +6,7 @@
 #    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
-#    Updated: 2025/05/08 11:36:08 by pchalmin         ###   ########.fr        #
+#    Updated: 2025/05/08 15:44:49 by pchalmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ SRC :=	minirt.c \
 		graphical_system/edit_property/edit_element.c \
 		graphical_system/edit_property/edit_obj.c \
 		graphical_system/edit_property/edit_utils.c \
-		graphical_system/edit_property/get_obj_data.c \
 		graphical_system/menu/menu_manager.c \
 		graphical_system/menu/menu_utils.c \
 		graphical_system/menu/put_menu_obj.c \

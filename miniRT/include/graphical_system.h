@@ -46,13 +46,6 @@ void	data_change_translation(t_vec3 *pos, int coord, int sign);
 void	key_hook_select_change(int key, void *param);
 void	data_change(int key, void *param);
 
-/** @file get_obj_data.c */
-t_vec3	*get_vec_pos(t_obj *obj);
-t_vec3	*get_vec_dir(t_obj *obj);
-double	*get_obj_height(t_obj *obj);
-double	*get_obj_diam(t_obj *obj);
-int		get_range(t_obj *obj);
-
 /** @file edit_obj.c */
 void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone);
 void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder);
