@@ -42,5 +42,6 @@ void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 	else
 		fill_tangent_space_co(inter, &map);
 	map.n = get_normal_from_img(&g_sys->mlx, bump, &inter->uv_bm);
-	inter->soluce.n = change_base(&map.base, &map.n);
+	if (!ft_is_zero_vec3(&map.n))
+		inter->soluce.n = change_base(&map.base, &map.n);
 }
