@@ -1,17 +1,16 @@
-A 1.0	255,255,255
+A 0.2	255,255,255
 
-C 0,0,-1920 0,0,1 73
+C 0,0,-1920		0,0,1 73
 
+pl 1000000,0,0		-1,0,0	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
+pl -1000000,0,0		1,0,0	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
+pl 0,1000000,0		0,-1,0	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
+pl 0,-1000000,0		0,1,0	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
+pl 0,0,1000000		0,0,-1	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
+pl 0,0,-1000000		0,0,1	220,85,57	0 ../bump_files/star_texture.png ../bump_files/stop_bump.png
 
-L 100,100,100 1 255,255,255
+sp 0,0,0			1000	255,255,255 0 ../bump_files/earth_texture.png ../bump_files/earth_bump.png
+sp 2000,0,2000		100		255,255,255 0 ../bump_files/moon_texture.png ../bump_files/moon_bump.png
+sp 150000,0,150000	20000	255,255,255 0 ../bump_files/sun_texture.png NULL
 
-pl 100000,0,0 -1,0,0 220,85,57 0 ../bump_files/etoile.png NULL
-pl -100000,0,0 1,0,0 220,85,57 0 ../bump_files/etoile.png NULL
-pl 0,100000,0 0,-1,0 220,85,57 0 ../bump_files/etoile.png NULL
-pl 0,-100000,0 0,1,0 220,85,57 0 ../bump_files/etoile.png NULL
-pl 0,0,100000 0,0,-1 220,85,57 0 ../bump_files/etoile.png NULL
-pl 0,0,-100000 0,0,1 220,85,57 0 ../bump_files/etoile.png NULL
-
-sp 0,0,0 1000 255,0,0 0 ../bump_files/earth_daymap.png ../bump_files/earth_normal_map.png
-
-L 100,100,100 1 255,255,240
+L 100000,0,100000			0.5 255,255,255

@@ -1,0 +1,33 @@
+A 0.5	255,255,255
+
+C 0,0,0		1,0,0 73
+
+pl 0,100,0			0,1,0	255,255,255		0 ../bump_files/grass_texture.png ../bump_files/grass_bump.png
+pl 0,-1000,0		0,1,0	0,0,255 		0 NULL NULL
+pl 1000,0,0			1,0,0	255,255,255		1 NULL NULL
+pl -1000,0,0		1,0,0	255,255,255		2 NULL NULL
+pl 0,0,1000			0,0,1	255,255,255		3 NULL NULL
+pl 0,0,-1000		0,0,1	255,255,255		4 NULL NULL
+
+sp 500,0,0			80	255,255,255 0 NULL NULL
+sp 500,-100,0		80	0,0,0 2 NULL NULL
+sp 500,-200,0		80	255,255,255 2 NULL NULL
+sp 500,-300,0		80	255,255,255 0 ../bump_files/brick_texture.png ../bump_files/brick_bump.png
+sp 500,-400,0		80	255,255,255 0 ../bump_files/brick_texture.png NULL
+sp 500,-500,0		80	255,255,255 1 ../bump_files/earth_texture.png ../bump_files/earth_bump.png
+
+cy 500,0,-300		0,1,0	40	80	255,255,255 0 NULL NULL
+cy 500,-100,-300	0,1,0	40	80	0,0,0 2 NULL NULL
+cy 500,-200,-300	0,1,0	40	80	255,255,255 2 NULL NULL
+cy 500,-300,-300	0,1,0	40	80	255,255,255 0 ../bump_files/brick_texture.png ../bump_files/brick_bump.png
+cy 500,-400,-300	0,1,0	40	80	255,255,255 0 ../bump_files/brick_texture.png NULL
+cy 500,-500,-300	0,1,0	40	80	255,255,255 1 ../bump_files/earth_texture.png ../bump_files/earth_bump.png
+
+co 500,0,300		0,1,0	40	80	255,255,255 0 NULL NULL
+co 500,-100,300		0,1,0	40	80	0,0,0 2 NULL NULL
+co 500,-200,300		0,1,0	40	80	255,255,255 2 NULL NULL
+co 500,-300,300		0,1,0	40	80	255,255,255 0 ../bump_files/brick_texture.png ../bump_files/brick_bump.png
+co 500,-400,300		0,1,0	40	80	255,255,255 0 ../bump_files/brick_texture.png NULL
+co 500,-500,300		0,1,0	40	80	255,255,255 1 ../bump_files/earth_texture.png ../bump_files/earth_bump.png
+
+L 0,0,0			0.5 255,255,255
