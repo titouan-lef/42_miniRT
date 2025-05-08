@@ -20,7 +20,10 @@ static int	alloc_new_node(t_list **head, t_light *new_light)
 
 	new_node = ft_lstnew(new_light);
 	if (!new_node)
+	{
+		print_error_message(ERR_MALLOC);
 		return (1);
+	}
 	ft_lstadd_front(head, new_node);
 	return (0);
 }
@@ -35,7 +38,10 @@ static t_light	*alloc_new_light(char **tab)
 
 	new_light = malloc(sizeof(t_light));
 	if (!new_light)
+	{
+		print_error_message(ERR_MALLOC);
 		return (NULL);
+	}
 	if (take_pos(&new_light->pos, tab[1])
 		|| take_light_intensity(&new_light->lbr, tab[2])
 		|| take_color(&new_light->color, tab[3]))
