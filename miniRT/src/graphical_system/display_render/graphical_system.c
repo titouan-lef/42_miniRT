@@ -3,7 +3,7 @@
 #include "minirt.h"
 
 /**
- * @brief Init mlx_context 
+ * @brief Init mlx_context
  * @return 1 if mlx_init failed.
  */
 static int	init_mlx(t_graph_sys *g_sys)
@@ -18,7 +18,7 @@ static int	init_mlx(t_graph_sys *g_sys)
 }
 
 /**
- * @brief Init all display environemnt 
+ * @brief Init all display environemnt
  * @return 1 if init_mlx or init_double_buffer init_window or init_menu failed.
  */
 static int	init_graphical_data(t_graph_sys *g_sys)
@@ -57,7 +57,7 @@ static void	update(void *param)
 	if (g_sys->menu.mouse_is_hide == 1)
 		mouse_event(scene, g_sys);
 	init_calculation(&scene->cam.pos, scene->tab_obj);
-	ray_lauch(scene);
+	ray_launch(scene);
 	put_image_to_win(&scene->g_sys);
 	if (g_sys->menu.option != MENU_DISABLE)
 		menu_management(scene);

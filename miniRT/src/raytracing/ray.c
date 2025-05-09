@@ -85,7 +85,7 @@ static t_intersec	get_near_intersec(const t_vec3 *local_dir,
  * create_ray().
  * @param scene The scene structure.
  */
-void	ray_lauch(t_scene *scene)
+void	ray_launch(t_scene *scene)
 {
 	t_intersec	inter;
 	t_vec3		local_dir;

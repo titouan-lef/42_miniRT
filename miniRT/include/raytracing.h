@@ -6,7 +6,7 @@
 # include "minirt.h"
 
 /** @file ray.c */
-void	ray_lauch(t_scene *scene);
+void	ray_launch(t_scene *scene);
 
 /***********************************************
  * @details CALCULATION

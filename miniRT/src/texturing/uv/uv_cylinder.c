@@ -57,8 +57,8 @@ static void	fill_uv_lateral(const t_vec3 *op, const t_cylinder *cy,	t_vec2 *uv)
 static void	manage_fill(const t_cylinder *cy, t_intersec *inter, int is_cb,
 	int is_bm)
 {
-	double			dot;
-	t_vec3			op;
+	double	dot;
+	t_vec3	op;
 
 	dot = ft_dot_vec3(&inter->soluce.n, &cy->dir);
 	op = ft_diff_vec3(&inter->soluce.p, &cy->pos);

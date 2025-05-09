@@ -29,10 +29,10 @@ void	bump_map(t_graph_sys *g_sys, t_intersec *inter)
 	const t_img		*bump;
 	t_normal_map	map;
 
-	if (inter->obj->pattern.bump.name == NULL)
+	bump = &inter->obj->pattern.bump;
+	if (bump->name == NULL)
 		return ;
 	map.base.e3 = inter->soluce.n;
-	bump = &inter->obj->pattern.bump;
 	if (inter->obj->type == SPHERE)
 		fill_tangent_space_sp(inter, &map);
 	else if (inter->obj->type == PLANE)
