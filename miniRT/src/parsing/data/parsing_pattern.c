@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:20 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:46:21 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	take_pattern(t_pattern *pattern, char **tab)
 		print_error_message(ERR_COLOR);
 		return (1);
 	}
-	if (PATTERN_ACTIVE == 1)
+	if (PATTERN_ENABLE == 1)
 	{
 		if (active_checkboard(&pattern->checkerboard, tab[1])
 			|| take_texture_files(&pattern->texture.name, tab[2])

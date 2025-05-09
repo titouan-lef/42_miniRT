@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:47:05 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:47:06 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static t_light	*alloc_new_light(char **tab)
 		free(new_light);
 		return (NULL);
 	}
-	if (COLOR_LIGHT_ACTIVE == 0)
+	if (COLOR_LIGHT_ENABLE == 0)
 		new_light->color = ft_create_vec3(1.0, 1.0, 1.0);
 	return (new_light);
 }

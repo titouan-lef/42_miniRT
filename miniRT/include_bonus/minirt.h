@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:42:26 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:42:29 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,24 @@
 /***********************************************
  * @brief BONUS PARAMETER
  ***********************************************/
-# ifndef COLOR_LIGHT_ACTIVE
-#  define COLOR_LIGHT_ACTIVE 1
+# ifndef COLOR_LIGHT_ENABLE
+#  define COLOR_LIGHT_ENABLE 1
 # endif
 
 # ifndef MAX_LIGHT
 #  define MAX_LIGHT INFINITY
 # endif
 
-# ifndef CONE_ACTIVE
-#  define CONE_ACTIVE 1
+# ifndef CONE_ENABLE
+#  define CONE_ENABLE 1
 # endif
 
-# ifndef SPECULAR_ACTIVE
-#  define SPECULAR_ACTIVE 1
+# ifndef SPECULAR_ENABLE
+#  define SPECULAR_ENABLE 1
 # endif
 
-# ifndef PATTERN_ACTIVE
-#  define PATTERN_ACTIVE 1
+# ifndef PATTERN_ENABLE
+#  define PATTERN_ENABLE 1
 # endif
 
 # ifndef NB_PARAM_SP

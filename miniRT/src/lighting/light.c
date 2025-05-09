@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:45:53 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:45:55 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
 	phong->diffuse = ft_create_vec3(0, 0, 0);
 	phong->specular = ft_create_vec3(0, 0, 0);
 	old_n = inter->soluce.n;
-	if (PATTERN_ACTIVE == 1)
+	if (PATTERN_ENABLE == 1)
 		bump_map(&scene->g_sys, inter);
 	while (*tab_l != NULL)
 	{
@@ -97,7 +97,7 @@ static void	apply_light_point(t_scene *scene, t_intersec *inter, t_phong *phong)
 			&& !shadow(scene->tab_obj, *tab_l, &inter->soluce.p))
 		{
 			apply_diffuse(*tab_l, &phong->diffuse, cos_angle[1]);
-			if (SPECULAR_ACTIVE == 1)
+			if (SPECULAR_ENABLE == 1)
 				apply_specular(*tab_l, &phong->specular, inter, cos_angle[1]);
 		}
 		++tab_l;

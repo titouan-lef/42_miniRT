@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:44:34 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:44:36 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	init_all_texture(t_obj **tab_obj, mlx_context mlx)
 	size_t		i;
 	t_pattern	*pat;
 
-	if (PATTERN_ACTIVE == 0)
+	if (PATTERN_ENABLE == 0)
 		return (0);
 	tab_size = ft_matrix_get_row((void **)tab_obj);
 	i = 0;

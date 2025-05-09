@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:25 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:46:26 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_valid_id(char *str, int single_entity[2])
 		return (PLANE);
 	if (!ft_strcmp(str, "cy"))
 		return (CYLINDER);
-	if (CONE_ACTIVE == 1 && !ft_strcmp(str, "co"))
+	if (CONE_ENABLE == 1 && !ft_strcmp(str, "co"))
 		return (CONE);
 	print_error_message(ERR_ID);
 	return (OBJ_ERR);
