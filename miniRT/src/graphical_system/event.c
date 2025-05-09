@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:42:44 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:42:46 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:53:55 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	key_hook_win(int key, void *param)
 	t_graph_sys	*mlx;
 
 	mlx = (t_graph_sys *)param;
-	if (key == SDL_SCANCODE_F11)
+	if (FULL_SCREEN_AVAILABLE && key == SDL_SCANCODE_F11)
 	{
 		fullscreen = 1 - fullscreen;
 		mlx_set_window_fullscreen(mlx->mlx, mlx->win, fullscreen);

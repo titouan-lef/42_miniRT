@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:41:40 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:41:42 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:56:29 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@
 
 # ifndef MENU_COLOR
 #  define MENU_COLOR 0x00000099
+# endif
+
+# ifndef FULL_SCREEN_AVAILABLE
+#  define FULL_SCREEN_AVAILABLE 0
 # endif
 
 # ifndef X
