@@ -1,4 +1,14 @@
-/// @todo header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_pattern.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 16:46:20 by tle-floc          #+#    #+#             */
+/*   Updated: 2025/05/09 16:46:21 by tle-floc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 
@@ -45,7 +55,7 @@ int	take_color(t_vec3 *colors, char *str)
 
 /**
  * @brief Enables the checkerboard option based on the number of separations.
- * @return Return 1 if the arg isn't valid or 
+ * @return Return 1 if the arg isn't valid or
  * the split checkerboard are to hight.
  */
 static int	active_checkboard(int *status, char *str)
@@ -95,7 +105,7 @@ static int	take_texture_files(char **name, char *str)
 }
 
 /**
- * @brief Allows you to initialize the entire pattern of the object. 
+ * @brief Allows you to initialize the entire pattern of the object.
  * (color, texture, bump map and checkerboard).
  * @return Return 1 if an argument was wrong or an allocation failed.
  */

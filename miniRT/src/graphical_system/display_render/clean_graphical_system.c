@@ -1,8 +1,18 @@
-/// @todo header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_graphical_system.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 16:42:57 by tle-floc          #+#    #+#             */
+/*   Updated: 2025/05/09 16:42:59 by tle-floc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 /**
- * @brief Destroys the environment of the entire 
+ * @brief Destroys the environment of the entire
  * macrolibx display system (wimdow, double buffer and context)
  */
 void	clean_mlx_sys(t_graph_sys *g_sys)

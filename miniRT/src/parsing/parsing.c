@@ -1,4 +1,14 @@
-/// @todo header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/09 16:46:09 by tle-floc          #+#    #+#             */
+/*   Updated: 2025/05/09 16:46:10 by tle-floc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minirt.h"
 
@@ -93,7 +103,7 @@ static int	extrac_data(char *line, t_scene *scene, t_lst_parse *lst_parse,
 
 /**
  * @brief Reads the file line by line, passing it as an argument.
- * @return 1 if we have a probleme with allocation or file 
+ * @return 1 if we have a probleme with allocation or file
  * or data are invalid. And write the error massage depending on the error.
  */
 static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
@@ -130,7 +140,7 @@ static int	read_scene(int fd, t_scene *scene, t_lst_parse *lst_parse)
  * @param argv Absolute path for the file.rt .
  * @param argc	Number of argument.
  * @param scene	Struct contain all data for execution.
- * @return 1 if we have a probleme with allocation or file 
+ * @return 1 if we have a probleme with allocation or file
  * or data are invalid. And write the error massage depending on the error.
  */
 int	parsing(int argc, char **argv, t_scene *scene)
