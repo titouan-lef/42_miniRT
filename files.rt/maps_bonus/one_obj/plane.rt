@@ -1,7 +1,7 @@
-A 1.0	255,255,255
+A 0.3	255,255,255
 
 C 0,0,-100 0,0,1 73
 
 L 0,0,-100 1 255,255,255
 
-pl 0,0,0 0,0,1.0 220,85,57 0 ../bump_files/Brick_texture.png ../bump_files/Brick_Bump.png
+pl 0,0,0 0,0,1.0 220,85,57 0 NULL ../bump_files/brick_other_bump.png
