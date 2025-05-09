@@ -246,8 +246,6 @@ git reset --hard HEAD~1
 
 [Compute sphere tangent for normal mapping - Stack Exchange](https://computergraphics.stackexchange.com/questions/5498/compute-sphere-tangent-for-normal-mapping)
 
-[](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
-
 [Normal Mapping - Learn OpenGL](https://learnopengl.com/Advanced-Lighting/Normal-Mapping)
 
 [Normal Mapping - Wikipedia](https://en.wikipedia.org/wiki/Normal_mapping)
