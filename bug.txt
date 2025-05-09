@@ -12,3 +12,5 @@ cross product imprecision
 enlever message erreur normalize
 Ajouter lien source dans github
 data race event mlx ?
+
+Check cone bitangente --> pour latheral = dir ?
