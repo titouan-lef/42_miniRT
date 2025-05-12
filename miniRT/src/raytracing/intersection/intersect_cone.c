@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:48:22 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:48:24 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:22:24 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ static int	inter_lateral_co(const t_cone *co, const t_math_co *mathco,
 	p = ft_translation_vec3(&inter->ray.s, &inter->ray.dir, t);
 	bp = ft_diff_vec3(&p, &mathco->b);
 	m = ft_dot_vec3(&bp, &co->dir);
-	if (m <= 0 || m > co->h)
+	if (m < 0 || m > co->h)
 		return (0);
-	m_odir = ft_scalmult_vec3(&co->dir, m);
 	inter->soluce.t = t;
 	inter->soluce.p = p;
-	n = ft_translation_vec3(&bp, &m_odir, -mathco->angle_factor);
-	n = ft_normalize_vec3(&n);
+	if (m == 0)
+		n = ft_scalmult_vec3(&co->dir, -1);
+	else
+	{
+		m_odir = ft_scalmult_vec3(&co->dir, m);
+		n = ft_translation_vec3(&bp, &m_odir, -mathco->angle_factor);
+		n = ft_normalize_vec3(&n);
+	}
 	update_n_soluce(&n, &inter->ray.dir, &inter->soluce);
 	return (1);
 }
