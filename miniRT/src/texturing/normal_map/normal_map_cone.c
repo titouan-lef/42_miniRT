@@ -6,19 +6,20 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:49:14 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:49:16 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/12 20:10:26 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	fill_bitangent(const t_vec3 *n, const t_cone *co, t_vec3 *bitangent)
+static void	fill_bitangent(const t_soluce *soluce, const t_cone *co,
+	const t_vec3 *b, t_vec3 *bitangent)
 {
 	double	dot;
 
-	dot = ft_dot_vec3(n, &co->dir);
-	if (-0.9 < dot && dot < 0.9)
-		*bitangent = co->dir;
+	dot = ft_dot_vec3(&soluce->n, &co->dir);
+	if (-0.9 < dot && dot < 0.9 && !ft_is_equal_vec3(b, &soluce->p))
+		*bitangent = ft_create_normalized_vec3(b, &soluce->p);
 	else
 		*bitangent = co->right;
 }
@@ -45,6 +46,7 @@ void	fill_tangent_space_co(const t_intersec *inter, t_normal_map *map)
 	t_cone_obj	*co_obj;
 
 	co_obj = (t_cone_obj *)inter->obj->data;
-	fill_bitangent(&inter->soluce.n, &co_obj->co, &map->base.e2);
+	fill_bitangent(&inter->soluce, &co_obj->co, &co_obj->mathco.b,
+		&map->base.e2);
 	fill_tangent(&inter->soluce.p, &co_obj->co.pos, &map->base);
 }
