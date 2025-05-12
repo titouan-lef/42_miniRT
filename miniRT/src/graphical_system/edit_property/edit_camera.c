@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:44:53 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:44:54 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:10:22 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	camera_rotation(t_cam *cam, double x, double y)
 	double	angle;
 
 	x = x / WIN_HW;
-	if (x > 0.05)
+	if (x < 1 - EPSILON || x > 1 + EPSILON)
 	{
 		angle = M_PI * (x - 1) * SENSITIVITY;
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->up);
 		cam->right = ft_cross_vec3(&cam->up, &cam->dir);
 	}
 	y = y / WIN_HW;
-	if (y > 0.05)
+	if (y < 1 - EPSILON || y > 1 + EPSILON)
 	{
 		angle = -M_PI * (y - WIN_HH / WIN_HW) * SENSITIVITY;
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->right);
