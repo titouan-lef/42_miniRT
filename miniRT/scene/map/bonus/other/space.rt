@@ -1,0 +1,16 @@
+A 0.4	255,255,255
+
+C 0,0,-1920		0,0,1 73
+
+pl 1000000,0,0		-1,0,0	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+pl -1000000,0,0		1,0,0	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+pl 0,1000000,0		0,-1,0	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+pl 0,-1000000,0		0,1,0	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+pl 0,0,1000000		0,0,-1	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+pl 0,0,-1000000		0,0,1	220,85,57	0 scene/texturing/star_texture.png scene/texturing/stop_bump.png
+
+sp 0,0,0			1000	255,255,255 0 scene/texturing/earth_texture.png scene/texturing/earth_bump.png
+sp 2000,0,2000		100		255,255,255 0 scene/texturing/moon_texture.png scene/texturing/moon_bump.png
+sp 150000,0,150000	10000	255,255,255 0 scene/texturing/sun_texture.png NULL
+
+L 100000,0,100000	0.8		255,255,255

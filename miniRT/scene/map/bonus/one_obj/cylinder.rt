@@ -4,4 +4,4 @@ C 0,0,-1920 0,0,1 73
 
 L 100,100,-1000 0.7 255,255,255
 
-cy 0,0.0,0 1,0,0 500 200 0,0,255 0 NULL ../bump_files/NormalMap.png
+cy 0,0.0,0 1,0,0 500 200 0,0,255 0 NULL scene/texturing/NormalMap.png

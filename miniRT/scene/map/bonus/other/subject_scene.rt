@@ -26,4 +26,4 @@ sp -500,500,500 200 255,255,0 0 NULL NULL
 sp -500,-500,500 200 255,255,0 0 NULL NULL
 cy -500,0,500 0,1,0 100 1000 255,255,0 0 NULL NULL
 
-sp 0,0,0 100 255,0,0 0 ../bump_files/earth_daymap.png ../bump_files/earth_normal_map.png
+sp 0,0,0 100 255,0,0 0 scene/texturing/earth_texture.png scene/texturing/earth_bump.png
