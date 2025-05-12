@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
+#    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
-#    Updated: 2025/05/08 15:44:49 by pchalmin         ###   ########.fr        #
+#    Updated: 2025/05/12 11:53:48 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,13 +123,13 @@ DEP_BONUS :=	$(SRC:%.c=$(BUILD_DIR_BONUS)%.d)
 
 #==================== HEADER ====================#
 
-HEADERS =	include/
+HEADERS =	include/include_common/
 
-HEADERS_MANDA = include_manda/
+HEADERS_MANDA = include/include_manda/
 
 #---------- BONUS ----------#
 
-HEADERS_BONUS =	include_bonus/
+HEADERS_BONUS =	include/include_bonus/
 
 #==================== LIBFT =====================#
 
