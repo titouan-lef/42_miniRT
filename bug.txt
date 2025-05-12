@@ -14,3 +14,20 @@ Ajouter lien source dans github
 data race event mlx ?
 
 Check cone bitangente --> pour latheral = dir ?
+
+
+Parsing :
+argc != 2 | test ok | (Error\n Please try ./miniRT "files_name.rt")
+
+files scene is not a .rt | test ok | (Error\n Please try ./miniRT "files_name.rt")
+
+files have no permisson/ not here | test OK | (Error \nOpen at xxx.c at line xx failed pleasecheck the presence, permission and reload)
+
+malloc ft_split_charset | test ok | No message
+
+check_valid id | test ok | No message
+
+malloc alloc_new_light | test ok | No message
+
+
+ticket software nautilus
