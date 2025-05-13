@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_pattern.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:20 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:23:01 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	active_checkboard(int *status, char *str)
 {
 	int	error;
 
-	*status = ft_to_number(str, &error, 6);
+	*status = ft_to_number(str, &error, 5);
 	if (error != 0 || *status < 0)
 	{
 		print_error_message(ERR_CHECKERBOARD);
