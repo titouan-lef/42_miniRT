@@ -3,18 +3,9 @@ Optimisation des ordre des objets
 Vector normaliser parsing;
 KD la gestion diffuse speculare (actuellement definie dans le header color)
 
-Verif allocation et malloc a null
-verif retour mlx function
-
-Verifier pleine ecran
 Supprimer -g Makefile
-cross product imprecision
 enlever message erreur normalize
 Ajouter lien source dans github
-data race event mlx ?
-
-Check cone bitangente --> pour latheral = dir ?
-
 
 Parsing :
 argc != 2 | test ok | (Error\n Please try ./miniRT "files_name.rt")
