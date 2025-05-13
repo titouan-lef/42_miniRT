@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macro.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:41:40 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 18:56:29 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:28:40 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ R, G, B colors in the range [0-255]: 10, 0, 255"
 Try like this \"C -50.0,0,20 0,0,1 70\"\n\
 Identifier: C\n\
 x, y, z coordinates of the viewpoint: -50.0,0,20\n\
-3D normalized orientation vector, in the range [-1,1]\
+3D normalized orientation vector, in the range [-1,1] \
 for each x, y, z axis: 0.0,0.0,1.0\n\
 FOV: Horizontal field of view in degrees in the range [0,180]: 70"
 # endif
@@ -238,12 +238,12 @@ FOV: Horizontal field of view in degrees in the range [0,180]: 70"
 # endif
 
 # ifndef ERR_MALLOC
-#  define ERR_MALLOC "Malloc have failed please\
+#  define ERR_MALLOC "Malloc have failed please \
 check the presence, permission and reload"
 # endif
 
 # ifndef ERR_OPEN
-#  define ERR_OPEN "Open have failed please\
+#  define ERR_OPEN "Open have failed please \
 check the presence, permission and reload"
 # endif
 

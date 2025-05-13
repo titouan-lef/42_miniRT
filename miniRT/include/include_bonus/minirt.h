@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:42:26 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/12 11:54:38 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:16:23 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ Path of bump file in .png or NULL for deactivated"
 Try like this \"pl 0.0,0.0,-10.0 0.0,1.0,0.0 0,0,225\"\n\
 identifier: pl\n\
 x, y, z coordinates of a point in the plane: 0.0,0.0,-10.0\n\
-3D normalized normal vector, in the range [-1,1]\
+3D normalized normal vector, in the range [-1,1] \
 for each x, y, z axis: 0.0,1.0,0.0\n\
 R,G,B colors in the range [0-255]: 0,0,225\n\
 1 to 5 for activate and 0 to deactivate the checkerboard\n\
@@ -108,7 +108,7 @@ Path of bump file in .png or NULL for deactivated"
 Try like this \"cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
 Identifier: cy\n\
 x, y, z coordinates of the center of the cylinder: 50.0,0.0,20.6\n\
-3D normalized vector of axis of the cylinder, in the range [-1,1]\
+3D normalized vector of axis of the cylinder, in the range [-1,1] \
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cylinder diameter: 14.2\n\
 The cylinder height: 21.42\n\
@@ -123,7 +123,7 @@ Path of bump file in .png or NULL for deactivated"
 Try like this \"co 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255\"\n\
 Identifier: co\n\
 x, y, z coordinates of the center of the cone: 50.0,0.0,20.6\n\
-3D normalized vector of axis of the cone, in the range [-1,1]\
+3D normalized vector of axis of the cone, in the range [-1,1] \
 for each x, y, z axis: 0.0,0.0,1.0\n\
 The cone diameter: 14.2\n\
 The cone height: 21.42\n\
