@@ -1,0 +1,17 @@
+A 0.2	255,255,255
+
+C 0,0,0 0,-1,0 73
+
+L 100,100,-1000 0.5 255,255,255
+
+co 0,0,-1920 1,0,0 100 2000 0,0,255 0 NULL scene/texturing/brick_bump.png
+
+co 0,0,1920 1,0,0 100 2000 0,255,0 0 NULL scene/texturing/brick_bump.png
+
+co 0,-1920,0 1,0,0 100 2000 255,0,0 0 NULL scene/texturing/brick_bump.png
+
+co 0,1920,0 1,0,0 100 2000 255,255,255 0 NULL scene/texturing/brick_bump.png
+
+co -1920,0,0 1,0,0 100 2000 255,255,0 0 NULL scene/texturing/brick_bump.png
+
+co 1920,0,0 1,0,0 100 2000 0,255,255 0 NULL scene/texturing/brick_bump.png
