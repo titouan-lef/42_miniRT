@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:44:53 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/12 17:10:22 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:19:34 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	camera_rotation(t_cam *cam, double x, double y)
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->up);
 		cam->right = ft_cross_vec3(&cam->up, &cam->dir);
 	}
-	y = y / WIN_HW;
+	y = y / WIN_HH;
 	if (y < 1 - EPSILON || y > 1 + EPSILON)
 	{
-		angle = -M_PI * (y - WIN_HH / WIN_HW) * SENSITIVITY;
+		angle = -M_PI * (y - 1) * SENSITIVITY;
 		cam->dir = ft_rotation_quat(&cam->dir, angle, &cam->right);
 		cam->up = ft_cross_vec3(&cam->dir, &cam->right);
 	}
