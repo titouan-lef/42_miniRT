@@ -6,7 +6,7 @@
 /*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:41:40 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/13 11:28:40 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:32:07 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@
 
 # ifndef Z
 #  define Z "On Z axis"
+# endif
+
+# ifndef V_RIGHT
+#  define V_RIGHT "On Right axis"
+# endif
+
+# ifndef V_UP
+#  define V_UP "On Up axis"
+# endif
+
+# ifndef V_FORWARD
+#  define V_FORWARD "On Forward axis"
 # endif
 
 # ifndef D

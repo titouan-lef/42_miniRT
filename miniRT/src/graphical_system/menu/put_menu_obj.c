@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_menu_obj.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:45:42 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:45:43 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:34:26 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static void	put_menu_plane(t_graph_sys *g_sys)
 	title[0] = OBJ_PL;
 	title[1] = R;
 	selection[0] = T_PL;
-	selection[1] = X;
-	selection[2] = Y;
-	selection[3] = Z;
+	selection[1] = V_RIGHT;
+	selection[2] = V_UP;
+	selection[3] = V_FORWARD;
 	put_menu_title(g_sys, title_y, title, 2);
 	put_menu_selection(g_sys, selection_y, selection, 4);
 }
@@ -61,9 +61,9 @@ static void	put_menu_cylinder(t_graph_sys *g_sys)
 	selection[2] = X;
 	selection[3] = Y;
 	selection[4] = Z;
-	selection[5] = X;
-	selection[6] = Y;
-	selection[7] = Z;
+	selection[5] = V_RIGHT;
+	selection[6] = V_UP;
+	selection[7] = V_FORWARD;
 	put_menu_title(g_sys, title_y, title, 3);
 	put_menu_selection(g_sys, selection_y, selection, 8);
 }
@@ -83,9 +83,9 @@ static void	put_menu_cone(t_graph_sys *g_sys)
 	selection[2] = X;
 	selection[3] = Y;
 	selection[4] = Z;
-	selection[5] = X;
-	selection[6] = Y;
-	selection[7] = Z;
+	selection[5] = V_RIGHT;
+	selection[6] = V_UP;
+	selection[7] = V_FORWARD;
 	put_menu_title(g_sys, title_y, title, 3);
 	put_menu_selection(g_sys, selection_y, selection, 8);
 }

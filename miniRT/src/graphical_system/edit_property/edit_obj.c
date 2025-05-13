@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_obj.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:45:12 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:45:14 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 12:07:43 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ static void	obj_resize(double *r, int sign)
 void	edit_cone(int sign, t_menu *menu, t_cone_obj *cone)
 {
 	if (menu->i_subsubmenu == 0)
-		obj_resize(&cone->co.h, sign);
-	else if (menu->i_subsubmenu == 1)
 		obj_resize(&cone->co.r, sign);
+	else if (menu->i_subsubmenu == 1)
+		obj_resize(&cone->co.h, sign);
 	else if (menu->i_subsubmenu <= 4)
 		data_change_translation(&cone->co.pos, menu->i_subsubmenu - 2, sign);
 	else if (menu->i_subsubmenu == 5)
-		rotation_on_right(&cone->co.right, &cone->co.up, &cone->co.dir, sign);
+		rotation_on_right(&cone->co.dir, &cone->co.right, &cone->co.up, sign);
 	else if (menu->i_subsubmenu == 6)
-		rotation_on_up(&cone->co.right, &cone->co.up, &cone->co.dir, sign);
+		rotation_on_up(&cone->co.dir, &cone->co.right, &cone->co.up, sign);
 	else if (menu->i_subsubmenu == 7)
-		rotation_on_forward(&cone->co.right, &cone->co.up, &cone->co.dir, sign);
+		rotation_on_forward(&cone->co.dir, &cone->co.right, &cone->co.up, sign);
 }
 
 /**
@@ -60,14 +60,14 @@ void	edit_cylinder(int sign, t_menu *menu, t_cylinder_obj *cylinder)
 		data_change_translation(&cylinder->cy.pos, menu->i_subsubmenu - 2,
 			sign);
 	else if (menu->i_subsubmenu == 5)
-		rotation_on_right(&cylinder->cy.right, &cylinder->cy.up,
-			&cylinder->cy.dir, sign);
+		rotation_on_right(&cylinder->cy.dir, &cylinder->cy.right,
+			&cylinder->cy.up, sign);
 	else if (menu->i_subsubmenu == 6)
-		rotation_on_up(&cylinder->cy.right, &cylinder->cy.up,
-			&cylinder->cy.dir, sign);
+		rotation_on_up(&cylinder->cy.dir, &cylinder->cy.right,
+			&cylinder->cy.up, sign);
 	else if (menu->i_subsubmenu == 7)
-		rotation_on_forward(&cylinder->cy.right, &cylinder->cy.up,
-			&cylinder->cy.dir, sign);
+		rotation_on_forward(&cylinder->cy.dir, &cylinder->cy.right,
+			&cylinder->cy.up, sign);
 }
 
 /**
@@ -79,11 +79,11 @@ void	edit_plane(int sign, t_menu *menu, t_plane_obj *plane)
 	if (menu->i_subsubmenu == 0)
 		plane->pl.d += DIST * sign;
 	else if (menu->i_subsubmenu == 1)
-		rotation_on_right(&plane->right, &plane->up, &plane->pl.n, sign);
+		rotation_on_right(&plane->pl.n, &plane->right, &plane->up, sign);
 	else if (menu->i_subsubmenu == 2)
-		rotation_on_up(&plane->right, &plane->up, &plane->pl.n, sign);
+		rotation_on_up(&plane->pl.n, &plane->right, &plane->up, sign);
 	else
-		rotation_on_forward(&plane->right, &plane->up, &plane->pl.n, sign);
+		rotation_on_forward(&plane->pl.n, &plane->right, &plane->up, sign);
 }
 
 /**
