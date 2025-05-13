@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:25 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 18:45:35 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 14:02:40 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	take_dimension(double *dimension, char *str)
 	int	error;
 
 	*dimension = ft_todouble(str, &error);
-	return (error || *dimension <= 0);
+	return (error || *dimension < 0.001);
 }
 
 /**
