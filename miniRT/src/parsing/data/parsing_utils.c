@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:25 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/13 14:02:40 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/05/13 19:17:59 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	check_files_type(char *str, char *type)
 }
 
 /**
- * @brief Check the first line of tab for look identifer
- * @param str Id of string.
- * @return Nb in fonction of id detected.
- * @warning 7 is for a cone for bonus.
+ * @brief Check the first line of tab for look identifier.
+ * @param str String id.
+ * @return Element id.
+ * @warning Id 7 is for a cone (only for bonus).
  */
 int	check_valid_id(char *str, int single_entity[2])
 {

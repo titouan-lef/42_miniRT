@@ -6,7 +6,7 @@
 /*   By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:41:40 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/13 11:32:07 by pchalmin         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:32:13 by pchalmin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,27 +187,27 @@
  * @brief COMMON ERROR
  ***********************************************/
 # ifndef ERR_MLX_INIT
-#  define ERR_MLX_INIT "Error initialization mlx"
+#  define ERR_MLX_INIT "Error\nInitialization mlx"
 # endif
 
 # ifndef ERR_BACK_BUFFER_INIT
-#  define ERR_BACK_BUFFER_INIT "Error initialization back buffer"
+#  define ERR_BACK_BUFFER_INIT "Error\nInitialization back buffer"
 # endif
 
 # ifndef ERR_FRONT_BUFFER_INIT
-#  define ERR_FRONT_BUFFER_INIT "Error initialization front buffer"
+#  define ERR_FRONT_BUFFER_INIT "Error\nNitialization front buffer"
 # endif
 
 # ifndef ERR_WIN_INIT
-#  define ERR_WIN_INIT "Error initialization window"
+#  define ERR_WIN_INIT "Error\nInitialization window"
 # endif
 
 # ifndef ERR_MENU_INIT
-#  define ERR_MENU_INIT "Error initialization menu"
+#  define ERR_MENU_INIT "Error\nInitialization menu"
 # endif
 
 # ifndef ERR_TEXTURE_INIT
-#  define ERR_TEXTURE_INIT "Error initialization texture"
+#  define ERR_TEXTURE_INIT "Error\nInitialization texture"
 # endif
 
 # ifndef ERR_AMBIENT

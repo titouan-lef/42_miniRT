@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
+#    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
-#    Updated: 2025/05/12 11:53:48 by tle-floc         ###   ########.fr        #
+#    Updated: 2025/05/13 16:04:27 by pchalmin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 CC =				cc
 
-CFLAGS +=			-Wall -Wextra -Werror -MP -MMD -g
+CFLAGS +=			-Wall -Wextra -Werror -MP -MMD
 
 MATH_FLAG :=		-lm
 

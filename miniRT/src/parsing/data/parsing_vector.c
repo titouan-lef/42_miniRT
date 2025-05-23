@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:46:32 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:46:34 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 16:39:56 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	take_dir(t_vec3 *dir, char *str)
 	if (!str || *str)
 		return (1);
 	norm = ft_norm_vec3(dir);
-	return (norm != 1);
+	if (norm == 0)
+		return (1);
+	*dir = ft_scalmult_vec3(dir, 1.0 / norm);
+	return (0);
 }
 
 /**

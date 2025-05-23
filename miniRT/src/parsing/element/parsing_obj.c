@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:47:09 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:47:11 by tle-floc         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:10:39 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_obj	*init_obj(void)
 	obj->data = NULL;
 	obj->pattern.bump.name = NULL;
 	obj->pattern.texture.name = NULL;
+	obj->pattern.checkerboard = 0;
 	return (obj);
 }
 
