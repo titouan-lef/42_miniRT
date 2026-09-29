@@ -6,7 +6,7 @@
 /*   By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 16:51:32 by tle-floc          #+#    #+#             */
-/*   Updated: 2025/05/09 16:51:35 by tle-floc         ###   ########.fr       */
+/*   Updated: 2026/09/29 15:23:37 by tle-floc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	exit_error_parsing(t_scene *scene)
  */
 void	print_error_message(char *str)
 {
-	write(2, "Error\n", 6);
-	ft_printf_fd(2, "%s\n", str);
+	ft_putendl_error("Error");
+	ft_putendl_error(str);
 }
