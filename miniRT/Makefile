@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pchalmin <pchalmin@student.42.fr>          +#+  +:+       +#+         #
+#    By: tle-floc <tle-floc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 11:36:03 by pchalmin          #+#    #+#              #
-#    Updated: 2025/05/13 16:04:27 by pchalmin         ###   ########.fr        #
+#    Updated: 2026/09/29 09:55:23 by tle-floc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -149,15 +149,13 @@ MACROLIBX_DIR :=	MacroLibX/
 
 MACROLIBX :=		$(addprefix $(MACROLIBX_DIR), libmlx.so)
 
-MAKE_MACROLIBX :=	make -C $(MACROLIBX_DIR) -j >/dev/null 2>/dev/null
-
 #===================== RULE =====================#
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MACROLIBX)
+$(NAME): $(OBJ) $(LIBFT)
 	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
-	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $(MACROLIBX) $^ -o $@
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
@@ -171,21 +169,15 @@ $(LIBFT):
 	@$(MAKE_LIBFT)
 	@echo "$(YELLOW)Leaving directory $(BLUE)$(LIBFT_DIR)$(INIT)"
 
-$(MACROLIBX):
-	@echo "$(YELLOW)Entering directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
-	@echo "$(CYAN)Archiving : $(MAGENTA)macrolibx$(INIT)"
-	@$(MAKE_MACROLIBX)
-	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
-
 bonus :  $(NAME_BONUS)
 
-$(NAME_BONUS): $(OBJ_BONUS) $(LIBFT) $(MACROLIBX)
+$(NAME_BONUS): $(OBJ_BONUS) $(LIBFT)
 	@echo "$(CYAN)Linking : $(MAGENTA)$@$(INIT)"
-	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $^ -o $@
+	@$(CC) $(CFLAGS) $(MACROLIBX_FLAG) $(MATH_FLAG) $(MACROLIBX) $^ -o $@
 
 $(BUILD_DIR_BONUS)%.o: $(SRC_DIR)%.c | $(OBJ_DIR_BONUS)
 	@echo "$(GREEN)Compiling : $(MAGENTA)$<$(INIT)"
-	@$(CC) $(CFLAGS)  -I$(LIBFT_HEADER) -I$(HEADERS_BONUS) -I$(HEADERS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_HEADER) -I$(HEADERS_BONUS) -I$(HEADERS) -c $< -o $@
 
 $(OBJ_DIR_BONUS):
 	@mkdir -p $@
@@ -195,18 +187,12 @@ clean:
 	@echo "$(YELLOW)Entering directory $(BLUE)$(LIBFT_DIR)$(INIT)"
 	@$(MAKE_LIBFT) clean
 	@echo "$(YELLOW)Leaving directory $(BLUE)$(LIBFT_DIR)$(INIT)"
-#clean macrolibx
-	@echo "$(YELLOW)Entering directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
-	@echo "$(RED)Removing : $(MAGENTA)macrolibx files$(INIT)"
-	@$(MAKE_MACROLIBX) clean
-	@echo "$(YELLOW)Leaving directory $(BLUE)$(MACROLIBX_DIR)$(INIT)"
 #clean build directory
 	@if [ -d $(BUILD_DIR) ]; then echo "$(RED)Removing directory : $(BLUE)$(BUILD_DIR)$(INIT)"; rm -rf $(BUILD_DIR); fi;
 	@if [ -d $(BUILD_DIR_BONUS) ]; then echo "$(RED)Removing directory : $(BLUE)$(BUILD_DIR_BONUS)$(INIT)"; rm -rf $(BUILD_DIR_BONUS); fi;
 
 fclean: clean
 	@if [ -f $(LIBFT) ]; then echo "$(RED)Removing : $(MAGENTA)$(LIBFT)$(INIT)"; rm -f $(LIBFT); fi;
-	@if [ -f $(MACROLIBX) ]; then echo "$(RED)Removing : $(MAGENTA)$(MACROLIBX)$(INIT)"; rm -f $(MACROLIBX); fi;
 	@if [ -f $(NAME) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME)$(INIT)"; rm -f $(NAME); fi;
 	@if [ -f $(NAME_BONUS) ]; then echo "$(RED)Removing : $(MAGENTA)$(NAME_BONUS)$(INIT)"; rm -f $(NAME_BONUS); fi;
 
