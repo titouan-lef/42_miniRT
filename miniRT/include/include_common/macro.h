@@ -67,7 +67,7 @@
 # endif
 
 # ifndef FULL_SCREEN_AVAILABLE
-#  define FULL_SCREEN_AVAILABLE 0
+#  define FULL_SCREEN_AVAILABLE 1
 # endif
 
 # ifndef X
