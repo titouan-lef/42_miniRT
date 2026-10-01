@@ -8,6 +8,8 @@
 	* [Features](#features)
 	* [Bonus features](#bonus-features)
 	* [Images](#images)
+	* [Technical constraints](#technical-constraints)
+	* [Allowed external functions](#allowed-external-functions)
 * [Tools](#tools)
 * [Project architecture](#project-architecture)
 * [Instructions](#instructions)
@@ -111,6 +113,18 @@ Textures :
 Many features :
 ![many features](image_doc/many_features.png)
 
+### Technical constraints
+- Global variables are not allowed.
+- No memory leaks are tolerated in the project's own code (leaks originating from [external functions](#allowed-external-functions) itself are not considered).
+- This project must be written in accordance with the [42 Norm](https://github.com/42School/norminette).
+
+### Allowed external functions
+- `open`, `close`, `read`, `write`, `printf`, `malloc`, `free`, `perror`, `strerror`, `exit`, `gettimeofday`.
+- All functions of the math library.
+- All functions of the MacroLibX library.
+
+The [MacroLibX](https://github.com/seekrs/MacroLibX) is rewritten version of the minilibx graphics API used at 42school, using SDL2 & Vulkan.
+
 ## Tools
 
 | Tool | Version |
@@ -119,16 +133,12 @@ Many features :
 | Make | any |
 | MacroLibX | 2.1.0 |
 
-The [MacroLibX](https://github.com/seekrs/MacroLibX) is rewritten version of the minilibx graphics API used at 42school, using SDL2 & Vulkan.
-
 ## Project architecture
 At the root of the project repository are :
 - The `miniRT` folder : the project’s deliverables folder.
 - `file_test_supp.rt` : test files for parsing and basic scenes.
 - `en.subject.pdf` : the project brief.
 - `miniRt.excalidraw` : an Excalidraw file containing explanatory diagrams and the mathematical calculations performed.
-
-This project is written in accordance with the [42 Norm](https://github.com/42School/norminette).
 
 ## Instructions
 
